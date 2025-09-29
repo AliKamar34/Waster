@@ -8,6 +8,6 @@ class AppColors {
   static const orangeColor = Color(0xffFF9800);
   static const scaffoldColor = Color(0xffF9F9F9);
   static const blueColor = Color(0xff03A9F4);
-  static const borederColor = Color(0xffF3F3F5);
+  static const borderColor = Color(0xffF3F3F5);
   static const redColor = Color(0xffD4183D);
 }
