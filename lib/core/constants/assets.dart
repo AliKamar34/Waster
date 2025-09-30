@@ -1,6 +1,6 @@
 class Assets {
   static const String lottiePath = 'assets/lottie/';
-  static const String lottieSplash = '${lottiePath}splash.josn';
+  static const String lottieSplash = '${lottiePath}splash.json';
 
   static const String imagesPath = 'assets/images/';
   static const String logo = '${imagesPath}logo.svg';
