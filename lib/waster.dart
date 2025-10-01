@@ -6,7 +6,11 @@ class WasterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: 'Flutter Demo', home: SplashView());
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+
+      home: SplashView(),
+    );
   }
 }
 
