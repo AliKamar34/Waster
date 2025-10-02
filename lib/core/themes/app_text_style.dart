@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waster/core/themes/app_colors.dart';
 
-// semi bold 600    regular 400  medium 500
 abstract class AppTextStyle {
   static TextStyle styleBold24(context) {
     return GoogleFonts.arimo(
       fontSize: getResponsiveFontSize(context, fontSize: 24),
+      fontWeight: FontWeight.w700,
+    );
+  }
+
+  static TextStyle styleBold20(context) {
+    return GoogleFonts.arimo(
+      fontSize: getResponsiveFontSize(context, fontSize: 20),
       fontWeight: FontWeight.w700,
     );
   }
@@ -35,6 +42,7 @@ abstract class AppTextStyle {
     return GoogleFonts.arimo(
       fontSize: getResponsiveFontSize(context, fontSize: 14),
       fontWeight: FontWeight.w600,
+      color: AppColors.greyTextColor,
     );
   }
 
