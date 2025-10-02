@@ -1,19 +1,31 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:waster/core/constants/assets.dart';
-import 'package:waster/features/start/views/start_view.dart';
+import 'package:waster/core/routing/app_routes.dart';
 
-class SplashView extends StatelessWidget {
+class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
   @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 4), () {
+      if (mounted) {
+        context.pushReplacementNamed(AppRoutes.start);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
-      splash: LottieBuilder.asset(Assets.lottieSplash),
-      nextScreen: const StartView(),
-      splashIconSize: MediaQuery.sizeOf(context).width,
-      duration: 4000,
+    return Scaffold(
+      body: Center(child: LottieBuilder.asset(Assets.lottieSplash)),
     );
   }
 }

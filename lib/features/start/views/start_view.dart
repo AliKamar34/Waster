@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_button.dart';
@@ -16,7 +18,7 @@ class StartView extends StatelessWidget {
         child: ListView(
           children: [
             SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.4,
+              height: MediaQuery.sizeOf(context).height * 0.35,
               child: SvgPicture.asset(Assets.start, fit: BoxFit.fill),
             ),
             const SizedBox(height: 16),
@@ -59,7 +61,9 @@ class StartView extends StatelessWidget {
                   CustomButton(
                     title: 'Get Started',
                     backgroundColor: AppColors.primaryColor,
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pushNamed(AppRoutes.login);
+                    },
                   ),
                   const SizedBox(height: 16),
                 ],
