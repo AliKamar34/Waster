@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:waster/features/start/views/splash_view.dart';
+import 'package:waster/core/routing/router_generation_config.dart';
 
 class WasterApp extends StatelessWidget {
   const WasterApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: SplashView(),
+      routerConfig: RouterGenerationConfig.goRoute,
     );
   }
 }
