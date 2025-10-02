@@ -2,7 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:waster/core/constants/assets.dart';
-import 'package:waster/waster.dart';
+import 'package:waster/features/start/views/start_view.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -11,7 +11,7 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       splash: LottieBuilder.asset(Assets.lottieSplash),
-      nextScreen: const MyHomePage(),
+      nextScreen: const StartView(),
       splashIconSize: MediaQuery.sizeOf(context).width,
       duration: 4000,
     );
