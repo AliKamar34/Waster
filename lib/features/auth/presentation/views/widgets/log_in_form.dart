@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
@@ -31,7 +33,12 @@ class LoginForm extends StatelessWidget {
               prefixIcon: SvgPicture.asset(Assets.passwordLock, width: 24),
               suffixIcon: SvgPicture.asset(Assets.passwordEye, width: 24),
             ),
-            CustomButton(title: 'Sign In', onPressed: () {}),
+            CustomButton(
+              title: 'Sign In',
+              onPressed: () {
+                context.pushReplacementNamed(AppRoutes.mainView);
+              },
+            ),
           ],
         ),
       ),

@@ -24,6 +24,13 @@ abstract class AppTextStyle {
     );
   }
 
+  static TextStyle styleMeduim14(context) {
+    return GoogleFonts.arimo(
+      fontSize: getResponsiveFontSize(context, fontSize: 14),
+      fontWeight: FontWeight.w500,
+    );
+  }
+
   static TextStyle styleRegular24(context) {
     return GoogleFonts.arimo(
       fontSize: getResponsiveFontSize(context, fontSize: 24),
