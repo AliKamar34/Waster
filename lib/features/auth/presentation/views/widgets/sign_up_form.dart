@@ -40,6 +40,8 @@ class SignUpForm extends StatelessWidget {
               prefixIcon: SvgPicture.asset(Assets.email, width: 24),
             ),
             CustomDropDownButton<RolesEnum>(
+              lable: 'I want to',
+              hint: 'Select your role',
               onChanged: (val) {},
               validator: (p0) {
                 return null;

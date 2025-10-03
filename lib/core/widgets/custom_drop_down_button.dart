@@ -8,10 +8,13 @@ class CustomDropDownButton<T> extends StatelessWidget {
     this.validator,
     required this.items,
     this.onChanged,
+    required this.lable,
+    required this.hint,
   });
   final String? Function(T?)? validator;
   final List<DropdownMenuItem<T>> items;
   final void Function(T?)? onChanged;
+  final String lable, hint;
   @override
   Widget build(BuildContext context) {
     T? selectedValue;
@@ -19,13 +22,10 @@ class CustomDropDownButton<T> extends StatelessWidget {
       spacing: 4,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('I want to', style: AppTextStyle.styleRegular16(context)),
+        Text(lable, style: AppTextStyle.styleRegular16(context)),
         DropdownButtonFormField<T>(
           value: selectedValue,
-          hint: Text(
-            'Select your role',
-            style: AppTextStyle.styleRegular16(context),
-          ),
+          hint: Text(hint, style: AppTextStyle.styleRegular16(context)),
           validator: validator,
           onChanged: onChanged,
           items: items.map((item) {
@@ -33,7 +33,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
           }).toList(),
           decoration: InputDecoration(
             filled: true,
-            fillColor: AppColors.scaffoldColor,
+            fillColor: AppColors.borderColor,
             border: borderBuilder(),
             enabledBorder: borderBuilder(),
             focusedBorder: borderBuilder(),
@@ -52,7 +52,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
             quarterTurns: 3,
             child: Icon(Icons.arrow_back_ios_new_outlined),
           ),
-          dropdownColor: AppColors.scaffoldColor,
+          dropdownColor: AppColors.borderColor,
           borderRadius: BorderRadius.circular(8),
         ),
       ],
@@ -63,7 +63,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
     return OutlineInputBorder(
       gapPadding: 18,
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: AppColors.scaffoldColor),
+      borderSide: const BorderSide(color: AppColors.borderColor),
     );
   }
 }

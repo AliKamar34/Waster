@@ -12,12 +12,14 @@ class CustomTextFeild extends StatelessWidget {
     this.controller,
     this.lable,
     this.prefixIcon,
+    this.maxLines,
   });
   final String hint;
   final String? lable;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final bool? isPassword;
+  final int? maxLines;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   @override
@@ -30,13 +32,14 @@ class CustomTextFeild extends StatelessWidget {
             ? const SizedBox()
             : Text(lable!, style: AppTextStyle.styleRegular16(context)),
         TextFormField(
+          maxLines: maxLines ?? 1,
           controller: controller,
           validator: validator,
           cursorColor: AppColors.greyTextColor,
           obscureText: isPassword ?? false,
           decoration: InputDecoration(
             filled: true,
-            fillColor: AppColors.scaffoldColor,
+            fillColor: AppColors.borderColor,
             border: borderBuilder(),
             enabledBorder: borderBuilder(),
             focusedBorder: borderBuilder(),
@@ -69,7 +72,7 @@ class CustomTextFeild extends StatelessWidget {
     return OutlineInputBorder(
       gapPadding: 18,
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: AppColors.scaffoldColor),
+      borderSide: const BorderSide(color: AppColors.borderColor),
     );
   }
 }
