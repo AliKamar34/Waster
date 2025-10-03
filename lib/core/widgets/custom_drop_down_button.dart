@@ -1,38 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
-import 'package:waster/features/auth/data/models/roles_enum.dart';
 
-class CustomDropDownButton extends StatelessWidget {
-  const CustomDropDownButton({super.key, this.validator});
-  final String? Function(RolesEnum?)? validator;
+class CustomDropDownButton<T> extends StatelessWidget {
+  const CustomDropDownButton({
+    super.key,
+    this.validator,
+    required this.items,
+    this.onChanged,
+  });
+  final String? Function(T?)? validator;
+  final List<DropdownMenuItem<T>> items;
+  final void Function(T?)? onChanged;
   @override
   Widget build(BuildContext context) {
-    RolesEnum? selectedValue;
+    T? selectedValue;
     return Column(
       spacing: 4,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('I want to', style: AppTextStyle.styleRegular16(context)),
-        DropdownButtonFormField<RolesEnum>(
+        DropdownButtonFormField<T>(
           value: selectedValue,
           hint: Text(
             'Select your role',
             style: AppTextStyle.styleRegular16(context),
           ),
           validator: validator,
-          onChanged: (_) {},
-          items: const [
-            DropdownMenuItem(value: RolesEnum.donor, child: Text('Donor')),
-            DropdownMenuItem(
-              value: RolesEnum.recipient,
-              child: Text('Resipient'),
-            ),
-            DropdownMenuItem(
-              value: RolesEnum.volunteer,
-              child: Text('Volunteer'),
-            ),
-          ],
+          onChanged: onChanged,
+          items: items.map((item) {
+            return DropdownMenuItem<T>(value: item.value, child: item.child);
+          }).toList(),
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.scaffoldColor,

@@ -17,6 +17,7 @@ class CustomStartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       padding: 5,
+      borderWidth: 1.5,
       backgroundColor: color.withValues(alpha: 0.1),
       borderColor: color,
       child: ListTile(

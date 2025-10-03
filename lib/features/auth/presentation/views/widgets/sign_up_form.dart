@@ -5,7 +5,8 @@ import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 import 'package:waster/core/widgets/custom_text_feild.dart';
-import 'package:waster/features/auth/presentation/views/widgets/custom_drop_down_button.dart';
+import 'package:waster/core/widgets/custom_drop_down_button.dart';
+import 'package:waster/features/auth/data/models/roles_enum.dart';
 import 'package:waster/features/auth/presentation/views/widgets/terms_and_privacy.dart';
 
 class SignUpForm extends StatelessWidget {
@@ -38,10 +39,22 @@ class SignUpForm extends StatelessWidget {
               hint: 'Enter your email',
               prefixIcon: SvgPicture.asset(Assets.email, width: 24),
             ),
-            CustomDropDownButton(
+            CustomDropDownButton<RolesEnum>(
+              onChanged: (val) {},
               validator: (p0) {
                 return null;
               },
+              items: const [
+                DropdownMenuItem(value: RolesEnum.donor, child: Text('Donor')),
+                DropdownMenuItem(
+                  value: RolesEnum.recipient,
+                  child: Text('Resipient'),
+                ),
+                DropdownMenuItem(
+                  value: RolesEnum.volunteer,
+                  child: Text('Volunteer'),
+                ),
+              ],
             ),
             CustomTextFeild(
               lable: 'Location',
