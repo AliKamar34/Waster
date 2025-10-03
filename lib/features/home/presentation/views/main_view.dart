@@ -36,7 +36,7 @@ class _MainViewState extends State<MainView> {
         selectedLabelStyle: AppTextStyle.styleMeduim14(context),
         onTap: (value) {
           if (value == 2) {
-            context.pushNamed(AppRoutes.login);
+            context.pushNamed(AppRoutes.donateView);
           } else {
             setState(() {
               currIndex = value;

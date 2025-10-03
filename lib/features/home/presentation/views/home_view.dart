@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:waster/features/home/presentation/views/widgets/home_count_section.dart';
@@ -18,7 +20,12 @@ class HomeView extends StatelessWidget {
           children: [
             const CustomHomeAppBar(),
             const HomeCountSection(),
-            CustomButton(title: 'Post New Donation', onPressed: () {}),
+            CustomButton(
+              title: 'Post New Donation',
+              onPressed: () {
+                context.pushNamed(AppRoutes.donateView);
+              },
+            ),
             const RecentDonationsSection(),
             const ImpactOfMonthWidget(),
             const SizedBox(height: 24),
