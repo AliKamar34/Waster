@@ -22,7 +22,10 @@ class CustomContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor ?? AppColors.whiteColor,
         borderRadius: BorderRadius.circular(borderRadius ?? 12),
-        border: Border.all(color: borderColor ?? AppColors.borderColor),
+        border: Border.all(
+          width: 2,
+          color: borderColor ?? AppColors.borderColor,
+        ),
       ),
       child: child,
     );

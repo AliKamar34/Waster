@@ -11,10 +11,12 @@ class CustomTextFeild extends StatelessWidget {
     this.validator,
     this.controller,
     this.lable,
+    this.prefixIcon,
   });
   final String hint;
   final String? lable;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final bool? isPassword;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -46,11 +48,17 @@ class CustomTextFeild extends StatelessWidget {
             ),
             hintText: hint,
             hintStyle: AppTextStyle.styleRegular16(context),
-            suffixIcon: suffixIcon,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
+            suffixIcon: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: suffixIcon,
             ),
+            prefixIcon: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: prefixIcon,
+            ),
+            prefixIconConstraints: const BoxConstraints(),
+            suffixIconConstraints: const BoxConstraints(),
+            contentPadding: const EdgeInsets.symmetric(vertical: 12),
           ),
         ),
       ],
