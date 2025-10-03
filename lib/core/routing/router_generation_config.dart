@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/features/auth/presentation/views/log_in_view.dart';
 import 'package:waster/features/auth/presentation/views/sign_up_view.dart';
+import 'package:waster/features/home/presentation/views/main_view.dart';
 import 'package:waster/features/start/views/splash_view.dart';
 import 'package:waster/features/start/views/start_view.dart';
 
@@ -28,6 +29,11 @@ class RouterGenerationConfig {
         path: AppRoutes.singUp,
         name: AppRoutes.singUp,
         builder: (context, state) => const SignUpView(),
+      ),
+      GoRoute(
+        path: AppRoutes.mainView,
+        name: AppRoutes.mainView,
+        builder: (context, state) => const MainView(),
       ),
     ],
   );

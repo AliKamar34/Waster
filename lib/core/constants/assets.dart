@@ -36,7 +36,7 @@ class Assets {
   static const String phone = '${iconsPath}phone.svg';
   static const String privacy = '${iconsPath}privacy.svg';
   static const String profile = '${iconsPath}profile.svg';
-  static const String prowse = '${iconsPath}prowse.svg';
+  static const String browse = '${iconsPath}browse.svg';
   static const String timer = '${iconsPath}timer.svg';
   static const String truck = '${iconsPath}truck.svg';
 }
