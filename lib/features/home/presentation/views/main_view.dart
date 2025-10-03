@@ -5,6 +5,7 @@ import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
+import 'package:waster/features/home/presentation/views/home_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -16,7 +17,7 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   int currIndex = 0;
   final List<Widget> pages = [
-    Container(color: Colors.amber),
+    const HomeView(),
     Container(color: Colors.red),
     const SizedBox.shrink(),
     Container(color: Colors.blue),
