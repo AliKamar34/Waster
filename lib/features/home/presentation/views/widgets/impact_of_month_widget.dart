@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
-import 'package:waster/core/widgets/custom_container.dart';
+import 'package:waster/core/widgets/custom_light_color_container.dart';
 
 class ImpactOfMonthWidget extends StatelessWidget {
   const ImpactOfMonthWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return CustomContainer(
-      backgroundColor: AppColors.primaryColor.withAlpha(13),
-      borderColor: AppColors.primaryColor.withAlpha(51),
+    return CustomLightColorContainer(
+      color: AppColors.primaryColor,
       child: Column(
         spacing: 8,
         children: [

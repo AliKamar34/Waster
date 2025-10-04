@@ -6,7 +6,7 @@ import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_button.dart';
-import 'package:waster/core/widgets/custom_container.dart';
+import 'package:waster/core/widgets/custom_light_color_container.dart';
 
 class CustomAddFoodPhotoWidget extends StatelessWidget {
   const CustomAddFoodPhotoWidget({
@@ -21,10 +21,9 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomContainer(
+    return CustomLightColorContainer(
       padding: 20,
-      backgroundColor: AppColors.primaryColor.withAlpha(13),
-      borderColor: AppColors.primaryColor.withAlpha(51),
+      color: AppColors.primaryColor,
       child: image == null
           ? Column(
               children: [
