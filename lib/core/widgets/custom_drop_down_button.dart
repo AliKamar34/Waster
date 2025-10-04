@@ -10,14 +10,15 @@ class CustomDropDownButton<T> extends StatelessWidget {
     this.onChanged,
     required this.lable,
     required this.hint,
+    this.selectedValue,
   });
   final String? Function(T?)? validator;
   final List<DropdownMenuItem<T>> items;
   final void Function(T?)? onChanged;
   final String lable, hint;
+  final T? selectedValue;
   @override
   Widget build(BuildContext context) {
-    T? selectedValue;
     return Column(
       spacing: 4,
       crossAxisAlignment: CrossAxisAlignment.start,

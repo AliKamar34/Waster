@@ -14,7 +14,6 @@ class TermsAndPrivacy extends StatelessWidget {
   final ValueChanged<bool?> onChanged;
   @override
   Widget build(BuildContext context) {
-    bool isChecked = false;
     return Row(
       children: [
         Checkbox(

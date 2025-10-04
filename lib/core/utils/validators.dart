@@ -1,4 +1,12 @@
 class Validators {
+  /// Normal validation
+  static String? normal(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'This field is required';
+    }
+    return null;
+  }
+
   /// Email validation
   static String? email(String? value) {
     if (value == null || value.trim().isEmpty) {

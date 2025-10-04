@@ -53,22 +53,15 @@ class _LoginFormState extends State<LoginForm> {
               validator: Validators.password,
               isPassword: isPassword,
               prefixIcon: SvgPicture.asset(Assets.passwordLock, width: 24),
-              suffixIcon: isPassword
-                  ? InkWell(
-                      onTap: () {
-                        setState(() {
-                          isPassword = !isPassword;
-                        });
-                      },
-                      child: SvgPicture.asset(Assets.passwordEye, width: 24),
-                    )
-                  : InkWell(
-                      onTap: () {
-                        setState(() {
-                          isPassword = !isPassword;
-                        });
-                      },
-                      child: SvgPicture.asset(
+              suffixIcon: InkWell(
+                onTap: () {
+                  setState(() {
+                    isPassword = !isPassword;
+                  });
+                },
+                child: isPassword
+                    ? SvgPicture.asset(Assets.passwordEye, width: 24)
+                    : SvgPicture.asset(
                         Assets.passwordEyeOff,
                         colorFilter: const ColorFilter.mode(
                           AppColors.greyTextColor,
@@ -76,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                         width: 24,
                       ),
-                    ),
+              ),
             ),
             CustomButton(
               title: 'Sign In',
