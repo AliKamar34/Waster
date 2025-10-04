@@ -6,13 +6,13 @@ void showToast(BuildContext context, String message, {bool isError = false}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Center(
-        child: Text(message, style: AppTextStyle.styleMeduim14(context)),
+        child: Text(message, style: AppTextStyle.styleBold16(context)),
       ),
       duration: const Duration(seconds: 2),
       behavior: SnackBarBehavior.floating,
-      backgroundColor: isError ? AppColors.redColor : AppColors.primaryColor,
+      backgroundColor: isError ? AppColors.redColor : AppColors.blueColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-      margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+      margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
     ),
   );
 }

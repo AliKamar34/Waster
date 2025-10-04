@@ -2,42 +2,22 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 
-class CustomAddFoodPhotoWidget extends StatefulWidget {
-  const CustomAddFoodPhotoWidget({super.key});
-
-  @override
-  State<CustomAddFoodPhotoWidget> createState() =>
-      _CustomAddFoodPhotoWidgetState();
-}
-
-class _CustomAddFoodPhotoWidgetState extends State<CustomAddFoodPhotoWidget> {
-  File? _image;
-
-  Future<void> _pickImage({required bool fromCamera}) async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? pickedFile = await picker.pickImage(
-      source: fromCamera ? ImageSource.camera : ImageSource.gallery,
-    );
-
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
-    }
-  }
-
-  void _removeImage() {
-    setState(() {
-      _image = null;
-    });
-  }
+class CustomAddFoodPhotoWidget extends StatelessWidget {
+  const CustomAddFoodPhotoWidget({
+    super.key,
+    required this.pickImage,
+    this.removeImage,
+    this.image,
+  });
+  final File? image;
+  final Future<void> Function(bool fromCamera) pickImage;
+  final void Function()? removeImage;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +25,7 @@ class _CustomAddFoodPhotoWidgetState extends State<CustomAddFoodPhotoWidget> {
       padding: 20,
       backgroundColor: AppColors.primaryColor.withAlpha(13),
       borderColor: AppColors.primaryColor.withAlpha(51),
-      child: _image == null
+      child: image == null
           ? Column(
               children: [
                 SvgPicture.asset(Assets.camera),
@@ -80,7 +60,7 @@ class _CustomAddFoodPhotoWidgetState extends State<CustomAddFoodPhotoWidget> {
                                 title: const Text('Take Photo'),
                                 onTap: () {
                                   context.pop();
-                                  _pickImage(fromCamera: true);
+                                  pickImage(true);
                                 },
                               ),
                               ListTile(
@@ -88,7 +68,7 @@ class _CustomAddFoodPhotoWidgetState extends State<CustomAddFoodPhotoWidget> {
                                 title: const Text('Upload from Gallery'),
                                 onTap: () {
                                   context.pop();
-                                  _pickImage(fromCamera: false);
+                                  pickImage(false);
                                 },
                               ),
                             ],
@@ -105,7 +85,7 @@ class _CustomAddFoodPhotoWidgetState extends State<CustomAddFoodPhotoWidget> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.file(
-                    _image!,
+                    image!,
                     width: double.infinity,
                     height: 200,
                     fit: BoxFit.cover,
@@ -121,7 +101,7 @@ class _CustomAddFoodPhotoWidgetState extends State<CustomAddFoodPhotoWidget> {
                         Icons.close,
                         color: AppColors.whiteColor,
                       ),
-                      onPressed: _removeImage,
+                      onPressed: removeImage,
                     ),
                   ),
                 ),

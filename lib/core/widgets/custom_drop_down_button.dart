@@ -28,6 +28,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
           value: selectedValue,
           hint: Text(hint, style: AppTextStyle.styleRegular16(context)),
           validator: validator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           onChanged: onChanged,
           items: items.map((item) {
             return DropdownMenuItem<T>(value: item.value, child: item.child);
