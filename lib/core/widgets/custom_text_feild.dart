@@ -35,11 +35,13 @@ class CustomTextFeild extends StatelessWidget {
           maxLines: maxLines ?? 1,
           controller: controller,
           validator: validator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           cursorColor: AppColors.greyTextColor,
           obscureText: isPassword ?? false,
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.borderColor,
+            errorMaxLines: 2,
             border: borderBuilder(),
             enabledBorder: borderBuilder(),
             focusedBorder: borderBuilder(),
@@ -59,6 +61,7 @@ class CustomTextFeild extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: prefixIcon,
             ),
+
             prefixIconConstraints: const BoxConstraints(),
             suffixIconConstraints: const BoxConstraints(),
             contentPadding: const EdgeInsets.symmetric(vertical: 12),

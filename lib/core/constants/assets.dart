@@ -31,6 +31,7 @@ class Assets {
   static const String notification = '${iconsPath}notification.svg';
   static const String package = '${iconsPath}package.svg';
   static const String passwordEye = '${iconsPath}password_eye.svg';
+  static const String passwordEyeOff = '${iconsPath}password_eye_off.svg';
   static const String passwordLock = '${iconsPath}password_lock.svg';
   static const String pending = '${iconsPath}pending.svg';
   static const String phone = '${iconsPath}phone.svg';
