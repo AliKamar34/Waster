@@ -14,23 +14,27 @@ class LogInView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         minimum: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          spacing: 16,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(Assets.logo),
-            Text('Welcome Back', style: AppTextStyle.styleBold24(context)),
-            Text(
-              'Sign in to continue helping your community',
-              style: AppTextStyle.styleRegular14(context),
-            ),
-            const LoginForm(),
-            const OtherAuthOptionWidget(
-              title: 'Don’t have an account? ',
-              action: 'Sign up',
-              screen: AppRoutes.singUp,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            spacing: 16,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
+              SvgPicture.asset(Assets.logo),
+              Text('Welcome Back', style: AppTextStyle.styleBold24(context)),
+              Text(
+                'Sign in to continue helping your community',
+                style: AppTextStyle.styleRegular14(context),
+              ),
+              const LoginForm(),
+              const OtherAuthOptionWidget(
+                title: 'Don’t have an account? ',
+                action: 'Sign up',
+                screen: AppRoutes.singUp,
+              ),
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
+            ],
+          ),
         ),
       ),
     );
