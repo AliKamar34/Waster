@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:waster/core/themes/app_colors.dart';
+import 'package:waster/core/widgets/custom_count_container.dart';
+
+class BrowseCountSection extends StatelessWidget {
+  const BrowseCountSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      spacing: 10,
+      children: [
+        CustomCountContainer(
+          count: '8',
+          title: 'Available',
+          color: AppColors.orangeColor,
+        ),
+        CustomCountContainer(
+          count: '3',
+          title: 'Reserved',
+          color: AppColors.primaryColor,
+        ),
+        CustomCountContainer(
+          count: '12',
+          title: 'This Week',
+          color: AppColors.blueColor,
+        ),
+      ],
+    );
+  }
+}
