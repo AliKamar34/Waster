@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 
-class CustomHomeCountContainer extends StatelessWidget {
-  const CustomHomeCountContainer({
+class CustomCountContainer extends StatelessWidget {
+  const CustomCountContainer({
     super.key,
     required this.count,
     required this.title,
@@ -26,7 +26,6 @@ class CustomHomeCountContainer extends StatelessWidget {
                 context,
               ).copyWith(color: color),
             ),
-            // const SizedBox(height: 30),
             Text(
               title,
               textAlign: TextAlign.center,
