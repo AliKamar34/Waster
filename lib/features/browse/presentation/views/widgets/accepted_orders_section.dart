@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
@@ -23,7 +25,9 @@ class AcceptedOrdersSection extends StatelessWidget {
               style: AppTextStyle.styleRegular18(context),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(AppRoutes.trackAllView);
+              },
               child: CustomContainer(
                 padding: 6,
                 backgroundColor: AppColors.scaffoldColor,
