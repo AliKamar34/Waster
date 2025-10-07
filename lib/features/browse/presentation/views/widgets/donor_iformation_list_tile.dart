@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
@@ -41,6 +43,13 @@ class DonorIformationListTile extends StatelessWidget {
           const Icon(Icons.star, color: Colors.amber, size: 18),
           Text('4.9', style: AppTextStyle.styleRegular14(context)),
         ],
+      ),
+      trailing: InkWell(
+        onTap: () {},
+        child: CustomContainer(
+          padding: 8,
+          child: SvgPicture.asset(Assets.phone),
+        ),
       ),
     );
   }
