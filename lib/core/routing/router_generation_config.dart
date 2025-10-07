@@ -3,6 +3,7 @@ import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/features/auth/presentation/views/log_in_view.dart';
 import 'package:waster/features/auth/presentation/views/sign_up_view.dart';
 import 'package:waster/features/browse/presentation/views/browse_all_view.dart';
+import 'package:waster/features/browse/presentation/views/order_details_view.dart';
 import 'package:waster/features/browse/presentation/views/track_all_view.dart';
 import 'package:waster/features/home/presentation/views/donate_view.dart';
 import 'package:waster/features/home/presentation/views/main_view.dart';
@@ -52,6 +53,11 @@ class RouterGenerationConfig {
         path: AppRoutes.browseAllView,
         name: AppRoutes.browseAllView,
         builder: (context, state) => const BrowseAllView(),
+      ),
+      GoRoute(
+        path: AppRoutes.orderDetailsView,
+        name: AppRoutes.orderDetailsView,
+        builder: (context, state) => const OrderDetailsView(),
       ),
     ],
   );
