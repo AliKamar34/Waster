@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waster/features/browse/presentation/views/widgets/custom_my_orders_app_bar.dart';
+import 'package:waster/features/browse/presentation/views/widgets/custom_app_bar.dart';
 import 'package:waster/features/browse/presentation/views/widgets/custom_traking_order_details_container.dart';
 
 class TrackAllView extends StatelessWidget {
@@ -13,7 +13,7 @@ class TrackAllView extends StatelessWidget {
         child: Column(
           spacing: 16,
           children: [
-            CustomMyOrdersAppBar(),
+            CustomAppBar(title: 'My Orders', needSpace: true),
             CustomTrakingOrderDetailsContainer(),
           ],
         ),
