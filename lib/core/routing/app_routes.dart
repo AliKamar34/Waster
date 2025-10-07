@@ -6,4 +6,5 @@ class AppRoutes {
   static const String mainView = '/mainView';
   static const String donateView = '/donateView';
   static const String trackAllView = '/trackAllView';
+  static const String browseAllView = '/browseAllView';
 }
