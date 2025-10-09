@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:waster/core/themes/app_colors.dart';
+import 'package:waster/core/themes/app_text_style.dart';
+import 'package:waster/core/widgets/custom_light_color_container.dart';
+
+class LeaderboardItem extends StatelessWidget {
+  const LeaderboardItem({
+    super.key,
+    required this.rank,
+    required this.name,
+    required this.donations,
+  });
+  final String name;
+  final int rank, donations;
+  @override
+  Widget build(BuildContext context) {
+    return CustomLightColorContainer(
+      padding: 4,
+      color: name == 'You' ? AppColors.primaryColor : AppColors.whiteColor,
+      child: Row(
+        spacing: 10,
+        children: [
+          CircleAvatar(
+            backgroundColor: name == 'You'
+                ? AppColors.primaryColor
+                : AppColors.orangeColor,
+            child: Text('$rank'),
+          ),
+          Text(name, style: AppTextStyle.styleRegular16(context)),
+          const Spacer(),
+          Text(
+            '$donations donations',
+            style: AppTextStyle.styleRegular14(context).copyWith(
+              color: name == 'You'
+                  ? AppColors.primaryColor
+                  : AppColors.greyTextColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
