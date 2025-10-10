@@ -8,6 +8,7 @@ import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/features/browse/presentation/views/browse_view.dart';
 import 'package:waster/features/home/presentation/views/home_view.dart';
 import 'package:waster/features/impact/presentation/views/impact_view.dart';
+import 'package:waster/features/settings/presentation/views/profile_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -23,7 +24,7 @@ class _MainViewState extends State<MainView> {
     const BrowseView(),
     const SizedBox.shrink(),
     const ImpactView(),
-    Container(color: Colors.green),
+    const ProfileView(),
   ];
   @override
   Widget build(BuildContext context) {
