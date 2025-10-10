@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 
 class CustomProfileAppBar extends StatelessWidget {
@@ -16,7 +18,12 @@ class CustomProfileAppBar extends StatelessWidget {
           spacing: 16,
           children: [
             InkWell(onTap: () {}, child: SvgPicture.asset(Assets.notification)),
-            InkWell(onTap: () {}, child: SvgPicture.asset(Assets.settings)),
+            InkWell(
+              onTap: () {
+                context.pushNamed(AppRoutes.settingsView);
+              },
+              child: SvgPicture.asset(Assets.settings),
+            ),
           ],
         ),
       ],
