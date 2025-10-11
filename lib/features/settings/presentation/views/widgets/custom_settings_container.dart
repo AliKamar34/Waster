@@ -14,10 +14,11 @@ class CustomSettingsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       child: Column(
+        spacing: 10,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: AppTextStyle.styleRegular16(context)),
-          const SizedBox(height: 16),
+          const SizedBox(height: 6),
           ...children,
         ],
       ),
