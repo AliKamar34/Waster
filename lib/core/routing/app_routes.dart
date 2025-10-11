@@ -9,4 +9,5 @@ class AppRoutes {
   static const String browseAllView = '/browseAllView';
   static const String orderDetailsView = '/orderDetailsView';
   static const String settingsView = '/settingsView';
+  static const String profileEditingView = '/profileEditingView';
 }
