@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
@@ -30,7 +32,12 @@ class ProfileHeaderCard extends StatelessWidget {
                       'Sarah Johnson',
                       style: AppTextStyle.styleRegular16(context),
                     ),
-                    InkWell(onTap: () {}, child: SvgPicture.asset(Assets.edit)),
+                    InkWell(
+                      onTap: () {
+                        context.pushNamed(AppRoutes.profileEditingView);
+                      },
+                      child: SvgPicture.asset(Assets.edit),
+                    ),
                   ],
                 ),
                 Row(
