@@ -17,7 +17,12 @@ class CustomProfileAppBar extends StatelessWidget {
         Row(
           spacing: 16,
           children: [
-            InkWell(onTap: () {}, child: SvgPicture.asset(Assets.notification)),
+            InkWell(
+              onTap: () {
+                context.pushNamed(AppRoutes.notificationsView);
+              },
+              child: SvgPicture.asset(Assets.notification),
+            ),
             InkWell(
               onTap: () {
                 context.pushNamed(AppRoutes.settingsView);

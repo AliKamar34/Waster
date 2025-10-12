@@ -10,4 +10,5 @@ class AppRoutes {
   static const String orderDetailsView = '/orderDetailsView';
   static const String settingsView = '/settingsView';
   static const String profileEditingView = '/profileEditingView';
+  static const String notificationsView = '/notificationsView';
 }

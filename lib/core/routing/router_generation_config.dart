@@ -7,6 +7,7 @@ import 'package:waster/features/browse/presentation/views/order_details_view.dar
 import 'package:waster/features/browse/presentation/views/track_all_view.dart';
 import 'package:waster/features/home/presentation/views/donate_view.dart';
 import 'package:waster/features/home/presentation/views/main_view.dart';
+import 'package:waster/features/notifications/presentation/views/notifications_view.dart';
 import 'package:waster/features/settings/presentation/views/profile_editing_view.dart';
 import 'package:waster/features/settings/presentation/views/settings_view.dart';
 import 'package:waster/features/start/views/splash_view.dart';
@@ -70,6 +71,11 @@ class RouterGenerationConfig {
         path: AppRoutes.profileEditingView,
         name: AppRoutes.profileEditingView,
         builder: (context, state) => const ProfileEditingView(),
+      ),
+      GoRoute(
+        path: AppRoutes.notificationsView,
+        name: AppRoutes.notificationsView,
+        builder: (context, state) => const NotificationsView(),
       ),
     ],
   );
