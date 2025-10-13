@@ -26,41 +26,6 @@ class OrderStatsRow extends StatelessWidget {
           color: AppColors.orangeColor,
         ),
       ],
-      // children: [
-      //   Column(
-      //     children: [
-      //       Text('Meals', style: AppTextStyle.styleRegular14(context)),
-      //       Text(
-      //         '45',
-      //         style: AppTextStyle.styleBold16(
-      //           context,
-      //         ).copyWith(color: AppColors.primaryColor),
-      //       ),
-      //     ],
-      //   ),
-      //   Column(
-      //     children: [
-      //       Text('Distance', style: AppTextStyle.styleRegular14(context)),
-      //       Text(
-      //         '2.3 miles',
-      //         style: AppTextStyle.styleBold16(
-      //           context,
-      //         ).copyWith(color: AppColors.blueColor),
-      //       ),
-      //     ],
-      //   ),
-      //   Column(
-      //     children: [
-      //       Text('Posted', style: AppTextStyle.styleRegular14(context)),
-      //       Text(
-      //         '2 hours ago',
-      //         style: AppTextStyle.styleBold16(
-      //           context,
-      //         ).copyWith(color: AppColors.orangeColor),
-      //       ),
-      //     ],
-      //   ),
-      // ],
     );
   }
 }

@@ -31,10 +31,10 @@ class CustomButton extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Row(
-        spacing: 6,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           icon == null ? const SizedBox.shrink() : icon!,
+          icon == null ? const SizedBox.shrink() : const SizedBox(width: 6),
           Text(
             title,
             style: AppTextStyle.styleBold20(
