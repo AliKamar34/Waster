@@ -28,7 +28,7 @@ class EnvironmentalImpactSection extends StatelessWidget {
                 Assets.leaf,
                 width: 40,
                 height: 40,
-                colorFilter: const ColorFilter.mode(
+                colorFilter: ColorFilter.mode(
                   AppColors.primaryColor,
                   BlendMode.srcIn,
                 ),

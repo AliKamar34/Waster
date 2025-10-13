@@ -76,10 +76,7 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundColor: AppColors.redColor,
                     child: IconButton(
-                      icon: const Icon(
-                        Icons.close,
-                        color: AppColors.whiteColor,
-                      ),
+                      icon: Icon(Icons.close, color: AppColors.whiteColor),
                       onPressed: removeImage,
                     ),
                   ),

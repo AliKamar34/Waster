@@ -25,7 +25,7 @@ class OrderNameAndStatusSection extends StatelessWidget {
             ],
           ),
         ),
-        const CustomOrderStateWidget(
+        CustomOrderStateWidget(
           color: AppColors.primaryColor,
           state: 'In Transit',
         ),

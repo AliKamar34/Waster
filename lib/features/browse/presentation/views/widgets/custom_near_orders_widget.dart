@@ -28,7 +28,7 @@ class CustomNearOrdersWidget extends StatelessWidget {
                       'Artisan Bread',
                       style: AppTextStyle.styleRegular16(context),
                     ),
-                    const CustomOrderStateWidget(
+                    CustomOrderStateWidget(
                       color: AppColors.orangeColor,
                       state: 'Urgent',
                     ),

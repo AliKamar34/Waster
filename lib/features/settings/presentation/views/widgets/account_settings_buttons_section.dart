@@ -33,10 +33,7 @@ class AccountSettingsButtonsSection extends StatelessWidget {
           backgroundColor: AppColors.scaffoldColor,
           icon: SvgPicture.asset(
             Assets.profile,
-            colorFilter: const ColorFilter.mode(
-              AppColors.redColor,
-              BlendMode.srcIn,
-            ),
+            colorFilter: ColorFilter.mode(AppColors.redColor, BlendMode.srcIn),
           ),
           title: 'Delete Account',
           onPressed: () {},

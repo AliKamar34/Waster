@@ -13,14 +13,14 @@ class CustomTrakingOrderDetailsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomContainer(
+    return CustomContainer(
       child: Column(
         children: [
-          OrderNameAndStatusSection(),
-          SizedBox(height: 30),
-          QuantityAndTimeSection(),
-          SizedBox(height: 12),
-          MyOrdersItemsSection(),
+          const OrderNameAndStatusSection(),
+          const SizedBox(height: 30),
+          const QuantityAndTimeSection(),
+          const SizedBox(height: 12),
+          const MyOrdersItemsSection(),
           CustomMyOrdersListTile(
             title: 'From',
             subtitle: '123 Main St',
@@ -40,7 +40,7 @@ class CustomTrakingOrderDetailsContainer extends StatelessWidget {
             iconColor: AppColors.greyTextColor,
           ),
           Divider(color: AppColors.borderColor),
-          CustomOrderCallingInfoSection(),
+          const CustomOrderCallingInfoSection(),
         ],
       ),
     );

@@ -17,7 +17,7 @@ class CustomDonateLableSections extends StatelessWidget {
       children: [
         SvgPicture.asset(
           image,
-          colorFilter: const ColorFilter.mode(
+          colorFilter: ColorFilter.mode(
             AppColors.primaryColor,
             BlendMode.srcIn,
           ),

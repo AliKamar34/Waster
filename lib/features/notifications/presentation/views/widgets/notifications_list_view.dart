@@ -11,8 +11,8 @@ class NotificationsListView extends StatelessWidget {
     return ListView.builder(
       itemCount: 5,
       itemBuilder: (context, index) {
-        return const Padding(
-          padding: EdgeInsetsDirectional.only(bottom: 16),
+        return Padding(
+          padding: const EdgeInsetsDirectional.only(bottom: 16),
           child: NotificationContainer(
             isRead: true,
             icon: Assets.package,

@@ -38,7 +38,7 @@ class _ProfileEditingPhotoSectionState
                         child: SvgPicture.asset(
                           Assets.profile,
                           width: 50,
-                          colorFilter: const ColorFilter.mode(
+                          colorFilter: ColorFilter.mode(
                             AppColors.primaryColor,
                             BlendMode.srcIn,
                           ),

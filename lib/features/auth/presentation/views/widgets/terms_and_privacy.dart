@@ -20,7 +20,7 @@ class TermsAndPrivacy extends StatelessWidget {
           checkColor: AppColors.greyTextColor,
           activeColor: AppColors.primaryColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          side: const BorderSide(color: AppColors.greyTextColor, width: 1.5),
+          side: BorderSide(color: AppColors.greyTextColor, width: 1.5),
           value: isChecked,
           onChanged: onChanged,
         ),

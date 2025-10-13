@@ -46,10 +46,10 @@ class CustomTextFeild extends StatelessWidget {
             enabledBorder: borderBuilder(),
             focusedBorder: borderBuilder(),
             errorBorder: borderBuilder().copyWith(
-              borderSide: const BorderSide(color: AppColors.redColor),
+              borderSide: BorderSide(color: AppColors.redColor),
             ),
             focusedErrorBorder: borderBuilder().copyWith(
-              borderSide: const BorderSide(color: AppColors.redColor),
+              borderSide: BorderSide(color: AppColors.redColor),
             ),
             hintText: hint,
             hintStyle: AppTextStyle.styleRegular16(context),
@@ -75,7 +75,7 @@ class CustomTextFeild extends StatelessWidget {
     return OutlineInputBorder(
       gapPadding: 18,
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: AppColors.borderColor),
+      borderSide: BorderSide(color: AppColors.borderColor),
     );
   }
 }

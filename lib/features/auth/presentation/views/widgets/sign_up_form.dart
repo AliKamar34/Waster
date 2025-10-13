@@ -60,7 +60,7 @@ class _SignUpFormState extends State<SignUpForm> {
               validator: Validators.normal,
               prefixIcon: SvgPicture.asset(
                 Assets.profile,
-                colorFilter: const ColorFilter.mode(
+                colorFilter: ColorFilter.mode(
                   AppColors.greyTextColor,
                   BlendMode.srcIn,
                 ),
@@ -125,7 +125,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     ? SvgPicture.asset(Assets.passwordEye, width: 24)
                     : SvgPicture.asset(
                         Assets.passwordEyeOff,
-                        colorFilter: const ColorFilter.mode(
+                        colorFilter: ColorFilter.mode(
                           AppColors.greyTextColor,
                           BlendMode.srcIn,
                         ),
@@ -151,7 +151,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     ? SvgPicture.asset(Assets.passwordEye, width: 24)
                     : SvgPicture.asset(
                         Assets.passwordEyeOff,
-                        colorFilter: const ColorFilter.mode(
+                        colorFilter: ColorFilter.mode(
                           AppColors.greyTextColor,
                           BlendMode.srcIn,
                         ),

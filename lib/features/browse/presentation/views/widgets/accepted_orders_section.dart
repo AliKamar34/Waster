@@ -57,7 +57,7 @@ class AcceptedOrdersSection extends StatelessWidget {
               'Ready for pickup',
               style: AppTextStyle.styleRegular14(context),
             ),
-            trailing: const CustomOrderStateWidget(
+            trailing: CustomOrderStateWidget(
               color: AppColors.primaryColor,
               state: 'Accepted',
             ),

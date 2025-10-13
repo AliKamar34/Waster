@@ -14,7 +14,7 @@ class RecentDonationsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('Recent Donations', style: AppTextStyle.styleRegular18(context)),
-        const CustomOrderDetailContainer(
+        CustomOrderDetailContainer(
           title: 'Fresh Vegetables',
           icon: Assets.delivered,
           state: 'delivered',
@@ -23,7 +23,7 @@ class RecentDonationsSection extends StatelessWidget {
           time: '2 hours ago',
           color: AppColors.primaryColor,
         ),
-        const CustomOrderDetailContainer(
+        CustomOrderDetailContainer(
           title: 'Baked Goods',
           icon: Assets.pending,
           state: 'pending',
@@ -32,7 +32,7 @@ class RecentDonationsSection extends StatelessWidget {
           time: '30 minute ago',
           color: AppColors.orangeColor,
         ),
-        const CustomOrderDetailContainer(
+        CustomOrderDetailContainer(
           title: 'Prepared Meals',
           icon: Assets.expired,
           state: 'expired',

@@ -39,19 +39,19 @@ class StartView extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: AppTextStyle.styleRegular18(context),
                   ),
-                  const CustomStartWidget(
+                  CustomStartWidget(
                     icon: Assets.leaf,
                     title: 'Reduce Food Waste',
                     subtitle: 'Turn surplus food into community meals',
                     color: AppColors.primaryColor,
                   ),
-                  const CustomStartWidget(
+                  CustomStartWidget(
                     icon: Assets.heart,
                     title: 'Feed Communities',
                     subtitle: 'Connect donors with those in need',
                     color: AppColors.orangeColor,
                   ),
-                  const CustomStartWidget(
+                  CustomStartWidget(
                     icon: Assets.truck,
                     title: 'Volunteer Network',
                     subtitle: 'Join drivers making a difference',

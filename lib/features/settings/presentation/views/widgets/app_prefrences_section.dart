@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/themes/theme_controller.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_settings_container.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_settings_list_tile.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_swithcher.dart';
@@ -13,7 +14,6 @@ class AppPrefrencesSection extends StatefulWidget {
 
 class _AppPrefrencesSectionState extends State<AppPrefrencesSection> {
   bool isEnglish = false;
-  bool isDarkMode = false;
   @override
   Widget build(BuildContext context) {
     return CustomSettingsContainer(
@@ -24,10 +24,12 @@ class _AppPrefrencesSectionState extends State<AppPrefrencesSection> {
           title: 'Dark Mode',
           subtitle: 'Switch to dark theme',
           trailing: CustomSwithcher(
-            value: isDarkMode,
+            value: ThemeController.instance.isDark,
             onChanged: (value) {
               setState(() {
-                isDarkMode = value;
+                ThemeController.instance.setDark(
+                  !ThemeController.instance.isDark,
+                );
               });
             },
           ),

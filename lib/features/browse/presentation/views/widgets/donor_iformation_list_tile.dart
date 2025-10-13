@@ -12,10 +12,10 @@ class DonorIformationListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: const CircleAvatar(
+      leading: CircleAvatar(
         radius: 20,
         backgroundColor: AppColors.primaryColor,
-        child: Text('SB'),
+        child: const Text('SB'),
       ),
       title: Row(
         children: [

@@ -40,10 +40,10 @@ class CustomDropDownButton<T> extends StatelessWidget {
             enabledBorder: borderBuilder(),
             focusedBorder: borderBuilder(),
             errorBorder: borderBuilder().copyWith(
-              borderSide: const BorderSide(color: AppColors.redColor),
+              borderSide: BorderSide(color: AppColors.redColor),
             ),
             focusedErrorBorder: borderBuilder().copyWith(
-              borderSide: const BorderSide(color: AppColors.redColor),
+              borderSide: BorderSide(color: AppColors.redColor),
             ),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 12,
@@ -65,7 +65,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
     return OutlineInputBorder(
       gapPadding: 18,
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: AppColors.borderColor),
+      borderSide: BorderSide(color: AppColors.borderColor),
     );
   }
 }

@@ -7,7 +7,7 @@ class HomeCountSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       spacing: 10,
       children: [
         CustomCountContainer(

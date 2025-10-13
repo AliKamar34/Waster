@@ -36,7 +36,7 @@ class OrderDetailsAppBar extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 Assets.pending,
-                colorFilter: const ColorFilter.mode(
+                colorFilter: ColorFilter.mode(
                   AppColors.whiteColor,
                   BlendMode.srcIn,
                 ),

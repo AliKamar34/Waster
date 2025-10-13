@@ -71,7 +71,7 @@ class _MainViewState extends State<MainView> {
             ),
             label: 'Browse',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.add, color: AppColors.blackTextColor),
             label: 'Donate',
           ),
