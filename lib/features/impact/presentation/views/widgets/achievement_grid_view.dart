@@ -27,8 +27,8 @@ class AchievementGridView extends StatelessWidget {
       itemBuilder: (context, index) {
         return CustomLightColorContainer(
           color: badges[index]['earned']
-              ? AppColors.primaryColor
-              : AppColors.greyTextColor,
+              ? Theme.of(context).extension<AppColors>()!.primaryColor
+              : Theme.of(context).extension<AppColors>()!.greyTextColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -36,8 +36,8 @@ class AchievementGridView extends StatelessWidget {
                 badges[index]['icon'],
                 colorFilter: ColorFilter.mode(
                   badges[index]['earned']
-                      ? AppColors.primaryColor
-                      : AppColors.greyTextColor,
+                      ? Theme.of(context).extension<AppColors>()!.primaryColor
+                      : Theme.of(context).extension<AppColors>()!.greyTextColor,
                   BlendMode.srcIn,
                 ),
               ),
@@ -49,8 +49,8 @@ class AchievementGridView extends StatelessWidget {
               ),
               CustomOrderStateWidget(
                 color: badges[index]['earned']
-                    ? AppColors.primaryColor
-                    : AppColors.greyTextColor,
+                    ? Theme.of(context).extension<AppColors>()!.primaryColor
+                    : Theme.of(context).extension<AppColors>()!.greyTextColor,
                 state: badges[index]['earned'] ? 'Earned' : 'Locked',
               ),
             ],

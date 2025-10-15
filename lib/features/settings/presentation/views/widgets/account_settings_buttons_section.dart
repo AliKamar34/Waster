@@ -15,25 +15,34 @@ class AccountSettingsButtonsSection extends StatelessWidget {
       children: [
         CustomButton(title: 'Save', onPressed: () {}),
         CustomButton(
-          borderColor: AppColors.greyTextColor,
-          backgroundColor: AppColors.scaffoldColor,
+          borderColor: Theme.of(context).extension<AppColors>()!.greyTextColor,
+          backgroundColor: Theme.of(
+            context,
+          ).extension<AppColors>()!.scaffoldColor,
           icon: SvgPicture.asset(Assets.passwordLock),
           title: 'Change Password',
           onPressed: () {},
         ),
         CustomButton(
-          borderColor: AppColors.greyTextColor,
-          backgroundColor: AppColors.scaffoldColor,
+          borderColor: Theme.of(context).extension<AppColors>()!.greyTextColor,
+          backgroundColor: Theme.of(
+            context,
+          ).extension<AppColors>()!.scaffoldColor,
           icon: SvgPicture.asset(Assets.email),
           title: 'Email Preferences',
           onPressed: () {},
         ),
         CustomButton(
-          borderColor: AppColors.redColor,
-          backgroundColor: AppColors.scaffoldColor,
+          borderColor: Theme.of(context).extension<AppColors>()!.redColor,
+          backgroundColor: Theme.of(
+            context,
+          ).extension<AppColors>()!.scaffoldColor,
           icon: SvgPicture.asset(
             Assets.profile,
-            colorFilter: ColorFilter.mode(AppColors.redColor, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).extension<AppColors>()!.redColor,
+              BlendMode.srcIn,
+            ),
           ),
           title: 'Delete Account',
           onPressed: () {},

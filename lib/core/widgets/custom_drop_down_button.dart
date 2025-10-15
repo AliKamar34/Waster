@@ -35,15 +35,19 @@ class CustomDropDownButton<T> extends StatelessWidget {
           }).toList(),
           decoration: InputDecoration(
             filled: true,
-            fillColor: AppColors.borderColor,
-            border: borderBuilder(),
-            enabledBorder: borderBuilder(),
-            focusedBorder: borderBuilder(),
-            errorBorder: borderBuilder().copyWith(
-              borderSide: BorderSide(color: AppColors.redColor),
+            fillColor: Theme.of(context).extension<AppColors>()!.borderColor,
+            border: borderBuilder(context),
+            enabledBorder: borderBuilder(context),
+            focusedBorder: borderBuilder(context),
+            errorBorder: borderBuilder(context).copyWith(
+              borderSide: BorderSide(
+                color: Theme.of(context).extension<AppColors>()!.redColor,
+              ),
             ),
-            focusedErrorBorder: borderBuilder().copyWith(
-              borderSide: BorderSide(color: AppColors.redColor),
+            focusedErrorBorder: borderBuilder(context).copyWith(
+              borderSide: BorderSide(
+                color: Theme.of(context).extension<AppColors>()!.redColor,
+              ),
             ),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 12,
@@ -54,18 +58,20 @@ class CustomDropDownButton<T> extends StatelessWidget {
             quarterTurns: 3,
             child: Icon(Icons.arrow_back_ios_new_outlined),
           ),
-          dropdownColor: AppColors.borderColor,
+          dropdownColor: Theme.of(context).extension<AppColors>()!.borderColor,
           borderRadius: BorderRadius.circular(8),
         ),
       ],
     );
   }
 
-  OutlineInputBorder borderBuilder() {
+  OutlineInputBorder borderBuilder(BuildContext context) {
     return OutlineInputBorder(
       gapPadding: 18,
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: AppColors.borderColor),
+      borderSide: BorderSide(
+        color: Theme.of(context).extension<AppColors>()!.borderColor,
+      ),
     );
   }
 }

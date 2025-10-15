@@ -14,26 +14,28 @@ class DonorIformationListTile extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       leading: CircleAvatar(
         radius: 20,
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: Theme.of(context).extension<AppColors>()!.primaryColor,
         child: const Text('SB'),
       ),
       title: Row(
         children: [
           Text(
             'Sunshine Bakery',
-            style: AppTextStyle.styleRegular14(
-              context,
-            ).copyWith(color: AppColors.blackTextColor),
+            style: AppTextStyle.styleRegular14(context).copyWith(
+              color: Theme.of(context).extension<AppColors>()!.blackTextColor,
+            ),
           ),
           CustomContainer(
             padding: 2,
             borderRadius: 8,
-            backgroundColor: AppColors.orangeColor,
+            backgroundColor: Theme.of(
+              context,
+            ).extension<AppColors>()!.orangeColor,
             child: Text(
               'Verified',
-              style: AppTextStyle.styleRegular14(
-                context,
-              ).copyWith(color: AppColors.whiteColor),
+              style: AppTextStyle.styleRegular14(context).copyWith(
+                color: Theme.of(context).extension<AppColors>()!.whiteColor,
+              ),
             ),
           ),
         ],

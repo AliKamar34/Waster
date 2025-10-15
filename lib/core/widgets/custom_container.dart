@@ -26,11 +26,15 @@ class CustomContainer extends StatelessWidget {
       height: height,
       padding: EdgeInsets.all(padding ?? 14),
       decoration: BoxDecoration(
-        color: backgroundColor ?? AppColors.whiteColor,
+        color:
+            backgroundColor ??
+            Theme.of(context).extension<AppColors>()!.whiteColor,
         borderRadius: BorderRadius.circular(borderRadius ?? 12),
         border: Border.all(
           width: borderWidth ?? 2,
-          color: borderColor ?? AppColors.borderColor,
+          color:
+              borderColor ??
+              Theme.of(context).extension<AppColors>()!.borderColor,
         ),
       ),
       child: child,

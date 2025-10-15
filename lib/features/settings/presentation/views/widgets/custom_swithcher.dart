@@ -22,8 +22,10 @@ class CustomSwithcher extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.5),
           color: value
-              ? AppColors.primaryColor
-              : AppColors.greyTextColor.withAlpha(100),
+              ? Theme.of(context).extension<AppColors>()!.primaryColor
+              : Theme.of(
+                  context,
+                ).extension<AppColors>()!.greyTextColor.withAlpha(100),
         ),
         child: AnimatedAlign(
           duration: const Duration(milliseconds: 200),

@@ -13,17 +13,17 @@ class OrderStatsRow extends StatelessWidget {
         _OrderStatItem(
           title: 'Meals',
           value: '45',
-          color: AppColors.primaryColor,
+          color: Theme.of(context).extension<AppColors>()!.primaryColor,
         ),
         _OrderStatItem(
           title: 'Distance',
           value: '2.3 miles',
-          color: AppColors.blueColor,
+          color: Theme.of(context).extension<AppColors>()!.blueColor,
         ),
         _OrderStatItem(
           title: 'Posted',
           value: '2 hours ago',
-          color: AppColors.orangeColor,
+          color: Theme.of(context).extension<AppColors>()!.orangeColor,
         ),
       ],
     );

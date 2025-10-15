@@ -20,7 +20,7 @@ class NotificationsListView extends StatelessWidget {
             description: 'Your donation of fresh vegetables has been accepte',
             time: '5 minutes ago',
             badge: 'improtant',
-            badgeColor: AppColors.blueColor,
+            badgeColor: Theme.of(context).extension<AppColors>()!.blueColor,
           ),
         );
       },

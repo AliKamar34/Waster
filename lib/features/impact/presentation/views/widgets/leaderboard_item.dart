@@ -16,14 +16,16 @@ class LeaderboardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomLightColorContainer(
       padding: 4,
-      color: name == 'You' ? AppColors.primaryColor : AppColors.whiteColor,
+      color: name == 'You'
+          ? Theme.of(context).extension<AppColors>()!.primaryColor
+          : Theme.of(context).extension<AppColors>()!.whiteColor,
       child: Row(
         spacing: 10,
         children: [
           CircleAvatar(
             backgroundColor: name == 'You'
-                ? AppColors.primaryColor
-                : AppColors.orangeColor,
+                ? Theme.of(context).extension<AppColors>()!.primaryColor
+                : Theme.of(context).extension<AppColors>()!.orangeColor,
             child: Text('$rank'),
           ),
           Text(name, style: AppTextStyle.styleRegular16(context)),
@@ -32,8 +34,8 @@ class LeaderboardItem extends StatelessWidget {
             '$donations donations',
             style: AppTextStyle.styleRegular14(context).copyWith(
               color: name == 'You'
-                  ? AppColors.primaryColor
-                  : AppColors.greyTextColor,
+                  ? Theme.of(context).extension<AppColors>()!.primaryColor
+                  : Theme.of(context).extension<AppColors>()!.greyTextColor,
             ),
           ),
         ],

@@ -49,7 +49,7 @@ abstract class AppTextStyle {
     return GoogleFonts.arimo(
       fontSize: getResponsiveFontSize(context, fontSize: 14),
       fontWeight: FontWeight.w600,
-      color: AppColors.greyTextColor,
+      color: Theme.of(context).extension<AppColors>()!.greyTextColor,
     );
   }
 

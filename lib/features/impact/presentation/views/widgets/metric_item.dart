@@ -11,9 +11,9 @@ class MetricItem extends StatelessWidget {
       children: [
         Text(
           value,
-          style: AppTextStyle.styleRegular24(
-            context,
-          ).copyWith(color: AppColors.primaryColor),
+          style: AppTextStyle.styleRegular24(context).copyWith(
+            color: Theme.of(context).extension<AppColors>()!.primaryColor,
+          ),
         ),
         Text(title, style: AppTextStyle.styleRegular14(context)),
       ],

@@ -22,16 +22,16 @@ class TabItem extends StatelessWidget {
       child: CustomContainer(
         padding: 6,
         backgroundColor: isSelected
-            ? AppColors.primaryColor
-            : AppColors.scaffoldColor,
+            ? Theme.of(context).extension<AppColors>()!.primaryColor
+            : Theme.of(context).extension<AppColors>()!.scaffoldColor,
         borderWidth: 2,
         child: Center(
           child: Text(
             label,
             style: AppTextStyle.styleRegular16(context).copyWith(
               color: isSelected
-                  ? AppColors.whiteColor
-                  : AppColors.blackTextColor,
+                  ? Theme.of(context).extension<AppColors>()!.whiteColor
+                  : Theme.of(context).extension<AppColors>()!.blackTextColor,
             ),
           ),
         ),

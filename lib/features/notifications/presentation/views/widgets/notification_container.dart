@@ -31,7 +31,9 @@ class NotificationContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomLightColorContainer(
-      color: isRead ? Colors.blueGrey.shade200 : AppColors.blueColor,
+      color: isRead
+          ? Colors.blueGrey.shade200
+          : Theme.of(context).extension<AppColors>()!.blueColor,
       child: Column(
         spacing: 8,
         crossAxisAlignment: CrossAxisAlignment.start,

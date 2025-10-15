@@ -30,9 +30,11 @@ class StartView extends StatelessWidget {
                   Text(
                     'FoodShare',
                     textAlign: TextAlign.center,
-                    style: AppTextStyle.styleRegular18(
-                      context,
-                    ).copyWith(color: AppColors.primaryColor),
+                    style: AppTextStyle.styleRegular18(context).copyWith(
+                      color: Theme.of(
+                        context,
+                      ).extension<AppColors>()!.primaryColor,
+                    ),
                   ),
                   Text(
                     'Rescue Food, Feed Communities, Reduce Waste',
@@ -43,24 +45,30 @@ class StartView extends StatelessWidget {
                     icon: Assets.leaf,
                     title: 'Reduce Food Waste',
                     subtitle: 'Turn surplus food into community meals',
-                    color: AppColors.primaryColor,
+                    color: Theme.of(
+                      context,
+                    ).extension<AppColors>()!.primaryColor,
                   ),
                   CustomStartWidget(
                     icon: Assets.heart,
                     title: 'Feed Communities',
                     subtitle: 'Connect donors with those in need',
-                    color: AppColors.orangeColor,
+                    color: Theme.of(
+                      context,
+                    ).extension<AppColors>()!.orangeColor,
                   ),
                   CustomStartWidget(
                     icon: Assets.truck,
                     title: 'Volunteer Network',
                     subtitle: 'Join drivers making a difference',
-                    color: AppColors.blueColor,
+                    color: Theme.of(context).extension<AppColors>()!.blueColor,
                   ),
                   const SizedBox(height: 32),
                   CustomButton(
                     title: 'Get Started',
-                    backgroundColor: AppColors.primaryColor,
+                    backgroundColor: Theme.of(
+                      context,
+                    ).extension<AppColors>()!.primaryColor,
                     onPressed: () {
                       context.pushNamed(AppRoutes.login);
                     },

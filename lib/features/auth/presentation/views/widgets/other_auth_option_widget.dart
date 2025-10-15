@@ -19,17 +19,17 @@ class OtherAuthOptionWidget extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: title,
-          style: AppTextStyle.styleRegular16(
-            context,
-          ).copyWith(color: AppColors.blackTextColor),
+          style: AppTextStyle.styleRegular16(context).copyWith(
+            color: Theme.of(context).extension<AppColors>()!.blackTextColor,
+          ),
           children: [
             TextSpan(
               recognizer: TapGestureRecognizer()
                 ..onTap = () => context.pushReplacementNamed(screen),
               text: action,
-              style: AppTextStyle.styleBold16(
-                context,
-              ).copyWith(color: AppColors.primaryColor),
+              style: AppTextStyle.styleBold16(context).copyWith(
+                color: Theme.of(context).extension<AppColors>()!.primaryColor,
+              ),
             ),
           ],
         ),

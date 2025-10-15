@@ -13,7 +13,7 @@ class BadgeItem extends StatelessWidget {
     return CustomContainer(
       padding: 6,
       borderRadius: 8,
-      backgroundColor: AppColors.orangeColor,
+      backgroundColor: Theme.of(context).extension<AppColors>()!.orangeColor,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         spacing: 4,
@@ -21,9 +21,9 @@ class BadgeItem extends StatelessWidget {
           SvgPicture.asset(Assets.achievement, height: 16),
           Text(
             label,
-            style: AppTextStyle.styleRegular14(
-              context,
-            ).copyWith(color: AppColors.whiteColor),
+            style: AppTextStyle.styleRegular14(context).copyWith(
+              color: Theme.of(context).extension<AppColors>()!.whiteColor,
+            ),
           ),
         ],
       ),

@@ -22,9 +22,9 @@ class CustomDonateAppBar extends StatelessWidget {
       ),
       subtitle: Text(
         'Share your surplus food',
-        style: AppTextStyle.styleRegular16(
-          context,
-        ).copyWith(color: AppColors.greyTextColor),
+        style: AppTextStyle.styleRegular16(context).copyWith(
+          color: Theme.of(context).extension<AppColors>()!.greyTextColor,
+        ),
       ),
     );
   }

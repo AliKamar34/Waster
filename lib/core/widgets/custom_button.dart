@@ -21,10 +21,15 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 40),
-        backgroundColor: backgroundColor ?? AppColors.primaryColor,
+        backgroundColor:
+            backgroundColor ??
+            Theme.of(context).extension<AppColors>()!.primaryColor,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: borderColor ?? backgroundColor ?? AppColors.primaryColor,
+            color:
+                borderColor ??
+                backgroundColor ??
+                Theme.of(context).extension<AppColors>()!.primaryColor,
           ),
           borderRadius: BorderRadius.circular(8),
         ),
@@ -37,9 +42,11 @@ class CustomButton extends StatelessWidget {
           icon == null ? const SizedBox.shrink() : const SizedBox(width: 6),
           Text(
             title,
-            style: AppTextStyle.styleBold20(
-              context,
-            ).copyWith(color: borderColor ?? AppColors.whiteColor),
+            style: AppTextStyle.styleBold20(context).copyWith(
+              color:
+                  borderColor ??
+                  Theme.of(context).extension<AppColors>()!.whiteColor,
+            ),
           ),
         ],
       ),

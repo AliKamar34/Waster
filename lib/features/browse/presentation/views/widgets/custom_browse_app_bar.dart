@@ -23,7 +23,9 @@ class CustomBrowseAppBar extends StatelessWidget {
         },
         child: CustomContainer(
           padding: 6,
-          backgroundColor: AppColors.scaffoldColor,
+          backgroundColor: Theme.of(
+            context,
+          ).extension<AppColors>()!.scaffoldColor,
           borderWidth: 2,
           child: Text(
             'Browse All',

@@ -20,7 +20,7 @@ class EnvironmentalImpactSection extends StatelessWidget {
           style: AppTextStyle.styleRegular18(context),
         ),
         CustomLightColorContainer(
-          color: AppColors.primaryColor,
+          color: Theme.of(context).extension<AppColors>()!.primaryColor,
           child: Column(
             spacing: 10,
             children: [
@@ -29,15 +29,15 @@ class EnvironmentalImpactSection extends StatelessWidget {
                 width: 40,
                 height: 40,
                 colorFilter: ColorFilter.mode(
-                  AppColors.primaryColor,
+                  Theme.of(context).extension<AppColors>()!.primaryColor,
                   BlendMode.srcIn,
                 ),
               ),
               Text(
                 'Carbon Footprint Reduction',
-                style: AppTextStyle.styleRegular16(
-                  context,
-                ).copyWith(color: AppColors.primaryColor),
+                style: AppTextStyle.styleRegular16(context).copyWith(
+                  color: Theme.of(context).extension<AppColors>()!.primaryColor,
+                ),
               ),
               const ImpactMetricsRow(),
             ],

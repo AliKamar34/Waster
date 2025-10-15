@@ -18,15 +18,15 @@ class CustomDonateLableSections extends StatelessWidget {
         SvgPicture.asset(
           image,
           colorFilter: ColorFilter.mode(
-            AppColors.primaryColor,
+            Theme.of(context).extension<AppColors>()!.primaryColor,
             BlendMode.srcIn,
           ),
         ),
         Text(
           lable,
-          style: AppTextStyle.styleRegular18(
-            context,
-          ).copyWith(color: AppColors.primaryColor),
+          style: AppTextStyle.styleRegular18(context).copyWith(
+            color: Theme.of(context).extension<AppColors>()!.primaryColor,
+          ),
         ),
       ],
     );

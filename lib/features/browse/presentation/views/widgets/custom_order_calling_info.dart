@@ -15,17 +15,17 @@ class CustomOrderCallingInfoSection extends StatelessWidget {
         SvgPicture.asset(Assets.phone),
         Text(
           '(555) 123-4567',
-          style: AppTextStyle.styleRegular14(
-            context,
-          ).copyWith(color: AppColors.blackTextColor),
+          style: AppTextStyle.styleRegular14(context).copyWith(
+            color: Theme.of(context).extension<AppColors>()!.blackTextColor,
+          ),
         ),
         const Spacer(),
         Text('ETA:', style: AppTextStyle.styleRegular14(context)),
         Text(
           '2:45 PM',
-          style: AppTextStyle.styleRegular14(
-            context,
-          ).copyWith(color: AppColors.blackTextColor),
+          style: AppTextStyle.styleRegular14(context).copyWith(
+            color: Theme.of(context).extension<AppColors>()!.blackTextColor,
+          ),
         ),
       ],
     );

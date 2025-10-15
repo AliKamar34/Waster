@@ -27,8 +27,10 @@ class DonationProgressBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
               gradient: LinearGradient(
                 colors: [
-                  AppColors.primaryColor.withAlpha(150),
-                  AppColors.primaryColor,
+                  Theme.of(
+                    context,
+                  ).extension<AppColors>()!.primaryColor.withAlpha(150),
+                  Theme.of(context).extension<AppColors>()!.primaryColor,
                 ],
               ),
             ),

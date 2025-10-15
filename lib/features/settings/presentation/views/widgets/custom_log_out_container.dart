@@ -12,7 +12,7 @@ class CustomLogOutContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       child: CustomButton(
-        backgroundColor: AppColors.redColor,
+        backgroundColor: Theme.of(context).extension<AppColors>()!.redColor,
         icon: SvgPicture.asset(Assets.logOut),
         title: 'Sign Out',
         onPressed: () {},

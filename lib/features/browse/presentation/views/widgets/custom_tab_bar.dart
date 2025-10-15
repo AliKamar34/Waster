@@ -23,11 +23,11 @@ class _CustomTabBarState extends State<CustomTabBar> {
           return CustomTabBarButton(
             title: widget.titles[index],
             textColor: currIndex == index
-                ? AppColors.whiteColor
-                : AppColors.blackTextColor,
+                ? Theme.of(context).extension<AppColors>()!.whiteColor
+                : Theme.of(context).extension<AppColors>()!.blackTextColor,
             color: currIndex == index
-                ? AppColors.primaryColor
-                : AppColors.scaffoldColor,
+                ? Theme.of(context).extension<AppColors>()!.primaryColor
+                : Theme.of(context).extension<AppColors>()!.scaffoldColor,
             onPressed: () {
               setState(() {
                 currIndex = index;

@@ -21,9 +21,9 @@ class MonthDonationInfoWidget extends StatelessWidget {
           children: [
             Text(
               month,
-              style: AppTextStyle.styleRegular14(
-                context,
-              ).copyWith(color: AppColors.blackTextColor),
+              style: AppTextStyle.styleRegular14(context).copyWith(
+                color: Theme.of(context).extension<AppColors>()!.blackTextColor,
+              ),
             ),
             Text(
               '$current / $goal donations',

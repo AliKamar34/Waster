@@ -10,7 +10,7 @@ class CustomPickUpLocationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomLightColorContainer(
-      color: AppColors.blueColor,
+      color: Theme.of(context).extension<AppColors>()!.blueColor,
       padding: 16,
       child: Row(
         spacing: 14,
@@ -22,9 +22,9 @@ class CustomPickUpLocationWidget extends StatelessWidget {
             children: [
               Text(
                 'Current Location',
-                style: AppTextStyle.styleRegular16(
-                  context,
-                ).copyWith(color: AppColors.blueColor),
+                style: AppTextStyle.styleRegular16(context).copyWith(
+                  color: Theme.of(context).extension<AppColors>()!.blueColor,
+                ),
               ),
               Text(
                 '123 Main St, City, State',
@@ -34,8 +34,10 @@ class CustomPickUpLocationWidget extends StatelessWidget {
           ),
           Expanded(
             child: CustomButton(
-              backgroundColor: AppColors.whiteColor,
-              borderColor: AppColors.blueColor,
+              backgroundColor: Theme.of(
+                context,
+              ).extension<AppColors>()!.whiteColor,
+              borderColor: Theme.of(context).extension<AppColors>()!.blueColor,
               title: 'Change',
               onPressed: () {},
             ),

@@ -46,8 +46,8 @@ class _SignUpFormState extends State<SignUpForm> {
   Widget build(BuildContext context) {
     return CustomContainer(
       padding: 24,
-      backgroundColor: AppColors.whiteColor,
-      borderColor: AppColors.borderColor,
+      backgroundColor: Theme.of(context).extension<AppColors>()!.whiteColor,
+      borderColor: Theme.of(context).extension<AppColors>()!.borderColor,
       child: Form(
         key: _formKey,
         child: Column(
@@ -61,7 +61,7 @@ class _SignUpFormState extends State<SignUpForm> {
               prefixIcon: SvgPicture.asset(
                 Assets.profile,
                 colorFilter: ColorFilter.mode(
-                  AppColors.greyTextColor,
+                  Theme.of(context).extension<AppColors>()!.greyTextColor,
                   BlendMode.srcIn,
                 ),
                 width: 24,
@@ -126,7 +126,9 @@ class _SignUpFormState extends State<SignUpForm> {
                     : SvgPicture.asset(
                         Assets.passwordEyeOff,
                         colorFilter: ColorFilter.mode(
-                          AppColors.greyTextColor,
+                          Theme.of(
+                            context,
+                          ).extension<AppColors>()!.greyTextColor,
                           BlendMode.srcIn,
                         ),
                         width: 24,
@@ -152,7 +154,9 @@ class _SignUpFormState extends State<SignUpForm> {
                     : SvgPicture.asset(
                         Assets.passwordEyeOff,
                         colorFilter: ColorFilter.mode(
-                          AppColors.greyTextColor,
+                          Theme.of(
+                            context,
+                          ).extension<AppColors>()!.greyTextColor,
                           BlendMode.srcIn,
                         ),
                         width: 24,

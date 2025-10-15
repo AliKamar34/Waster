@@ -32,9 +32,11 @@ class _MainViewState extends State<MainView> {
       body: pages[currIndex],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
-        backgroundColor: AppColors.whiteColor,
+        backgroundColor: Theme.of(context).extension<AppColors>()!.whiteColor,
         currentIndex: currIndex,
-        selectedItemColor: AppColors.primaryColor,
+        selectedItemColor: Theme.of(
+          context,
+        ).extension<AppColors>()!.primaryColor,
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: AppTextStyle.styleMeduim14(context),
         onTap: (value) {
@@ -52,8 +54,8 @@ class _MainViewState extends State<MainView> {
               Assets.home,
               colorFilter: ColorFilter.mode(
                 currIndex == 0
-                    ? AppColors.primaryColor
-                    : AppColors.blackTextColor,
+                    ? Theme.of(context).extension<AppColors>()!.primaryColor
+                    : Theme.of(context).extension<AppColors>()!.blackTextColor,
                 BlendMode.srcIn,
               ),
             ),
@@ -64,15 +66,18 @@ class _MainViewState extends State<MainView> {
               Assets.browse,
               colorFilter: ColorFilter.mode(
                 currIndex == 1
-                    ? AppColors.primaryColor
-                    : AppColors.blackTextColor,
+                    ? Theme.of(context).extension<AppColors>()!.primaryColor
+                    : Theme.of(context).extension<AppColors>()!.blackTextColor,
                 BlendMode.srcIn,
               ),
             ),
             label: 'Browse',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add, color: AppColors.blackTextColor),
+            icon: Icon(
+              Icons.add,
+              color: Theme.of(context).extension<AppColors>()!.blackTextColor,
+            ),
             label: 'Donate',
           ),
           BottomNavigationBarItem(
@@ -80,8 +85,8 @@ class _MainViewState extends State<MainView> {
               Assets.impact,
               colorFilter: ColorFilter.mode(
                 currIndex == 3
-                    ? AppColors.primaryColor
-                    : AppColors.blackTextColor,
+                    ? Theme.of(context).extension<AppColors>()!.primaryColor
+                    : Theme.of(context).extension<AppColors>()!.blackTextColor,
                 BlendMode.srcIn,
               ),
             ),
@@ -92,8 +97,8 @@ class _MainViewState extends State<MainView> {
               Assets.profile,
               colorFilter: ColorFilter.mode(
                 currIndex == 4
-                    ? AppColors.primaryColor
-                    : AppColors.blackTextColor,
+                    ? Theme.of(context).extension<AppColors>()!.primaryColor
+                    : Theme.of(context).extension<AppColors>()!.blackTextColor,
                 BlendMode.srcIn,
               ),
             ),

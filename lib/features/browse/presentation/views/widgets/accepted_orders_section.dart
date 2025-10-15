@@ -30,7 +30,9 @@ class AcceptedOrdersSection extends StatelessWidget {
               },
               child: CustomContainer(
                 padding: 6,
-                backgroundColor: AppColors.scaffoldColor,
+                backgroundColor: Theme.of(
+                  context,
+                ).extension<AppColors>()!.scaffoldColor,
                 borderWidth: 2,
                 child: Row(
                   children: [
@@ -46,7 +48,7 @@ class AcceptedOrdersSection extends StatelessWidget {
           ],
         ),
         CustomLightColorContainer(
-          color: AppColors.primaryColor,
+          color: Theme.of(context).extension<AppColors>()!.primaryColor,
           child: ListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(
@@ -58,7 +60,7 @@ class AcceptedOrdersSection extends StatelessWidget {
               style: AppTextStyle.styleRegular14(context),
             ),
             trailing: CustomOrderStateWidget(
-              color: AppColors.primaryColor,
+              color: Theme.of(context).extension<AppColors>()!.primaryColor,
               state: 'Accepted',
             ),
           ),

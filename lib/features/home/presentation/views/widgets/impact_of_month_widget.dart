@@ -9,15 +9,15 @@ class ImpactOfMonthWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomLightColorContainer(
-      color: AppColors.primaryColor,
+      color: Theme.of(context).extension<AppColors>()!.primaryColor,
       child: Column(
         spacing: 8,
         children: [
           Text(
             'Your Impact This Month',
-            style: AppTextStyle.styleRegular16(
-              context,
-            ).copyWith(color: AppColors.primaryColor),
+            style: AppTextStyle.styleRegular16(context).copyWith(
+              color: Theme.of(context).extension<AppColors>()!.primaryColor,
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -26,9 +26,11 @@ class ImpactOfMonthWidget extends StatelessWidget {
                 children: [
                   Text(
                     '150 lbs',
-                    style: AppTextStyle.styleRegular18(
-                      context,
-                    ).copyWith(color: AppColors.primaryColor),
+                    style: AppTextStyle.styleRegular18(context).copyWith(
+                      color: Theme.of(
+                        context,
+                      ).extension<AppColors>()!.primaryColor,
+                    ),
                   ),
                   Text(
                     'Food Rescued',
@@ -40,9 +42,11 @@ class ImpactOfMonthWidget extends StatelessWidget {
                 children: [
                   Text(
                     '75 kg',
-                    style: AppTextStyle.styleRegular18(
-                      context,
-                    ).copyWith(color: AppColors.primaryColor),
+                    style: AppTextStyle.styleRegular18(context).copyWith(
+                      color: Theme.of(
+                        context,
+                      ).extension<AppColors>()!.primaryColor,
+                    ),
                   ),
                   Text(
                     'CO₂ Saved',

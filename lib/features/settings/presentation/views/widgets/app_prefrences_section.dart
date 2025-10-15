@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/theme_controller.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_settings_container.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_settings_list_tile.dart';
@@ -13,7 +15,6 @@ class AppPrefrencesSection extends StatefulWidget {
 }
 
 class _AppPrefrencesSectionState extends State<AppPrefrencesSection> {
-  bool isEnglish = false;
   @override
   Widget build(BuildContext context) {
     return CustomSettingsContainer(
@@ -37,13 +38,17 @@ class _AppPrefrencesSectionState extends State<AppPrefrencesSection> {
         const Divider(),
         CustomSettingsListTile(
           icon: Assets.language,
-          title: 'Language',
+          title: LocaleKeys.loaves.tr(), //'Language',
           subtitle: 'English',
           trailing: CustomSwithcher(
-            value: isEnglish,
+            value: context.locale == const Locale('en'),
             onChanged: (value) {
               setState(() {
-                isEnglish = value;
+                if (context.locale == const Locale('en')) {
+                  context.setLocale(const Locale('ar'));
+                } else {
+                  context.setLocale(const Locale('en'));
+                }
               });
             },
           ),

@@ -36,20 +36,24 @@ class CustomTextFeild extends StatelessWidget {
           controller: controller,
           validator: validator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          cursorColor: AppColors.greyTextColor,
+          cursorColor: Theme.of(context).extension<AppColors>()!.greyTextColor,
           obscureText: isPassword ?? false,
           decoration: InputDecoration(
             filled: true,
-            fillColor: AppColors.borderColor,
+            fillColor: Theme.of(context).extension<AppColors>()!.borderColor,
             errorMaxLines: 2,
-            border: borderBuilder(),
-            enabledBorder: borderBuilder(),
-            focusedBorder: borderBuilder(),
-            errorBorder: borderBuilder().copyWith(
-              borderSide: BorderSide(color: AppColors.redColor),
+            border: borderBuilder(context),
+            enabledBorder: borderBuilder(context),
+            focusedBorder: borderBuilder(context),
+            errorBorder: borderBuilder(context).copyWith(
+              borderSide: BorderSide(
+                color: Theme.of(context).extension<AppColors>()!.redColor,
+              ),
             ),
-            focusedErrorBorder: borderBuilder().copyWith(
-              borderSide: BorderSide(color: AppColors.redColor),
+            focusedErrorBorder: borderBuilder(context).copyWith(
+              borderSide: BorderSide(
+                color: Theme.of(context).extension<AppColors>()!.redColor,
+              ),
             ),
             hintText: hint,
             hintStyle: AppTextStyle.styleRegular16(context),
@@ -71,11 +75,13 @@ class CustomTextFeild extends StatelessWidget {
     );
   }
 
-  OutlineInputBorder borderBuilder() {
+  OutlineInputBorder borderBuilder(BuildContext context) {
     return OutlineInputBorder(
       gapPadding: 18,
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: AppColors.borderColor),
+      borderSide: BorderSide(
+        color: Theme.of(context).extension<AppColors>()!.borderColor,
+      ),
     );
   }
 }

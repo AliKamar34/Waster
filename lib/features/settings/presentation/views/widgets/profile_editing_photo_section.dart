@@ -34,12 +34,16 @@ class _ProfileEditingPhotoSectionState
               children: [
                 image == null
                     ? CustomLightColorContainer(
-                        color: AppColors.primaryColor,
+                        color: Theme.of(
+                          context,
+                        ).extension<AppColors>()!.primaryColor,
                         child: SvgPicture.asset(
                           Assets.profile,
                           width: 50,
                           colorFilter: ColorFilter.mode(
-                            AppColors.primaryColor,
+                            Theme.of(
+                              context,
+                            ).extension<AppColors>()!.primaryColor,
                             BlendMode.srcIn,
                           ),
                         ),

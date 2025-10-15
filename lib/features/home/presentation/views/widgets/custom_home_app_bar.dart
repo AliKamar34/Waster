@@ -16,9 +16,9 @@ class CustomHomeAppBar extends StatelessWidget {
       title: Text('Welcome back!', style: AppTextStyle.styleBold24(context)),
       subtitle: Text(
         'Ready to make a difference today?',
-        style: AppTextStyle.styleRegular16(
-          context,
-        ).copyWith(color: AppColors.greyTextColor),
+        style: AppTextStyle.styleRegular16(context).copyWith(
+          color: Theme.of(context).extension<AppColors>()!.greyTextColor,
+        ),
       ),
       trailing: InkWell(
         onTap: () {

@@ -16,9 +16,9 @@ class QuantityAndTimeSection extends StatelessWidget {
           children: [
             Text(
               'Quantity',
-              style: AppTextStyle.styleRegular16(
-                context,
-              ).copyWith(color: AppColors.greyTextColor),
+              style: AppTextStyle.styleRegular16(context).copyWith(
+                color: Theme.of(context).extension<AppColors>()!.greyTextColor,
+              ),
             ),
             Text('50 servings', style: AppTextStyle.styleRegular16(context)),
           ],
@@ -29,9 +29,9 @@ class QuantityAndTimeSection extends StatelessWidget {
           children: [
             Text(
               'Pickup Time',
-              style: AppTextStyle.styleRegular16(
-                context,
-              ).copyWith(color: AppColors.greyTextColor),
+              style: AppTextStyle.styleRegular16(context).copyWith(
+                color: Theme.of(context).extension<AppColors>()!.greyTextColor,
+              ),
             ),
             Text('2:00 PM', style: AppTextStyle.styleRegular16(context)),
           ],

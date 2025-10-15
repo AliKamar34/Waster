@@ -13,17 +13,17 @@ class HomeCountSection extends StatelessWidget {
         CustomCountContainer(
           count: '12',
           title: 'Total Donations',
-          color: AppColors.primaryColor,
+          color: Theme.of(context).extension<AppColors>()!.primaryColor,
         ),
         CustomCountContainer(
           count: '45',
           title: 'Meals Served',
-          color: AppColors.orangeColor,
+          color: Theme.of(context).extension<AppColors>()!.orangeColor,
         ),
         CustomCountContainer(
           count: '8',
           title: 'This Month',
-          color: AppColors.blueColor,
+          color: Theme.of(context).extension<AppColors>()!.blueColor,
         ),
       ],
     );

@@ -12,25 +12,25 @@ class MainImpactGridView extends StatelessWidget {
     final List<Map<String, dynamic>> items = [
       {
         'count': '23',
-        'color': AppColors.primaryColor,
+        'color': Theme.of(context).extension<AppColors>()!.primaryColor,
         'title': 'Total Donations',
         'unit': 'items',
       },
       {
         'count': '156',
-        'color': AppColors.orangeColor,
+        'color': Theme.of(context).extension<AppColors>()!.orangeColor,
         'title': 'Meals Served',
         'unit': 'meals',
       },
       {
         'count': '342',
-        'color': AppColors.blueColor,
+        'color': Theme.of(context).extension<AppColors>()!.blueColor,
         'title': 'Food Rescued',
         'unit': 'lbs',
       },
       {
         'count': '89',
-        'color': AppColors.primaryColor,
+        'color': Theme.of(context).extension<AppColors>()!.primaryColor,
         'title': 'CO₂ Saved',
         'unit': 'kg',
       },

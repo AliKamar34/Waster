@@ -13,17 +13,17 @@ class ProfileStatisticsSection extends StatelessWidget {
         CustomCountContainer(
           count: '1,247',
           title: 'Meals Donated',
-          color: AppColors.primaryColor,
+          color: Theme.of(context).extension<AppColors>()!.primaryColor,
         ),
         CustomCountContainer(
           count: '892 lbs',
           title: 'Pounds Saved',
-          color: AppColors.primaryColor,
+          color: Theme.of(context).extension<AppColors>()!.primaryColor,
         ),
         CustomCountContainer(
           count: '23',
           title: 'Organizations Helped',
-          color: AppColors.primaryColor,
+          color: Theme.of(context).extension<AppColors>()!.primaryColor,
         ),
       ],
     );

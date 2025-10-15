@@ -30,22 +30,24 @@ class OrderDetailsAppBar extends StatelessWidget {
         CustomContainer(
           padding: 2,
           borderRadius: 8,
-          backgroundColor: AppColors.orangeColor,
+          backgroundColor: Theme.of(
+            context,
+          ).extension<AppColors>()!.orangeColor,
           child: Row(
             spacing: 4,
             children: [
               SvgPicture.asset(
                 Assets.pending,
                 colorFilter: ColorFilter.mode(
-                  AppColors.whiteColor,
+                  Theme.of(context).extension<AppColors>()!.whiteColor,
                   BlendMode.srcIn,
                 ),
               ),
               Text(
                 'pending',
-                style: AppTextStyle.styleRegular14(
-                  context,
-                ).copyWith(color: AppColors.whiteColor),
+                style: AppTextStyle.styleRegular14(context).copyWith(
+                  color: Theme.of(context).extension<AppColors>()!.whiteColor,
+                ),
               ),
             ],
           ),

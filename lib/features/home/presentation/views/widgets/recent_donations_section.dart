@@ -21,7 +21,7 @@ class RecentDonationsSection extends StatelessWidget {
           count: '15 items',
           to: 'City Food Bank',
           time: '2 hours ago',
-          color: AppColors.primaryColor,
+          color: Theme.of(context).extension<AppColors>()!.primaryColor,
         ),
         CustomOrderDetailContainer(
           title: 'Baked Goods',
@@ -30,7 +30,7 @@ class RecentDonationsSection extends StatelessWidget {
           count: '15 items',
           to: 'Community Kitchen',
           time: '30 minute ago',
-          color: AppColors.orangeColor,
+          color: Theme.of(context).extension<AppColors>()!.orangeColor,
         ),
         CustomOrderDetailContainer(
           title: 'Prepared Meals',
@@ -39,7 +39,7 @@ class RecentDonationsSection extends StatelessWidget {
           count: '10 portions',
           to: '',
           time: '1 day ago',
-          color: AppColors.redColor,
+          color: Theme.of(context).extension<AppColors>()!.redColor,
         ),
       ],
     );

@@ -23,9 +23,9 @@ class CustomMyOrdersListTile extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: AppTextStyle.styleRegular16(
-          context,
-        ).copyWith(color: AppColors.greyTextColor),
+        style: AppTextStyle.styleRegular16(context).copyWith(
+          color: Theme.of(context).extension<AppColors>()!.greyTextColor,
+        ),
       ),
       subtitle: Text(subtitle, style: AppTextStyle.styleRegular16(context)),
     );

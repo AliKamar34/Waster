@@ -29,7 +29,9 @@ class CustomNearOrdersWidget extends StatelessWidget {
                       style: AppTextStyle.styleRegular16(context),
                     ),
                     CustomOrderStateWidget(
-                      color: AppColors.orangeColor,
+                      color: Theme.of(
+                        context,
+                      ).extension<AppColors>()!.orangeColor,
                       state: 'Urgent',
                     ),
                   ],
@@ -61,9 +63,11 @@ class CustomNearOrdersWidget extends StatelessWidget {
                     SvgPicture.asset(Assets.pending),
                     Text(
                       'Expires in 6 hours',
-                      style: AppTextStyle.styleRegular14(
-                        context,
-                      ).copyWith(color: AppColors.orangeColor),
+                      style: AppTextStyle.styleRegular14(context).copyWith(
+                        color: Theme.of(
+                          context,
+                        ).extension<AppColors>()!.orangeColor,
+                      ),
                     ),
                   ],
                 ),

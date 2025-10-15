@@ -18,7 +18,9 @@ class CustomFilterContainer extends StatelessWidget {
         onTap: () {},
         child: CustomContainer(
           padding: 6,
-          backgroundColor: AppColors.scaffoldColor,
+          backgroundColor: Theme.of(
+            context,
+          ).extension<AppColors>()!.scaffoldColor,
           borderWidth: 2,
           child: Row(
             spacing: 6,

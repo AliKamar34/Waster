@@ -19,7 +19,11 @@ class ProfileHeaderCard extends StatelessWidget {
         spacing: 6,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(height: 75, width: 75, color: AppColors.primaryColor),
+          Container(
+            height: 75,
+            width: 75,
+            color: Theme.of(context).extension<AppColors>()!.primaryColor,
+          ),
           Expanded(
             child: Column(
               spacing: 4,

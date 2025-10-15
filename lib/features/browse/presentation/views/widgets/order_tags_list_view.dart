@@ -20,7 +20,9 @@ class OrderTagsListView extends StatelessWidget {
               padding: 4,
               borderWidth: 1.5,
               borderRadius: 8,
-              borderColor: AppColors.borderColor,
+              borderColor: Theme.of(
+                context,
+              ).extension<AppColors>()!.borderColor,
               child: Text(
                 'Beverages',
                 style: AppTextStyle.styleRegular14(context),

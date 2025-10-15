@@ -13,17 +13,17 @@ class BrowseCountSection extends StatelessWidget {
         CustomCountContainer(
           count: '8',
           title: 'Available',
-          color: AppColors.orangeColor,
+          color: Theme.of(context).extension<AppColors>()!.orangeColor,
         ),
         CustomCountContainer(
           count: '3',
           title: 'Reserved',
-          color: AppColors.primaryColor,
+          color: Theme.of(context).extension<AppColors>()!.primaryColor,
         ),
         CustomCountContainer(
           count: '12',
           title: 'This Week',
-          color: AppColors.blueColor,
+          color: Theme.of(context).extension<AppColors>()!.blueColor,
         ),
       ],
     );

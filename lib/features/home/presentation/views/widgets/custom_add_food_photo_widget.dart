@@ -23,7 +23,7 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomLightColorContainer(
       padding: 20,
-      color: AppColors.primaryColor,
+      color: Theme.of(context).extension<AppColors>()!.primaryColor,
       child: image == null
           ? Column(
               children: [
@@ -31,9 +31,11 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
                 const SizedBox(height: 12),
                 Text(
                   'Add Food Photo',
-                  style: AppTextStyle.styleRegular16(
-                    context,
-                  ).copyWith(color: AppColors.primaryColor),
+                  style: AppTextStyle.styleRegular16(context).copyWith(
+                    color: Theme.of(
+                      context,
+                    ).extension<AppColors>()!.primaryColor,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -45,8 +47,12 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   child: CustomButton(
-                    backgroundColor: AppColors.whiteColor,
-                    borderColor: AppColors.primaryColor,
+                    backgroundColor: Theme.of(
+                      context,
+                    ).extension<AppColors>()!.whiteColor,
+                    borderColor: Theme.of(
+                      context,
+                    ).extension<AppColors>()!.primaryColor,
                     title: 'Take Photo',
                     onPressed: () {
                       showModalBottomSheet(
@@ -74,9 +80,16 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
                   top: 8,
                   right: 8,
                   child: CircleAvatar(
-                    backgroundColor: AppColors.redColor,
+                    backgroundColor: Theme.of(
+                      context,
+                    ).extension<AppColors>()!.redColor,
                     child: IconButton(
-                      icon: Icon(Icons.close, color: AppColors.whiteColor),
+                      icon: Icon(
+                        Icons.close,
+                        color: Theme.of(
+                          context,
+                        ).extension<AppColors>()!.whiteColor,
+                      ),
                       onPressed: removeImage,
                     ),
                   ),

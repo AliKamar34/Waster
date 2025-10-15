@@ -10,7 +10,9 @@ void showToast(BuildContext context, String message, {bool isError = false}) {
       ),
       duration: const Duration(seconds: 2),
       behavior: SnackBarBehavior.floating,
-      backgroundColor: isError ? AppColors.redColor : AppColors.blueColor,
+      backgroundColor: isError
+          ? Theme.of(context).extension<AppColors>()!.redColor
+          : Theme.of(context).extension<AppColors>()!.blueColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
       margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
     ),
