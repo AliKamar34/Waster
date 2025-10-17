@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 import 'package:waster/features/browse/presentation/views/widgets/custom_my_orders_list_tile.dart';
@@ -22,19 +24,19 @@ class CustomTrakingOrderDetailsContainer extends StatelessWidget {
           const SizedBox(height: 12),
           const MyOrdersItemsSection(),
           CustomMyOrdersListTile(
-            title: 'From',
+            title: LocaleKeys.from.tr(),
             subtitle: '123 Main St',
             icon: Assets.location,
             iconColor: Theme.of(context).extension<AppColors>()!.greyTextColor,
           ),
           CustomMyOrdersListTile(
-            title: 'Delivery',
+            title: LocaleKeys.delivery.tr(),
             subtitle: '456 Oak Ave',
             icon: Assets.location,
             iconColor: Theme.of(context).extension<AppColors>()!.blueColor,
           ),
           CustomMyOrdersListTile(
-            title: 'Driver',
+            title: LocaleKeys.Driver.tr(),
             subtitle: 'Sarah Johnson',
             icon: Assets.truck,
             iconColor: Theme.of(context).extension<AppColors>()!.greyTextColor,

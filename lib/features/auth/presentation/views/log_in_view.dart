@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/features/auth/presentation/views/widgets/log_in_form.dart';
@@ -21,15 +23,18 @@ class LogInView extends StatelessWidget {
             children: [
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
               SvgPicture.asset(Assets.logo),
-              Text('Welcome Back', style: AppTextStyle.styleBold24(context)),
               Text(
-                'Sign in to continue helping your community',
+                LocaleKeys.welcome_back.tr(),
+                style: AppTextStyle.styleBold24(context),
+              ),
+              Text(
+                LocaleKeys.sign_in_message.tr(),
                 style: AppTextStyle.styleRegular14(context),
               ),
               const LoginForm(),
-              const OtherAuthOptionWidget(
-                title: 'Don’t have an account? ',
-                action: 'Sign up',
+              OtherAuthOptionWidget(
+                title: LocaleKeys.Dont_have_an_account.tr(),
+                action: LocaleKeys.sign_up.tr(),
                 screen: AppRoutes.singUp,
               ),
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),

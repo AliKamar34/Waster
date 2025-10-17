@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_settings_container.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_settings_list_tile.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_swithcher.dart';
@@ -20,12 +22,12 @@ class _NotificationsSettingsSectionState
   @override
   Widget build(BuildContext context) {
     return CustomSettingsContainer(
-      title: 'Notifications',
+      title: LocaleKeys.notifications.tr(),
       children: [
         CustomSettingsListTile(
           icon: Assets.notification,
-          title: 'Push Notifications',
-          subtitle: 'Get notified about new orders',
+          title: LocaleKeys.Push_Notifications.tr(),
+          subtitle: LocaleKeys.Get_notified_about_new_orders.tr(),
           trailing: CustomSwithcher(
             value: isPushNotification,
             onChanged: (value) {
@@ -38,8 +40,8 @@ class _NotificationsSettingsSectionState
         const Divider(),
         CustomSettingsListTile(
           icon: Assets.phone,
-          title: 'SMS Alerts',
-          subtitle: 'Urgent delivery notifications',
+          title: LocaleKeys.SMS_Alerts.tr(),
+          subtitle: LocaleKeys.Urgent_delivery_notifications.tr(),
           trailing: CustomSwithcher(
             value: isSMSNotification,
             onChanged: (value) {
@@ -52,8 +54,8 @@ class _NotificationsSettingsSectionState
         const Divider(),
         CustomSettingsListTile(
           icon: Assets.language,
-          title: 'Email Updates',
-          subtitle: 'Weekly impact reports',
+          title: LocaleKeys.Email_Updates.tr(),
+          subtitle: LocaleKeys.Weekly_impact_reports.tr(),
           trailing: CustomSwithcher(
             value: isEmailNotification,
             onChanged: (value) {

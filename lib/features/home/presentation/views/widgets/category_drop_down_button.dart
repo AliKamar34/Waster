@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/utils/validators.dart';
 import 'package:waster/core/widgets/custom_drop_down_button.dart';
 
@@ -8,8 +10,8 @@ class CategoryDropDownButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomDropDownButton(
-      lable: 'Category',
-      hint: 'Select food category',
+      lable: LocaleKeys.category.tr(),
+      hint: LocaleKeys.Select_food_category.tr(),
       onChanged: onChanged,
       validator: Validators.normal,
       items: const [

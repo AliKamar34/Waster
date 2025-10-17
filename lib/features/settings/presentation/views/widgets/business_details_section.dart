@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/widgets/custom_text_feild.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_settings_container.dart';
 
@@ -10,16 +12,16 @@ class BusinessDetailsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomSettingsContainer(
-      title: 'Business Details',
+      title: LocaleKeys.Business_Details.tr(),
       children: [
         CustomTextFeild(
           hint: 'www.example.com',
-          lable: 'Website',
+          lable: LocaleKeys.Website.tr(),
           prefixIcon: SvgPicture.asset(Assets.language),
         ),
         CustomTextFeild(
           hint: 'Mon-Fri: 8AM-8PM, Sat-Sun: 9AM-6PM',
-          lable: 'Business Hours',
+          lable: LocaleKeys.Business_Hours.tr(),
           prefixIcon: SvgPicture.asset(Assets.timer),
         ),
       ],

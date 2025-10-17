@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 
 class CustomImpactAppBar extends StatelessWidget {
@@ -10,9 +12,12 @@ class CustomImpactAppBar extends StatelessWidget {
       spacing: 4,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Your Impact', style: AppTextStyle.styleBold20(context)),
         Text(
-          'See the difference you\'re making',
+          LocaleKeys.your_impact.tr(),
+          style: AppTextStyle.styleBold20(context),
+        ),
+        Text(
+          LocaleKeys.see_your_impact.tr(),
           style: AppTextStyle.styleRegular14(context),
         ),
       ],

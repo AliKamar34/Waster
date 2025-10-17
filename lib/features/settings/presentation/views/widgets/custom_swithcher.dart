@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:waster/core/themes/app_colors.dart';
 
@@ -30,7 +31,13 @@ class CustomSwithcher extends StatelessWidget {
         child: AnimatedAlign(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeInOut,
-          alignment: value ? Alignment.centerRight : Alignment.centerLeft,
+          alignment: context.locale == const Locale('en')
+              ? value
+                    ? Alignment.centerRight
+                    : Alignment.centerLeft
+              : value
+              ? Alignment.centerLeft
+              : Alignment.centerRight,
           child: Container(
             width: 21,
             height: 21,

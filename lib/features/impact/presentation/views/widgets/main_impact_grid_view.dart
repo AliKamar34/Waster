@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
@@ -13,26 +15,26 @@ class MainImpactGridView extends StatelessWidget {
       {
         'count': '23',
         'color': Theme.of(context).extension<AppColors>()!.primaryColor,
-        'title': 'Total Donations',
-        'unit': 'items',
+        'title': LocaleKeys.total_donations.tr(),
+        'unit': LocaleKeys.items.tr(),
       },
       {
         'count': '156',
         'color': Theme.of(context).extension<AppColors>()!.orangeColor,
-        'title': 'Meals Served',
-        'unit': 'meals',
+        'title': LocaleKeys.Meals_Served.tr(),
+        'unit': LocaleKeys.meals.tr(),
       },
       {
         'count': '342',
         'color': Theme.of(context).extension<AppColors>()!.blueColor,
-        'title': 'Food Rescued',
-        'unit': 'lbs',
+        'title': LocaleKeys.food_rescued.tr(),
+        'unit': LocaleKeys.lbs.tr(),
       },
       {
         'count': '89',
         'color': Theme.of(context).extension<AppColors>()!.primaryColor,
-        'title': 'CO₂ Saved',
-        'unit': 'kg',
+        'title': LocaleKeys.co_saved.tr(),
+        'unit': LocaleKeys.kg.tr(),
       },
     ];
     return CustomImpactGridView(
@@ -48,9 +50,13 @@ class MainImpactGridView extends StatelessWidget {
                   context,
                 ).copyWith(color: items[index]['color']),
               ),
-              Text(
-                items[index]['title'],
-                style: AppTextStyle.styleRegular14(context),
+              Expanded(
+                child: Text(
+                  items[index]['title'],
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyle.styleRegular14(context),
+                ),
               ),
               Text(
                 items[index]['unit'],

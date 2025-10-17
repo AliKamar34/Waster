@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/features/auth/presentation/views/widgets/other_auth_option_widget.dart';
@@ -19,14 +21,14 @@ class SignUpView extends StatelessWidget {
             SvgPicture.asset(Assets.logo),
             const SizedBox(height: 16),
             Text(
-              'Join',
+              LocaleKeys.join.tr(),
               textAlign: TextAlign.center,
               style: AppTextStyle.styleBold24(context),
             ),
             const SizedBox(height: 16),
 
             Text(
-              'Help reduce food waste and support your community',
+              LocaleKeys.help_recipients_see_donation.tr(),
               textAlign: TextAlign.center,
               style: AppTextStyle.styleRegular14(context),
             ),
@@ -35,9 +37,9 @@ class SignUpView extends StatelessWidget {
             const SignUpForm(),
             const SizedBox(height: 16),
 
-            const OtherAuthOptionWidget(
-              title: 'Already have an account? ',
-              action: 'Sign in',
+            OtherAuthOptionWidget(
+              title: LocaleKeys.Already_have_an_account.tr(),
+              action: LocaleKeys.Sign_in.tr(),
               screen: AppRoutes.login,
             ),
             const SizedBox(height: 16),

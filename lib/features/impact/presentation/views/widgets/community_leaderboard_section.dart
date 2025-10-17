@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 import 'package:waster/features/impact/presentation/views/widgets/leaderboard_item.dart';
@@ -13,7 +15,7 @@ class CommunityLeaderboardSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Community Leaderboard',
+          LocaleKeys.community_leaderboard.tr(),
           style: AppTextStyle.styleRegular18(context),
         ),
         const CustomContainer(

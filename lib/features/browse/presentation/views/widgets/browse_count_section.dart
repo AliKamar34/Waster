@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/widgets/custom_count_container.dart';
 
@@ -12,17 +14,17 @@ class BrowseCountSection extends StatelessWidget {
       children: [
         CustomCountContainer(
           count: '8',
-          title: 'Available',
+          title: LocaleKeys.Available.tr(),
           color: Theme.of(context).extension<AppColors>()!.orangeColor,
         ),
         CustomCountContainer(
           count: '3',
-          title: 'Reserved',
+          title: LocaleKeys.Reserved.tr(),
           color: Theme.of(context).extension<AppColors>()!.primaryColor,
         ),
         CustomCountContainer(
           count: '12',
-          title: 'This Week',
+          title: LocaleKeys.This_Week.tr(),
           color: Theme.of(context).extension<AppColors>()!.blueColor,
         ),
       ],

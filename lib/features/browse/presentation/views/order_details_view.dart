@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/features/browse/presentation/views/widgets/contact_information_widget.dart';
 import 'package:waster/features/browse/presentation/views/widgets/items_available_section.dart';
 import 'package:waster/features/browse/presentation/views/widgets/order_details_app_bar.dart';
@@ -11,27 +13,27 @@ class OrderDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
-        minimum: EdgeInsets.symmetric(horizontal: 24),
+        minimum: const EdgeInsets.symmetric(horizontal: 24),
         child: SingleChildScrollView(
           child: Column(
             spacing: 16,
             children: [
-              OrderDetailsAppBar(),
-              OrderSummarySection(),
-              ItemsAvailableSection(),
+              const OrderDetailsAppBar(),
+              const OrderSummarySection(),
+              const ItemsAvailableSection(),
               ContactInformationWidget(
-                title: 'Donor Information',
+                title: LocaleKeys.Donor_Information.tr(),
                 location: '123 Main St, Downtown',
               ),
               ContactInformationWidget(
-                title: 'Recipient Information',
+                title: LocaleKeys.Recipient_Information.tr(),
                 location: '456 Oak Ave, Community Center',
               ),
-              ScheduleSection(),
-              SpecialInstructionsSection(),
-              SizedBox(),
+              const ScheduleSection(),
+              const SpecialInstructionsSection(),
+              const SizedBox(),
             ],
           ),
         ),

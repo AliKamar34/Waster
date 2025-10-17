@@ -15,7 +15,12 @@ class MetricItem extends StatelessWidget {
             color: Theme.of(context).extension<AppColors>()!.primaryColor,
           ),
         ),
-        Text(title, style: AppTextStyle.styleRegular14(context)),
+        Text(
+          title,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: AppTextStyle.styleRegular14(context),
+        ),
       ],
     );
   }

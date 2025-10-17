@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
@@ -32,7 +34,7 @@ class CustomNearOrdersWidget extends StatelessWidget {
                       color: Theme.of(
                         context,
                       ).extension<AppColors>()!.orangeColor,
-                      state: 'Urgent',
+                      state: LocaleKeys.Urgent.tr(),
                     ),
                   ],
                 ),
@@ -44,14 +46,14 @@ class CustomNearOrdersWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '12 loaves',
+                      '12 ${LocaleKeys.loaves.tr()}',
                       style: AppTextStyle.styleRegular14(context),
                     ),
                     Row(
                       children: [
                         SvgPicture.asset(Assets.location),
                         Text(
-                          '1.2 miles',
+                          '1.2 ${LocaleKeys.miles.tr()}',
                           style: AppTextStyle.styleRegular14(context),
                         ),
                       ],
@@ -62,7 +64,7 @@ class CustomNearOrdersWidget extends StatelessWidget {
                   children: [
                     SvgPicture.asset(Assets.pending),
                     Text(
-                      'Expires in 6 hours',
+                      '${LocaleKeys.expires_in_hours.tr()} 6',
                       style: AppTextStyle.styleRegular14(context).copyWith(
                         color: Theme.of(
                           context,

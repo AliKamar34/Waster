@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/core/utils/validators.dart';
 import 'package:waster/core/widgets/custom_button.dart';
@@ -66,8 +68,8 @@ class _DonateFormState extends State<DonateForm> {
             },
           ),
           CustomTextFeild(
-            lable: 'Item Name *',
-            hint: 'e.g., Fresh Vegetables, Baked Goods',
+            lable: '${LocaleKeys.item_name.tr()} *',
+            hint: LocaleKeys.eg_Fresh_Vegetables_Baked_Goods.tr(),
             controller: itemNameController,
             validator: Validators.normal,
           ),
@@ -86,43 +88,46 @@ class _DonateFormState extends State<DonateForm> {
               });
             },
           ),
-          const CustomTextFeild(
-            maxLines: 3,
-            lable: 'Description (Optional)',
-            hint: 'Additional details about the food...',
-          ),
-          const CustomDonateLableSections(image: Assets.timer, lable: 'Timing'),
           CustomTextFeild(
-            lable: 'Available for Pickup *',
+            maxLines: 3,
+            lable: LocaleKeys.Description_Optional.tr(),
+            hint: LocaleKeys.Additional_details_about_the_food.tr(),
+          ),
+          CustomDonateLableSections(
+            image: Assets.timer,
+            lable: LocaleKeys.timing.tr(),
+          ),
+          CustomTextFeild(
+            lable: '${LocaleKeys.Available_for_Pickup.tr()} *',
             hint: '',
             controller: availableForPickUbController,
             validator: Validators.normal,
           ),
           CustomTextFeild(
-            lable: 'Must be Picked Up By *',
+            lable: '${LocaleKeys.Must_be_Picked_Up_By.tr()} *',
             hint: '',
             controller: mustBePickedUpByController,
             validator: Validators.normal,
           ),
-          const CustomDonateLableSections(
+          CustomDonateLableSections(
             image: Assets.location,
-            lable: 'Pickup Location',
+            lable: LocaleKeys.Pickup_Location.tr(),
           ),
           const CustomPickUpLocationWidget(),
           CustomButton(
-            title: 'Post Donation',
+            title: LocaleKeys.post_food_donation.tr(),
             onPressed: () {
               if (_formKey.currentState!.validate() &&
                   units != null &&
                   category != null) {
                 if (_image != null) {
-                  showToast(context, 'data confirmed');
+                  showToast(context, LocaleKeys.data_confirmed.tr());
                   context.pop();
                 } else {
-                  showToast(context, 'please add food photo');
+                  showToast(context, LocaleKeys.please_add_food_photo.tr());
                 }
               } else {
-                showToast(context, 'data not confirmed');
+                showToast(context, LocaleKeys.data_not_confirmed.tr());
               }
             },
           ),

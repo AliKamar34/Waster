@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
@@ -28,7 +30,7 @@ class StartView extends StatelessWidget {
                 spacing: 16,
                 children: [
                   Text(
-                    'FoodShare',
+                    LocaleKeys.foodshare.tr(),
                     textAlign: TextAlign.center,
                     style: AppTextStyle.styleRegular18(context).copyWith(
                       color: Theme.of(
@@ -37,35 +39,36 @@ class StartView extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Rescue Food, Feed Communities, Reduce Waste',
+                    LocaleKeys.rescue_food_tagline.tr(),
                     textAlign: TextAlign.center,
                     style: AppTextStyle.styleRegular18(context),
                   ),
                   CustomStartWidget(
                     icon: Assets.leaf,
-                    title: 'Reduce Food Waste',
-                    subtitle: 'Turn surplus food into community meals',
+                    title: LocaleKeys.Reduce_Food_Waste.tr(),
+                    subtitle:
+                        LocaleKeys.Turn_surplus_food_into_community_meals.tr(),
                     color: Theme.of(
                       context,
                     ).extension<AppColors>()!.primaryColor,
                   ),
                   CustomStartWidget(
                     icon: Assets.heart,
-                    title: 'Feed Communities',
-                    subtitle: 'Connect donors with those in need',
+                    title: LocaleKeys.Feed_Communities.tr(),
+                    subtitle: LocaleKeys.Connect_donors_with_those_in_need.tr(),
                     color: Theme.of(
                       context,
                     ).extension<AppColors>()!.orangeColor,
                   ),
                   CustomStartWidget(
                     icon: Assets.truck,
-                    title: 'Volunteer Network',
-                    subtitle: 'Join drivers making a difference',
+                    title: LocaleKeys.Volunteer_Network.tr(),
+                    subtitle: LocaleKeys.Join_drivers_making_a_difference.tr(),
                     color: Theme.of(context).extension<AppColors>()!.blueColor,
                   ),
                   const SizedBox(height: 32),
                   CustomButton(
-                    title: 'Get Started',
+                    title: LocaleKeys.Get_Started.tr(),
                     backgroundColor: Theme.of(
                       context,
                     ).extension<AppColors>()!.primaryColor,

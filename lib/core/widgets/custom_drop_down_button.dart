@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
@@ -54,9 +55,9 @@ class CustomDropDownButton<T> extends StatelessWidget {
               vertical: 12,
             ),
           ),
-          icon: const RotatedBox(
-            quarterTurns: 3,
-            child: Icon(Icons.arrow_back_ios_new_outlined),
+          icon: RotatedBox(
+            quarterTurns: context.locale == const Locale('ar') ? 1 : 3,
+            child: const Icon(Icons.arrow_back_ios_new_outlined, size: 20),
           ),
           dropdownColor: Theme.of(context).extension<AppColors>()!.borderColor,
           borderRadius: BorderRadius.circular(8),

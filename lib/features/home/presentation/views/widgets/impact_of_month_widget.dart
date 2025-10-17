@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_light_color_container.dart';
@@ -14,7 +16,7 @@ class ImpactOfMonthWidget extends StatelessWidget {
         spacing: 8,
         children: [
           Text(
-            'Your Impact This Month',
+            LocaleKeys.your_impact_this_month.tr(),
             style: AppTextStyle.styleRegular16(context).copyWith(
               color: Theme.of(context).extension<AppColors>()!.primaryColor,
             ),
@@ -25,7 +27,7 @@ class ImpactOfMonthWidget extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    '150 lbs',
+                    '150 ${LocaleKeys.lbs.tr()}',
                     style: AppTextStyle.styleRegular18(context).copyWith(
                       color: Theme.of(
                         context,
@@ -33,7 +35,7 @@ class ImpactOfMonthWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Food Rescued',
+                    LocaleKeys.food_rescued.tr(),
                     style: AppTextStyle.styleRegular14(context),
                   ),
                 ],
@@ -41,7 +43,7 @@ class ImpactOfMonthWidget extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    '75 kg',
+                    '75 ${LocaleKeys.kg.tr()}',
                     style: AppTextStyle.styleRegular18(context).copyWith(
                       color: Theme.of(
                         context,
@@ -49,7 +51,7 @@ class ImpactOfMonthWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'CO₂ Saved',
+                    LocaleKeys.co_saved.tr(),
                     style: AppTextStyle.styleRegular14(context),
                   ),
                 ],

@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
+
 class Validators {
   /// Normal validation
   static String? normal(String? value) {
     if (value == null || value.isEmpty) {
-      return 'This field is required';
+      return LocaleKeys.This_field_is_required.tr();
     }
     return null;
   }
@@ -10,11 +13,11 @@ class Validators {
   /// Email validation
   static String? email(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Email is required';
+      return LocaleKeys.Email_is_required.tr();
     }
     final emailRegex = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
     if (!emailRegex.hasMatch(value.trim())) {
-      return 'Invalid email format';
+      return LocaleKeys.Invalid_email_format.tr();
     }
     return null;
   }
@@ -22,24 +25,27 @@ class Validators {
   /// Password validation
   static String? password(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Password is required';
+      return LocaleKeys.Password_is_required.tr();
     }
     if (value.length < 8) {
-      return 'Password must be at least 8 characters long';
+      return LocaleKeys.Password_must_be_at_least_8_characters_long.tr();
     }
     if (!RegExp(r'[a-z]').hasMatch(value)) {
-      return 'Password must contain at least one lowercase letter';
+      return LocaleKeys
+          .Password_must_contain_at_least_one_lowercase_letter.tr();
     }
     if (!RegExp(r'[A-Z]').hasMatch(value)) {
-      return 'Password must contain at least one uppercase letter';
+      return LocaleKeys
+          .Password_must_contain_at_least_one_uppercase_letter.tr();
     }
     if (!RegExp(r'\d').hasMatch(value)) {
-      return 'Password must contain at least one number';
+      return LocaleKeys.Password_must_contain_at_least_one_number.tr();
     }
     if (!RegExp(
       r'[!@#\$%\^&\*\(\)_\+\-=\[\]\{\};:"\\|,.<>\/\?]',
     ).hasMatch(value)) {
-      return 'Password must contain at least one special character';
+      return LocaleKeys
+          .Password_must_contain_at_least_one_special_character.tr();
     }
     return null;
   }
@@ -47,10 +53,10 @@ class Validators {
   /// Confirm Password validation
   static String? confirmPassword(String? value, String? original) {
     if (value == null || value.isEmpty) {
-      return 'Confirm Password is required';
+      return LocaleKeys.Confirm_Password_is_required.tr();
     }
     if (value != original) {
-      return 'Passwords do not match';
+      return LocaleKeys.Passwords_do_not_match.tr();
     }
     return null;
   }

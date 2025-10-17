@@ -18,12 +18,14 @@ class _AppPrefrencesSectionState extends State<AppPrefrencesSection> {
   @override
   Widget build(BuildContext context) {
     return CustomSettingsContainer(
-      title: 'App Preferences',
+      title: LocaleKeys.App_Preferences.tr(),
       children: [
         CustomSettingsListTile(
           icon: Assets.darkMode,
-          title: 'Dark Mode',
-          subtitle: 'Switch to dark theme',
+          title: LocaleKeys.Dark_Mode.tr(),
+          subtitle: ThemeController.instance.isDark
+              ? LocaleKeys.Switch_to_light_theme.tr()
+              : LocaleKeys.Switch_to_dark_theme.tr(),
           trailing: CustomSwithcher(
             value: ThemeController.instance.isDark,
             onChanged: (value) {
@@ -38,8 +40,10 @@ class _AppPrefrencesSectionState extends State<AppPrefrencesSection> {
         const Divider(),
         CustomSettingsListTile(
           icon: Assets.language,
-          title: LocaleKeys.loaves.tr(), //'Language',
-          subtitle: 'English',
+          title: LocaleKeys.Language.tr(),
+          subtitle: context.locale == const Locale('en')
+              ? 'التحويل الى العربية'
+              : 'Switch to English',
           trailing: CustomSwithcher(
             value: context.locale == const Locale('en'),
             onChanged: (value) {

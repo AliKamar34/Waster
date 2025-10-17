@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
@@ -59,7 +61,7 @@ class _MainViewState extends State<MainView> {
                 BlendMode.srcIn,
               ),
             ),
-            label: 'Home',
+            label: LocaleKeys.home.tr(),
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -71,14 +73,14 @@ class _MainViewState extends State<MainView> {
                 BlendMode.srcIn,
               ),
             ),
-            label: 'Browse',
+            label: LocaleKeys.browse.tr(),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.add,
               color: Theme.of(context).extension<AppColors>()!.blackTextColor,
             ),
-            label: 'Donate',
+            label: LocaleKeys.donate.tr(),
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -90,7 +92,7 @@ class _MainViewState extends State<MainView> {
                 BlendMode.srcIn,
               ),
             ),
-            label: 'Impact',
+            label: LocaleKeys.impact.tr(),
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -102,7 +104,7 @@ class _MainViewState extends State<MainView> {
                 BlendMode.srcIn,
               ),
             ),
-            label: 'Profile',
+            label: LocaleKeys.profile.tr(),
           ),
         ],
       ),

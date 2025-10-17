@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 
 class CustomImageBottomSheetPicker extends StatelessWidget {
   const CustomImageBottomSheetPicker({super.key, required this.pickImage});
@@ -13,7 +15,7 @@ class CustomImageBottomSheetPicker extends StatelessWidget {
         children: [
           ListTile(
             leading: const Icon(Icons.camera_alt),
-            title: const Text('Take Photo'),
+            title: Text(LocaleKeys.take_photo.tr()),
             onTap: () {
               context.pop();
               pickImage(true);
@@ -21,7 +23,7 @@ class CustomImageBottomSheetPicker extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.photo_library),
-            title: const Text('Upload from Gallery'),
+            title: Text(LocaleKeys.upload_from_gallery.tr()),
             onTap: () {
               context.pop();
               pickImage(false);

@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/core/utils/validators.dart';
@@ -54,8 +56,8 @@ class _SignUpFormState extends State<SignUpForm> {
           spacing: 16,
           children: [
             CustomTextFeild(
-              lable: 'Full Name',
-              hint: 'Enter your full name',
+              lable: LocaleKeys.full_Name.tr(),
+              hint: LocaleKeys.enter_your_full_name.tr(),
               controller: fullNameController,
               validator: Validators.normal,
               prefixIcon: SvgPicture.asset(
@@ -68,15 +70,15 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
             CustomTextFeild(
-              lable: 'Email',
-              hint: 'Enter your email',
+              lable: LocaleKeys.Email.tr(),
+              hint: LocaleKeys.Enter_your_email.tr(),
               controller: emailController,
               validator: Validators.email,
               prefixIcon: SvgPicture.asset(Assets.email, width: 24),
             ),
             CustomDropDownButton<RolesEnum>(
-              lable: 'I want to',
-              hint: 'Select your role',
+              lable: LocaleKeys.i_want_to.tr(),
+              hint: LocaleKeys.select_your_role.tr(),
               selectedValue: _selectedRole,
               onChanged: (value) {
                 setState(() {
@@ -85,32 +87,35 @@ class _SignUpFormState extends State<SignUpForm> {
               },
               validator: (value) {
                 if (value == null) {
-                  return 'Please select a role';
+                  return LocaleKeys.please_select_a_role.tr();
                 }
                 return null;
               },
-              items: const [
-                DropdownMenuItem(value: RolesEnum.donor, child: Text('Donor')),
+              items: [
+                DropdownMenuItem(
+                  value: RolesEnum.donor,
+                  child: Text(LocaleKeys.donor.tr()),
+                ),
                 DropdownMenuItem(
                   value: RolesEnum.recipient,
-                  child: Text('Resipient'),
+                  child: Text(LocaleKeys.recipient.tr()),
                 ),
                 DropdownMenuItem(
                   value: RolesEnum.volunteer,
-                  child: Text('Volunteer'),
+                  child: Text(LocaleKeys.volunteer.tr()),
                 ),
               ],
             ),
             CustomTextFeild(
-              lable: 'Location',
-              hint: 'City, State',
+              lable: LocaleKeys.Location.tr(),
+              hint: LocaleKeys.City_State.tr(),
               controller: locationController,
               validator: Validators.normal,
               prefixIcon: SvgPicture.asset(Assets.location, width: 24),
             ),
             CustomTextFeild(
-              lable: 'Password',
-              hint: 'Enter your password',
+              lable: LocaleKeys.Password.tr(),
+              hint: LocaleKeys.Enter_your_password.tr(),
               controller: passwordController,
               validator: Validators.password,
               isPassword: isPassword,
@@ -136,8 +141,8 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
             CustomTextFeild(
-              lable: 'Confirm Password',
-              hint: 'Confirm your password',
+              lable: LocaleKeys.Confirm_Password.tr(),
+              hint: LocaleKeys.Confirm_your_password.tr(),
               isPassword: isConfirmPassword,
               controller: confirmPasswordController,
               validator: (value) =>
@@ -172,11 +177,14 @@ class _SignUpFormState extends State<SignUpForm> {
               },
             ),
             CustomButton(
-              title: 'Create Account',
+              title: LocaleKeys.Create_Account.tr(),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   if (!isChecked) {
-                    showToast(context, 'pls confirm terms and privacy');
+                    showToast(
+                      context,
+                      LocaleKeys.pls_confirm_terms_and_privacy.tr(),
+                    );
                   } else {
                     log(emailController.text);
                     log(passwordController.text);
@@ -184,7 +192,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     log(locationController.text);
                     log(fullNameController.text);
                     log(_selectedRole.toString());
-                    showToast(context, 'Account created successfully');
+                    showToast(
+                      context,
+                      LocaleKeys.Account_created_successfully.tr(),
+                    );
                   }
                 }
               },

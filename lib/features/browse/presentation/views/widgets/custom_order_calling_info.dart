@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 
@@ -20,9 +22,9 @@ class CustomOrderCallingInfoSection extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        Text('ETA:', style: AppTextStyle.styleRegular14(context)),
+        Text(LocaleKeys.eta.tr(), style: AppTextStyle.styleRegular14(context)),
         Text(
-          '2:45 PM',
+          '2:45 ${LocaleKeys.pm.tr()}',
           style: AppTextStyle.styleRegular14(context).copyWith(
             color: Theme.of(context).extension<AppColors>()!.blackTextColor,
           ),

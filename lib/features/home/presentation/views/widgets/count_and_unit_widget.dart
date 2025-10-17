@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/utils/validators.dart';
 import 'package:waster/core/widgets/custom_drop_down_button.dart';
 import 'package:waster/core/widgets/custom_text_feild.dart';
@@ -18,7 +20,7 @@ class CountAndUnitWidget extends StatelessWidget {
       children: [
         Expanded(
           child: CustomTextFeild(
-            lable: 'Quantity *',
+            lable: '${LocaleKeys.quantity.tr()} *',
             hint: '25',
             controller: quantityController,
             validator: Validators.normal,
@@ -33,8 +35,8 @@ class CountAndUnitWidget extends StatelessWidget {
               DropdownMenuItem(value: 'Unit 2', child: Text('Unit 2')),
               DropdownMenuItem(value: 'Unit 3', child: Text('Unit 3')),
             ],
-            lable: 'Unit',
-            hint: 'lbs',
+            lable: LocaleKeys.unit.tr(),
+            hint: LocaleKeys.lbs.tr(),
           ),
         ),
       ],

@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_light_color_container.dart';
@@ -31,7 +33,7 @@ class LeaderboardItem extends StatelessWidget {
           Text(name, style: AppTextStyle.styleRegular16(context)),
           const Spacer(),
           Text(
-            '$donations donations',
+            '$donations ${LocaleKeys.donations.tr()}',
             style: AppTextStyle.styleRegular14(context).copyWith(
               color: name == 'You'
                   ? Theme.of(context).extension<AppColors>()!.primaryColor

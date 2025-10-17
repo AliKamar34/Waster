@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
@@ -24,7 +26,7 @@ class OrderTagsListView extends StatelessWidget {
                 context,
               ).extension<AppColors>()!.borderColor,
               child: Text(
-                'Beverages',
+                LocaleKeys.beverages.tr(),
                 style: AppTextStyle.styleRegular14(context),
               ),
             ),

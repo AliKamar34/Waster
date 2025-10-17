@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 
@@ -13,11 +15,11 @@ class SpecialInstructionsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Special Instructions',
+            LocaleKeys.special_instructions.tr(),
             style: AppTextStyle.styleRegular18(context),
           ),
           Text(
-            'Please bring insulated bags. Items need to be refr',
+            LocaleKeys.Please_bring_insulated_bags_Items_need_to_be_refr.tr(),
             style: AppTextStyle.styleRegular14(context),
           ),
         ],

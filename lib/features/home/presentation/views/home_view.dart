@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/features/home/presentation/views/widgets/custom_home_app_bar.dart';
@@ -21,7 +23,7 @@ class HomeView extends StatelessWidget {
             const CustomHomeAppBar(),
             const HomeCountSection(),
             CustomButton(
-              title: 'Post New Donation',
+              title: LocaleKeys.post_food_donation.tr(),
               onPressed: () {
                 context.pushNamed(AppRoutes.donateView);
               },

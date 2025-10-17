@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/utils/validators.dart';
@@ -40,15 +42,15 @@ class _LoginFormState extends State<LoginForm> {
           spacing: 16,
           children: [
             CustomTextFeild(
-              lable: 'Email',
-              hint: 'Enter your email',
+              lable: LocaleKeys.Email.tr(),
+              hint: LocaleKeys.Enter_your_email.tr(),
               controller: emailController,
               prefixIcon: SvgPicture.asset(Assets.email, width: 24),
               validator: Validators.email,
             ),
             CustomTextFeild(
-              lable: 'Password',
-              hint: 'Enter your password',
+              lable: LocaleKeys.Password.tr(),
+              hint: LocaleKeys.Enter_your_password.tr(),
               controller: passwordController,
               validator: Validators.password,
               isPassword: isPassword,
@@ -74,7 +76,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
             CustomButton(
-              title: 'Sign In',
+              title: LocaleKeys.Sign_in.tr(),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   context.pushReplacementNamed(AppRoutes.mainView);

@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/features/impact/presentation/views/widgets/metric_item.dart';
 
 class ImpactMetricsRow extends StatelessWidget {
@@ -6,12 +8,24 @@ class ImpactMetricsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        MetricItem(value: '89 kg', title: 'CO₂ Saved'),
-        MetricItem(value: '342 lbs', title: 'Waste Diverted'),
-        MetricItem(value: '156', title: 'Lives Fed'),
+        Expanded(
+          child: MetricItem(
+            value: '89 ${LocaleKeys.kg.tr()}',
+            title: LocaleKeys.co_saved.tr(),
+          ),
+        ),
+        Expanded(
+          child: MetricItem(
+            value: '342 ${LocaleKeys.lbs.tr()}',
+            title: LocaleKeys.Waste_Diverted.tr(),
+          ),
+        ),
+        Expanded(
+          child: MetricItem(value: '156', title: LocaleKeys.Lives_Fed.tr()),
+        ),
       ],
     );
   }

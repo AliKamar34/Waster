@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_button.dart';
@@ -25,43 +27,49 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
       padding: 20,
       color: Theme.of(context).extension<AppColors>()!.primaryColor,
       child: image == null
-          ? Column(
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(Assets.camera),
-                const SizedBox(height: 12),
-                Text(
-                  'Add Food Photo',
-                  style: AppTextStyle.styleRegular16(context).copyWith(
-                    color: Theme.of(
-                      context,
-                    ).extension<AppColors>()!.primaryColor,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Help recipients see what you\'re offering',
-                  style: AppTextStyle.styleRegular14(context),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: 150,
-                  child: CustomButton(
-                    backgroundColor: Theme.of(
-                      context,
-                    ).extension<AppColors>()!.whiteColor,
-                    borderColor: Theme.of(
-                      context,
-                    ).extension<AppColors>()!.primaryColor,
-                    title: 'Take Photo',
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (_) =>
-                            CustomImageBottomSheetPicker(pickImage: pickImage),
-                      );
-                    },
-                  ),
+                Column(
+                  children: [
+                    SvgPicture.asset(Assets.camera),
+                    const SizedBox(height: 12),
+                    Text(
+                      LocaleKeys.add_food_photo.tr(),
+                      style: AppTextStyle.styleRegular16(context).copyWith(
+                        color: Theme.of(
+                          context,
+                        ).extension<AppColors>()!.primaryColor,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      LocaleKeys.help_recipients_see_donation.tr(),
+                      style: AppTextStyle.styleRegular14(context),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: 150,
+                      child: CustomButton(
+                        backgroundColor: Theme.of(
+                          context,
+                        ).extension<AppColors>()!.whiteColor,
+                        borderColor: Theme.of(
+                          context,
+                        ).extension<AppColors>()!.primaryColor,
+                        title: LocaleKeys.take_photo.tr(),
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (_) => CustomImageBottomSheetPicker(
+                              pickImage: pickImage,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ],
             )

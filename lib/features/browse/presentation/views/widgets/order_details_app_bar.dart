@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
@@ -22,7 +24,7 @@ class OrderDetailsAppBar extends StatelessWidget {
         ),
         Center(
           child: Text(
-            'Order Details',
+            LocaleKeys.order_details.tr(),
             style: AppTextStyle.styleBold20(context),
           ),
         ),
@@ -44,7 +46,7 @@ class OrderDetailsAppBar extends StatelessWidget {
                 ),
               ),
               Text(
-                'pending',
+                LocaleKeys.pending.tr(),
                 style: AppTextStyle.styleRegular14(context).copyWith(
                   color: Theme.of(context).extension<AppColors>()!.whiteColor,
                 ),
