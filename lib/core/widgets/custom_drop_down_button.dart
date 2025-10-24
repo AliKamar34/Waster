@@ -26,7 +26,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
       children: [
         Text(lable, style: AppTextStyle.styleRegular16(context)),
         DropdownButtonFormField<T>(
-          value: selectedValue,
+          initialValue: selectedValue,
           hint: Text(hint, style: AppTextStyle.styleRegular16(context)),
           validator: validator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
