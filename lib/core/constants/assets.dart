@@ -5,6 +5,7 @@ class Assets {
   static const String imagesPath = 'assets/images/';
   static const String logo = '${imagesPath}logo.svg';
   static const String start = '${imagesPath}start.svg';
+  static const String warningAvatar = '${imagesPath}warningAvatar.svg';
 
   static const String iconsPath = 'assets/icons/';
   static const String achievement = '${iconsPath}achievement.svg';
