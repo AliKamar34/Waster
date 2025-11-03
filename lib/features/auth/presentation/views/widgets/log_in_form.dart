@@ -1,15 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
-import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/utils/validators.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 import 'package:waster/core/widgets/custom_text_feild.dart';
+import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -23,6 +23,7 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   @override
   void dispose() {
     super.dispose();
@@ -79,7 +80,17 @@ class _LoginFormState extends State<LoginForm> {
               title: LocaleKeys.Sign_in.tr(),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  context.pushReplacementNamed(AppRoutes.mainView);
+                  _formKey.currentState!.save();
+                  BlocProvider.of<AuthBloc>(context).add(
+                    LoginEvent(
+                      email: emailController.text,
+                      password: passwordController.text,
+                    ),
+                  );
+                } else {
+                  setState(() {
+                    autovalidateMode = AutovalidateMode.always;
+                  });
                 }
               },
             ),

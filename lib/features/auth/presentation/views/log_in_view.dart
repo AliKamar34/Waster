@@ -1,12 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:waster/core/constants/assets.dart';
-import 'package:waster/core/localization/locale_keys.g.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:waster/core/routing/app_routes.dart';
-import 'package:waster/core/themes/app_text_style.dart';
-import 'package:waster/features/auth/presentation/views/widgets/log_in_form.dart';
-import 'package:waster/features/auth/presentation/views/widgets/other_auth_option_widget.dart';
+import 'package:waster/core/utils/show_toast.dart';
+import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
+import 'package:waster/features/auth/presentation/views/widgets/custom_auth_loading_indicator.dart';
+import 'package:waster/features/auth/presentation/views/widgets/log_in_view_body.dart';
 
 class LogInView extends StatelessWidget {
   const LogInView({super.key});
@@ -14,33 +13,21 @@ class LogInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        minimum: const EdgeInsets.symmetric(horizontal: 24),
-        child: SingleChildScrollView(
-          child: Column(
-            spacing: 16,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
-              SvgPicture.asset(Assets.logo),
-              Text(
-                LocaleKeys.welcome_back.tr(),
-                style: AppTextStyle.styleBold24(context),
-              ),
-              Text(
-                LocaleKeys.sign_in_message.tr(),
-                style: AppTextStyle.styleRegular14(context),
-              ),
-              const LoginForm(),
-              OtherAuthOptionWidget(
-                title: LocaleKeys.Dont_have_an_account.tr(),
-                action: LocaleKeys.sign_up.tr(),
-                screen: AppRoutes.singUp,
-              ),
-              SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
-            ],
-          ),
-        ),
+      body: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is AuthSuccess) {
+            GoRouter.of(context).pushReplacement(AppRoutes.mainView);
+            showToast(context, 'Log in successful');
+          } else if (state is AuthFailure) {
+            showToast(context, state.message, isError: true);
+          }
+        },
+        builder: (context, state) {
+          return CustomAuthLoadinIndicator(
+            isLoading: state is AuthLoading ? true : false,
+            child: const LogInViewBody(),
+          );
+        },
       ),
     );
   }

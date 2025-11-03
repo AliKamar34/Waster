@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
@@ -10,9 +9,11 @@ import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/core/utils/validators.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
+import 'package:waster/core/widgets/custom_phone_number_feild.dart';
 import 'package:waster/core/widgets/custom_text_feild.dart';
 import 'package:waster/core/widgets/custom_drop_down_button.dart';
 import 'package:waster/features/auth/data/models/roles_enum.dart';
+import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:waster/features/auth/presentation/views/widgets/terms_and_privacy.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -33,6 +34,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final locationController = TextEditingController();
+  final phoneNumberController = TextEditingController();
 
   @override
   void dispose() {
@@ -42,6 +44,7 @@ class _SignUpFormState extends State<SignUpForm> {
     passwordController.dispose();
     confirmPasswordController.dispose();
     locationController.dispose();
+    phoneNumberController.dispose();
   }
 
   @override
@@ -76,6 +79,7 @@ class _SignUpFormState extends State<SignUpForm> {
               validator: Validators.email,
               prefixIcon: SvgPicture.asset(Assets.email, width: 24),
             ),
+            CustomPhoneNumberFeild(controller: phoneNumberController),
             CustomDropDownButton<RolesEnum>(
               lable: LocaleKeys.i_want_to.tr(),
               hint: LocaleKeys.select_your_role.tr(),
@@ -110,7 +114,7 @@ class _SignUpFormState extends State<SignUpForm> {
               lable: LocaleKeys.Location.tr(),
               hint: LocaleKeys.City_State.tr(),
               controller: locationController,
-              validator: Validators.normal,
+              validator: Validators.fullAddress,
               prefixIcon: SvgPicture.asset(Assets.location, width: 24),
             ),
             CustomTextFeild(
@@ -186,15 +190,35 @@ class _SignUpFormState extends State<SignUpForm> {
                       LocaleKeys.pls_confirm_terms_and_privacy.tr(),
                     );
                   } else {
-                    log(emailController.text);
-                    log(passwordController.text);
-                    log(confirmPasswordController.text);
-                    log(locationController.text);
-                    log(fullNameController.text);
-                    log(_selectedRole.toString());
-                    showToast(
-                      context,
-                      LocaleKeys.Account_created_successfully.tr(),
+                    _formKey.currentState!.save();
+                    final fullLocation = locationController.text.trim();
+
+                    List<String> parts = fullLocation
+                        .split(',')
+                        .map((e) => e.trim())
+                        .toList();
+                    if (parts.length < 3) {
+                      parts = fullLocation
+                          .split(RegExp(r'\s+'))
+                          .map((e) => e.trim())
+                          .toList();
+                    }
+                    String address = parts.isNotEmpty ? parts[0] : '';
+                    String city = parts.length > 1 ? parts[1] : '';
+                    String state = parts.length > 2 ? parts[2] : '';
+
+                    BlocProvider.of<AuthBloc>(context).add(
+                      RegisterEvent(
+                        firstName: fullNameController.text.split('').first,
+                        lastName: fullNameController.text.split('').last,
+                        email: emailController.text,
+                        password: passwordController.text,
+                        confirmPassword: confirmPasswordController.text,
+                        phoneNumber: phoneNumberController.text,
+                        address: address,
+                        city: city,
+                        state: state,
+                      ),
                     );
                   }
                 }
