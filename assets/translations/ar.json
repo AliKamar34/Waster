@@ -105,7 +105,7 @@
     "Volunteer": "متطوع",
     "Donor": "متبرع",
     "Location": "الموقع",
-    "City_State": "المدينة، المحافظة",
+    "City_State": "123 شارع، مدينة، محافظة",
     "Confirm_Password": "تأكيد كلمة المرور",
     "Confirm_your_password": "أكد كلمة المرور الخاصة بك",
     "Create_Account": "إنشاء حساب",
@@ -219,5 +219,10 @@
     "Weekly_impact_reports": "تقارير التأثير الأسبوعية",
     "pounds_saved": "الأرطال المحفوظة",
     "Meals_Donated": "الوجبات المتبرع بها",
-    "Organizations_Helped": "المنظمات المساعدة"
+    "Organizations_Helped": "المنظمات المساعدة",
+    "Enter_full_address_including_city_and_state": "أدخل العنوان الكامل بما في ذلك المدينة والمحافظة",
+    "Enter_valid_address": "أدخل عنوانًا صالحًا",
+    "cancle": "إلغاء",
+    "Are_U_Sure_You_Want_To_Sign_Out": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "please_enter_your_phone_number": "يرجى إدخال رقم هاتفك"
 }

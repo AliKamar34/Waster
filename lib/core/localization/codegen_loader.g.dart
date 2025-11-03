@@ -121,7 +121,7 @@ class CodegenLoader extends AssetLoader{
   "Volunteer": "متطوع",
   "Donor": "متبرع",
   "Location": "الموقع",
-  "City_State": "المدينة، المحافظة",
+  "City_State": "123 شارع، مدينة، محافظة",
   "Confirm_Password": "تأكيد كلمة المرور",
   "Confirm_your_password": "أكد كلمة المرور الخاصة بك",
   "Create_Account": "إنشاء حساب",
@@ -235,7 +235,12 @@ class CodegenLoader extends AssetLoader{
   "Weekly_impact_reports": "تقارير التأثير الأسبوعية",
   "pounds_saved": "الأرطال المحفوظة",
   "Meals_Donated": "الوجبات المتبرع بها",
-  "Organizations_Helped": "المنظمات المساعدة"
+  "Organizations_Helped": "المنظمات المساعدة",
+  "Enter_full_address_including_city_and_state": "أدخل العنوان الكامل بما في ذلك المدينة والمحافظة",
+  "Enter_valid_address": "أدخل عنوانًا صالحًا",
+  "cancle": "إلغاء",
+  "Are_U_Sure_You_Want_To_Sign_Out": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+  "please_enter_your_phone_number": "يرجى إدخال رقم هاتفك"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -344,7 +349,7 @@ static const Map<String,dynamic> _en = {
   "Volunteer": "Volunteer",
   "Donor": "Donor",
   "Location": "Location",
-  "City_State": "City, State",
+  "City_State": "123 St, City, State",
   "Confirm_Password": "Confirm Password",
   "Confirm_your_password": "Confirm your password",
   "Create_Account": "Create Account",
@@ -458,7 +463,12 @@ static const Map<String,dynamic> _en = {
   "Weekly_impact_reports": "Weekly impact reports",
   "pounds_saved": "Pounds Saved",
   "Meals_Donated": "Meals Donated",
-  "Organizations_Helped": "Organizations Helped"
+  "Organizations_Helped": "Organizations Helped",
+  "Enter_full_address_including_city_and_state": " Enter full address including city and state",
+  "Enter_valid_address": "Enter valid address",
+  "cancle": "Cancel",
+  "Are_U_Sure_You_Want_To_Sign_Out": "Are U Sure You Want To Sign Out?",
+  "please_enter_your_phone_number": "Please enter your phone number"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

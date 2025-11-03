@@ -105,7 +105,7 @@
   "Volunteer": "Volunteer",
   "Donor": "Donor",
   "Location": "Location",
-  "City_State": "City, State",
+  "City_State": "123 St, City, State",
   "Confirm_Password": "Confirm Password",
   "Confirm_your_password": "Confirm your password",
   "Create_Account": "Create Account",
@@ -219,5 +219,10 @@
   "Weekly_impact_reports": "Weekly impact reports",
   "pounds_saved": "Pounds Saved",
   "Meals_Donated": "Meals Donated",
-  "Organizations_Helped": "Organizations Helped"
+  "Organizations_Helped": "Organizations Helped",
+  "Enter_full_address_including_city_and_state": " Enter full address including city and state",
+  "Enter_valid_address": "Enter valid address",
+  "cancle": "Cancel",
+  "Are_U_Sure_You_Want_To_Sign_Out": "Are U Sure You Want To Sign Out?",
+  "please_enter_your_phone_number": "Please enter your phone number"
 }

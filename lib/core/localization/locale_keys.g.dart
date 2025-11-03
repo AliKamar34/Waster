@@ -224,5 +224,10 @@ abstract class  LocaleKeys {
   static const pounds_saved = 'pounds_saved';
   static const Meals_Donated = 'Meals_Donated';
   static const Organizations_Helped = 'Organizations_Helped';
+  static const Enter_full_address_including_city_and_state = 'Enter_full_address_including_city_and_state';
+  static const Enter_valid_address = 'Enter_valid_address';
+  static const cancle = 'cancle';
+  static const Are_U_Sure_You_Want_To_Sign_Out = 'Are_U_Sure_You_Want_To_Sign_Out';
+  static const please_enter_your_phone_number = 'please_enter_your_phone_number';
 
 }
