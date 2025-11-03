@@ -23,6 +23,10 @@ final class RegisterEvent extends AuthEvent {
   final String email;
   final String password;
   final String confirmPassword;
+  final String phoneNumber;
+  final String address;
+  final String city;
+  final String state;
 
   const RegisterEvent({
     required this.firstName,
@@ -30,6 +34,10 @@ final class RegisterEvent extends AuthEvent {
     required this.email,
     required this.password,
     required this.confirmPassword,
+    required this.phoneNumber,
+    required this.address,
+    required this.city,
+    required this.state,
   });
 
   @override
@@ -39,6 +47,10 @@ final class RegisterEvent extends AuthEvent {
     email,
     password,
     confirmPassword,
+    phoneNumber,
+    address,
+    city,
+    state,
   ];
 }
 
