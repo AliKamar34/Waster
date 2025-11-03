@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:waster/core/networking/auth_interceptor.dart';
 import 'package:waster/core/networking/dio_helper.dart';
 import 'package:waster/core/utils/secure_storage_helper.dart';
 import 'package:waster/features/auth/data/datasource/auth_local_data_source.dart';
@@ -9,6 +10,7 @@ import 'package:waster/features/auth/domain/usecases/log_in_use_case.dart';
 import 'package:waster/features/auth/domain/usecases/refresh_token_use_case.dart';
 import 'package:waster/features/auth/domain/usecases/register_use_case.dart';
 import 'package:waster/features/auth/domain/usecases/revoke_token_use_case.dart';
+import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -41,5 +43,26 @@ void setupServiceLocator() {
   );
   sl.registerLazySingleton<RevokeTokenUseCase>(
     () => RevokeTokenUseCase(authRepo: sl()),
+  );
+
+  // Auth Interceptor
+  sl.registerLazySingleton(
+    () => AuthInterceptor(
+      localDataSource: sl(),
+      remoteDataSource: sl(),
+      dio: sl<DioHelper>().dio,
+    ),
+  );
+
+  sl<DioHelper>().addInterceptor(sl<AuthInterceptor>());
+
+  // Bloc
+  sl.registerFactory(
+    () => AuthBloc(
+      logInUseCase: sl(),
+      registerUseCase: sl(),
+      refreshTokenUseCase: sl(),
+      revokeTokenUseCase: sl(),
+    ),
   );
 }
