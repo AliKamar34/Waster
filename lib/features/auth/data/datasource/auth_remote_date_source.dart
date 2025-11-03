@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:waster/core/errors/server_exception.dart';
 import 'package:waster/core/networking/api_end_points.dart';
 import 'package:waster/core/networking/dio_helper.dart';
@@ -12,6 +11,10 @@ abstract class AuthRemoteDateSource {
     required String email,
     required String password,
     required String confirmPassword,
+    required String phoneNumber,
+    required String address,
+    required String city,
+    required String state,
   });
   Future<AuthModel> refreshToken({required String token});
   Future<void> revokeToken({required String token});
@@ -50,6 +53,10 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
     required String email,
     required String password,
     required String confirmPassword,
+    required String phoneNumber,
+    required String address,
+    required String city,
+    required String state,
   }) async {
     try {
       final response = await dioHelper.postRequest(
@@ -60,6 +67,10 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
           'email': email,
           'password': password,
           'confirmPassword': confirmPassword,
+          'phoneNumber': phoneNumber,
+          'address': address,
+          'city': city,
+          'state': state,
         },
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -95,12 +106,15 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
   Future<void> revokeToken({required String token}) async {
     try {
       final response = await dioHelper.postRequest(
-        endPoint: ApiEndPoints.refreshToken,
-        options: Options(headers: {'Authorization': 'Bearer $token'}),
+        endPoint: ApiEndPoints.revokeToken,
+        data: {'refreshToken': token},
       );
       if (response.statusCode != 200 || response.statusCode != 204) {
-        throw const ServerException(message: 'Failed to revoke token');
+        return;
       }
+      throw const ServerException(message: 'Failed to revoke token');
+    } on ServerException {
+      rethrow;
     } catch (e) {
       throw ServerException(message: e.toString());
     }
