@@ -5,9 +5,9 @@ import 'package:waster/core/errors/dio_error_mapper.dart';
 import 'package:waster/core/networking/api_end_points.dart';
 
 class DioHelper {
-  late final Dio _dio;
+  late final Dio dio;
   DioHelper() {
-    _dio = Dio(
+    dio = Dio(
       BaseOptions(
         baseUrl: ApiEndPoints.baseUrl,
         receiveDataWhenStatusError: true,
@@ -17,13 +17,17 @@ class DioHelper {
     )..interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
   }
 
+  void addInterceptor(Interceptor interceptor) {
+    dio.interceptors.add(interceptor);
+  }
+
   Future<Response> getRequest({
     required String endPoint,
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
     try {
-      final response = await _dio.get(
+      final response = await dio.get(
         endPoint,
         queryParameters: queryParameters,
         options: options,
@@ -41,7 +45,7 @@ class DioHelper {
     Options? options,
   }) async {
     try {
-      final response = await _dio.post(endPoint, data: data, options: options);
+      final response = await dio.post(endPoint, data: data, options: options);
       return response;
     } on DioException catch (e, stackTrace) {
       log(
@@ -59,7 +63,7 @@ class DioHelper {
     Options? options,
   }) async {
     try {
-      final response = await _dio.put(endPoint, data: data, options: options);
+      final response = await dio.put(endPoint, data: data, options: options);
       return response;
     } on DioException catch (e, stackTrace) {
       log(
