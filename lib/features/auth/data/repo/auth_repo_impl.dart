@@ -46,6 +46,10 @@ class AuthRepoImpl implements AuthRepo {
     required String email,
     required String password,
     required String confirmPassword,
+    required String phoneNumber,
+    required String address,
+    required String city,
+    required String state,
   }) async {
     try {
       final result = await authRemoteDateSource.register(
@@ -54,6 +58,10 @@ class AuthRepoImpl implements AuthRepo {
         email: email,
         password: password,
         confirmPassword: confirmPassword,
+        phoneNumber: phoneNumber,
+        address: address,
+        city: city,
+        state: state,
       );
       await authLocalDataSource.saveTokens(
         token: result.token,
@@ -94,12 +102,12 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<Failure, void>> revokeToken() async {
     try {
-      final token = await authLocalDataSource.getToken();
+      final token = await authLocalDataSource.getRefreshToken();
       if (token == null) {
         return left(Failure('No token found'));
       }
       await authRemoteDateSource.revokeToken(token: token);
-      await authLocalDataSource.deleteToken();
+      await authLocalDataSource.deleteTokens();
       return right(null);
     } on ServerException catch (e) {
       return left(Failure(e.message));
