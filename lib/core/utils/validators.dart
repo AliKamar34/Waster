@@ -60,4 +60,27 @@ class Validators {
     }
     return null;
   }
+
+  /// adress validation
+  static String? fullAddress(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return LocaleKeys.This_field_is_required.tr();
+    }
+
+    List<String> parts = value.split(',').map((e) => e.trim()).toList();
+
+    if (parts.length < 3) {
+      parts = value.split(RegExp(r'\s+')).map((e) => e.trim()).toList();
+    }
+
+    if (parts.length < 3) {
+      return LocaleKeys.Enter_full_address_including_city_and_state.tr();
+    }
+
+    if (parts.any((part) => part.isEmpty)) {
+      return LocaleKeys.Enter_valid_address.tr();
+    }
+
+    return null;
+  }
 }
