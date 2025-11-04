@@ -40,8 +40,7 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
         );
       }
     } catch (e) {
-      final cleanMessage = e.toString().replaceFirst('Exception: ', '');
-      throw ServerException(message: cleanMessage);
+      throw ServerException(message: e.toString());
     }
   }
 
@@ -76,8 +75,7 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
         );
       }
     } catch (e) {
-      final cleanMessage = e.toString().replaceFirst('Exception: ', '');
-      throw ServerException(message: cleanMessage);
+      throw ServerException(message: e.toString());
     }
   }
 
@@ -94,8 +92,7 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
         throw const ServerException(message: 'Failed to refresh token');
       }
     } catch (e) {
-      final cleanMessage = e.toString().replaceFirst('Exception: ', '');
-      throw ServerException(message: cleanMessage);
+      throw ServerException(message: e.toString());
     }
   }
 
@@ -113,8 +110,7 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
     } on ServerException {
       rethrow;
     } catch (e) {
-      final cleanMessage = e.toString().replaceFirst('Exception: ', '');
-      throw ServerException(message: cleanMessage);
+      throw ServerException(message: e.toString());
     }
   }
 }

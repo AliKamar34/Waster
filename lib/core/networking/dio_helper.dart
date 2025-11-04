@@ -54,7 +54,7 @@ class DioHelper {
         error: e,
         stackTrace: stackTrace,
       );
-      throw Exception(mapDioError(e));
+      throw ServerException(message: mapDioError(e));
     }
   }
 
@@ -72,7 +72,7 @@ class DioHelper {
         error: e,
         stackTrace: stackTrace,
       );
-      throw Exception(mapDioError(e));
+      throw ServerException(message: mapDioError(e));
     }
   }
 }
