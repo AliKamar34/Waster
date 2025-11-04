@@ -1,15 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
-import 'package:waster/core/utils/validators.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
-import 'package:waster/core/widgets/custom_text_feild.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
+import 'package:waster/features/auth/presentation/views/widgets/email_text_field.dart';
+import 'package:waster/features/auth/presentation/views/widgets/password_text_field.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -42,39 +40,15 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           spacing: 16,
           children: [
-            CustomTextFeild(
-              lable: LocaleKeys.Email.tr(),
-              hint: LocaleKeys.Enter_your_email.tr(),
-              controller: emailController,
-              prefixIcon: SvgPicture.asset(Assets.email, width: 24),
-              validator: Validators.email,
-            ),
-            CustomTextFeild(
-              lable: LocaleKeys.Password.tr(),
-              hint: LocaleKeys.Enter_your_password.tr(),
-              controller: passwordController,
-              validator: Validators.password,
+            EmailTextField(emailController: emailController),
+            PasswordTextField(
               isPassword: isPassword,
-              prefixIcon: SvgPicture.asset(Assets.passwordLock, width: 24),
-              suffixIcon: InkWell(
-                onTap: () {
-                  setState(() {
-                    isPassword = !isPassword;
-                  });
-                },
-                child: isPassword
-                    ? SvgPicture.asset(Assets.passwordEye, width: 24)
-                    : SvgPicture.asset(
-                        Assets.passwordEyeOff,
-                        colorFilter: ColorFilter.mode(
-                          Theme.of(
-                            context,
-                          ).extension<AppColors>()!.greyTextColor,
-                          BlendMode.srcIn,
-                        ),
-                        width: 24,
-                      ),
-              ),
+              onTap: () {
+                setState(() {
+                  isPassword = !isPassword;
+                });
+              },
+              passwordController: passwordController,
             ),
             CustomButton(
               title: LocaleKeys.Sign_in.tr(),

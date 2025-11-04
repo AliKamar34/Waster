@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 
-class CustomTextFeild extends StatelessWidget {
-  const CustomTextFeild({
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({
     super.key,
     required this.hint,
     this.suffixIcon,

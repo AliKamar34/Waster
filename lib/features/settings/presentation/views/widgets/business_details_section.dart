@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
-import 'package:waster/core/widgets/custom_text_feild.dart';
+import 'package:waster/core/widgets/custom_text_field.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_settings_container.dart';
 
 class BusinessDetailsSection extends StatelessWidget {
@@ -14,12 +14,12 @@ class BusinessDetailsSection extends StatelessWidget {
     return CustomSettingsContainer(
       title: LocaleKeys.Business_Details.tr(),
       children: [
-        CustomTextFeild(
+        CustomTextField(
           hint: 'www.example.com',
           lable: LocaleKeys.Website.tr(),
           prefixIcon: SvgPicture.asset(Assets.language),
         ),
-        CustomTextFeild(
+        CustomTextField(
           hint: 'Mon-Fri: 8AM-8PM, Sat-Sun: 9AM-6PM',
           lable: LocaleKeys.Business_Hours.tr(),
           prefixIcon: SvgPicture.asset(Assets.timer),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
-import 'package:waster/core/widgets/custom_text_feild.dart';
+import 'package:waster/core/widgets/custom_text_field.dart';
 import 'package:waster/features/browse/presentation/views/widgets/custom_app_bar.dart';
 import 'package:waster/features/browse/presentation/views/widgets/custom_oreder_details_container.dart';
 import 'package:waster/features/browse/presentation/views/widgets/custom_tab_bar.dart';
@@ -20,7 +20,7 @@ class BrowseAllView extends StatelessWidget {
           spacing: 16,
           children: [
             CustomAppBar(title: LocaleKeys.Browse_Available_Orders.tr()),
-            CustomTextFeild(
+            CustomTextField(
               prefixIcon: SvgPicture.asset(Assets.browse),
               hint: LocaleKeys.Search_by_food_type_or_donor_name.tr(),
             ),

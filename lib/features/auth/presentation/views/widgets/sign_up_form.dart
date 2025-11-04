@@ -1,19 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/utils/show_toast.dart';
-import 'package:waster/core/utils/validators.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 import 'package:waster/core/widgets/custom_phone_number_feild.dart';
-import 'package:waster/core/widgets/custom_text_feild.dart';
-import 'package:waster/core/widgets/custom_drop_down_button.dart';
 import 'package:waster/features/auth/data/models/roles_enum.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
+import 'package:waster/features/auth/presentation/views/widgets/confirm_password_text_field.dart';
+import 'package:waster/features/auth/presentation/views/widgets/email_text_field.dart';
+import 'package:waster/features/auth/presentation/views/widgets/location_text_field.dart';
+import 'package:waster/features/auth/presentation/views/widgets/name_text_field.dart';
+import 'package:waster/features/auth/presentation/views/widgets/password_text_field.dart';
+import 'package:waster/features/auth/presentation/views/widgets/roles_drop_down_widget.dart';
 import 'package:waster/features/auth/presentation/views/widgets/terms_and_privacy.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -24,27 +25,74 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  bool isPassword = true;
-  bool isConfirmPassword = true;
-  bool isChecked = false;
+  bool _isPasswordVisible = true;
+  bool _isConfirmPasswordVisible = true;
+  bool _isTermsAccepted = false;
   RolesEnum? _selectedRole;
   final _formKey = GlobalKey<FormState>();
-  final fullNameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-  final locationController = TextEditingController();
-  final phoneNumberController = TextEditingController();
+  final _fullNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  final _locationController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
 
   @override
   void dispose() {
+    _fullNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _locationController.dispose();
+    _phoneNumberController.dispose();
     super.dispose();
-    fullNameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
-    locationController.dispose();
-    phoneNumberController.dispose();
+  }
+
+  //  Helper Methods
+  (String, String) _parseFullName(String fullName) {
+    final parts = fullName.trim().split(' ');
+    if (parts.isEmpty) return ('', '');
+    if (parts.length == 1) return (parts[0], '');
+    return (parts.first, parts.sublist(1).join(' '));
+  }
+
+  (String, String, String) _parseLocation(String location) {
+    final parts = location
+        .split(RegExp(r'[,\s]+'))
+        .where((e) => e.isNotEmpty)
+        .toList();
+
+    return (
+      parts.isNotEmpty ? parts[0] : '',
+      parts.length > 1 ? parts[1] : '',
+      parts.length > 2 ? parts[2] : '',
+    );
+  }
+
+  void _handleRegister() {
+    if (!_formKey.currentState!.validate()) return;
+
+    if (!_isTermsAccepted) {
+      showToast(context, LocaleKeys.pls_confirm_terms_and_privacy.tr());
+      return;
+    }
+
+    final (firstName, lastName) = _parseFullName(_fullNameController.text);
+    final (address, city, state) = _parseLocation(_locationController.text);
+
+    context.read<AuthBloc>().add(
+      RegisterEvent(
+        firstName: firstName,
+        lastName: lastName,
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+        confirmPassword: _confirmPasswordController.text,
+        phoneNumber: _phoneNumberController.text.trim(),
+        address: address,
+        city: city,
+        state: state,
+      ),
+    );
   }
 
   @override
@@ -58,171 +106,48 @@ class _SignUpFormState extends State<SignUpForm> {
         child: Column(
           spacing: 16,
           children: [
-            CustomTextFeild(
-              lable: LocaleKeys.full_Name.tr(),
-              hint: LocaleKeys.enter_your_full_name.tr(),
-              controller: fullNameController,
-              validator: Validators.normal,
-              prefixIcon: SvgPicture.asset(
-                Assets.profile,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).extension<AppColors>()!.greyTextColor,
-                  BlendMode.srcIn,
-                ),
-                width: 24,
-              ),
-            ),
-            CustomTextFeild(
-              lable: LocaleKeys.Email.tr(),
-              hint: LocaleKeys.Enter_your_email.tr(),
-              controller: emailController,
-              validator: Validators.email,
-              prefixIcon: SvgPicture.asset(Assets.email, width: 24),
-            ),
-            CustomPhoneNumberFeild(controller: phoneNumberController),
-            CustomDropDownButton<RolesEnum>(
-              lable: LocaleKeys.i_want_to.tr(),
-              hint: LocaleKeys.select_your_role.tr(),
-              selectedValue: _selectedRole,
+            NameTextField(fullNameController: _fullNameController),
+            EmailTextField(emailController: _emailController),
+            CustomPhoneNumberFeild(controller: _phoneNumberController),
+            RolesDropDownWidget(
+              selectedRole: _selectedRole,
               onChanged: (value) {
                 setState(() {
                   _selectedRole = value;
                 });
               },
-              validator: (value) {
-                if (value == null) {
-                  return LocaleKeys.please_select_a_role.tr();
-                }
-                return null;
+            ),
+            LocationTextField(locationController: _locationController),
+            PasswordTextField(
+              isPassword: _isPasswordVisible,
+              passwordController: _passwordController,
+              onTap: () {
+                setState(() {
+                  _isPasswordVisible = !_isPasswordVisible;
+                });
               },
-              items: [
-                DropdownMenuItem(
-                  value: RolesEnum.donor,
-                  child: Text(LocaleKeys.donor.tr()),
-                ),
-                DropdownMenuItem(
-                  value: RolesEnum.recipient,
-                  child: Text(LocaleKeys.recipient.tr()),
-                ),
-                DropdownMenuItem(
-                  value: RolesEnum.volunteer,
-                  child: Text(LocaleKeys.volunteer.tr()),
-                ),
-              ],
             ),
-            CustomTextFeild(
-              lable: LocaleKeys.Location.tr(),
-              hint: LocaleKeys.City_State.tr(),
-              controller: locationController,
-              validator: Validators.fullAddress,
-              prefixIcon: SvgPicture.asset(Assets.location, width: 24),
-            ),
-            CustomTextFeild(
-              lable: LocaleKeys.Password.tr(),
-              hint: LocaleKeys.Enter_your_password.tr(),
-              controller: passwordController,
-              validator: Validators.password,
-              isPassword: isPassword,
-              prefixIcon: SvgPicture.asset(Assets.passwordLock, width: 24),
-              suffixIcon: InkWell(
-                onTap: () {
-                  setState(() {
-                    isPassword = !isPassword;
-                  });
-                },
-                child: isPassword
-                    ? SvgPicture.asset(Assets.passwordEye, width: 24)
-                    : SvgPicture.asset(
-                        Assets.passwordEyeOff,
-                        colorFilter: ColorFilter.mode(
-                          Theme.of(
-                            context,
-                          ).extension<AppColors>()!.greyTextColor,
-                          BlendMode.srcIn,
-                        ),
-                        width: 24,
-                      ),
-              ),
-            ),
-            CustomTextFeild(
-              lable: LocaleKeys.Confirm_Password.tr(),
-              hint: LocaleKeys.Confirm_your_password.tr(),
-              isPassword: isConfirmPassword,
-              controller: confirmPasswordController,
-              validator: (value) =>
-                  Validators.confirmPassword(value, passwordController.text),
-              prefixIcon: SvgPicture.asset(Assets.passwordLock, width: 24),
-              suffixIcon: InkWell(
-                onTap: () {
-                  setState(() {
-                    isConfirmPassword = !isConfirmPassword;
-                  });
-                },
-                child: isConfirmPassword
-                    ? SvgPicture.asset(Assets.passwordEye, width: 24)
-                    : SvgPicture.asset(
-                        Assets.passwordEyeOff,
-                        colorFilter: ColorFilter.mode(
-                          Theme.of(
-                            context,
-                          ).extension<AppColors>()!.greyTextColor,
-                          BlendMode.srcIn,
-                        ),
-                        width: 24,
-                      ),
-              ),
+            ConfirmPasswordTextField(
+              isConfirmPassword: _isConfirmPasswordVisible,
+              onTap: () {
+                setState(() {
+                  _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                });
+              },
+              confirmPasswordController: _confirmPasswordController,
+              passwordController: _passwordController,
             ),
             TermsAndPrivacy(
-              isChecked: isChecked,
+              isChecked: _isTermsAccepted,
               onChanged: (value) {
                 setState(() {
-                  isChecked = value!;
+                  _isTermsAccepted = value!;
                 });
               },
             ),
             CustomButton(
               title: LocaleKeys.Create_Account.tr(),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  if (!isChecked) {
-                    showToast(
-                      context,
-                      LocaleKeys.pls_confirm_terms_and_privacy.tr(),
-                    );
-                  } else {
-                    _formKey.currentState!.save();
-                    final fullLocation = locationController.text.trim();
-
-                    List<String> parts = fullLocation
-                        .split(',')
-                        .map((e) => e.trim())
-                        .toList();
-                    if (parts.length < 3) {
-                      parts = fullLocation
-                          .split(RegExp(r'\s+'))
-                          .map((e) => e.trim())
-                          .toList();
-                    }
-                    String address = parts.isNotEmpty ? parts[0] : '';
-                    String city = parts.length > 1 ? parts[1] : '';
-                    String state = parts.length > 2 ? parts[2] : '';
-
-                    BlocProvider.of<AuthBloc>(context).add(
-                      RegisterEvent(
-                        firstName: fullNameController.text.split('').first,
-                        lastName: fullNameController.text.split('').last,
-                        email: emailController.text,
-                        password: passwordController.text,
-                        confirmPassword: confirmPasswordController.text,
-                        phoneNumber: phoneNumberController.text,
-                        address: address,
-                        city: city,
-                        state: state,
-                      ),
-                    );
-                  }
-                }
-              },
+              onPressed: _handleRegister,
             ),
           ],
         ),

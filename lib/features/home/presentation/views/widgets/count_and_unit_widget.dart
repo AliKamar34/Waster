@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/utils/validators.dart';
 import 'package:waster/core/widgets/custom_drop_down_button.dart';
-import 'package:waster/core/widgets/custom_text_feild.dart';
+import 'package:waster/core/widgets/custom_text_field.dart';
 
 class CountAndUnitWidget extends StatelessWidget {
   const CountAndUnitWidget({
@@ -19,7 +19,7 @@ class CountAndUnitWidget extends StatelessWidget {
       spacing: 6,
       children: [
         Expanded(
-          child: CustomTextFeild(
+          child: CustomTextField(
             lable: '${LocaleKeys.quantity.tr()} *',
             hint: '25',
             controller: quantityController,

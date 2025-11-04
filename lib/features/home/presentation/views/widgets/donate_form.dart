@@ -9,7 +9,7 @@ import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/core/utils/validators.dart';
 import 'package:waster/core/widgets/custom_button.dart';
-import 'package:waster/core/widgets/custom_text_feild.dart';
+import 'package:waster/core/widgets/custom_text_field.dart';
 import 'package:waster/features/home/presentation/views/widgets/category_drop_down_button.dart';
 import 'package:waster/features/home/presentation/views/widgets/count_and_unit_widget.dart';
 import 'package:waster/features/home/presentation/views/widgets/custom_add_food_photo_widget.dart';
@@ -67,7 +67,7 @@ class _DonateFormState extends State<DonateForm> {
               });
             },
           ),
-          CustomTextFeild(
+          CustomTextField(
             lable: '${LocaleKeys.item_name.tr()} *',
             hint: LocaleKeys.eg_Fresh_Vegetables_Baked_Goods.tr(),
             controller: itemNameController,
@@ -88,7 +88,7 @@ class _DonateFormState extends State<DonateForm> {
               });
             },
           ),
-          CustomTextFeild(
+          CustomTextField(
             maxLines: 3,
             lable: LocaleKeys.Description_Optional.tr(),
             hint: LocaleKeys.Additional_details_about_the_food.tr(),
@@ -97,13 +97,13 @@ class _DonateFormState extends State<DonateForm> {
             image: Assets.timer,
             lable: LocaleKeys.timing.tr(),
           ),
-          CustomTextFeild(
+          CustomTextField(
             lable: '${LocaleKeys.Available_for_Pickup.tr()} *',
             hint: '',
             controller: availableForPickUbController,
             validator: Validators.normal,
           ),
-          CustomTextFeild(
+          CustomTextField(
             lable: '${LocaleKeys.Must_be_Picked_Up_By.tr()} *',
             hint: '',
             controller: mustBePickedUpByController,
