@@ -48,8 +48,6 @@ class AuthRepoImpl implements AuthRepo {
     required String confirmPassword,
     required String phoneNumber,
     required String address,
-    required String city,
-    required String state,
   }) async {
     try {
       final result = await authRemoteDateSource.register(
@@ -60,8 +58,6 @@ class AuthRepoImpl implements AuthRepo {
         confirmPassword: confirmPassword,
         phoneNumber: phoneNumber,
         address: address,
-        city: city,
-        state: state,
       );
       await authLocalDataSource.saveTokens(
         token: result.token,

@@ -15,8 +15,6 @@ abstract class AuthRepo {
     required String confirmPassword,
     required String phoneNumber,
     required String address,
-    required String city,
-    required String state,
   });
   Future<Either<Failure, AuthEntity>> refreshToken();
   Future<Either<Failure, void>> revokeToken();

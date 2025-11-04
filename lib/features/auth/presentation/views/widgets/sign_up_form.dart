@@ -56,19 +56,6 @@ class _SignUpFormState extends State<SignUpForm> {
     return (parts.first, parts.sublist(1).join(' '));
   }
 
-  (String, String, String) _parseLocation(String location) {
-    final parts = location
-        .split(RegExp(r'[,\s]+'))
-        .where((e) => e.isNotEmpty)
-        .toList();
-
-    return (
-      parts.isNotEmpty ? parts[0] : '',
-      parts.length > 1 ? parts[1] : '',
-      parts.length > 2 ? parts[2] : '',
-    );
-  }
-
   void _handleRegister() {
     if (!_formKey.currentState!.validate()) return;
 
@@ -78,7 +65,6 @@ class _SignUpFormState extends State<SignUpForm> {
     }
 
     final (firstName, lastName) = _parseFullName(_fullNameController.text);
-    final (address, city, state) = _parseLocation(_locationController.text);
 
     context.read<AuthBloc>().add(
       RegisterEvent(
@@ -88,9 +74,7 @@ class _SignUpFormState extends State<SignUpForm> {
         password: _passwordController.text,
         confirmPassword: _confirmPasswordController.text,
         phoneNumber: _phoneNumberController.text.trim(),
-        address: address,
-        city: city,
-        state: state,
+        address: _locationController.text,
       ),
     );
   }

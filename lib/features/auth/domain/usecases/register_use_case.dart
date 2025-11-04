@@ -54,8 +54,6 @@ class RegisterUseCase {
       confirmPassword: params.confirmPassword,
       phoneNumber: params.phoneNumber,
       address: params.address,
-      city: params.city,
-      state: params.state,
     );
   }
 }

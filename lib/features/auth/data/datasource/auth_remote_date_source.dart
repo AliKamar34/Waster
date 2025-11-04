@@ -13,8 +13,6 @@ abstract class AuthRemoteDateSource {
     required String confirmPassword,
     required String phoneNumber,
     required String address,
-    required String city,
-    required String state,
   });
   Future<AuthModel> refreshToken({required String token});
   Future<void> revokeToken({required String token});
@@ -56,8 +54,6 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
     required String confirmPassword,
     required String phoneNumber,
     required String address,
-    required String city,
-    required String state,
   }) async {
     try {
       final response = await dioHelper.postRequest(
@@ -70,8 +66,6 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
           'confirmPassword': confirmPassword,
           'phoneNumber': phoneNumber,
           'address': address,
-          'city': city,
-          'state': state,
         },
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -82,7 +76,8 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
         );
       }
     } catch (e) {
-      throw ServerException(message: e.toString());
+      final cleanMessage = e.toString().replaceFirst('Exception: ', '');
+      throw ServerException(message: cleanMessage);
     }
   }
 
@@ -99,7 +94,8 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
         throw const ServerException(message: 'Failed to refresh token');
       }
     } catch (e) {
-      throw ServerException(message: e.toString());
+      final cleanMessage = e.toString().replaceFirst('Exception: ', '');
+      throw ServerException(message: cleanMessage);
     }
   }
 
@@ -117,7 +113,8 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
     } on ServerException {
       rethrow;
     } catch (e) {
-      throw ServerException(message: e.toString());
+      final cleanMessage = e.toString().replaceFirst('Exception: ', '');
+      throw ServerException(message: cleanMessage);
     }
   }
 }
