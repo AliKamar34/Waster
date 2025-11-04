@@ -42,7 +42,8 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
         );
       }
     } catch (e) {
-      throw ServerException(message: e.toString());
+      final cleanMessage = e.toString().replaceFirst('Exception: ', '');
+      throw ServerException(message: cleanMessage);
     }
   }
 

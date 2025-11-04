@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:waster/core/errors/dio_error_mapper.dart';
+import 'package:waster/core/errors/server_exception.dart';
 import 'package:waster/core/networking/api_end_points.dart';
 
 class DioHelper {
@@ -35,7 +36,7 @@ class DioHelper {
       return response;
     } on DioException catch (e, stackTrace) {
       log('GET request failed: ${e.message}', error: e, stackTrace: stackTrace);
-      throw Exception(mapDioError(e));
+      throw ServerException(message: mapDioError(e));
     }
   }
 

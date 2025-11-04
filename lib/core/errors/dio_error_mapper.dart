@@ -9,7 +9,7 @@ String mapDioError(DioException e) {
     case DioExceptionType.receiveTimeout:
       return 'Receive timeout. Please try again.';
     case DioExceptionType.badResponse:
-      return 'Received invalid status code: ${e.response?.statusCode}';
+      return e.response?.data['message'];
     case DioExceptionType.cancel:
       return 'Request was cancelled.';
     case DioExceptionType.connectionError:
