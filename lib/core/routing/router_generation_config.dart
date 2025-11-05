@@ -74,8 +74,8 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.profileEditingView,
         name: AppRoutes.profileEditingView,
-        builder: (context, state) => BlocProvider.value(
-          value: sl<SettingsBloc>(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => sl<SettingsBloc>(),
           child: ProfileEditingView(user: state.extra as UserEntity),
         ),
       ),
