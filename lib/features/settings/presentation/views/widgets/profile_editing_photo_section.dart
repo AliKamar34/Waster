@@ -13,8 +13,8 @@ import 'package:waster/core/widgets/custom_image_bottom_sheet_picker.dart';
 import 'package:waster/core/widgets/custom_light_color_container.dart';
 
 class ProfileEditingPhotoSection extends StatefulWidget {
-  const ProfileEditingPhotoSection({super.key});
-
+  const ProfileEditingPhotoSection({super.key, required this.name});
+  final String name;
   @override
   State<ProfileEditingPhotoSection> createState() =>
       _ProfileEditingPhotoSectionState();
@@ -91,7 +91,7 @@ class _ProfileEditingPhotoSectionState
                 ),
               ],
             ),
-            Text('Green Grocers', style: AppTextStyle.styleRegular16(context)),
+            Text(widget.name, style: AppTextStyle.styleRegular16(context)),
             Text(
               LocaleKeys.donor.tr(),
               style: AppTextStyle.styleRegular14(context),
