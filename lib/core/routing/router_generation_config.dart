@@ -1,5 +1,7 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/routing/app_routes.dart';
+import 'package:waster/core/utils/service_locator.dart';
 import 'package:waster/features/auth/presentation/views/log_in_view.dart';
 import 'package:waster/features/auth/presentation/views/sign_up_view.dart';
 import 'package:waster/features/browse/presentation/views/browse_all_view.dart';
@@ -8,6 +10,8 @@ import 'package:waster/features/browse/presentation/views/track_all_view.dart';
 import 'package:waster/features/home/presentation/views/donate_view.dart';
 import 'package:waster/features/home/presentation/views/main_view.dart';
 import 'package:waster/features/notifications/presentation/views/notifications_view.dart';
+import 'package:waster/features/settings/domain/entity/user_entity.dart';
+import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 import 'package:waster/features/settings/presentation/views/profile_editing_view.dart';
 import 'package:waster/features/settings/presentation/views/settings_view.dart';
 import 'package:waster/features/start/views/splash_view.dart';
@@ -70,7 +74,10 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.profileEditingView,
         name: AppRoutes.profileEditingView,
-        builder: (context, state) => const ProfileEditingView(),
+        builder: (context, state) => BlocProvider.value(
+          value: sl<SettingsBloc>(),
+          child: ProfileEditingView(user: state.extra as UserEntity),
+        ),
       ),
       GoRoute(
         path: AppRoutes.notificationsView,

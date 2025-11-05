@@ -5,10 +5,10 @@ import 'package:waster/features/settings/data/datasource/settings_remote_data_so
 import 'package:waster/features/settings/domain/entity/user_entity.dart';
 import 'package:waster/features/settings/domain/repo/settings_repo.dart';
 
-class SettingRepoImpl implements SettingsRepo {
+class SettingsRepoImpl implements SettingsRepo {
   final SettingsRemoteDataSource settingsRemoteDataSource;
 
-  const SettingRepoImpl({required this.settingsRemoteDataSource});
+  const SettingsRepoImpl({required this.settingsRemoteDataSource});
 
   //  Helper Method
   Future<Either<Failure, T>> _execute<T>(Future<T> Function() operation) async {
