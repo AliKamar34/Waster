@@ -8,14 +8,14 @@ import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_settings_container.dart';
 
 class AccountSettingsButtonsSection extends StatelessWidget {
-  const AccountSettingsButtonsSection({super.key});
-
+  const AccountSettingsButtonsSection({super.key, this.saveOnPressed});
+  final void Function()? saveOnPressed;
   @override
   Widget build(BuildContext context) {
     return CustomSettingsContainer(
       title: LocaleKeys.account_settings.tr(),
       children: [
-        CustomButton(title: LocaleKeys.save.tr(), onPressed: () {}),
+        CustomButton(title: LocaleKeys.save.tr(), onPressed: saveOnPressed),
         CustomButton(
           borderColor: Theme.of(context).extension<AppColors>()!.greyTextColor,
           backgroundColor: Theme.of(
