@@ -13,12 +13,14 @@ class CustomTextField extends StatelessWidget {
     this.lable,
     this.prefixIcon,
     this.maxLines,
+    this.enabled,
   });
   final String hint;
   final String? lable;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final bool? isPassword;
+  final bool? enabled;
   final int? maxLines;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -32,6 +34,7 @@ class CustomTextField extends StatelessWidget {
             ? const SizedBox()
             : Text(lable!, style: AppTextStyle.styleRegular16(context)),
         TextFormField(
+          enabled: enabled ?? true,
           maxLines: maxLines ?? 1,
           controller: controller,
           validator: validator,
