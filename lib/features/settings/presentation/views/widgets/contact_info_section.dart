@@ -7,8 +7,12 @@ import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 
 class ContactInfoSection extends StatelessWidget {
-  const ContactInfoSection({super.key});
-
+  const ContactInfoSection({
+    super.key,
+    required this.email,
+    required this.phoneNum,
+  });
+  final String email, phoneNum;
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -25,10 +29,7 @@ class ContactInfoSection extends StatelessWidget {
             spacing: 6,
             children: [
               SvgPicture.asset(Assets.email),
-              Text(
-                'sarah.johnson@email.com',
-                style: AppTextStyle.styleRegular16(context),
-              ),
+              Text(email, style: AppTextStyle.styleRegular16(context)),
             ],
           ),
 
@@ -36,10 +37,7 @@ class ContactInfoSection extends StatelessWidget {
             spacing: 6,
             children: [
               SvgPicture.asset(Assets.phone),
-              Text(
-                '+1 (555) 123-4567',
-                style: AppTextStyle.styleRegular16(context),
-              ),
+              Text(phoneNum, style: AppTextStyle.styleRegular16(context)),
             ],
           ),
         ],

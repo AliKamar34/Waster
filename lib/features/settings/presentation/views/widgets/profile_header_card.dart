@@ -1,18 +1,20 @@
-import 'package:easy_localization/easy_localization.dart';
+// import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
-import 'package:waster/core/localization/locale_keys.g.dart';
+// import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
-import 'package:waster/features/settings/presentation/views/widgets/profile_badges_list.dart';
+import 'package:waster/features/settings/domain/entity/user_entity.dart';
+// import 'package:waster/features/settings/presentation/views/widgets/profile_badges_list.dart';
 
 class ProfileHeaderCard extends StatelessWidget {
-  const ProfileHeaderCard({super.key});
+  const ProfileHeaderCard({super.key, required this.user});
 
+  final UserEntity user;
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -35,12 +37,15 @@ class ProfileHeaderCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Sarah Johnson',
+                      user.fullName,
                       style: AppTextStyle.styleRegular16(context),
                     ),
                     InkWell(
                       onTap: () {
-                        context.pushNamed(AppRoutes.profileEditingView);
+                        context.pushNamed(
+                          AppRoutes.profileEditingView,
+                          extra: user,
+                        );
                       },
                       child: SvgPicture.asset(Assets.edit),
                     ),
@@ -51,29 +56,29 @@ class ProfileHeaderCard extends StatelessWidget {
                   children: [
                     SvgPicture.asset(Assets.location),
                     Text(
-                      'New York, NY',
-                      style: AppTextStyle.styleRegular14(context),
-                    ),
-                  ],
-                ),
-                Row(
-                  spacing: 6,
-                  children: [
-                    const Icon(Icons.star, color: Colors.amber),
-                    Text('4.5', style: AppTextStyle.styleRegular14(context)),
-                    Text(
-                      '(127 ${LocaleKeys.orders.tr()})',
+                      user.address,
                       style: AppTextStyle.styleRegular14(context),
                     ),
                   ],
                 ),
 
+                // Row(
+                //   spacing: 6,
+                //   children: [
+                //     const Icon(Icons.star, color: Colors.amber),
+                //     Text('4.5', style: AppTextStyle.styleRegular14(context)),
+                //     Text(
+                //       '(127 ${LocaleKeys.orders.tr()})',
+                //       style: AppTextStyle.styleRegular14(context),
+                //     ),
+                //   ],
+                // ),
                 Text(
                   'Local bakery owner passionate about reducing food ',
                   maxLines: 2,
                   style: AppTextStyle.styleRegular14(context),
                 ),
-                const ProfileBadgesList(),
+                // const ProfileBadgesList(),
               ],
             ),
           ),
