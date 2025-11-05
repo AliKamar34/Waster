@@ -11,6 +11,17 @@ import 'package:waster/features/auth/domain/usecases/refresh_token_use_case.dart
 import 'package:waster/features/auth/domain/usecases/register_use_case.dart';
 import 'package:waster/features/auth/domain/usecases/revoke_token_use_case.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
+import 'package:waster/features/settings/data/datasource/settings_remote_data_source.dart';
+import 'package:waster/features/settings/data/repo/setting_repo_impl.dart';
+import 'package:waster/features/settings/domain/repo/settings_repo.dart';
+import 'package:waster/features/settings/domain/usecases/change_email_use_case.dart';
+import 'package:waster/features/settings/domain/usecases/change_password_use_case.dart';
+import 'package:waster/features/settings/domain/usecases/get_user_details_use_case.dart';
+import 'package:waster/features/settings/domain/usecases/update_bio_use_case.dart';
+import 'package:waster/features/settings/domain/usecases/update_location_use_case.dart';
+import 'package:waster/features/settings/domain/usecases/update_name_use_case.dart';
+import 'package:waster/features/settings/domain/usecases/update_phone_number_use_case.dart';
+import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -63,6 +74,51 @@ void setupServiceLocator() {
       registerUseCase: sl(),
       refreshTokenUseCase: sl(),
       revokeTokenUseCase: sl(),
+    ),
+  );
+
+  // Feature - settings
+  // Data source
+  sl.registerLazySingleton<SettingsRemoteDataSource>(
+    () => SettingsRemoteDataSourceImpl(dioHelper: sl()),
+  );
+  // Repo
+  sl.registerLazySingleton<SettingsRepo>(
+    () => SettingsRepoImpl(settingsRemoteDataSource: sl()),
+  );
+  // use cases
+  sl.registerLazySingleton<ChangeEmailUseCase>(
+    () => ChangeEmailUseCase(settingsRepo: sl()),
+  );
+  sl.registerLazySingleton<ChangePasswordUseCase>(
+    () => ChangePasswordUseCase(settingsRepo: sl()),
+  );
+  sl.registerLazySingleton<GetUserDetailsUseCase>(
+    () => GetUserDetailsUseCase(settingsRepo: sl()),
+  );
+  sl.registerLazySingleton<UpdateBioUseCase>(
+    () => UpdateBioUseCase(settingsRepo: sl()),
+  );
+  sl.registerLazySingleton<UpdateLocationUseCase>(
+    () => UpdateLocationUseCase(settingsRepo: sl()),
+  );
+  sl.registerLazySingleton<UpdateNameUseCase>(
+    () => UpdateNameUseCase(settingsRepo: sl()),
+  );
+  sl.registerLazySingleton<UpdatePhoneNumberUseCase>(
+    () => UpdatePhoneNumberUseCase(settingsRepo: sl()),
+  );
+
+  // bloc
+  sl.registerFactory(
+    () => SettingsBloc(
+      getUserDetailsUseCase: sl(),
+      updateNameUseCase: sl(),
+      updateBioUseCase: sl(),
+      updateLocationUseCase: sl(),
+      updatePhoneNumberUseCase: sl(),
+      changeEmailUseCase: sl(),
+      changePasswordUseCase: sl(),
     ),
   );
 }
