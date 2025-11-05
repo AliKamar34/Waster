@@ -14,7 +14,10 @@ class CustomPhoneNumberFeild extends StatelessWidget {
       spacing: 4,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Phone Number', style: AppTextStyle.styleRegular16(context)),
+        Text(
+          LocaleKeys.phone_number.tr(),
+          style: AppTextStyle.styleRegular16(context),
+        ),
         IntlPhoneField(
           initialCountryCode: 'EG',
           controller: controller,
