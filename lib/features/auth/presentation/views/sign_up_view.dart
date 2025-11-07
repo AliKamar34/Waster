@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
-import 'package:waster/features/auth/presentation/views/widgets/custom_auth_loading_indicator.dart';
+import 'package:waster/core/widgets/custom_loading_indicator.dart';
 import 'package:waster/features/auth/presentation/views/widgets/sign_up_view_body.dart';
 
 class SignUpView extends StatelessWidget {
@@ -23,7 +23,7 @@ class SignUpView extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return CustomAuthLoadinIndicator(
+          return CustomLoadinIndicator(
             isLoading: state is AuthLoading ? true : false,
             child: const SignUpViewBody(),
           );
