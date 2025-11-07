@@ -143,6 +143,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       },
       (_) {
         emit(const SettingsUpdateSuccess('Email changed successfully'));
+        add(const GetUserDetailsEvent());
       },
     );
   }
@@ -165,6 +166,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       },
       (_) {
         emit(const SettingsUpdateSuccess('Password changed successfully'));
+        add(const GetUserDetailsEvent());
       },
     );
   }
