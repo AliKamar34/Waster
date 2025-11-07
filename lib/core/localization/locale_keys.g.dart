@@ -229,5 +229,12 @@ abstract class  LocaleKeys {
   static const cancle = 'cancle';
   static const Are_U_Sure_You_Want_To_Sign_Out = 'Are_U_Sure_You_Want_To_Sign_Out';
   static const please_enter_your_phone_number = 'please_enter_your_phone_number';
+  static const Current_Password = 'Current_Password';
+  static const New_Password = 'New_Password';
+  static const Confirm_New_Password = 'Confirm_New_Password';
+  static const Current_Password_is_required = 'Current_Password_is_required';
+  static const Enter_Your_Current_Password = 'Enter_Your_Current_Password';
+  static const Enter_Your_New_Password = 'Enter_Your_New_Password';
+  static const Enter_Your_Confirm_Password = 'Enter_Your_Confirm_Password';
 
 }

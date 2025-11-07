@@ -224,5 +224,12 @@
     "Enter_valid_address": "أدخل عنوانًا صالحًا",
     "cancle": "إلغاء",
     "Are_U_Sure_You_Want_To_Sign_Out": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
-    "please_enter_your_phone_number": "يرجى إدخال رقم هاتفك"
+    "please_enter_your_phone_number": "يرجى إدخال رقم هاتفك",
+    "Current_Password": "كلمة المرور الحالية",
+    "New_Password": "كلمة المرور الجديدة",
+    "Confirm_New_Password": "تأكيد كلمة المرور الجديدة",
+    "Current_Password_is_required": "يجب أن تحتوي كلمة المرور الحالية",
+    "Enter_Your_Current_Password": "أدخل كلمة المرور الحالية الخاصة بك",
+    "Enter_Your_New_Password": "أدخل كلمة المرور الجديدة الخاصة بك",
+    "Enter_Your_Confirm_Password": "أدخل تأكيد كلمة المرور الخاصة بك"
 }

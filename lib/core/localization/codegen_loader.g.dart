@@ -240,7 +240,14 @@ class CodegenLoader extends AssetLoader{
   "Enter_valid_address": "أدخل عنوانًا صالحًا",
   "cancle": "إلغاء",
   "Are_U_Sure_You_Want_To_Sign_Out": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
-  "please_enter_your_phone_number": "يرجى إدخال رقم هاتفك"
+  "please_enter_your_phone_number": "يرجى إدخال رقم هاتفك",
+  "Current_Password": "كلمة المرور الحالية",
+  "New_Password": "كلمة المرور الجديدة",
+  "Confirm_New_Password": "تأكيد كلمة المرور الجديدة",
+  "Current_Password_is_required": "يجب أن تحتوي كلمة المرور الحالية",
+  "Enter_Your_Current_Password": "أدخل كلمة المرور الحالية الخاصة بك",
+  "Enter_Your_New_Password": "أدخل كلمة المرور الجديدة الخاصة بك",
+  "Enter_Your_Confirm_Password": "أدخل تأكيد كلمة المرور الخاصة بك"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -453,7 +460,7 @@ static const Map<String,dynamic> _en = {
   "Basic_Information": "Basic Information",
   "Business_Details": "Business Details",
   "Website": "Website",
-  "Business Hours": "Business Hours",
+  "Business_Hours": "Business Hours",
   "sign_out": "Sign Out",
   "Push_Notifications": "Push Notifications",
   "Get_notified_about_new_orders": "Get notified about new orders",
@@ -468,7 +475,14 @@ static const Map<String,dynamic> _en = {
   "Enter_valid_address": "Enter valid address",
   "cancle": "Cancel",
   "Are_U_Sure_You_Want_To_Sign_Out": "Are U Sure You Want To Sign Out?",
-  "please_enter_your_phone_number": "Please enter your phone number"
+  "please_enter_your_phone_number": "Please enter your phone number",
+  "Current_Password": "Current Password",
+  "New_Password": "New Password",
+  "Confirm_New_Password": "Confirm New Password",
+  "Current_Password_is_required": "Current Password is required",
+  "Enter_Your_Current_Password": "Enter Your Current Password",
+  "Enter_Your_New_Password": "Enter Your New Password",
+  "Enter_Your_Confirm_Password": "Enter Your Confirm Password"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
