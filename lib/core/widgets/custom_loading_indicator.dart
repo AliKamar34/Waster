@@ -2,11 +2,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:waster/core/themes/app_colors.dart';
 
-class CustomAuthLoadinIndicator extends StatelessWidget {
+class CustomLoadinIndicator extends StatelessWidget {
   final bool isLoading;
   final Widget child;
 
-  const CustomAuthLoadinIndicator({
+  const CustomLoadinIndicator({
     super.key,
     required this.isLoading,
     required this.child,
