@@ -7,7 +7,6 @@ import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:waster/features/browse/presentation/views/widgets/custom_app_bar.dart';
-import 'package:waster/features/settings/presentation/views/widgets/account_settings_section.dart';
 import 'package:waster/features/settings/presentation/views/widgets/app_prefrences_section.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_log_out_container.dart';
 import 'package:waster/features/settings/presentation/views/widgets/notifications_settings_section.dart';
@@ -35,7 +34,6 @@ class SettingsView extends StatelessWidget {
                 spacing: 16,
                 children: [
                   CustomAppBar(title: LocaleKeys.settings.tr()),
-                  const AccountSettingsSection(),
                   const NotificationsSettingsSection(),
                   const AppPrefrencesSection(),
                   const CustomLogOutContainer(),

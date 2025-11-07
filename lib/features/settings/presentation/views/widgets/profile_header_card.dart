@@ -1,5 +1,6 @@
 // import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
@@ -9,6 +10,7 @@ import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 import 'package:waster/features/settings/domain/entity/user_entity.dart';
+import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 // import 'package:waster/features/settings/presentation/views/widgets/profile_badges_list.dart';
 
 class ProfileHeaderCard extends StatelessWidget {
@@ -44,7 +46,12 @@ class ProfileHeaderCard extends StatelessWidget {
                       onTap: () {
                         context.pushNamed(
                           AppRoutes.profileEditingView,
-                          extra: user,
+                          extra: {
+                            'bloc': context.read<SettingsBloc>(),
+                            'user': user,
+                          },
+
+                          // user,
                         );
                       },
                       child: SvgPicture.asset(Assets.edit),
