@@ -47,7 +47,7 @@ class _ProfileEditingViewState extends State<ProfileEditingView> {
     _originalEmail = widget.user.email;
     _originalPhone = widget.user.phoneNumber;
     _originalLocation = widget.user.address;
-    _originalBio = 'this is the original Bio';
+    _originalBio = widget.user.bio ?? '';
 
     // Initialize controllers
     _nameController = TextEditingController(text: _originalName);

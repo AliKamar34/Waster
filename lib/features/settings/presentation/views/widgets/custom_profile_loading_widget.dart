@@ -20,6 +20,7 @@ class CustomProfileLoadingWidget extends StatelessWidget {
               email: 'Loading State Email...',
               address: 'Loading state ...',
               phoneNumber: 'Loading State phoneNumber...',
+              bio: 'Loading State bio...',
             ),
           ),
           ProfileStatisticsSection(),

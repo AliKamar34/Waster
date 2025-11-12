@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 import 'package:waster/features/settings/presentation/views/widgets/contact_info_section.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_profile_loading_widget.dart';
@@ -23,6 +24,8 @@ class ProfileViewBodyBlocBuilder extends StatelessWidget {
                 email: state.user.email,
                 phoneNum: state.user.phoneNumber,
               ),
+              CustomButton(title: 'My Posts', onPressed: () {}),
+              CustomButton(title: 'Book Marks', onPressed: () {}),
             ],
           );
         } else if (state is SettingsLoading) {

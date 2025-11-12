@@ -81,7 +81,7 @@ class ProfileHeaderCard extends StatelessWidget {
                 //   ],
                 // ),
                 Text(
-                  'Local bakery owner passionate about reducing food ',
+                  user.bio ?? '',
                   maxLines: 2,
                   style: AppTextStyle.styleRegular14(context),
                 ),
