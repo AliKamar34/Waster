@@ -9,7 +9,19 @@ String mapDioError(DioException e) {
     case DioExceptionType.receiveTimeout:
       return 'Receive timeout. Please try again.';
     case DioExceptionType.badResponse:
-      return e.response?.data['message'];
+      final data = e.response?.data;
+      if (data == null) return 'Unexpected error occurred';
+      if (data is Map && data['message'] != null) {
+        return data['message'];
+      }
+      if (data['errors'] != null && data['errors'] is Map) {
+        final errorsMap = data['errors'] as Map;
+        final firstErrorList = errorsMap.values.first;
+        if (firstErrorList is List && firstErrorList.isNotEmpty) {
+          return firstErrorList.first;
+        }
+      }
+      return 'An unknown error occurred';
     case DioExceptionType.cancel:
       return 'Request was cancelled.';
     case DioExceptionType.connectionError:

@@ -14,4 +14,7 @@ class ApiEndPoints {
   static const String changeEmail = '$userBasePath/change-email';
   static const String updateLocation = '$userBasePath/update-Location';
   static const String updatePhoneNumber = '$userBasePath/update-PhoneNumber';
+
+  static const String postBasePath = '/api/Post';
+  static const String createPost = '$postBasePath/CreatePost';
 }
