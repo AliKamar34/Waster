@@ -10,9 +10,11 @@ class CountAndUnitWidget extends StatelessWidget {
     super.key,
     this.onChanged,
     required this.quantityController,
+    this.units,
   });
   final void Function(String?)? onChanged;
   final TextEditingController quantityController;
+  final String? units;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -28,6 +30,7 @@ class CountAndUnitWidget extends StatelessWidget {
         ),
         Expanded(
           child: CustomDropDownButton(
+            selectedValue: units,
             onChanged: onChanged,
             validator: Validators.normal,
             items: const [

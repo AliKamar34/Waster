@@ -6,33 +6,23 @@ import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_light_color_container.dart';
 
-class CustomPickUpLocationWidget extends StatelessWidget {
-  const CustomPickUpLocationWidget({super.key});
-
+class CustomPickUpTimeWidget extends StatelessWidget {
+  const CustomPickUpTimeWidget({super.key, this.onPressed});
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return CustomLightColorContainer(
       color: Theme.of(context).extension<AppColors>()!.blueColor,
       padding: 16,
       child: Row(
-        spacing: 14,
+        spacing: 50,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            spacing: 12,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                LocaleKeys.current_location.tr(),
-                style: AppTextStyle.styleRegular16(context).copyWith(
-                  color: Theme.of(context).extension<AppColors>()!.blueColor,
-                ),
-              ),
-              Text(
-                '123 Main St, City, State',
-                style: AppTextStyle.styleRegular14(context),
-              ),
-            ],
+          Text(
+            LocaleKeys.pickup_time.tr(),
+            style: AppTextStyle.styleRegular16(context).copyWith(
+              color: Theme.of(context).extension<AppColors>()!.blueColor,
+            ),
           ),
           Expanded(
             child: CustomButton(
@@ -40,8 +30,8 @@ class CustomPickUpLocationWidget extends StatelessWidget {
                 context,
               ).extension<AppColors>()!.whiteColor,
               borderColor: Theme.of(context).extension<AppColors>()!.blueColor,
-              title: LocaleKeys.change.tr(),
-              onPressed: () {},
+              title: LocaleKeys.timing.tr(),
+              onPressed: onPressed,
             ),
           ),
         ],

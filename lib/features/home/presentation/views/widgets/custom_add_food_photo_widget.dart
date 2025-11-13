@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,17 +17,24 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
     required this.pickImage,
     this.removeImage,
     this.image,
+    this.imagePath,
   });
   final File? image;
+  final String? imagePath;
   final Future<void> Function(bool fromCamera) pickImage;
   final void Function()? removeImage;
 
   @override
   Widget build(BuildContext context) {
     return CustomLightColorContainer(
-      padding: 20,
+      padding: imagePath != null || image != null ? 2 : 16,
       color: Theme.of(context).extension<AppColors>()!.primaryColor,
-      child: image == null
+      child: imagePath != null
+          ? CachedNetworkImage(
+              imageUrl: imagePath!,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            )
+          : image == null
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
