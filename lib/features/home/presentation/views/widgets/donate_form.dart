@@ -114,6 +114,20 @@ class _DonateFormState extends State<DonateForm> {
 
     if (isEditMode) {
       //  Edit Post
+      bloc.add(
+        EditPostEvent(
+          id: widget.post!.id,
+          title: itemNameController.text.trim(),
+          description: descriptionController.text.trim(),
+          quantity: quantityController.text.trim(),
+          unit: units!,
+          pickupLocation: locationController.text.trim(),
+          expiresOn: expiresOn!,
+          category: category!,
+          imageType: mimeType!,
+          imageData: imageData!,
+        ),
+      );
     } else {
       // Create Post
       bloc.add(

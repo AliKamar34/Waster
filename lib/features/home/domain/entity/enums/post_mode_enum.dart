@@ -1,0 +1,1 @@
+enum PostMode { create, edit }

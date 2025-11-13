@@ -51,10 +51,15 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.donateView,
         name: AppRoutes.donateView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => sl<PostBloc>(),
-          child: const DonateView(postMode: PostMode.create),
-        ),
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          final postMode = data['postMode'] as PostMode;
+          final post = data['post'];
+          return BlocProvider(
+            create: (context) => sl<PostBloc>(),
+            child: DonateView(postMode: postMode, post: post),
+          );
+        },
       ),
       GoRoute(
         path: AppRoutes.trackAllView,

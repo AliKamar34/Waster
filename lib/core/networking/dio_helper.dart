@@ -43,10 +43,16 @@ class DioHelper {
   Future<Response> postRequest({
     required String endPoint,
     Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
     try {
-      final response = await dio.post(endPoint, data: data, options: options);
+      final response = await dio.post(
+        endPoint,
+        data: data,
+        options: options,
+        queryParameters: queryParameters,
+      );
       return response;
     } on DioException catch (e, stackTrace) {
       log(
@@ -61,10 +67,16 @@ class DioHelper {
   Future<Response> putRequest({
     required String endPoint,
     Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
     try {
-      final response = await dio.put(endPoint, data: data, options: options);
+      final response = await dio.put(
+        endPoint,
+        data: data,
+        options: options,
+        queryParameters: queryParameters,
+      );
       return response;
     } on DioException catch (e, stackTrace) {
       log(

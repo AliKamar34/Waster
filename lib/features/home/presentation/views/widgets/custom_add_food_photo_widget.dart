@@ -27,91 +27,89 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomLightColorContainer(
-      padding: imagePath != null || image != null ? 2 : 16,
+      padding: image != null ? 2 : 16,
       color: Theme.of(context).extension<AppColors>()!.primaryColor,
-      child: imagePath != null
-          ? CachedNetworkImage(
-              imageUrl: imagePath!,
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            )
-          : image == null
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    SvgPicture.asset(Assets.camera),
-                    const SizedBox(height: 12),
-                    Text(
-                      LocaleKeys.add_food_photo.tr(),
-                      style: AppTextStyle.styleRegular16(context).copyWith(
-                        color: Theme.of(
-                          context,
-                        ).extension<AppColors>()!.primaryColor,
+      child: CachedNetworkImage(
+        imageUrl: imagePath!,
+        errorWidget: (context, url, error) => image == null
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      SvgPicture.asset(Assets.camera),
+                      const SizedBox(height: 12),
+                      Text(
+                        LocaleKeys.add_food_photo.tr(),
+                        style: AppTextStyle.styleRegular16(context).copyWith(
+                          color: Theme.of(
+                            context,
+                          ).extension<AppColors>()!.primaryColor,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      LocaleKeys.help_recipients_see_donation.tr(),
-                      style: AppTextStyle.styleRegular14(context),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      width: 150,
-                      child: CustomButton(
-                        backgroundColor: Theme.of(
-                          context,
-                        ).extension<AppColors>()!.whiteColor,
-                        borderColor: Theme.of(
-                          context,
-                        ).extension<AppColors>()!.primaryColor,
-                        title: LocaleKeys.take_photo.tr(),
-                        onPressed: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (_) => CustomImageBottomSheetPicker(
-                              pickImage: pickImage,
-                            ),
-                          );
-                        },
+                      const SizedBox(height: 8),
+                      Text(
+                        LocaleKeys.help_recipients_see_donation.tr(),
+                        style: AppTextStyle.styleRegular14(context),
+                        textAlign: TextAlign.center,
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            )
-          : Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.file(
-                    image!,
-                    width: double.infinity,
-                    height: 200,
-                    fit: BoxFit.cover,
+                      const SizedBox(height: 16),
+                      SizedBox(
+                        width: 150,
+                        child: CustomButton(
+                          backgroundColor: Theme.of(
+                            context,
+                          ).extension<AppColors>()!.whiteColor,
+                          borderColor: Theme.of(
+                            context,
+                          ).extension<AppColors>()!.primaryColor,
+                          title: LocaleKeys.take_photo.tr(),
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (_) => CustomImageBottomSheetPicker(
+                                pickImage: pickImage,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: CircleAvatar(
-                    backgroundColor: Theme.of(
-                      context,
-                    ).extension<AppColors>()!.redColor,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.close,
-                        color: Theme.of(
-                          context,
-                        ).extension<AppColors>()!.whiteColor,
-                      ),
-                      onPressed: removeImage,
+                ],
+              )
+            : Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.file(
+                      image!,
+                      width: double.infinity,
+                      height: 200,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-              ],
-            ),
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: CircleAvatar(
+                      backgroundColor: Theme.of(
+                        context,
+                      ).extension<AppColors>()!.redColor,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.close,
+                          color: Theme.of(
+                            context,
+                          ).extension<AppColors>()!.whiteColor,
+                        ),
+                        onPressed: removeImage,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+      ),
     );
   }
 }

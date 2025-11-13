@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/widgets/custom_button.dart';
+import 'package:waster/features/home/domain/entity/enums/post_mode_enum.dart';
 import 'package:waster/features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:waster/features/home/presentation/views/widgets/home_count_section.dart';
 import 'package:waster/features/home/presentation/views/widgets/impact_of_month_widget.dart';
@@ -25,7 +26,10 @@ class HomeView extends StatelessWidget {
             CustomButton(
               title: LocaleKeys.post_food_donation.tr(),
               onPressed: () {
-                context.pushNamed(AppRoutes.donateView);
+                context.pushNamed(
+                  AppRoutes.donateView,
+                  extra: {'postMode': PostMode.create, 'post': null},
+                );
               },
             ),
             const RecentDonationsSection(),

@@ -10,6 +10,7 @@ import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/utils/service_locator.dart';
 import 'package:waster/features/browse/presentation/views/browse_view.dart';
+import 'package:waster/features/home/domain/entity/enums/post_mode_enum.dart';
 import 'package:waster/features/home/presentation/views/home_view.dart';
 import 'package:waster/features/impact/presentation/views/impact_view.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
@@ -49,7 +50,10 @@ class _MainViewState extends State<MainView> {
         selectedLabelStyle: AppTextStyle.styleMeduim14(context),
         onTap: (value) {
           if (value == 2) {
-            context.pushNamed(AppRoutes.donateView);
+            context.pushNamed(
+              AppRoutes.donateView,
+              extra: {'postMode': PostMode.create, 'post': null},
+            );
           } else {
             setState(() {
               currIndex = value;

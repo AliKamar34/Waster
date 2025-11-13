@@ -15,6 +15,7 @@ import 'package:waster/features/home/data/datasource/home_remote_data_source.dar
 import 'package:waster/features/home/data/repo/home_repo_impl.dart';
 import 'package:waster/features/home/domain/repo/home_repo.dart';
 import 'package:waster/features/home/domain/usecases/add_donation_post_usecase.dart';
+import 'package:waster/features/home/domain/usecases/edit_donation_post_usecase.dart';
 import 'package:waster/features/home/presentation/manager/bloc/post_bloc.dart';
 import 'package:waster/features/settings/data/datasource/settings_remote_data_source.dart';
 import 'package:waster/features/settings/data/repo/setting_repo_impl.dart';
@@ -140,6 +141,12 @@ void setupServiceLocator() {
   sl.registerLazySingleton<AddDonationPostUsecase>(
     () => AddDonationPostUsecase(homeRepo: sl()),
   );
+  sl.registerLazySingleton<EditDonationPostUsecase>(
+    () => EditDonationPostUsecase(homeRepo: sl()),
+  );
 
-  sl.registerFactory(() => PostBloc(addDonationPostUsecase: sl()));
+  // bloc
+  sl.registerFactory(
+    () => PostBloc(addDonationPostUsecase: sl(), editDonationPostUsecase: sl()),
+  );
 }
