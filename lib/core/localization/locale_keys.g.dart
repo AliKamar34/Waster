@@ -159,7 +159,7 @@ abstract class  LocaleKeys {
   static const change = 'change';
   static const item_name = 'item_name';
   static const eg_Fresh_Vegetables_Baked_Goods = 'eg_Fresh_Vegetables_Baked_Goods';
-  static const Description_Optional = 'Description_Optional';
+  static const Description = 'Description';
   static const Additional_details_about_the_food = 'Additional_details_about_the_food';
   static const Available_for_Pickup = 'Available_for_Pickup';
   static const Must_be_Picked_Up_By = 'Must_be_Picked_Up_By';
@@ -236,5 +236,8 @@ abstract class  LocaleKeys {
   static const Enter_Your_Current_Password = 'Enter_Your_Current_Password';
   static const Enter_Your_New_Password = 'Enter_Your_New_Password';
   static const Enter_Your_Confirm_Password = 'Enter_Your_Confirm_Password';
+  static const please_select_expiry_date = 'please_select_expiry_date';
+  static const please_select_unit = 'please_select_unit';
+  static const please_select_category = 'please_select_category';
 
 }

@@ -171,7 +171,7 @@ class CodegenLoader extends AssetLoader{
   "change": "تغيير",
   "item_name": "اسم الصنف",
   "eg_Fresh_Vegetables_Baked_Goods": "مثال: خضروات طازجة، مخبوزات",
-  "Description_Optional": "الوصف (اختياري)",
+  "Description": "الوصف",
   "Additional_details_about_the_food": "تفاصيل إضافية عن الطعام...",
   "Available_for_Pickup": "متاح للاستلام",
   "Must_be_Picked_Up_By": "يجب استلامه قبل",
@@ -247,7 +247,10 @@ class CodegenLoader extends AssetLoader{
   "Current_Password_is_required": "يجب أن تحتوي كلمة المرور الحالية",
   "Enter_Your_Current_Password": "أدخل كلمة المرور الحالية الخاصة بك",
   "Enter_Your_New_Password": "أدخل كلمة المرور الجديدة الخاصة بك",
-  "Enter_Your_Confirm_Password": "أدخل تأكيد كلمة المرور الخاصة بك"
+  "Enter_Your_Confirm_Password": "أدخل تأكيد كلمة المرور الخاصة بك",
+  "please_select_expiry_date": "يرجى اختيار تاريخ الانتهاء",
+  "please_select_unit": "يرجى اختيار وحده",
+  "please_select_category": "يرجى اختيار الفئة"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -406,7 +409,7 @@ static const Map<String,dynamic> _en = {
   "change": "Change",
   "item_name": "Item Name",
   "eg_Fresh_Vegetables_Baked_Goods": "e.g., Fresh Vegetables, Baked Goods",
-  "Description_Optional": "Description (Optional)",
+  "Description": "Description",
   "Additional_details_about_the_food": "Additional details about the food...",
   "Available_for_Pickup": "Available for Pickup",
   "Must_be_Picked_Up_By": "Must be Picked Up By",
@@ -482,7 +485,10 @@ static const Map<String,dynamic> _en = {
   "Current_Password_is_required": "Current Password is required",
   "Enter_Your_Current_Password": "Enter Your Current Password",
   "Enter_Your_New_Password": "Enter Your New Password",
-  "Enter_Your_Confirm_Password": "Enter Your Confirm Password"
+  "Enter_Your_Confirm_Password": "Enter Your Confirm Password",
+  "please_select_expiry_date": "please select expiry date",
+  "please_select_unit": "please select unit",
+  "please_select_category": "please select category"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

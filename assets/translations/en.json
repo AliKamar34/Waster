@@ -155,7 +155,7 @@
   "change": "Change",
   "item_name": "Item Name",
   "eg_Fresh_Vegetables_Baked_Goods": "e.g., Fresh Vegetables, Baked Goods",
-  "Description_Optional": "Description (Optional)",
+  "Description": "Description",
   "Additional_details_about_the_food": "Additional details about the food...",
   "Available_for_Pickup": "Available for Pickup",
   "Must_be_Picked_Up_By": "Must be Picked Up By",
@@ -231,5 +231,8 @@
   "Current_Password_is_required": "Current Password is required",
   "Enter_Your_Current_Password": "Enter Your Current Password",
   "Enter_Your_New_Password": "Enter Your New Password",
-  "Enter_Your_Confirm_Password": "Enter Your Confirm Password"
+  "Enter_Your_Confirm_Password": "Enter Your Confirm Password",
+  "please_select_expiry_date": "please select expiry date",
+  "please_select_unit": "please select unit",
+  "please_select_category": "please select category"
 }
