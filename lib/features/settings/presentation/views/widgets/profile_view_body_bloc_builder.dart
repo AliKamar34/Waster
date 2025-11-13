@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 import 'package:waster/features/settings/presentation/views/widgets/contact_info_section.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_profile_loading_widget.dart';
+import 'package:waster/features/settings/presentation/views/widgets/posts_managment_section.dart';
 import 'package:waster/features/settings/presentation/views/widgets/profile_header_card.dart';
 import 'package:waster/features/settings/presentation/views/widgets/profile_statistics_section.dart';
 
@@ -24,8 +24,7 @@ class ProfileViewBodyBlocBuilder extends StatelessWidget {
                 email: state.user.email,
                 phoneNum: state.user.phoneNumber,
               ),
-              CustomButton(title: 'My Posts', onPressed: () {}),
-              CustomButton(title: 'Book Marks', onPressed: () {}),
+              const PostsManagmentSection(),
             ],
           );
         } else if (state is SettingsLoading) {
@@ -33,7 +32,7 @@ class ProfileViewBodyBlocBuilder extends StatelessWidget {
         } else if (state is SettingsFailure) {
           return Text(state.message);
         } else {
-          return const Text('state  is initial');
+          return const CustomProfileLoadingWidget();
         }
       },
     );

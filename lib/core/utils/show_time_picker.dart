@@ -9,7 +9,7 @@ Future<DateTime?> pickDateTime(BuildContext context) async {
   );
 
   if (date == null) return null;
-
+  if (!context.mounted) return null;
   final TimeOfDay? time = await showTimePicker(
     context: context,
     initialTime: TimeOfDay.now(),
