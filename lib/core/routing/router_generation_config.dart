@@ -1,11 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/routing/app_routes.dart';
+import 'package:waster/core/utils/service_locator.dart';
 import 'package:waster/features/auth/presentation/views/log_in_view.dart';
 import 'package:waster/features/auth/presentation/views/sign_up_view.dart';
 import 'package:waster/features/browse/presentation/views/browse_all_view.dart';
 import 'package:waster/features/browse/presentation/views/order_details_view.dart';
 import 'package:waster/features/browse/presentation/views/track_all_view.dart';
+import 'package:waster/features/home/domain/entity/enums/post_mode_enum.dart';
+import 'package:waster/features/home/presentation/manager/bloc/post_bloc.dart';
 import 'package:waster/features/home/presentation/views/donate_view.dart';
 import 'package:waster/features/home/presentation/views/main_view.dart';
 import 'package:waster/features/notifications/presentation/views/notifications_view.dart';
@@ -48,7 +51,10 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.donateView,
         name: AppRoutes.donateView,
-        builder: (context, state) => const DonateView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => sl<PostBloc>(),
+          child: const DonateView(postMode: PostMode.create),
+        ),
       ),
       GoRoute(
         path: AppRoutes.trackAllView,
