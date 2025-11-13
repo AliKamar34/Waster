@@ -11,6 +11,11 @@ import 'package:waster/features/auth/domain/usecases/refresh_token_use_case.dart
 import 'package:waster/features/auth/domain/usecases/register_use_case.dart';
 import 'package:waster/features/auth/domain/usecases/revoke_token_use_case.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
+import 'package:waster/features/home/data/datasource/home_remote_data_source.dart';
+import 'package:waster/features/home/data/repo/home_repo_impl.dart';
+import 'package:waster/features/home/domain/repo/home_repo.dart';
+import 'package:waster/features/home/domain/usecases/add_donation_post_usecase.dart';
+import 'package:waster/features/home/presentation/manager/bloc/post_bloc.dart';
 import 'package:waster/features/settings/data/datasource/settings_remote_data_source.dart';
 import 'package:waster/features/settings/data/repo/setting_repo_impl.dart';
 import 'package:waster/features/settings/domain/repo/settings_repo.dart';
@@ -121,4 +126,20 @@ void setupServiceLocator() {
       changePasswordUseCase: sl(),
     ),
   );
+
+  // Feature - Home
+  // Data source
+  sl.registerLazySingleton<HomeRemoteDataSource>(
+    () => HomeRemoteDataSourceImpl(dioHelper: sl()),
+  );
+  // Repo
+  sl.registerLazySingleton<HomeRepo>(
+    () => HomeRepoImpl(homeRemoteDataSource: sl()),
+  );
+  // use cases
+  sl.registerLazySingleton<AddDonationPostUsecase>(
+    () => AddDonationPostUsecase(homeRepo: sl()),
+  );
+
+  sl.registerFactory(() => PostBloc(addDonationPostUsecase: sl()));
 }
