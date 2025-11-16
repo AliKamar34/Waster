@@ -1,30 +1,18 @@
 import 'package:dartz/dartz.dart';
+import 'package:waster/core/data/base_repository.dart';
 import 'package:waster/core/errors/failure.dart';
-import 'package:waster/core/errors/server_exception.dart';
 import 'package:waster/features/settings/data/datasource/settings_remote_data_source.dart';
 import 'package:waster/features/settings/domain/entity/user_entity.dart';
 import 'package:waster/features/settings/domain/repo/settings_repo.dart';
 
-class SettingsRepoImpl implements SettingsRepo {
+class SettingsRepoImpl extends BaseRepository implements SettingsRepo {
   final SettingsRemoteDataSource settingsRemoteDataSource;
 
-  const SettingsRepoImpl({required this.settingsRemoteDataSource});
-
-  //  Helper Method
-  Future<Either<Failure, T>> _execute<T>(Future<T> Function() operation) async {
-    try {
-      final result = await operation();
-      return right(result);
-    } on ServerException catch (e) {
-      return left(Failure(e.message));
-    } catch (e) {
-      return left(Failure(e.toString()));
-    }
-  }
+  SettingsRepoImpl({required this.settingsRemoteDataSource});
 
   @override
   Future<Either<Failure, UserEntity>> getUserDetails() async {
-    return _execute(() => settingsRemoteDataSource.getUserDetails());
+    return execute(() => settingsRemoteDataSource.getUserDetails());
   }
 
   @override
@@ -32,7 +20,7 @@ class SettingsRepoImpl implements SettingsRepo {
     required String firstName,
     required String lastName,
   }) async {
-    return _execute(
+    return execute(
       () => settingsRemoteDataSource.updateName(
         firstName: firstName,
         lastName: lastName,
@@ -45,7 +33,7 @@ class SettingsRepoImpl implements SettingsRepo {
     required String newEmail,
     required String password,
   }) async {
-    return _execute(
+    return execute(
       () => settingsRemoteDataSource.changeEmail(
         newEmail: newEmail,
         password: password,
@@ -59,7 +47,7 @@ class SettingsRepoImpl implements SettingsRepo {
     required String newPassword,
     required String confirmPassword,
   }) async {
-    return _execute(
+    return execute(
       () => settingsRemoteDataSource.changePassword(
         currentPassword: currentPassword,
         newPassword: newPassword,
@@ -72,7 +60,7 @@ class SettingsRepoImpl implements SettingsRepo {
   Future<Either<Failure, void>> updateLocation({
     required String address,
   }) async {
-    return _execute(
+    return execute(
       () => settingsRemoteDataSource.updateLocation(address: address),
     );
   }
@@ -81,13 +69,13 @@ class SettingsRepoImpl implements SettingsRepo {
   Future<Either<Failure, void>> updatePhoneNumber({
     required String phoneNum,
   }) async {
-    return _execute(
+    return execute(
       () => settingsRemoteDataSource.updatePhoneNumber(phoneNum: phoneNum),
     );
   }
 
   @override
   Future<Either<Failure, void>> updateBio({required String bio}) async {
-    return _execute(() => settingsRemoteDataSource.updateBio(bio: bio));
+    return execute(() => settingsRemoteDataSource.updateBio(bio: bio));
   }
 }

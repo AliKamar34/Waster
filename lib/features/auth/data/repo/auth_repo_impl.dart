@@ -1,42 +1,44 @@
 import 'package:dartz/dartz.dart';
-import 'package:waster/core/errors/cache_exception.dart';
+import 'package:waster/core/data/base_repository.dart';
 import 'package:waster/core/errors/failure.dart';
-import 'package:waster/core/errors/server_exception.dart';
 import 'package:waster/features/auth/data/datasource/auth_local_data_source.dart';
 import 'package:waster/features/auth/data/datasource/auth_remote_date_source.dart';
 import 'package:waster/features/auth/domain/entity/auth_entity.dart';
 import 'package:waster/features/auth/domain/repo/auth_repo.dart';
 
-class AuthRepoImpl implements AuthRepo {
+class AuthRepoImpl extends BaseRepository implements AuthRepo {
   final AuthLocalDataSource authLocalDataSource;
   final AuthRemoteDateSource authRemoteDateSource;
 
-  const AuthRepoImpl({
+  AuthRepoImpl({
     required this.authLocalDataSource,
     required this.authRemoteDateSource,
   });
+
   @override
   Future<Either<Failure, AuthEntity>> login({
     required String email,
     required String password,
   }) async {
-    try {
-      final result = await authRemoteDateSource.login(
-        email: email,
-        password: password,
+    // 1. Execute login request
+    final result = await execute(
+      () => authRemoteDateSource.login(email: email, password: password),
+    );
+
+    // 2. If successful, save tokens
+    return result.fold((failure) => Left(failure), (authEntity) async {
+      final saveResult = await execute(
+        () => authLocalDataSource.saveTokens(
+          token: authEntity.token,
+          refreshToken: authEntity.refreshToken,
+        ),
       );
-      await authLocalDataSource.saveTokens(
-        token: result.token,
-        refreshToken: result.refreshToken,
+
+      return saveResult.fold(
+        (failure) => Left(failure),
+        (_) => Right(authEntity),
       );
-      return right(result);
-    } on ServerException catch (e) {
-      return left(Failure(e.message));
-    } on CacheException catch (e) {
-      return left(Failure(e.message));
-    } catch (e) {
-      return left(Failure(e.toString()));
-    }
+    });
   }
 
   @override
@@ -49,8 +51,9 @@ class AuthRepoImpl implements AuthRepo {
     required String phoneNumber,
     required String address,
   }) async {
-    try {
-      final result = await authRemoteDateSource.register(
+    // 1. Execute register request
+    final result = await execute(
+      () => authRemoteDateSource.register(
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -58,59 +61,89 @@ class AuthRepoImpl implements AuthRepo {
         confirmPassword: confirmPassword,
         phoneNumber: phoneNumber,
         address: address,
+      ),
+    );
+
+    // 2. If successful, save tokens
+    return result.fold((failure) => Left(failure), (authEntity) async {
+      final saveResult = await execute(
+        () => authLocalDataSource.saveTokens(
+          token: authEntity.token,
+          refreshToken: authEntity.refreshToken,
+        ),
       );
-      await authLocalDataSource.saveTokens(
-        token: result.token,
-        refreshToken: result.refreshToken,
+
+      return saveResult.fold(
+        (failure) => Left(failure),
+        (_) => Right(authEntity),
       );
-      return right(result);
-    } on ServerException catch (e) {
-      return left(Failure(e.message));
-    } on CacheException catch (e) {
-      return left(Failure(e.message));
-    } catch (e) {
-      return left(Failure(e.toString()));
-    }
+    });
   }
 
   @override
   Future<Either<Failure, AuthEntity>> refreshToken() async {
-    try {
-      final token = await authLocalDataSource.getRefreshToken();
-      if (token == null) {
-        return left(Failure('No token found'));
+    // 1. Get refresh token from local storage
+    final tokenResult = await execute(
+      () => authLocalDataSource.getRefreshToken(),
+    );
+
+    return tokenResult.fold((failure) => Left(failure), (token) async {
+      // 2. Validate token exists
+      if (token == null || token.isEmpty) {
+        return Left(Failure('No refresh token found'));
       }
-      final result = await authRemoteDateSource.refreshToken(token: token);
-      await authLocalDataSource.saveTokens(
-        token: result.token,
-        refreshToken: result.refreshToken,
+
+      // 3. Request new tokens from remote
+      final refreshResult = await execute(
+        () => authRemoteDateSource.refreshToken(token: token),
       );
-      return right(result);
-    } on ServerException catch (e) {
-      return left(Failure(e.message));
-    } on CacheException catch (e) {
-      return left(Failure(e.message));
-    } catch (e) {
-      return left(Failure(e.toString()));
-    }
+
+      // 4. Save new tokens if successful
+      return refreshResult.fold((failure) => Left(failure), (authEntity) async {
+        final saveResult = await execute(
+          () => authLocalDataSource.saveTokens(
+            token: authEntity.token,
+            refreshToken: authEntity.refreshToken,
+          ),
+        );
+
+        return saveResult.fold(
+          (failure) => Left(failure),
+          (_) => Right(authEntity),
+        );
+      });
+    });
   }
 
   @override
   Future<Either<Failure, void>> revokeToken() async {
-    try {
-      final token = await authLocalDataSource.getRefreshToken();
-      if (token == null) {
-        return left(Failure('No token found'));
+    // 1. Get refresh token from local storage
+    final tokenResult = await execute(
+      () => authLocalDataSource.getRefreshToken(),
+    );
+
+    return tokenResult.fold((failure) => Left(failure), (token) async {
+      // 2. Validate token exists
+      if (token == null || token.isEmpty) {
+        return Left(Failure('No refresh token found'));
       }
-      await authRemoteDateSource.revokeToken(token: token);
-      await authLocalDataSource.deleteTokens();
-      return right(null);
-    } on ServerException catch (e) {
-      return left(Failure(e.message));
-    } on CacheException catch (e) {
-      return left(Failure(e.message));
-    } catch (e) {
-      return left(Failure(e.toString()));
-    }
+
+      // 3. Revoke token on server
+      final revokeResult = await execute(
+        () => authRemoteDateSource.revokeToken(token: token),
+      );
+
+      // 4. Delete local tokens if successful
+      return revokeResult.fold((failure) => Left(failure), (_) async {
+        final deleteResult = await execute(
+          () => authLocalDataSource.deleteTokens(),
+        );
+
+        return deleteResult.fold(
+          (failure) => Left(failure),
+          (_) => const Right(null),
+        );
+      });
+    });
   }
 }
