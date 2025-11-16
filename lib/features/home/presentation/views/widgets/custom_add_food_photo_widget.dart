@@ -30,7 +30,7 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
       padding: image != null ? 2 : 16,
       color: Theme.of(context).extension<AppColors>()!.primaryColor,
       child: CachedNetworkImage(
-        imageUrl: imagePath!,
+        imageUrl: imagePath ?? '',
         errorWidget: (context, url, error) => image == null
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,

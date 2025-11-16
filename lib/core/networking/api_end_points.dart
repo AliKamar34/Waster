@@ -17,4 +17,5 @@ class ApiEndPoints {
 
   static const String postBasePath = '/api/Post';
   static const String createPost = '$postBasePath/CreatePost';
+  static const String editPost = '$postBasePath/Edit post';
 }

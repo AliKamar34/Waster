@@ -1,10 +1,6 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mime/mime.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/utils/pick_up_image.dart';
@@ -17,6 +13,8 @@ import 'package:waster/features/auth/presentation/views/widgets/location_text_fi
 import 'package:waster/features/home/domain/entity/enums/post_mode_enum.dart';
 import 'package:waster/features/home/domain/entity/post_entity.dart';
 import 'package:waster/features/home/presentation/manager/bloc/post_bloc.dart';
+import 'package:waster/features/home/presentation/manager/cubit/donate_form_cubit.dart';
+import 'package:waster/features/home/presentation/manager/cubit/donate_form_state.dart';
 import 'package:waster/features/home/presentation/views/widgets/category_drop_down_button.dart';
 import 'package:waster/features/home/presentation/views/widgets/count_and_unit_widget.dart';
 import 'package:waster/features/home/presentation/views/widgets/custom_add_food_photo_widget.dart';
@@ -32,11 +30,6 @@ class DonateForm extends StatefulWidget {
 }
 
 class _DonateFormState extends State<DonateForm> {
-  File? _image;
-  String? category, units;
-  String? expiresOn;
-  String? base64Image, imageType;
-  String? imagePath;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final TextEditingController itemNameController;
   late final TextEditingController quantityController;
@@ -47,23 +40,24 @@ class _DonateFormState extends State<DonateForm> {
 
   @override
   void initState() {
+    _initializeControllers();
+    super.initState();
+  }
+
+  void _initializeControllers() {
+    final isEdit = widget.postMode == PostMode.edit;
     itemNameController = TextEditingController(
-      text: isEditMode ? widget.post!.title : '',
+      text: isEdit ? widget.post!.title : '',
     );
     quantityController = TextEditingController(
-      text: isEditMode ? widget.post!.quantity : '',
+      text: isEdit ? widget.post!.quantity : '',
     );
     descriptionController = TextEditingController(
-      text: isEditMode ? widget.post!.description : '',
+      text: isEdit ? widget.post!.description : '',
     );
     locationController = TextEditingController(
-      text: isEditMode ? widget.post!.pickupLocation : '',
+      text: isEdit ? widget.post!.pickupLocation : '',
     );
-    imagePath = isEditMode ? widget.post!.imageUrl : '';
-    category = isEditMode ? widget.post!.category : '';
-    units = isEditMode ? widget.post!.unit : '';
-    expiresOn = isEditMode ? widget.post!.expiresOn : '';
-    super.initState();
   }
 
   @override
@@ -74,44 +68,22 @@ class _DonateFormState extends State<DonateForm> {
     super.dispose();
   }
 
-  bool _validateForm() {
+  Future<void> _handleSave(BuildContext context) async {
+    final formState = context.read<DonateFormCubit>().state;
     if (!_formKey.currentState!.validate()) {
-      showToast(context, LocaleKeys.data_not_confirmed.tr());
-      return false;
+      return;
     }
-    if (category == null) {
-      showToast(context, LocaleKeys.please_select_category.tr());
-      return false;
-    }
-    if (units == null) {
-      showToast(context, LocaleKeys.please_select_unit.tr());
-      return false;
-    }
-    if (_image == null && !isEditMode) {
-      showToast(context, LocaleKeys.please_add_food_photo.tr());
-      return false;
-    }
-    if (expiresOn == null) {
-      showToast(context, LocaleKeys.please_select_expiry_date.tr());
-      return false;
-    }
-    return true;
-  }
+    if (!formState.isValid) {
+      showToast(
+        context,
+        formState.errorMessage ?? 'please complete the form the form',
+        isError: true,
+      );
 
-  Future<void> _handleSave() async {
-    if (!_validateForm()) return;
+      return;
+    }
 
     final bloc = context.read<PostBloc>();
-
-    String? imageData;
-    String? mimeType;
-
-    if (_image != null) {
-      mimeType = lookupMimeType(_image!.path) ?? 'application/octet-stream';
-      final bytes = await File(_image!.path).readAsBytes();
-      imageData = base64Encode(bytes);
-    }
-
     if (isEditMode) {
       //  Edit Post
       bloc.add(
@@ -120,12 +92,11 @@ class _DonateFormState extends State<DonateForm> {
           title: itemNameController.text.trim(),
           description: descriptionController.text.trim(),
           quantity: quantityController.text.trim(),
-          unit: units!,
+          unit: formState.unit!,
           pickupLocation: locationController.text.trim(),
-          expiresOn: expiresOn!,
-          category: category!,
-          imageType: mimeType!,
-          imageData: imageData!,
+          expiresOn: formState.expiresOn!,
+          category: formState.category!,
+          imageFile: formState.image!,
         ),
       );
     } else {
@@ -135,22 +106,14 @@ class _DonateFormState extends State<DonateForm> {
           title: itemNameController.text.trim(),
           description: descriptionController.text.trim(),
           quantity: quantityController.text.trim(),
-          unit: units!,
+          unit: formState.unit!,
           pickupLocation: locationController.text.trim(),
-          expiresOn: expiresOn!,
-          category: category!,
-          imageType: mimeType!,
-          imageData: imageData!,
+          expiresOn: formState.expiresOn!,
+          category: formState.category!,
+          imageFile: formState.image!,
         ),
       );
     }
-  }
-
-  Future<void> _imageSetter(bool fromCamera) async {
-    final file = await pickUpImage(fromCamera);
-    setState(() {
-      _image = file;
-    });
   }
 
   @override
@@ -160,14 +123,21 @@ class _DonateFormState extends State<DonateForm> {
       child: Column(
         spacing: 24,
         children: [
-          CustomAddFoodPhotoWidget(
-            imagePath: imagePath,
-            image: _image,
-            pickImage: _imageSetter,
-            removeImage: () {
-              setState(() {
-                _image = null;
-              });
+          BlocBuilder<DonateFormCubit, DonateFormState>(
+            builder: (context, state) {
+              return CustomAddFoodPhotoWidget(
+                imagePath: widget.post?.imageUrl,
+                image: state.image,
+                pickImage: (bool fromCamera) async {
+                  final image = await pickUpImage(fromCamera);
+                  if (context.mounted) {
+                    context.read<DonateFormCubit>().updateImage(image);
+                  }
+                },
+                removeImage: () {
+                  context.read<DonateFormCubit>().updateImage(null);
+                },
+              );
             },
           ),
           CustomTextField(
@@ -176,21 +146,25 @@ class _DonateFormState extends State<DonateForm> {
             controller: itemNameController,
             validator: Validators.normal,
           ),
-          CategoryDropDownButton(
-            selectedValue: category,
-            onChanged: (value) {
-              setState(() {
-                category = value;
-              });
+          BlocBuilder<DonateFormCubit, DonateFormState>(
+            builder: (context, state) {
+              return CategoryDropDownButton(
+                selectedValue: state.category,
+                onChanged: (value) {
+                  context.read<DonateFormCubit>().updateCategory(value);
+                },
+              );
             },
           ),
-          CountAndUnitWidget(
-            units: units,
-            quantityController: quantityController,
-            onChanged: (value) {
-              setState(() {
-                units = value;
-              });
+          BlocBuilder<DonateFormCubit, DonateFormState>(
+            builder: (context, state) {
+              return CountAndUnitWidget(
+                units: state.unit,
+                quantityController: quantityController,
+                onChanged: (value) {
+                  context.read<DonateFormCubit>().updateUnit(value);
+                },
+              );
             },
           ),
           CustomTextField(
@@ -209,18 +183,24 @@ class _DonateFormState extends State<DonateForm> {
             image: Assets.timer,
             lable: LocaleKeys.timing.tr(),
           ),
-          CustomPickUpTimeWidget(
-            onPressed: () async {
-              pickDateTime(context);
-              final DateTime? selectedDateTime = await pickDateTime(context);
-              if (selectedDateTime != null) {
-                expiresOn = selectedDateTime.toUtc().toIso8601String();
-              }
+          BlocBuilder<DonateFormCubit, DonateFormState>(
+            builder: (context, state) {
+              return CustomPickUpTimeWidget(
+                onPressed: () async {
+                  final selectedDate = await pickDateTime(context);
+                  if (selectedDate != null) {
+                    final isoDate = selectedDate.toUtc().toIso8601String();
+                    if (context.mounted) {
+                      context.read<DonateFormCubit>().updateExpiresOn(isoDate);
+                    }
+                  }
+                },
+              );
             },
           ),
           CustomButton(
             title: LocaleKeys.post_food_donation.tr(),
-            onPressed: _handleSave,
+            onPressed: () => _handleSave(context),
           ),
         ],
       ),

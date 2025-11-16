@@ -82,8 +82,8 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     required String imageData,
   }) async {
     try {
-      final response = await dioHelper.postRequest(
-        endPoint: ApiEndPoints.createPost,
+      final response = await dioHelper.putRequest(
+        endPoint: ApiEndPoints.editPost,
         queryParameters: {'id': id},
         data: {
           'title': title,

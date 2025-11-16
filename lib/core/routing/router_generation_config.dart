@@ -9,6 +9,7 @@ import 'package:waster/features/browse/presentation/views/order_details_view.dar
 import 'package:waster/features/browse/presentation/views/track_all_view.dart';
 import 'package:waster/features/home/domain/entity/enums/post_mode_enum.dart';
 import 'package:waster/features/home/presentation/manager/bloc/post_bloc.dart';
+import 'package:waster/features/home/presentation/manager/cubit/donate_form_cubit.dart';
 import 'package:waster/features/home/presentation/views/donate_view.dart';
 import 'package:waster/features/home/presentation/views/main_view.dart';
 import 'package:waster/features/notifications/presentation/views/notifications_view.dart';
@@ -55,8 +56,11 @@ class RouterGenerationConfig {
           final data = state.extra as Map<String, dynamic>;
           final postMode = data['postMode'] as PostMode;
           final post = data['post'];
-          return BlocProvider(
-            create: (context) => sl<PostBloc>(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => sl<PostBloc>()),
+              BlocProvider(create: (context) => sl<DonateFormCubit>()),
+            ],
             child: DonateView(postMode: postMode, post: post),
           );
         },

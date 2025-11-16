@@ -15,8 +15,7 @@ final class CreatePostEvent extends PostEvent {
   final String pickupLocation;
   final String expiresOn;
   final String category;
-  final String imageType;
-  final String imageData;
+  final File imageFile;
 
   const CreatePostEvent({
     required this.title,
@@ -26,8 +25,7 @@ final class CreatePostEvent extends PostEvent {
     required this.pickupLocation,
     required this.expiresOn,
     required this.category,
-    required this.imageType,
-    required this.imageData,
+    required this.imageFile,
   });
 
   @override
@@ -39,8 +37,7 @@ final class CreatePostEvent extends PostEvent {
     pickupLocation,
     expiresOn,
     category,
-    imageType,
-    imageData,
+    imageFile,
   ];
 }
 
@@ -53,8 +50,7 @@ final class EditPostEvent extends PostEvent {
   final String pickupLocation;
   final String expiresOn;
   final String category;
-  final String imageType;
-  final String imageData;
+  final File imageFile;
 
   const EditPostEvent({
     required this.id,
@@ -65,8 +61,7 @@ final class EditPostEvent extends PostEvent {
     required this.pickupLocation,
     required this.expiresOn,
     required this.category,
-    required this.imageType,
-    required this.imageData,
+    required this.imageFile,
   });
 
   @override
@@ -79,7 +74,6 @@ final class EditPostEvent extends PostEvent {
     pickupLocation,
     expiresOn,
     category,
-    imageType,
-    imageData,
+    imageFile,
   ];
 }
