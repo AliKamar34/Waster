@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:waster/features/auth/data/datasource/auth_local_data_source.dart';
 import 'package:waster/features/auth/data/datasource/auth_remote_date_source.dart';
@@ -21,22 +20,49 @@ class AuthInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     try {
+      if (_isAuthEndpoint(options.path)) {
+        return handler.next(options);
+      }
+
       final token = await localDataSource.getToken();
 
-      final isAuthEndpoint =
-          options.path.contains('/Login') ||
-          options.path.contains('/Register') ||
-          options.path.contains('/RefreshToken');
-
-      if (token != null && token.isNotEmpty && !isAuthEndpoint) {
-        options.headers['Authorization'] = 'Bearer $token';
+      if (token == null || token.isEmpty) {
+        return handler.reject(
+          DioException(
+            requestOptions: options,
+            type: DioExceptionType.cancel,
+            error: 'Authentication token not found',
+            response: Response(
+              requestOptions: options,
+              statusCode: 401,
+              statusMessage: 'Unauthenticated',
+            ),
+          ),
+        );
       }
-    } catch (e, stackTrace) {
-      log('AuthInterceptor onRequest error: $e');
-      log(stackTrace.toString());
-    }
+      options.headers['Authorization'] = 'Bearer $token';
 
-    handler.next(options);
+      handler.next(options);
+    } catch (e, stackTrace) {
+      log(
+        'AuthInterceptor onRequest error: $e',
+        error: e,
+        stackTrace: stackTrace,
+      );
+
+      handler.reject(
+        DioException(
+          requestOptions: options,
+          // type: DioExceptionType.unknown,
+          error: e,
+          response: Response(
+            requestOptions: options,
+            statusCode: 500,
+            statusMessage: 'Internal error while adding authentication',
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -44,7 +70,6 @@ class AuthInterceptor extends Interceptor {
     if (err.response?.statusCode == 401) {
       try {
         final refreshToken = await localDataSource.getRefreshToken();
-
         if (refreshToken == null || refreshToken.isEmpty) {
           await localDataSource.deleteTokens();
           return handler.next(err);
@@ -58,20 +83,28 @@ class AuthInterceptor extends Interceptor {
           token: newAuthModel.token,
           refreshToken: newAuthModel.refreshToken,
         );
+        final originalRequest = err.requestOptions;
+        originalRequest.headers['Authorization'] =
+            'Bearer ${newAuthModel.token}';
+        final response = await dio.fetch(originalRequest);
 
-        final options = err.requestOptions;
-        options.headers['Authorization'] = 'Bearer ${newAuthModel.token}';
-
-        final response = await dio.fetch(options);
         return handler.resolve(response);
       } catch (e, stackTrace) {
         await localDataSource.deleteTokens();
-        log('AuthInterceptor onError (refresh failed): $e');
-        log(stackTrace.toString());
+        log(
+          'AuthInterceptor refresh token failed: $e',
+          error: e,
+          stackTrace: stackTrace,
+        );
         return handler.next(err);
       }
     }
-
     handler.next(err);
+  }
+
+  bool _isAuthEndpoint(String path) {
+    const authEndpoints = ['/Login', '/Register', '/RefreshToken'];
+
+    return authEndpoints.any((endpoint) => path.contains(endpoint));
   }
 }
