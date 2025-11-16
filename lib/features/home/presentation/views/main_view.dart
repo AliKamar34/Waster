@@ -24,100 +24,116 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  int currIndex = 0;
-  final List<Widget> pages = [
-    const HomeView(),
-    const BrowseView(),
-    const SizedBox.shrink(),
-    const ImpactView(),
-    BlocProvider(
-      create: (context) => sl<SettingsBloc>()..add(const GetUserDetailsEvent()),
-      child: const ProfileView(),
-    ),
-  ];
+  int _currIndex = 0;
+  late final List<Widget> _pages;
+  late final SettingsBloc _settingsBloc;
+
+  @override
+  void initState() {
+    _settingsBloc = sl<SettingsBloc>()..add(const GetUserDetailsEvent());
+    _pages = [
+      const HomeView(),
+      const BrowseView(),
+      const SizedBox.shrink(),
+      const ImpactView(),
+      BlocProvider.value(value: _settingsBloc, child: const ProfileView()),
+    ];
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _settingsBloc.close();
+    super.dispose();
+  }
+
+  void _onItemTapped(int index) {
+    if (index == 2) {
+      context.pushNamed(
+        AppRoutes.donateView,
+        extra: {'postMode': PostMode.create, 'post': null},
+      );
+    } else {
+      setState(() {
+        _currIndex = index;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[currIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        backgroundColor: Theme.of(context).extension<AppColors>()!.whiteColor,
-        currentIndex: currIndex,
-        selectedItemColor: Theme.of(
-          context,
-        ).extension<AppColors>()!.primaryColor,
-        type: BottomNavigationBarType.fixed,
-        selectedLabelStyle: AppTextStyle.styleMeduim14(context),
-        onTap: (value) {
-          if (value == 2) {
-            context.pushNamed(
-              AppRoutes.donateView,
-              extra: {'postMode': PostMode.create, 'post': null},
-            );
-          } else {
-            setState(() {
-              currIndex = value;
-            });
-          }
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Assets.home,
-              colorFilter: ColorFilter.mode(
-                currIndex == 0
-                    ? Theme.of(context).extension<AppColors>()!.primaryColor
-                    : Theme.of(context).extension<AppColors>()!.blackTextColor,
-                BlendMode.srcIn,
-              ),
+      body: IndexedStack(index: _currIndex, children: _pages),
+      bottomNavigationBar: _bottomNavBar(context),
+    );
+  }
+
+  BottomNavigationBar _bottomNavBar(BuildContext context) {
+    return BottomNavigationBar(
+      elevation: 0,
+      backgroundColor: Theme.of(context).extension<AppColors>()!.whiteColor,
+      currentIndex: _currIndex,
+      selectedItemColor: Theme.of(context).extension<AppColors>()!.primaryColor,
+      type: BottomNavigationBarType.fixed,
+      selectedLabelStyle: AppTextStyle.styleMeduim14(context),
+      onTap: _onItemTapped,
+      items: [
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            Assets.home,
+            colorFilter: ColorFilter.mode(
+              _currIndex == 0
+                  ? Theme.of(context).extension<AppColors>()!.primaryColor
+                  : Theme.of(context).extension<AppColors>()!.blackTextColor,
+              BlendMode.srcIn,
             ),
-            label: LocaleKeys.home.tr(),
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Assets.browse,
-              colorFilter: ColorFilter.mode(
-                currIndex == 1
-                    ? Theme.of(context).extension<AppColors>()!.primaryColor
-                    : Theme.of(context).extension<AppColors>()!.blackTextColor,
-                BlendMode.srcIn,
-              ),
+          label: LocaleKeys.home.tr(),
+        ),
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            Assets.browse,
+            colorFilter: ColorFilter.mode(
+              _currIndex == 1
+                  ? Theme.of(context).extension<AppColors>()!.primaryColor
+                  : Theme.of(context).extension<AppColors>()!.blackTextColor,
+              BlendMode.srcIn,
             ),
-            label: LocaleKeys.browse.tr(),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add,
-              color: Theme.of(context).extension<AppColors>()!.blackTextColor,
+          label: LocaleKeys.browse.tr(),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.add,
+            color: Theme.of(context).extension<AppColors>()!.blackTextColor,
+          ),
+          label: LocaleKeys.donate.tr(),
+        ),
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            Assets.impact,
+            colorFilter: ColorFilter.mode(
+              _currIndex == 3
+                  ? Theme.of(context).extension<AppColors>()!.primaryColor
+                  : Theme.of(context).extension<AppColors>()!.blackTextColor,
+              BlendMode.srcIn,
             ),
-            label: LocaleKeys.donate.tr(),
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Assets.impact,
-              colorFilter: ColorFilter.mode(
-                currIndex == 3
-                    ? Theme.of(context).extension<AppColors>()!.primaryColor
-                    : Theme.of(context).extension<AppColors>()!.blackTextColor,
-                BlendMode.srcIn,
-              ),
+          label: LocaleKeys.impact.tr(),
+        ),
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            Assets.profile,
+            colorFilter: ColorFilter.mode(
+              _currIndex == 4
+                  ? Theme.of(context).extension<AppColors>()!.primaryColor
+                  : Theme.of(context).extension<AppColors>()!.blackTextColor,
+              BlendMode.srcIn,
             ),
-            label: LocaleKeys.impact.tr(),
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Assets.profile,
-              colorFilter: ColorFilter.mode(
-                currIndex == 4
-                    ? Theme.of(context).extension<AppColors>()!.primaryColor
-                    : Theme.of(context).extension<AppColors>()!.blackTextColor,
-                BlendMode.srcIn,
-              ),
-            ),
-            label: LocaleKeys.profile.tr(),
-          ),
-        ],
-      ),
+          label: LocaleKeys.profile.tr(),
+        ),
+      ],
     );
   }
 }
