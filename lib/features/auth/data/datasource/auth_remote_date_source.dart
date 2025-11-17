@@ -2,6 +2,8 @@ import 'package:waster/core/errors/server_exception.dart';
 import 'package:waster/core/networking/api_end_points.dart';
 import 'package:waster/core/networking/dio_helper.dart';
 import 'package:waster/features/auth/data/models/auth_response_model.dart';
+import 'package:waster/features/auth/data/models/login_request_model.dart';
+import 'package:waster/features/auth/data/models/register_request_model.dart';
 
 abstract class AuthRemoteDateSource {
   Future<AuthModel> login({required String email, required String password});
@@ -30,7 +32,7 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
     try {
       final response = await dioHelper.postRequest(
         endPoint: ApiEndPoints.logIn,
-        data: {'email': email, 'password': password},
+        data: LoginRequestModel(email: email, password: password).toJson(),
       );
       if (response.statusCode == 200) {
         return AuthModel.fromJson(response.data);
@@ -57,15 +59,15 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
     try {
       final response = await dioHelper.postRequest(
         endPoint: ApiEndPoints.register,
-        data: {
-          'firstName': firstName,
-          'lastName': lastName,
-          'email': email,
-          'password': password,
-          'confirmPassword': confirmPassword,
-          'phoneNumber': phoneNumber,
-          'address': address,
-        },
+        data: RegisterRequestModel(
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,
+          phoneNumber: phoneNumber,
+          address: address,
+        ).toJson(),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         return AuthModel.fromJson(response.data);
