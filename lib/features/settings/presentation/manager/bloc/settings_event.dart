@@ -72,3 +72,12 @@ final class ChangePasswordEvent extends SettingsEvent {
   @override
   List<Object> get props => [currentPassword, newPassword, confirmPassword];
 }
+
+final class SaveProfileChangesEvent extends SettingsEvent {
+  final Map<String, dynamic> changes;
+
+  const SaveProfileChangesEvent(this.changes);
+
+  @override
+  List<Object> get props => [changes];
+}

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl_phone_field/phone_number.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/utils/validators.dart';
@@ -15,11 +16,13 @@ class BasicInformationSection extends StatelessWidget {
     required this.emailController,
     required this.phoneController,
     required this.locationController,
+    this.onPhoneChanged,
   });
   final TextEditingController nameController;
   final TextEditingController emailController;
   final TextEditingController phoneController;
   final TextEditingController locationController;
+  final void Function(PhoneNumber)? onPhoneChanged;
   @override
   Widget build(BuildContext context) {
     return CustomSettingsContainer(
@@ -40,7 +43,10 @@ class BasicInformationSection extends StatelessWidget {
           lable: LocaleKeys.Email.tr(),
           prefixIcon: SvgPicture.asset(Assets.email),
         ),
-        CustomPhoneNumberFeild(controller: phoneController),
+        CustomPhoneNumberFeild(
+          controller: phoneController,
+          onChanged: onPhoneChanged,
+        ),
         CustomTextField(
           hint: 'Enter Location',
           controller: locationController,

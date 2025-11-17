@@ -25,6 +25,7 @@ import 'package:waster/features/settings/domain/repo/settings_repo.dart';
 import 'package:waster/features/settings/domain/usecases/change_email_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/change_password_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/get_user_details_use_case.dart';
+import 'package:waster/features/settings/domain/usecases/save_profile_changes_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/update_bio_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/update_location_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/update_name_use_case.dart';
@@ -116,15 +117,19 @@ void setupServiceLocator() {
   sl.registerLazySingleton<UpdatePhoneNumberUseCase>(
     () => UpdatePhoneNumberUseCase(settingsRepo: sl()),
   );
+  sl.registerLazySingleton<SaveProfileChangesUseCase>(
+    () => SaveProfileChangesUseCase(settingsRepo: sl()),
+  );
 
   // bloc
   sl.registerFactory(
     () => SettingsBloc(
       getUserDetailsUseCase: sl(),
-      updateNameUseCase: sl(),
-      updateBioUseCase: sl(),
-      updateLocationUseCase: sl(),
-      updatePhoneNumberUseCase: sl(),
+      saveProfileChangesUseCase: sl(),
+      // updateNameUseCase: sl(),
+      // updateBioUseCase: sl(),
+      // updateLocationUseCase: sl(),
+      // updatePhoneNumberUseCase: sl(),
       changeEmailUseCase: sl(),
       changePasswordUseCase: sl(),
     ),

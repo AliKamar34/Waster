@@ -1,13 +1,21 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 
 class CustomPhoneNumberFeild extends StatelessWidget {
-  const CustomPhoneNumberFeild({super.key, this.controller});
+  const CustomPhoneNumberFeild({
+    super.key,
+    this.controller,
+    this.onChanged,
+    this.initialCountryCode = 'EG',
+  });
   final TextEditingController? controller;
+  final void Function(PhoneNumber)? onChanged;
+  final String initialCountryCode;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,8 +27,9 @@ class CustomPhoneNumberFeild extends StatelessWidget {
           style: AppTextStyle.styleRegular16(context),
         ),
         IntlPhoneField(
-          initialCountryCode: 'EG',
+          initialCountryCode: initialCountryCode,
           controller: controller,
+          onChanged: onChanged,
           validator: (value) {
             if (value == null || value.number.isEmpty) {
               return LocaleKeys.please_enter_your_phone_number.tr();
