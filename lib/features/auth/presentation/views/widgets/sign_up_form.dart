@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl_phone_field/phone_number.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/utils/show_toast.dart';
@@ -36,6 +37,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final _confirmPasswordController = TextEditingController();
   final _locationController = TextEditingController();
   final _phoneNumberController = TextEditingController();
+  PhoneNumber? _completePhoneNumber;
 
   @override
   void dispose() {
@@ -64,6 +66,11 @@ class _SignUpFormState extends State<SignUpForm> {
       return;
     }
 
+    if (_completePhoneNumber == null) {
+      showToast(context, LocaleKeys.please_enter_your_phone_number.tr());
+      return;
+    }
+
     final (firstName, lastName) = _parseFullName(_fullNameController.text);
 
     context.read<AuthBloc>().add(
@@ -73,7 +80,7 @@ class _SignUpFormState extends State<SignUpForm> {
         email: _emailController.text.trim(),
         password: _passwordController.text,
         confirmPassword: _confirmPasswordController.text,
-        phoneNumber: _phoneNumberController.text.trim(),
+        phoneNumber: _completePhoneNumber!.completeNumber,
         address: _locationController.text,
       ),
     );
@@ -92,7 +99,14 @@ class _SignUpFormState extends State<SignUpForm> {
           children: [
             NameTextField(fullNameController: _fullNameController),
             EmailTextField(emailController: _emailController),
-            CustomPhoneNumberFeild(controller: _phoneNumberController),
+            CustomPhoneNumberFeild(
+              controller: _phoneNumberController,
+              onChanged: (PhoneNumber phoneNumber) {
+                setState(() {
+                  _completePhoneNumber = phoneNumber;
+                });
+              },
+            ),
             RolesDropDownWidget(
               selectedRole: _selectedRole,
               onChanged: (value) {
