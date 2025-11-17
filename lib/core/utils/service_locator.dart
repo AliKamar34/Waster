@@ -26,10 +26,6 @@ import 'package:waster/features/settings/domain/usecases/change_email_use_case.d
 import 'package:waster/features/settings/domain/usecases/change_password_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/get_user_details_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/save_profile_changes_use_case.dart';
-import 'package:waster/features/settings/domain/usecases/update_bio_use_case.dart';
-import 'package:waster/features/settings/domain/usecases/update_location_use_case.dart';
-import 'package:waster/features/settings/domain/usecases/update_name_use_case.dart';
-import 'package:waster/features/settings/domain/usecases/update_phone_number_use_case.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 
 final GetIt sl = GetIt.instance;
@@ -105,18 +101,6 @@ void setupServiceLocator() {
   sl.registerLazySingleton<GetUserDetailsUseCase>(
     () => GetUserDetailsUseCase(settingsRepo: sl()),
   );
-  sl.registerLazySingleton<UpdateBioUseCase>(
-    () => UpdateBioUseCase(settingsRepo: sl()),
-  );
-  sl.registerLazySingleton<UpdateLocationUseCase>(
-    () => UpdateLocationUseCase(settingsRepo: sl()),
-  );
-  sl.registerLazySingleton<UpdateNameUseCase>(
-    () => UpdateNameUseCase(settingsRepo: sl()),
-  );
-  sl.registerLazySingleton<UpdatePhoneNumberUseCase>(
-    () => UpdatePhoneNumberUseCase(settingsRepo: sl()),
-  );
   sl.registerLazySingleton<SaveProfileChangesUseCase>(
     () => SaveProfileChangesUseCase(settingsRepo: sl()),
   );
@@ -126,10 +110,6 @@ void setupServiceLocator() {
     () => SettingsBloc(
       getUserDetailsUseCase: sl(),
       saveProfileChangesUseCase: sl(),
-      // updateNameUseCase: sl(),
-      // updateBioUseCase: sl(),
-      // updateLocationUseCase: sl(),
-      // updatePhoneNumberUseCase: sl(),
       changeEmailUseCase: sl(),
       changePasswordUseCase: sl(),
     ),

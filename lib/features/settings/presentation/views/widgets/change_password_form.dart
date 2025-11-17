@@ -98,7 +98,6 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                       confirmPassword: confirmPasswordController.text,
                     ),
                   );
-                  // context.pop();
                 } else {
                   setState(() {
                     autovalidateMode = AutovalidateMode.always;
