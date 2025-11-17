@@ -21,7 +21,7 @@ class DonateFormCubit extends Cubit<DonateFormState> {
     _validateForm();
   }
 
-  void updateExpiresOn(String? expiresOn) {
+  void updateExpiresOn(DateTime? expiresOn) {
     emit(state.copyWith(expiresOn: expiresOn));
     _validateForm();
   }

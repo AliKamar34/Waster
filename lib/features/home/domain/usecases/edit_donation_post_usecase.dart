@@ -10,7 +10,7 @@ class EditDonationPostParams extends Equatable {
   final String quantity;
   final String unit;
   final String pickupLocation;
-  final String expiresOn;
+  final DateTime expiresOn;
   final String category;
   final String imageType;
   final String imageData;

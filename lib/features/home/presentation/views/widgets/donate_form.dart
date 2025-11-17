@@ -11,7 +11,7 @@ import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_text_field.dart';
 import 'package:waster/features/auth/presentation/views/widgets/location_text_field.dart';
 import 'package:waster/features/home/domain/entity/enums/post_mode_enum.dart';
-import 'package:waster/features/home/domain/entity/post_entity.dart';
+import 'package:waster/core/entity/post_entity.dart';
 import 'package:waster/features/home/presentation/manager/bloc/post_bloc.dart';
 import 'package:waster/features/home/presentation/manager/cubit/donate_form_cubit.dart';
 import 'package:waster/features/home/presentation/manager/cubit/donate_form_state.dart';
@@ -188,11 +188,13 @@ class _DonateFormState extends State<DonateForm> {
               return CustomPickUpTimeWidget(
                 onPressed: () async {
                   final selectedDate = await pickDateTime(context);
-                  if (selectedDate != null) {
-                    final isoDate = selectedDate.toUtc().toIso8601String();
-                    if (context.mounted) {
-                      context.read<DonateFormCubit>().updateExpiresOn(isoDate);
-                    }
+                  // if (selectedDate != null) {
+                  //   final isoDate = selectedDate.toUtc().toIso8601String();
+                  if (context.mounted) {
+                    context.read<DonateFormCubit>().updateExpiresOn(
+                      selectedDate,
+                    );
+                    // }
                   }
                 },
               );

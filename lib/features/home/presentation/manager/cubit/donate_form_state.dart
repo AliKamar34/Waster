@@ -6,7 +6,7 @@ class DonateFormState extends Equatable {
   final File? image;
   final String? category;
   final String? unit;
-  final String? expiresOn;
+  final DateTime? expiresOn;
   final bool isValid;
   final String? errorMessage;
 
@@ -25,7 +25,7 @@ class DonateFormState extends Equatable {
     File? image,
     String? category,
     String? unit,
-    String? expiresOn,
+    DateTime? expiresOn,
     bool? isValid,
     String? errorMessage,
   }) {

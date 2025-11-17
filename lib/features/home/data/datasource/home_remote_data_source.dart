@@ -1,6 +1,7 @@
 import 'package:waster/core/errors/server_exception.dart';
 import 'package:waster/core/networking/api_end_points.dart';
 import 'package:waster/core/networking/dio_helper.dart';
+import 'package:waster/features/home/data/models/create_post_model.dart';
 
 abstract class HomeRemoteDataSource {
   Future<void> addDonationPost({
@@ -9,7 +10,7 @@ abstract class HomeRemoteDataSource {
     required String quantity,
     required String unit,
     required String pickupLocation,
-    required String expiresOn,
+    required DateTime expiresOn,
     required String category,
     required String imageType,
     required String imageData,
@@ -21,7 +22,7 @@ abstract class HomeRemoteDataSource {
     required String quantity,
     required String unit,
     required String pickupLocation,
-    required String expiresOn,
+    required DateTime expiresOn,
     required String category,
     required String imageType,
     required String imageData,
@@ -39,7 +40,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     required String quantity,
     required String unit,
     required String pickupLocation,
-    required String expiresOn,
+    required DateTime expiresOn,
     required String category,
     required String imageType,
     required String imageData,
@@ -47,17 +48,17 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     try {
       final response = await dioHelper.postRequest(
         endPoint: ApiEndPoints.createPost,
-        data: {
-          'title': title,
-          'description': description,
-          'quantity': quantity,
-          'unit': unit,
-          'pickupLocation': pickupLocation,
-          'expiresOn': expiresOn,
-          'category': category,
-          'imageType': imageType,
-          'imageData': imageData,
-        },
+        data: CreatePostModel(
+          title: title,
+          description: description,
+          quantity: quantity,
+          unit: unit,
+          pickupLocation: pickupLocation,
+          expiresOn: expiresOn,
+          category: category,
+          imageType: imageType,
+          imageData: imageData,
+        ).toJson(),
       );
       if (response.statusCode == 200 || response.statusCode == 201) return;
       throw const ServerException(message: 'Failed to add donation post');
@@ -76,7 +77,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     required String quantity,
     required String unit,
     required String pickupLocation,
-    required String expiresOn,
+    required DateTime expiresOn,
     required String category,
     required String imageType,
     required String imageData,
@@ -85,17 +86,17 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       final response = await dioHelper.putRequest(
         endPoint: ApiEndPoints.editPost,
         queryParameters: {'id': id},
-        data: {
-          'title': title,
-          'description': description,
-          'quantity': quantity,
-          'unit': unit,
-          'pickupLocation': pickupLocation,
-          'expiresOn': expiresOn,
-          'category': category,
-          'imageType': imageType,
-          'imageData': imageData,
-        },
+        data: CreatePostModel(
+          title: title,
+          description: description,
+          quantity: quantity,
+          unit: unit,
+          pickupLocation: pickupLocation,
+          expiresOn: expiresOn,
+          category: category,
+          imageType: imageType,
+          imageData: imageData,
+        ).toJson(),
       );
       if (response.statusCode == 200 || response.statusCode == 201) return;
       throw const ServerException(message: 'Failed to edit donation post');

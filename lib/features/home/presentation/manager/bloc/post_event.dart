@@ -13,7 +13,7 @@ final class CreatePostEvent extends PostEvent {
   final String quantity;
   final String unit;
   final String pickupLocation;
-  final String expiresOn;
+  final DateTime expiresOn;
   final String category;
   final File imageFile;
 
@@ -48,7 +48,7 @@ final class EditPostEvent extends PostEvent {
   final String quantity;
   final String unit;
   final String pickupLocation;
-  final String expiresOn;
+  final DateTime expiresOn;
   final String category;
   final File imageFile;
 
