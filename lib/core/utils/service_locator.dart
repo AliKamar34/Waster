@@ -11,14 +11,14 @@ import 'package:waster/features/auth/domain/usecases/refresh_token_use_case.dart
 import 'package:waster/features/auth/domain/usecases/register_use_case.dart';
 import 'package:waster/features/auth/domain/usecases/revoke_token_use_case.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
-import 'package:waster/features/home/data/datasource/home_remote_data_source.dart';
-import 'package:waster/features/home/data/repo/home_repo_impl.dart';
-import 'package:waster/features/home/domain/repo/home_repo.dart';
-import 'package:waster/features/home/domain/usecases/add_donation_post_usecase.dart';
-import 'package:waster/features/home/domain/usecases/edit_donation_post_usecase.dart';
-import 'package:waster/features/home/domain/usecases/process_image_usecase.dart';
-import 'package:waster/features/home/presentation/manager/bloc/post_bloc.dart';
-import 'package:waster/features/home/presentation/manager/cubit/donate_form_cubit.dart';
+import 'package:waster/features/post/data/datasource/post_remote_data_source.dart';
+import 'package:waster/features/post/data/repo/post_repo_impl.dart';
+import 'package:waster/features/post/domain/repo/post_repo.dart';
+import 'package:waster/features/post/domain/usecases/add_donation_post_usecase.dart';
+import 'package:waster/features/post/domain/usecases/edit_donation_post_usecase.dart';
+import 'package:waster/features/post/domain/usecases/process_image_usecase.dart';
+import 'package:waster/features/post/presentation/manager/bloc/post_bloc.dart';
+import 'package:waster/features/post/presentation/manager/cubit/donate_form_cubit.dart';
 import 'package:waster/features/settings/data/datasource/settings_remote_data_source.dart';
 import 'package:waster/features/settings/data/repo/setting_repo_impl.dart';
 import 'package:waster/features/settings/domain/repo/settings_repo.dart';
@@ -137,19 +137,19 @@ void setupServiceLocator() {
 
   // Feature - Home
   // Data source
-  sl.registerLazySingleton<HomeRemoteDataSource>(
-    () => HomeRemoteDataSourceImpl(dioHelper: sl()),
+  sl.registerLazySingleton<PostRemoteDataSource>(
+    () => PostRemoteDataSourceImpl(dioHelper: sl()),
   );
   // Repo
-  sl.registerLazySingleton<HomeRepo>(
-    () => HomeRepoImpl(homeRemoteDataSource: sl()),
+  sl.registerLazySingleton<PostRepo>(
+    () => PostRepoImpl(homeRemoteDataSource: sl()),
   );
   // use cases
   sl.registerLazySingleton<AddDonationPostUsecase>(
-    () => AddDonationPostUsecase(homeRepo: sl()),
+    () => AddDonationPostUsecase(postRepo: sl()),
   );
   sl.registerLazySingleton<EditDonationPostUsecase>(
-    () => EditDonationPostUsecase(homeRepo: sl()),
+    () => EditDonationPostUsecase(postRepo: sl()),
   );
   sl.registerLazySingleton<ProcessImageUseCase>(() => ProcessImageUseCase());
 

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:waster/core/errors/failure.dart';
-import 'package:waster/features/home/domain/repo/home_repo.dart';
+import 'package:waster/features/post/domain/repo/post_repo.dart';
 
 class EditDonationPostParams extends Equatable {
   final String id;
@@ -44,12 +44,12 @@ class EditDonationPostParams extends Equatable {
 }
 
 class EditDonationPostUsecase {
-  final HomeRepo homeRepo;
+  final PostRepo postRepo;
 
-  const EditDonationPostUsecase({required this.homeRepo});
+  const EditDonationPostUsecase({required this.postRepo});
 
   Future<Either<Failure, void>> call(EditDonationPostParams params) {
-    return homeRepo.editDonationPost(
+    return postRepo.editDonationPost(
       id: params.id,
       title: params.title,
       description: params.description,

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:waster/core/errors/failure.dart';
 
-abstract class HomeRepo {
+abstract class PostRepo {
   Future<Either<Failure, void>> addDonationPost({
     required String title,
     required String description,

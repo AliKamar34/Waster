@@ -1,9 +1,9 @@
 import 'package:waster/core/errors/server_exception.dart';
 import 'package:waster/core/networking/api_end_points.dart';
 import 'package:waster/core/networking/dio_helper.dart';
-import 'package:waster/features/home/data/models/create_post_model.dart';
+import 'package:waster/features/post/data/models/create_post_model.dart';
 
-abstract class HomeRemoteDataSource {
+abstract class PostRemoteDataSource {
   Future<void> addDonationPost({
     required String title,
     required String description,
@@ -29,10 +29,10 @@ abstract class HomeRemoteDataSource {
   });
 }
 
-class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
+class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   final DioHelper dioHelper;
 
-  const HomeRemoteDataSourceImpl({required this.dioHelper});
+  const PostRemoteDataSourceImpl({required this.dioHelper});
   @override
   Future<void> addDonationPost({
     required String title,

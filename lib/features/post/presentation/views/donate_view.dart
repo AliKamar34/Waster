@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/core/widgets/custom_loading_indicator.dart';
-import 'package:waster/features/home/domain/entity/enums/post_mode_enum.dart';
 import 'package:waster/core/entity/post_entity.dart';
-import 'package:waster/features/home/presentation/manager/bloc/post_bloc.dart';
-import 'package:waster/features/home/presentation/views/widgets/custom_donate_app_bar.dart';
-import 'package:waster/features/home/presentation/views/widgets/donate_form.dart';
+import 'package:waster/features/post/domain/entity/enums/post_mode_enum.dart';
+import 'package:waster/features/post/presentation/manager/bloc/post_bloc.dart';
+import 'package:waster/features/post/presentation/views/widgets/custom_donate_app_bar.dart';
+import 'package:waster/features/post/presentation/views/widgets/donate_form.dart';
 
 class DonateView extends StatelessWidget {
   const DonateView({super.key, required this.postMode, this.post})

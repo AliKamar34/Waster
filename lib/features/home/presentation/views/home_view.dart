@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/widgets/custom_button.dart';
-import 'package:waster/features/home/domain/entity/enums/post_mode_enum.dart';
 import 'package:waster/features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:waster/features/home/presentation/views/widgets/home_count_section.dart';
 import 'package:waster/features/home/presentation/views/widgets/impact_of_month_widget.dart';
 import 'package:waster/features/home/presentation/views/widgets/recent_donations_section.dart';
+import 'package:waster/features/post/domain/entity/enums/post_mode_enum.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

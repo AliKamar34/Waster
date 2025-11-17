@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waster/features/home/domain/usecases/add_donation_post_usecase.dart';
-import 'package:waster/features/home/domain/usecases/edit_donation_post_usecase.dart';
-import 'package:waster/features/home/domain/usecases/process_image_usecase.dart';
+import 'package:waster/features/post/domain/usecases/add_donation_post_usecase.dart';
+import 'package:waster/features/post/domain/usecases/edit_donation_post_usecase.dart';
+import 'package:waster/features/post/domain/usecases/process_image_usecase.dart';
 
 part 'post_event.dart';
 part 'post_state.dart';
