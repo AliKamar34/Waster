@@ -18,7 +18,6 @@ import 'package:waster/features/post/domain/usecases/add_donation_post_usecase.d
 import 'package:waster/features/post/domain/usecases/edit_donation_post_usecase.dart';
 import 'package:waster/features/post/domain/usecases/process_image_usecase.dart';
 import 'package:waster/features/post/presentation/manager/bloc/post_bloc.dart';
-import 'package:waster/features/post/presentation/manager/cubit/donate_form_cubit.dart';
 import 'package:waster/features/settings/data/datasource/settings_remote_data_source.dart';
 import 'package:waster/features/settings/data/repo/setting_repo_impl.dart';
 import 'package:waster/features/settings/domain/repo/settings_repo.dart';
@@ -126,20 +125,15 @@ void setupServiceLocator() {
   );
   // use cases
   sl.registerLazySingleton<AddDonationPostUsecase>(
-    () => AddDonationPostUsecase(postRepo: sl()),
+    () => AddDonationPostUsecase(postRepo: sl(), processImageUseCase: sl()),
   );
   sl.registerLazySingleton<EditDonationPostUsecase>(
-    () => EditDonationPostUsecase(postRepo: sl()),
+    () => EditDonationPostUsecase(postRepo: sl(), processImageUseCase: sl()),
   );
   sl.registerLazySingleton<ProcessImageUseCase>(() => ProcessImageUseCase());
 
   // bloc
   sl.registerFactory(
-    () => PostBloc(
-      addDonationPostUsecase: sl(),
-      editDonationPostUsecase: sl(),
-      processImageUseCase: sl(),
-    ),
+    () => PostBloc(addDonationPostUsecase: sl(), editDonationPostUsecase: sl()),
   );
-  sl.registerFactory(() => DonateFormCubit());
 }
