@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
@@ -28,7 +29,7 @@ class NameTextField extends StatelessWidget {
           Theme.of(context).extension<AppColors>()!.greyTextColor,
           BlendMode.srcIn,
         ),
-        width: 24,
+        width: 24.sp,
       ),
     );
   }

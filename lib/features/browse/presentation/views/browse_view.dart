@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/features/browse/presentation/views/widgets/accepted_orders_section.dart';
 import 'package:waster/features/browse/presentation/views/widgets/available_near_you_section.dart';
 import 'package:waster/features/browse/presentation/views/widgets/browse_count_section.dart';
@@ -10,9 +11,9 @@ class BrowseView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      minimum: EdgeInsets.symmetric(horizontal: 24),
-      child: SingleChildScrollView(
+    return SafeArea(
+      minimum: EdgeInsets.symmetric(horizontal: 24.w),
+      child: const SingleChildScrollView(
         child: Column(
           spacing: 24,
           children: [

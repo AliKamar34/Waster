@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
@@ -13,7 +14,7 @@ class CustomPickUpTimeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomLightColorContainer(
       color: Theme.of(context).extension<AppColors>()!.blueColor,
-      padding: 16,
+      padding: 16.w,
       child: Row(
         spacing: 50,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

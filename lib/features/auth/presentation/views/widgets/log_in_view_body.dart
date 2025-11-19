@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
@@ -14,13 +15,13 @@ class LogInViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      minimum: const EdgeInsets.symmetric(horizontal: 24),
+      minimum: EdgeInsets.symmetric(horizontal: 24.w),
       child: SingleChildScrollView(
         child: Column(
           spacing: 16,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
+            SizedBox(height: 120.h),
             SvgPicture.asset(Assets.logo),
             Text(
               LocaleKeys.welcome_back.tr(),
@@ -36,7 +37,7 @@ class LogInViewBody extends StatelessWidget {
               action: LocaleKeys.sign_up.tr(),
               screen: AppRoutes.singUp,
             ),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
+            SizedBox(height: 120.h),
           ],
         ),
       ),

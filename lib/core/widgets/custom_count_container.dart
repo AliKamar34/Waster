@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 
@@ -15,8 +16,8 @@ class CustomCountContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: CustomContainer(
-        height: 120,
-        borderRadius: 14,
+        height: 150.h,
+        borderRadius: 14.r,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

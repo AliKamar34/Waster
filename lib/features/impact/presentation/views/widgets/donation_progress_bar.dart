@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
 
 class DonationProgressBar extends StatelessWidget {
@@ -16,7 +17,7 @@ class DonationProgressBar extends StatelessWidget {
           height: 15,
           decoration: BoxDecoration(
             color: Colors.grey[300],
-            borderRadius: BorderRadius.circular(6),
+            borderRadius: BorderRadius.circular(6.r),
           ),
         ),
         FractionallySizedBox(
@@ -24,7 +25,7 @@ class DonationProgressBar extends StatelessWidget {
           child: Container(
             height: 15,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(6.r),
               gradient: LinearGradient(
                 colors: [
                   Theme.of(

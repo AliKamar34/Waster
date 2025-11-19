@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
 
 class CustomSwithcher extends StatelessWidget {
@@ -21,7 +22,7 @@ class CustomSwithcher extends StatelessWidget {
         width: 51,
         height: 25,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.5),
+          borderRadius: BorderRadius.circular(15.5.r),
           color: value
               ? Theme.of(context).extension<AppColors>()!.primaryColor
               : Theme.of(
@@ -41,7 +42,7 @@ class CustomSwithcher extends StatelessWidget {
           child: Container(
             width: 21,
             height: 21,
-            margin: const EdgeInsets.symmetric(horizontal: 2),
+            margin: EdgeInsets.symmetric(horizontal: 2.w),
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,

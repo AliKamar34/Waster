@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
@@ -20,7 +21,7 @@ class TabItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: CustomContainer(
-        padding: 6,
+        padding: 6.w,
         backgroundColor: isSelected
             ? Theme.of(context).extension<AppColors>()!.primaryColor
             : Theme.of(context).extension<AppColors>()!.scaffoldColor,

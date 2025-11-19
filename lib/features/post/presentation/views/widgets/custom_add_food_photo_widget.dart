@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
@@ -27,7 +28,7 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomLightColorContainer(
-      padding: image != null ? 2 : 16,
+      padding: image != null ? 2.w : 16.w,
       color: Theme.of(context).extension<AppColors>()!.primaryColor,
       child: CachedNetworkImage(
         imageUrl: imagePath ?? '',
@@ -55,7 +56,7 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       SizedBox(
-                        width: 150,
+                        width: 200.w,
                         child: CustomButton(
                           backgroundColor: Theme.of(
                             context,
@@ -81,7 +82,7 @@ class CustomAddFoodPhotoWidget extends StatelessWidget {
             : Stack(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(12.r),
                     child: Image.file(
                       image!,
                       width: double.infinity,

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
@@ -58,7 +59,7 @@ class CustomPhoneNumberFeild extends StatelessWidget {
 
             prefixIconConstraints: const BoxConstraints(),
             suffixIconConstraints: const BoxConstraints(),
-            contentPadding: const EdgeInsets.symmetric(vertical: 12),
+            contentPadding: EdgeInsets.symmetric(vertical: 12.w),
           ),
         ),
       ],
@@ -67,8 +68,8 @@ class CustomPhoneNumberFeild extends StatelessWidget {
 
   OutlineInputBorder borderBuilder(BuildContext context) {
     return OutlineInputBorder(
-      gapPadding: 18,
-      borderRadius: BorderRadius.circular(8),
+      gapPadding: 18.w,
+      borderRadius: BorderRadius.circular(8.r),
       borderSide: BorderSide(
         color: Theme.of(context).extension<AppColors>()!.borderColor,
       ),

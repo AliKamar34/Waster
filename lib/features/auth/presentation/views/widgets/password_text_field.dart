@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
@@ -27,11 +28,11 @@ class PasswordTextField extends StatelessWidget {
       controller: _passwordController,
       validator: Validators.password,
       isPassword: isPassword,
-      prefixIcon: SvgPicture.asset(Assets.passwordLock, width: 24),
+      prefixIcon: SvgPicture.asset(Assets.passwordLock, width: 24.sp),
       suffixIcon: InkWell(
         onTap: onTap,
         child: isPassword
-            ? SvgPicture.asset(Assets.passwordEye, width: 24)
+            ? SvgPicture.asset(Assets.passwordEye, width: 24.sp)
             : SvgPicture.asset(
                 Assets.passwordEyeOff,
                 colorFilter: ColorFilter.mode(

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:waster/core/constants/assets.dart';
@@ -26,7 +27,7 @@ class _ProfileEditingPhotoSectionState
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      padding: 24,
+      padding: 24.w,
       child: SizedBox(
         width: double.infinity,
         child: Column(
@@ -51,7 +52,7 @@ class _ProfileEditingPhotoSectionState
                         ),
                       )
                     : ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                         child: Image.file(
                           image!,
                           width: 100,
@@ -84,7 +85,7 @@ class _ProfileEditingPhotoSectionState
                       );
                     },
                     child: CustomContainer(
-                      padding: 4,
+                      padding: 4.w,
                       child: SvgPicture.asset(Assets.camera, width: 20),
                     ),
                   ),

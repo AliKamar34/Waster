@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/themes/app_colors.dart';
@@ -41,7 +42,7 @@ class NotificationContainer extends StatelessWidget {
           Row(
             spacing: 10,
             children: [
-              SvgPicture.asset(icon, width: 24),
+              SvgPicture.asset(icon, width: 24.sp),
               Expanded(
                 child: Text(title, style: AppTextStyle.styleRegular16(context)),
               ),

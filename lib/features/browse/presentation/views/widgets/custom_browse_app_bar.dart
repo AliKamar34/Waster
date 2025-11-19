@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
@@ -27,7 +28,7 @@ class CustomBrowseAppBar extends StatelessWidget {
           context.pushNamed(AppRoutes.browseAllView);
         },
         child: CustomContainer(
-          padding: 6,
+          padding: 6.w,
           backgroundColor: Theme.of(
             context,
           ).extension<AppColors>()!.scaffoldColor,

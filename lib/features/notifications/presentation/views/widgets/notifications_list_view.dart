@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
@@ -14,7 +15,7 @@ class NotificationsListView extends StatelessWidget {
       itemCount: 5,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsetsDirectional.only(bottom: 16),
+          padding: EdgeInsetsDirectional.only(bottom: 16.h),
           child: NotificationContainer(
             isRead: true,
             icon: Assets.package,

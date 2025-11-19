@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 
@@ -20,7 +21,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        minimumSize: const Size(double.infinity, 40),
+        minimumSize: Size(double.infinity, 40.h),
         backgroundColor:
             backgroundColor ??
             Theme.of(context).extension<AppColors>()!.primaryColor,
@@ -31,7 +32,7 @@ class CustomButton extends StatelessWidget {
                 backgroundColor ??
                 Theme.of(context).extension<AppColors>()!.primaryColor,
           ),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
         ),
       ),
       onPressed: onPressed,

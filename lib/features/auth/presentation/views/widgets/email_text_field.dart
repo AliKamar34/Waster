@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
@@ -21,7 +22,7 @@ class EmailTextField extends StatelessWidget {
       hint: LocaleKeys.Enter_your_email.tr(),
       controller: _emailController,
       validator: Validators.email,
-      prefixIcon: SvgPicture.asset(Assets.email, width: 24),
+      prefixIcon: SvgPicture.asset(Assets.email, width: 24.sp),
     );
   }
 }

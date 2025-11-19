@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
@@ -30,8 +31,8 @@ class OrderDetailsAppBar extends StatelessWidget {
         ),
         const Spacer(),
         CustomContainer(
-          padding: 2,
-          borderRadius: 8,
+          padding: 2.w,
+          borderRadius: 8.r,
           backgroundColor: Theme.of(
             context,
           ).extension<AppColors>()!.orangeColor,

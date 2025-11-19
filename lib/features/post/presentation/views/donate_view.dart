@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/core/widgets/custom_loading_indicator.dart';
@@ -22,7 +23,7 @@ class DonateView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        minimum: const EdgeInsets.symmetric(horizontal: 24),
+        minimum: EdgeInsets.symmetric(horizontal: 24.w),
         child: BlocConsumer<PostBloc, PostState>(
           listener: (context, state) {
             if (state is PostSuccess) {

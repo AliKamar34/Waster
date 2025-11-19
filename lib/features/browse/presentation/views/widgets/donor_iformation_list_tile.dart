@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
@@ -15,7 +16,7 @@ class DonorIformationListTile extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: CircleAvatar(
-        radius: 20,
+        radius: 22.r,
         backgroundColor: Theme.of(context).extension<AppColors>()!.primaryColor,
         child: const Text('SB'),
       ),
@@ -28,8 +29,8 @@ class DonorIformationListTile extends StatelessWidget {
             ),
           ),
           CustomContainer(
-            padding: 2,
-            borderRadius: 8,
+            padding: 2.w,
+            borderRadius: 6.r,
             backgroundColor: Theme.of(
               context,
             ).extension<AppColors>()!.orangeColor,
@@ -44,14 +45,14 @@ class DonorIformationListTile extends StatelessWidget {
       ),
       subtitle: Row(
         children: [
-          const Icon(Icons.star, color: Colors.amber, size: 18),
+          Icon(Icons.star, color: Colors.amber, size: 18.sp),
           Text('4.9', style: AppTextStyle.styleRegular14(context)),
         ],
       ),
       trailing: InkWell(
         onTap: () {},
         child: CustomContainer(
-          padding: 8,
+          padding: 8.w,
           child: SvgPicture.asset(Assets.phone),
         ),
       ),

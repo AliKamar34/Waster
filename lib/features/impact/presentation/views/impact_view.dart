@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/features/impact/presentation/views/widgets/achievement_badges_section.dart';
 import 'package:waster/features/impact/presentation/views/widgets/community_leaderboard_section.dart';
 import 'package:waster/features/impact/presentation/views/widgets/custom_impact_app_bar.dart';
@@ -11,10 +12,10 @@ class ImpactView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24),
-        child: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: const SingleChildScrollView(
           child: Column(
             spacing: 24,
             crossAxisAlignment: CrossAxisAlignment.start,

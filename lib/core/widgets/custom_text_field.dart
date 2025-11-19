@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 
@@ -61,17 +62,17 @@ class CustomTextField extends StatelessWidget {
             hintText: hint,
             hintStyle: AppTextStyle.styleRegular16(context),
             suffixIcon: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.w),
               child: suffixIcon,
             ),
             prefixIcon: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.w),
               child: prefixIcon,
             ),
 
             prefixIconConstraints: const BoxConstraints(),
             suffixIconConstraints: const BoxConstraints(),
-            contentPadding: const EdgeInsets.symmetric(vertical: 12),
+            contentPadding: EdgeInsets.symmetric(vertical: 12.w),
           ),
         ),
       ],
@@ -80,8 +81,8 @@ class CustomTextField extends StatelessWidget {
 
   OutlineInputBorder borderBuilder(BuildContext context) {
     return OutlineInputBorder(
-      gapPadding: 18,
-      borderRadius: BorderRadius.circular(8),
+      gapPadding: 18.w,
+      borderRadius: BorderRadius.circular(8.r),
       borderSide: BorderSide(
         color: Theme.of(context).extension<AppColors>()!.borderColor,
       ),

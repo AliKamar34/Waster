@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
@@ -45,7 +46,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
         child: Column(
           spacing: 8,
           children: [
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.2),
+            SizedBox(height: 240.h),
             CustomContainer(
               child: Column(
                 spacing: 24,
@@ -85,7 +86,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                 ],
               ),
             ),
-            SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
+            SizedBox(height: 120.h),
             CustomButton(
               title: LocaleKeys.save.tr(),
               onPressed: () {

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
@@ -15,7 +16,7 @@ class BrowseAllView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        minimum: const EdgeInsets.symmetric(horizontal: 24),
+        minimum: EdgeInsets.symmetric(horizontal: 24.w),
         child: Column(
           spacing: 16,
           children: [
@@ -36,9 +37,9 @@ class BrowseAllView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 4,
                 itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsetsDirectional.only(bottom: 16),
-                    child: CustomOrederDetailsContainer(),
+                  return Padding(
+                    padding: EdgeInsetsDirectional.only(bottom: 16.h),
+                    child: const CustomOrederDetailsContainer(),
                   );
                 },
               ),

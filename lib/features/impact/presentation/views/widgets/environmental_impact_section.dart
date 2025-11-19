@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
@@ -28,8 +29,8 @@ class EnvironmentalImpactSection extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 Assets.leaf,
-                width: 40,
-                height: 40,
+                width: 40.w,
+                height: 40.h,
                 colorFilter: ColorFilter.mode(
                   Theme.of(context).extension<AppColors>()!.primaryColor,
                   BlendMode.srcIn,

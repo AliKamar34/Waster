@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
@@ -20,12 +21,12 @@ class StartView extends StatelessWidget {
         child: ListView(
           children: [
             SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.35,
+              height: 200.h,
               child: SvgPicture.asset(Assets.start, fit: BoxFit.fill),
             ),
             const SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: 24.h),
               child: Column(
                 spacing: 16,
                 children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
 
 class CustomContainer extends StatelessWidget {
@@ -24,12 +25,12 @@ class CustomContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      padding: EdgeInsets.all(padding ?? 14),
+      padding: EdgeInsets.all(padding ?? 14.w),
       decoration: BoxDecoration(
         color:
             backgroundColor ??
             Theme.of(context).extension<AppColors>()!.whiteColor,
-        borderRadius: BorderRadius.circular(borderRadius ?? 12),
+        borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
         border: Border.all(
           width: borderWidth ?? 2,
           color:

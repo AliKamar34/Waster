@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
@@ -21,7 +22,9 @@ class TermsAndPrivacy extends StatelessWidget {
         Checkbox(
           checkColor: Theme.of(context).extension<AppColors>()!.greyTextColor,
           activeColor: Theme.of(context).extension<AppColors>()!.primaryColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4.r),
+          ),
           side: BorderSide(
             color: Theme.of(context).extension<AppColors>()!.greyTextColor,
             width: 1.5,

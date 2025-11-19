@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
 
 class CustomLoadinIndicator extends StatelessWidget {
@@ -30,12 +31,12 @@ class CustomLoadinIndicator extends StatelessWidget {
 
                   Center(
                     child: Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: EdgeInsets.all(20.w),
                       decoration: BoxDecoration(
                         color: Theme.of(
                           context,
                         ).extension<AppColors>()!.whiteColor,
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: CircularProgressIndicator(
                         color: Theme.of(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 
@@ -13,8 +14,8 @@ void showToast(BuildContext context, String message, {bool isError = false}) {
       backgroundColor: isError
           ? Theme.of(context).extension<AppColors>()!.redColor
           : Theme.of(context).extension<AppColors>()!.blueColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-      margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 50),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.r)),
+      margin: EdgeInsets.all(50.w),
     ),
   );
 }

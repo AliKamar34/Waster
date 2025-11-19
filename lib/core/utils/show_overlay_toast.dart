@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
 
 void showOverlayToast(
@@ -64,12 +65,12 @@ class _ToastWidgetState extends State<_ToastWidget>
       child: Material(
         color: Colors.transparent,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
           decoration: BoxDecoration(
             color: widget.isError
                 ? Theme.of(context).extension<AppColors>()!.redColor
                 : Theme.of(context).extension<AppColors>()!.blueColor,
-            borderRadius: BorderRadius.circular(32),
+            borderRadius: BorderRadius.circular(32.r),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withAlpha(30),

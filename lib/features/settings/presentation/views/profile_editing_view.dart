@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/utils/show_toast.dart';
@@ -68,7 +69,7 @@ class _ProfileEditingViewState extends State<ProfileEditingView> {
         body: CustomLoadinIndicator(
           isLoading: state is SettingsLoading ? true : false,
           child: SafeArea(
-            minimum: const EdgeInsets.symmetric(horizontal: 16),
+            minimum: EdgeInsets.symmetric(horizontal: 16.w),
             child: SingleChildScrollView(
               child: Form(
                 key: _formKey,

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/widgets/custom_container.dart';
@@ -18,7 +19,7 @@ class MyPostsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        minimum: const EdgeInsets.symmetric(horizontal: 16),
+        minimum: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           children: [
             const CustomAppBar(title: 'My Posts'),
@@ -26,9 +27,9 @@ class MyPostsView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 4,
                 itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsetsDirectional.only(bottom: 16),
-                    child: MyPostDetailsContainer(),
+                  return Padding(
+                    padding: EdgeInsetsDirectional.only(bottom: 16.h),
+                    child: const MyPostDetailsContainer(),
                   );
                 },
               ),
@@ -54,9 +55,9 @@ class MyPostDetailsContainer extends StatelessWidget {
           spacing: 24,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
               child: CachedNetworkImage(
-                height: 200,
+                height: 200.h,
                 width: double.infinity,
                 fit: BoxFit.cover,
                 imageUrl:

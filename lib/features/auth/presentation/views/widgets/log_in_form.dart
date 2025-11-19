@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/widgets/custom_button.dart';
@@ -32,7 +33,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      padding: 24,
+      padding: 24.w,
       backgroundColor: Theme.of(context).extension<AppColors>()!.whiteColor,
       borderColor: Theme.of(context).extension<AppColors>()!.borderColor,
       child: Form(

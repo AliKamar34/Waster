@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/themes/app_colors.dart';
@@ -11,8 +12,8 @@ class BadgeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      padding: 6,
-      borderRadius: 8,
+      padding: 6.w,
+      borderRadius: 8.r,
       backgroundColor: Theme.of(context).extension<AppColors>()!.orangeColor,
       child: Row(
         mainAxisSize: MainAxisSize.min,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/features/browse/presentation/views/widgets/custom_tab_bar_button.dart';
 
@@ -15,7 +16,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: 50.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: widget.titles.length,
