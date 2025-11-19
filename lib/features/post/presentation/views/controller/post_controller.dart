@@ -48,6 +48,7 @@ class DonateFormController {
 
     // Initialize selections for edit mode
     if (isEditMode) {
+      image = File(_originalImageUrl!);
       category = post!.category;
       unit = post.unit;
       expiresOn = post.expiresOn;

@@ -10,18 +10,14 @@ class OrderStatsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         _OrderStatItem(
           title: LocaleKeys.meals.tr(),
           value: '45',
           color: Theme.of(context).extension<AppColors>()!.primaryColor,
         ),
-        _OrderStatItem(
-          title: LocaleKeys.distance.tr(),
-          value: '2.3 ${LocaleKeys.miles.tr()}',
-          color: Theme.of(context).extension<AppColors>()!.blueColor,
-        ),
+
         _OrderStatItem(
           title: LocaleKeys.posted.tr(),
           value: '2 ${LocaleKeys.hours_ago.tr()}',

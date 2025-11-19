@@ -15,7 +15,7 @@ class PostEntity {
   final bool hasImage;
   final bool isBookmarked;
   final int? hoursUntilExpiry;
-  final OwnerEntity owner;
+  final OwnerEntity? owner;
 
   const PostEntity({
     required this.id,

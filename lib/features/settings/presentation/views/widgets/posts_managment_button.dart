@@ -10,7 +10,7 @@ class PostsManagmentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: CustomLightColorContainer(
         color: Theme.of(context).extension<AppColors>()!.blueColor,
         child: Row(

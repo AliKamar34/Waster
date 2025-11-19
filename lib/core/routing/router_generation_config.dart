@@ -12,6 +12,7 @@ import 'package:waster/features/notifications/presentation/views/notifications_v
 import 'package:waster/features/post/domain/entity/enums/post_mode_enum.dart';
 import 'package:waster/features/post/presentation/manager/bloc/post_bloc.dart';
 import 'package:waster/features/post/presentation/views/donate_view.dart';
+import 'package:waster/features/post/presentation/views/my_posts_view.dart';
 import 'package:waster/features/settings/domain/entity/user_entity.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 import 'package:waster/features/settings/presentation/views/profile_editing_view.dart';
@@ -98,6 +99,11 @@ class RouterGenerationConfig {
         path: AppRoutes.notificationsView,
         name: AppRoutes.notificationsView,
         builder: (context, state) => const NotificationsView(),
+      ),
+      GoRoute(
+        path: AppRoutes.myPostsView,
+        name: AppRoutes.myPostsView,
+        builder: (context, state) => const MyPostsView(),
       ),
     ],
   );

@@ -4,12 +4,12 @@ import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 
 class OrederNameAndDetailsWidget extends StatelessWidget {
-  const OrederNameAndDetailsWidget({super.key});
-
+  const OrederNameAndDetailsWidget({super.key, this.postAction});
+  final Widget? postAction;
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 10,
+      spacing: 8,
       children: [
         Row(
           spacing: 4,
@@ -19,6 +19,8 @@ class OrederNameAndDetailsWidget extends StatelessWidget {
               style: AppTextStyle.styleRegular16(context),
             ),
             SvgPicture.asset(Assets.expired),
+            const Spacer(),
+            postAction ?? const SizedBox.shrink(),
           ],
         ),
         Text(
