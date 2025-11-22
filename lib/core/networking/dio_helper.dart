@@ -87,4 +87,28 @@ class DioHelper {
       throw ServerException(message: mapDioError(e));
     }
   }
+
+  Future<Response> deteleRequest({
+    required String endPoint,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
+    try {
+      final response = await dio.delete(
+        endPoint,
+        data: data,
+        options: options,
+        queryParameters: queryParameters,
+      );
+      return response;
+    } on DioException catch (e, stackTrace) {
+      log(
+        'DELETE request failed: ${e.message}',
+        error: e,
+        stackTrace: stackTrace,
+      );
+      throw ServerException(message: mapDioError(e));
+    }
+  }
 }

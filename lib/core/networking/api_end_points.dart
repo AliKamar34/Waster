@@ -16,6 +16,8 @@ class ApiEndPoints {
   static const String updatePhoneNumber = '$userBasePath/update-PhoneNumber';
 
   static const String postBasePath = '/api/Post';
-  static const String createPost = '$postBasePath/CreatePost';
-  static const String editPost = '$postBasePath/Edit post';
+  static const String createPost = '$postBasePath/Create-Post';
+  static const String editPost = '$postBasePath/Edit-post';
+  static const String getAllUsersPosts = '$userBasePath/Get-All-user-Posts';
+  static const String deletePost = '$postBasePath/Delete-Post';
 }
