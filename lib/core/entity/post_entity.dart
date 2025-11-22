@@ -4,6 +4,7 @@ class PostEntity {
   final String id;
   final String title;
   final String description;
+  final String? status;
   final String quantity;
   final String unit;
   final String? type;
@@ -11,7 +12,7 @@ class PostEntity {
   final String pickupLocation;
   final DateTime expiresOn;
   final DateTime created;
-  final String imageUrl;
+  final String? imageUrl;
   final bool hasImage;
   final bool isBookmarked;
   final int? hoursUntilExpiry;
@@ -33,5 +34,6 @@ class PostEntity {
     required this.isBookmarked,
     required this.hoursUntilExpiry,
     required this.owner,
+    required this.status,
   });
 }
