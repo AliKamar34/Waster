@@ -156,7 +156,9 @@ class _DonateFormState extends State<DonateForm> {
             },
           ),
           CustomButton(
-            title: LocaleKeys.post_food_donation.tr(),
+            title: _controller.isEditMode
+                ? LocaleKeys.save.tr()
+                : LocaleKeys.post_food_donation.tr(),
             onPressed: _handleSave,
           ),
         ],

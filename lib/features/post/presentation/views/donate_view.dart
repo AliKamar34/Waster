@@ -45,7 +45,7 @@ class DonateView extends StatelessWidget {
                 child: Column(
                   spacing: 24,
                   children: [
-                    const CustomDonateAppBar(),
+                    CustomDonateAppBar(postMode: postMode),
                     DonateForm(postMode: postMode, post: post),
                     const SizedBox(height: 24),
                   ],

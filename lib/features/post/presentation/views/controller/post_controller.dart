@@ -48,17 +48,23 @@ class DonateFormController {
 
     // Initialize selections for edit mode
     if (isEditMode) {
-      image = File(_originalImageUrl!);
       category = post!.category;
       unit = post.unit;
       expiresOn = post.expiresOn;
     }
   }
 
-  // Validation
+  bool get hasValidImage {
+    if (!isEditMode) {
+      return image != null;
+    } else {
+      return image != null ||
+          (_originalImageUrl != null && _originalImageUrl.isNotEmpty);
+    }
+  }
 
   bool get isValid {
-    return image != null &&
+    return hasValidImage &&
         category != null &&
         unit != null &&
         expiresOn != null &&
@@ -70,7 +76,7 @@ class DonateFormController {
 
   Map<String, String?> get validationErrors {
     return {
-      'image': image == null && !isEditMode ? 'Please add food photo' : null,
+      'image': !hasValidImage ? 'Please add food photo' : null,
       'category': category == null ? 'Please select category' : null,
       'unit': unit == null ? 'Please select unit' : null,
       'expiresOn': expiresOn == null ? 'Please select expiry date' : null,
@@ -100,7 +106,7 @@ class DonateFormController {
     expiresOn = newDate;
   }
 
-  //  Change Detection ( Edit Mode)
+  //  Change Detection (Edit Mode)
 
   bool get hasChanges {
     if (!isEditMode) return true;
@@ -124,7 +130,8 @@ class DonateFormController {
       'pickupLocation': locationController.text.trim(),
       'expiresOn': expiresOn!,
       'category': category!,
-      'image': image!,
+      'image': image,
+      'imageUrl': _originalImageUrl,
     };
   }
 
