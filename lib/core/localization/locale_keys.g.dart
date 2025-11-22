@@ -51,6 +51,7 @@ abstract class  LocaleKeys {
   static const pickup_time = 'pickup_time';
   static const pm = 'pm';
   static const post_food_donation = 'post_food_donation';
+  static const edit_food_donation = 'edit_food_donation';
   static const profile = 'profile';
   static const quantity = 'quantity';
   static const ready_for_pickup = 'ready_for_pickup';
@@ -239,5 +240,18 @@ abstract class  LocaleKeys {
   static const please_select_expiry_date = 'please_select_expiry_date';
   static const please_select_unit = 'please_select_unit';
   static const please_select_category = 'please_select_category';
+  static const time_just_now = 'time_just_now';
+  static const time_minute_ago = 'time_minute_ago';
+  static const time_minutes_ago = 'time_minutes_ago';
+  static const time_hour_ago = 'time_hour_ago';
+  static const time_two_hours_ago = 'time_two_hours_ago';
+  static const time_hours_ago = 'time_hours_ago';
+  static const time_yesterday = 'time_yesterday';
+  static const Post_Deleted_Successfully = 'Post_Deleted_Successfully';
+  static const Are_u_Sure_You_Want_To_Delete_this_post = 'Are_u_Sure_You_Want_To_Delete_this_post';
+  static const Delete_Post = 'Delete_Post';
+  static const Delete = 'Delete';
+  static const Something_went_wrong = 'Something_went_wrong';
+  static const Edit = 'Edit';
 
 }

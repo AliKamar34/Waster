@@ -63,6 +63,7 @@ class CodegenLoader extends AssetLoader{
   "pickup_time": "وقت الاستلام",
   "pm": "مساءً",
   "post_food_donation": "نشر تبرع بالطعام",
+  "edit_food_donation": "تعديل تبرع بالطعام",
   "profile": "الملف الشخصي",
   "quantity": "الكمية",
   "ready_for_pickup": "جاهز للاستلام",
@@ -250,7 +251,20 @@ class CodegenLoader extends AssetLoader{
   "Enter_Your_Confirm_Password": "أدخل تأكيد كلمة المرور الخاصة بك",
   "please_select_expiry_date": "يرجى اختيار تاريخ الانتهاء",
   "please_select_unit": "يرجى اختيار وحده",
-  "please_select_category": "يرجى اختيار الفئة"
+  "please_select_category": "يرجى اختيار الفئة",
+  "time_just_now": "منذ ثوانٍ",
+  "time_minute_ago": "منذ دقيقة",
+  "time_minutes_ago": "منذ {count} دقائق",
+  "time_hour_ago": "منذ ساعة",
+  "time_two_hours_ago": "منذ ساعتين",
+  "time_hours_ago": "منذ {count} ساعات",
+  "time_yesterday": "أمس",
+  "Post_Deleted_Successfully": "تم حذف المنشور بنجاح",
+  "Are_u_Sure_You_Want_To_Delete_this_post": "هل أنت متأكد أنك تريد حذف هذا المنشور؟",
+  "Delete_Post": "حذف المنشور",
+  "Delete": "حذف",
+  "Something_went_wrong": "هناك خطأ ما يرجى المحاولة مرة أخرى في وقت لاحق",
+  "Edit": "تعديل"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -301,6 +315,7 @@ static const Map<String,dynamic> _en = {
   "pickup_time": "Pickup Time",
   "pm": "PM",
   "post_food_donation": "Post Food Donation",
+  "edit_food_donation": "Edit Food Donation",
   "profile": "Profile",
   "quantity": "Quantity",
   "ready_for_pickup": "Ready for pickup",
@@ -488,7 +503,20 @@ static const Map<String,dynamic> _en = {
   "Enter_Your_Confirm_Password": "Enter Your Confirm Password",
   "please_select_expiry_date": "please select expiry date",
   "please_select_unit": "please select unit",
-  "please_select_category": "please select category"
+  "please_select_category": "please select category",
+  "time_just_now": "Just now",
+  "time_minute_ago": "A minute ago",
+  "time_minutes_ago": "{count} minutes ago",
+  "time_hour_ago": "An hour ago",
+  "time_two_hours_ago": "Two hours ago",
+  "time_hours_ago": "{count} hours ago",
+  "time_yesterday": "Yesterday",
+  "Post_Deleted_Successfully": "Post Deleted Successfully",
+  "Are_u_Sure_You_Want_To_Delete_this_post": "Are u Sure You Want To Delete this post",
+  "Delete_Post": "Delete Post",
+  "Delete": "Delete",
+  "Something_went_wrong": "Something went wrong please try again later",
+  "Edit": "Edit"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
