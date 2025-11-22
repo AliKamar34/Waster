@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/entity/post_entity.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 
@@ -19,14 +17,16 @@ class OrederNameAndDetailsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          spacing: 4,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              postEntity?.title ?? 'Fresh Bakery Items',
-              style: AppTextStyle.styleRegular16(context),
+            Expanded(
+              child: Text(
+                postEntity?.title ?? 'Fresh Bakery Items',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyle.styleRegular16(context),
+              ),
             ),
-            SvgPicture.asset(Assets.expired),
-            const Spacer(),
             postAction ?? const SizedBox.shrink(),
           ],
         ),
