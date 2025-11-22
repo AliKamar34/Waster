@@ -18,16 +18,33 @@ class CustomDropDownButton<T> extends StatelessWidget {
   final List<DropdownMenuItem<T>> items;
   final void Function(T?)? onChanged;
   final String lable, hint;
-  final T? selectedValue;
+  final dynamic selectedValue;
   @override
   Widget build(BuildContext context) {
+    T? dropdownValue;
+    if (selectedValue != null) {
+      final existsInItems = items.any(
+        (item) => item.value.toString() == selectedValue.toString(),
+      );
+
+      if (existsInItems) {
+        dropdownValue = items
+            .firstWhere(
+              (item) => item.value.toString() == selectedValue.toString(),
+            )
+            .value;
+      } else {
+        dropdownValue = null;
+      }
+    }
+
     return Column(
       spacing: 4,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(lable, style: AppTextStyle.styleRegular16(context)),
         DropdownButtonFormField<T>(
-          // initialValue: selectedValue,
+          initialValue: dropdownValue,
           hint: Text(hint, style: AppTextStyle.styleRegular16(context)),
           validator: validator,
           autovalidateMode: AutovalidateMode.onUserInteraction,

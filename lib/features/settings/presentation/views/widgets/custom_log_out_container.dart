@@ -9,7 +9,7 @@ import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
-import 'package:waster/features/settings/presentation/views/widgets/custom_alert.dart';
+import 'package:waster/core/widgets/custom_alert.dart';
 
 class CustomLogOutContainer extends StatelessWidget {
   const CustomLogOutContainer({super.key});
