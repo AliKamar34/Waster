@@ -1,4 +1,6 @@
 import 'package:waster/core/errors/server_exception.dart';
+import 'package:waster/core/models/paginated_response_model.dart';
+import 'package:waster/core/models/post_model.dart';
 import 'package:waster/core/networking/api_end_points.dart';
 import 'package:waster/core/networking/dio_helper.dart';
 import 'package:waster/features/post/data/models/create_post_model.dart';
@@ -24,9 +26,14 @@ abstract class PostRemoteDataSource {
     required String pickupLocation,
     required DateTime expiresOn,
     required String category,
-    required String imageType,
-    required String imageData,
+    required String? imageType,
+    required String? imageData,
   });
+  Future<PaginatedResponse<PostModel>> getAllUsersPosts({
+    required int pageNum,
+    int pageSize = 10,
+  });
+  Future<void> deletePost({required String id});
 }
 
 class PostRemoteDataSourceImpl implements PostRemoteDataSource {
@@ -79,8 +86,8 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
     required String pickupLocation,
     required DateTime expiresOn,
     required String category,
-    required String imageType,
-    required String imageData,
+    required String? imageType,
+    required String? imageData,
   }) async {
     try {
       final response = await dioHelper.putRequest(
@@ -100,6 +107,51 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
       );
       if (response.statusCode == 200 || response.statusCode == 201) return;
       throw const ServerException(message: 'Failed to edit donation post');
+    } on ServerException {
+      rethrow;
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<PaginatedResponse<PostModel>> getAllUsersPosts({
+    required int pageNum,
+    int pageSize = 10,
+  }) async {
+    try {
+      final response = await dioHelper.getRequest(
+        endPoint: ApiEndPoints.getAllUsersPosts,
+        queryParameters: {'PageNumber': pageNum, 'PageSize': pageSize},
+      );
+
+      if (response.statusCode == 200) {
+        return PaginatedResponse<PostModel>.fromJson(
+          response.data,
+          PostModel.fromJson,
+        );
+      }
+
+      throw const ServerException(message: 'Failed to fetch posts');
+    } on ServerException {
+      rethrow;
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> deletePost({required String id}) async {
+    try {
+      final response = await dioHelper.deteleRequest(
+        endPoint: ApiEndPoints.deletePost,
+        queryParameters: {'id': id},
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 204) {
+        return;
+      }
+      throw const ServerException(message: 'Failed to Delete post');
     } on ServerException {
       rethrow;
     } catch (e) {

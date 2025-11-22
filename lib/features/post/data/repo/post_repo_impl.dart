@@ -1,13 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:waster/core/data/base_repository.dart';
 import 'package:waster/core/errors/failure.dart';
+import 'package:waster/core/models/paginated_response_model.dart';
+import 'package:waster/core/models/post_model.dart';
 import 'package:waster/features/post/data/datasource/post_remote_data_source.dart';
 import 'package:waster/features/post/domain/repo/post_repo.dart';
 
 class PostRepoImpl extends BaseRepository implements PostRepo {
-  final PostRemoteDataSource homeRemoteDataSource;
+  final PostRemoteDataSource postRemoteDataSource;
 
-  PostRepoImpl({required this.homeRemoteDataSource});
+  PostRepoImpl({required this.postRemoteDataSource});
   @override
   Future<Either<Failure, void>> addDonationPost({
     required String title,
@@ -21,7 +23,7 @@ class PostRepoImpl extends BaseRepository implements PostRepo {
     required String imageData,
   }) async {
     return execute(
-      () => homeRemoteDataSource.addDonationPost(
+      () => postRemoteDataSource.addDonationPost(
         title: title,
         description: description,
         quantity: quantity,
@@ -45,11 +47,11 @@ class PostRepoImpl extends BaseRepository implements PostRepo {
     required String pickupLocation,
     required DateTime expiresOn,
     required String category,
-    required String imageType,
-    required String imageData,
+    required String? imageType,
+    required String? imageData,
   }) async {
     return execute(
-      () => homeRemoteDataSource.editDonationPost(
+      () => postRemoteDataSource.editDonationPost(
         id: id,
         title: title,
         description: description,
@@ -62,5 +64,23 @@ class PostRepoImpl extends BaseRepository implements PostRepo {
         imageData: imageData,
       ),
     );
+  }
+
+  @override
+  Future<Either<Failure, PaginatedResponse<PostModel>>> getAllUsersPosts({
+    required int pageNum,
+    int pageSize = 10,
+  }) async {
+    return execute(
+      () => postRemoteDataSource.getAllUsersPosts(
+        pageNum: pageNum,
+        pageSize: pageSize,
+      ),
+    );
+  }
+
+  @override
+  Future<Either<Failure, void>> deletePost({required String id}) async {
+    return execute(() => postRemoteDataSource.deletePost(id: id));
   }
 }

@@ -6,8 +6,8 @@ class CreatePostModel {
   final String pickupLocation;
   final DateTime expiresOn;
   final String category;
-  final String imageType;
-  final String imageData;
+  final String? imageType;
+  final String? imageData;
 
   CreatePostModel({
     required this.title,
