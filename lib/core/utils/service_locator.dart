@@ -15,9 +15,12 @@ import 'package:waster/features/post/data/datasource/post_remote_data_source.dar
 import 'package:waster/features/post/data/repo/post_repo_impl.dart';
 import 'package:waster/features/post/domain/repo/post_repo.dart';
 import 'package:waster/features/post/domain/usecases/add_donation_post_usecase.dart';
+import 'package:waster/features/post/domain/usecases/delete_post_usecase.dart';
 import 'package:waster/features/post/domain/usecases/edit_donation_post_usecase.dart';
+import 'package:waster/features/post/domain/usecases/get_all_user_posts_usecase.dart';
 import 'package:waster/features/post/domain/usecases/process_image_usecase.dart';
 import 'package:waster/features/post/presentation/manager/bloc/post_bloc.dart';
+import 'package:waster/features/post/presentation/manager/cubit/get_all_user_posts_cubit.dart';
 import 'package:waster/features/settings/data/datasource/settings_remote_data_source.dart';
 import 'package:waster/features/settings/data/repo/setting_repo_impl.dart';
 import 'package:waster/features/settings/domain/repo/settings_repo.dart';
@@ -121,7 +124,7 @@ void setupServiceLocator() {
   );
   // Repo
   sl.registerLazySingleton<PostRepo>(
-    () => PostRepoImpl(homeRemoteDataSource: sl()),
+    () => PostRepoImpl(postRemoteDataSource: sl()),
   );
   // use cases
   sl.registerLazySingleton<AddDonationPostUsecase>(
@@ -131,9 +134,20 @@ void setupServiceLocator() {
     () => EditDonationPostUsecase(postRepo: sl(), processImageUseCase: sl()),
   );
   sl.registerLazySingleton<ProcessImageUseCase>(() => ProcessImageUseCase());
+  sl.registerLazySingleton<GetAllUsersPostsUseCase>(
+    () => GetAllUsersPostsUseCase(postRepo: sl()),
+  );
+  sl.registerLazySingleton<DeletePostUsecase>(
+    () => DeletePostUsecase(postRepo: sl()),
+  );
 
   // bloc
   sl.registerFactory(
-    () => PostBloc(addDonationPostUsecase: sl(), editDonationPostUsecase: sl()),
+    () => PostBloc(
+      addDonationPostUsecase: sl(),
+      editDonationPostUsecase: sl(),
+      deletePostUsecase: sl(),
+    ),
   );
+  sl.registerFactory(() => GetAllUserPostsCubit(getAllUsersPostsUseCase: sl()));
 }

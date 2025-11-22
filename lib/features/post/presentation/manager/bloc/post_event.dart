@@ -4,7 +4,7 @@ sealed class PostEvent extends Equatable {
   const PostEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 final class CreatePostEvent extends PostEvent {
@@ -50,7 +50,7 @@ final class EditPostEvent extends PostEvent {
   final String pickupLocation;
   final DateTime expiresOn;
   final String category;
-  final File imageFile;
+  final File? imageFile;
 
   const EditPostEvent({
     required this.id,
@@ -61,11 +61,11 @@ final class EditPostEvent extends PostEvent {
     required this.pickupLocation,
     required this.expiresOn,
     required this.category,
-    required this.imageFile,
+    this.imageFile,
   });
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
     id,
     title,
     description,
@@ -76,4 +76,13 @@ final class EditPostEvent extends PostEvent {
     category,
     imageFile,
   ];
+}
+
+final class DeletePostEvent extends PostEvent {
+  final String id;
+
+  const DeletePostEvent({required this.id});
+
+  @override
+  List<Object> get props => [id];
 }
