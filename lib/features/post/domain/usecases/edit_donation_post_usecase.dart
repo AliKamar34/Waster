@@ -14,7 +14,7 @@ class EditDonationPostParams extends Equatable {
   final String pickupLocation;
   final DateTime expiresOn;
   final String category;
-  final File imageFile;
+  final File? imageFile;
 
   const EditDonationPostParams({
     required this.id,
@@ -25,7 +25,7 @@ class EditDonationPostParams extends Equatable {
     required this.pickupLocation,
     required this.expiresOn,
     required this.category,
-    required this.imageFile,
+    this.imageFile,
   });
 
   @override
@@ -52,9 +52,7 @@ class EditDonationPostUsecase {
   });
 
   Future<Either<Failure, void>> call(EditDonationPostParams params) async {
-    final imageResult = await processImageUseCase(params.imageFile);
-
-    return imageResult.fold((failure) => Left(failure), (processedImage) async {
+    if (params.imageFile == null) {
       return postRepo.editDonationPost(
         id: params.id,
         title: params.title,
@@ -64,9 +62,28 @@ class EditDonationPostUsecase {
         pickupLocation: params.pickupLocation,
         expiresOn: params.expiresOn,
         category: params.category,
-        imageType: processedImage.mimeType,
-        imageData: processedImage.base64Data,
+        imageType: null,
+        imageData: null,
       );
-    });
+    } else {
+      final imageResult = await processImageUseCase(params.imageFile!);
+
+      return imageResult.fold((failure) => Left(failure), (
+        processedImage,
+      ) async {
+        return postRepo.editDonationPost(
+          id: params.id,
+          title: params.title,
+          description: params.description,
+          quantity: params.quantity,
+          unit: params.unit,
+          pickupLocation: params.pickupLocation,
+          expiresOn: params.expiresOn,
+          category: params.category,
+          imageType: processedImage.mimeType,
+          imageData: processedImage.base64Data,
+        );
+      });
+    }
   }
 }
