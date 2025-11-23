@@ -248,5 +248,7 @@
     "Delete_Post": "حذف المنشور",
     "Delete": "حذف",
     "Something_went_wrong": "هناك خطأ ما يرجى المحاولة مرة أخرى في وقت لاحق",
-    "Edit": "تعديل"
+    "Edit": "تعديل",
+    "Are_u_Sure_You_Want_To_Delete_Account": "هل أنت متأكد أنك تريد حذف الحساب؟",
+    "Account_Deleted_Successfully": "تم حذف الحساب بنجاح"
 }

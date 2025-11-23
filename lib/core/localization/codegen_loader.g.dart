@@ -264,7 +264,9 @@ class CodegenLoader extends AssetLoader{
   "Delete_Post": "حذف المنشور",
   "Delete": "حذف",
   "Something_went_wrong": "هناك خطأ ما يرجى المحاولة مرة أخرى في وقت لاحق",
-  "Edit": "تعديل"
+  "Edit": "تعديل",
+  "Are_u_Sure_You_Want_To_Delete_Account": "هل أنت متأكد أنك تريد حذف الحساب؟",
+  "Account_Deleted_Successfully": "تم حذف الحساب بنجاح"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -516,7 +518,9 @@ static const Map<String,dynamic> _en = {
   "Delete_Post": "Delete Post",
   "Delete": "Delete",
   "Something_went_wrong": "Something went wrong please try again later",
-  "Edit": "Edit"
+  "Edit": "Edit",
+  "Are_u_Sure_You_Want_To_Delete_Account": "Are u Sure You Want To Delete Account",
+  "Account_Deleted_Successfully": "Account Deleted Successfully"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

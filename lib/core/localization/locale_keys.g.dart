@@ -253,5 +253,7 @@ abstract class  LocaleKeys {
   static const Delete = 'Delete';
   static const Something_went_wrong = 'Something_went_wrong';
   static const Edit = 'Edit';
+  static const Are_u_Sure_You_Want_To_Delete_Account = 'Are_u_Sure_You_Want_To_Delete_Account';
+  static const Account_Deleted_Successfully = 'Account_Deleted_Successfully';
 
 }
