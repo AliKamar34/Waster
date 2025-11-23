@@ -80,9 +80,9 @@ class _DeleteAccountFormState extends State<DeleteAccountForm> {
                     ).extension<AppColors>()!.blueColor,
                     title: LocaleKeys.cancle.tr(),
                     onPressed: () {
-                      BlocProvider.of<SettingsBloc>(
-                        context,
-                      ).add(const GetUserDetailsEvent());
+                      // BlocProvider.of<SettingsBloc>(
+                      //   context,
+                      // ).add(const GetUserDetailsEvent());
                       context.pop();
                     },
                   ),

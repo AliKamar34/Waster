@@ -11,8 +11,17 @@ final class SettingsInitial extends SettingsState {
   const SettingsInitial();
 }
 
-final class SettingsDeletingSuccess extends SettingsState {
-  const SettingsDeletingSuccess();
+final class SettingsDeletingAccountSuccess extends SettingsState {
+  const SettingsDeletingAccountSuccess();
+}
+
+final class SettingsDeletingAccuntFailure extends SettingsState {
+  final String message;
+
+  const SettingsDeletingAccuntFailure(this.message);
+
+  @override
+  List<Object> get props => [message];
 }
 
 final class SettingsLoading extends SettingsState {

@@ -102,10 +102,10 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     );
     result.fold(
       (failure) {
-        emit(SettingsFailure(failure.message));
+        emit(SettingsDeletingAccuntFailure(failure.message));
       },
       (_) {
-        emit(const SettingsDeletingSuccess());
+        emit(const SettingsDeletingAccountSuccess());
       },
     );
   }

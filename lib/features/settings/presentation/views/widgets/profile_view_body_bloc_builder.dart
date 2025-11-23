@@ -32,6 +32,9 @@ class ProfileViewBodyBlocBuilder extends StatelessWidget {
         } else if (state is SettingsFailure) {
           return Text(state.message);
         } else {
+          BlocProvider.of<SettingsBloc>(
+            context,
+          ).add(const GetUserDetailsEvent());
           return const CustomProfileLoadingWidget();
         }
       },

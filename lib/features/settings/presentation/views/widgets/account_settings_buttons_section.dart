@@ -12,6 +12,7 @@ import 'package:waster/features/settings/presentation/views/widgets/change_email
 import 'package:waster/features/settings/presentation/views/widgets/change_password_bloc_consumer.dart';
 import 'package:waster/features/settings/presentation/views/widgets/change_password_form.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_settings_container.dart';
+import 'package:waster/features/settings/presentation/views/widgets/delete_account_bloc_consumer.dart';
 import 'package:waster/features/settings/presentation/views/widgets/delete_account_form.dart';
 
 class AccountSettingsButtonsSection extends StatelessWidget {
@@ -81,7 +82,7 @@ class AccountSettingsButtonsSection extends StatelessWidget {
               context,
               (bottomContext) => BlocProvider.value(
                 value: context.read<SettingsBloc>(),
-                child: ChangeUserSecretsBlocConsumer(
+                child: DeleteAccountBlocConsumer(
                   bottomContext: bottomContext,
                   child: const DeleteAccountForm(),
                 ),
