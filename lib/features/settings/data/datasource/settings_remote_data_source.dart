@@ -22,6 +22,7 @@ abstract class SettingsRemoteDataSource {
   Future<void> updateLocation({required String address});
   Future<void> updatePhoneNumber({required String phoneNum});
   Future<void> updateBio({required String bio});
+  Future<void> deleteAccount({required String password});
 }
 
 class SettingsRemoteDataSourceImpl implements SettingsRemoteDataSource {
@@ -142,6 +143,17 @@ class SettingsRemoteDataSourceImpl implements SettingsRemoteDataSource {
         data: {'bio': bio},
       ),
       errorMessage: 'Failed to update bio',
+    );
+  }
+
+  @override
+  Future<void> deleteAccount({required String password}) async {
+    await _executeVoidRequest(
+      request: () => dioHelper.deteleRequest(
+        endPoint: ApiEndPoints.deleteAccount,
+        queryParameters: {'password': password},
+      ),
+      errorMessage: 'Failed to delete account',
     );
   }
 }

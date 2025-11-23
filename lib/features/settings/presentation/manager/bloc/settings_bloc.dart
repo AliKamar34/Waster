@@ -4,6 +4,7 @@ import 'package:waster/core/usecases/use_cases.dart';
 import 'package:waster/features/settings/domain/entity/user_entity.dart';
 import 'package:waster/features/settings/domain/usecases/change_email_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/change_password_use_case.dart';
+import 'package:waster/features/settings/domain/usecases/delete_account_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/get_user_details_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/save_profile_changes_use_case.dart';
 
@@ -15,17 +16,20 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final SaveProfileChangesUseCase saveProfileChangesUseCase;
   final ChangeEmailUseCase changeEmailUseCase;
   final ChangePasswordUseCase changePasswordUseCase;
+  final DeleteAccountUseCase deleteAccountUseCase;
 
   SettingsBloc({
     required this.getUserDetailsUseCase,
     required this.saveProfileChangesUseCase,
     required this.changeEmailUseCase,
     required this.changePasswordUseCase,
+    required this.deleteAccountUseCase,
   }) : super(const SettingsInitial()) {
     on<GetUserDetailsEvent>(_onGetUserDetails);
     on<SaveProfileChangesEvent>(_onSaveProfileChanges);
     on<ChangeEmailEvent>(_onChangeEmail);
     on<ChangePasswordEvent>(_onChangePassword);
+    on<DeleteAccountEvent>(_onDeleteAccount);
   }
 
   Future<void> _onGetUserDetails(
@@ -86,5 +90,23 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       emit(const SettingsUpdateSuccess('Password changed successfully'));
       add(const GetUserDetailsEvent());
     });
+  }
+
+  Future<void> _onDeleteAccount(
+    DeleteAccountEvent event,
+    Emitter<SettingsState> emit,
+  ) async {
+    emit(const SettingsLoading());
+    final result = await deleteAccountUseCase.call(
+      DeleteAccountParams(password: event.password),
+    );
+    result.fold(
+      (failure) {
+        emit(SettingsFailure(failure.message));
+      },
+      (_) {
+        emit(const SettingsDeletingSuccess());
+      },
+    );
   }
 }

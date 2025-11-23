@@ -26,6 +26,7 @@ import 'package:waster/features/settings/data/repo/setting_repo_impl.dart';
 import 'package:waster/features/settings/domain/repo/settings_repo.dart';
 import 'package:waster/features/settings/domain/usecases/change_email_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/change_password_use_case.dart';
+import 'package:waster/features/settings/domain/usecases/delete_account_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/get_user_details_use_case.dart';
 import 'package:waster/features/settings/domain/usecases/save_profile_changes_use_case.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
@@ -106,10 +107,13 @@ void setupServiceLocator() {
   sl.registerLazySingleton<SaveProfileChangesUseCase>(
     () => SaveProfileChangesUseCase(settingsRepo: sl()),
   );
-
+  sl.registerLazySingleton<DeleteAccountUseCase>(
+    () => DeleteAccountUseCase(settingsRepo: sl()),
+  );
   // bloc
   sl.registerFactory(
     () => SettingsBloc(
+      deleteAccountUseCase: sl(),
       getUserDetailsUseCase: sl(),
       saveProfileChangesUseCase: sl(),
       changeEmailUseCase: sl(),

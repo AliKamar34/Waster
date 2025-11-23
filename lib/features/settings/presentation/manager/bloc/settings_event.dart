@@ -11,6 +11,13 @@ final class GetUserDetailsEvent extends SettingsEvent {
   const GetUserDetailsEvent();
 }
 
+final class DeleteAccountEvent extends SettingsEvent {
+  final String password;
+  const DeleteAccountEvent({required this.password});
+  @override
+  List<Object> get props => [password];
+}
+
 final class ChangeEmailEvent extends SettingsEvent {
   final String newEmail;
   final String password;

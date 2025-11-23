@@ -11,6 +11,10 @@ final class SettingsInitial extends SettingsState {
   const SettingsInitial();
 }
 
+final class SettingsDeletingSuccess extends SettingsState {
+  const SettingsDeletingSuccess();
+}
+
 final class SettingsLoading extends SettingsState {
   const SettingsLoading();
 }

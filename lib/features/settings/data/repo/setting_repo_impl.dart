@@ -78,4 +78,13 @@ class SettingsRepoImpl extends BaseRepository implements SettingsRepo {
   Future<Either<Failure, void>> updateBio({required String bio}) async {
     return execute(() => settingsRemoteDataSource.updateBio(bio: bio));
   }
+
+  @override
+  Future<Either<Failure, void>> deleteAccount({
+    required String password,
+  }) async {
+    return execute(
+      () => settingsRemoteDataSource.deleteAccount(password: password),
+    );
+  }
 }

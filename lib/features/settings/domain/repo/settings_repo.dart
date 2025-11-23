@@ -20,4 +20,5 @@ abstract class SettingsRepo {
   Future<Either<Failure, void>> updateLocation({required String address});
   Future<Either<Failure, void>> updatePhoneNumber({required String phoneNum});
   Future<Either<Failure, void>> updateBio({required String bio});
+  Future<Either<Failure, void>> deleteAccount({required String password});
 }
