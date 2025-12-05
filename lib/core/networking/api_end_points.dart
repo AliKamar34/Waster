@@ -21,4 +21,10 @@ class ApiEndPoints {
   static const String editPost = '$postBasePath/Edit-post';
   static const String getAllUsersPosts = '$userBasePath/Get-All-user-Posts';
   static const String deletePost = '$postBasePath/Delete-Post';
+
+  static const String browseBasePath = '/api/Browse';
+  static const String feedPosts = '$browseBasePath/feed';
+  static const String expiringSoon = '$browseBasePath/expiring-soon';
+  static const String categories = '$browseBasePath/categories';
+  static const String searchPosts = '$browseBasePath/search';
 }
