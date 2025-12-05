@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/helpers/shared_prefs_helper.dart';
 import 'package:waster/core/themes/theme_controller.dart';
 import 'package:waster/core/utils/app_bloc_observer.dart';
@@ -11,6 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   Bloc.observer = AppBlocObserver();
+  await ScreenUtil.ensureScreenSize();
   await SharedPrefsHelper.init();
   await EasyLocalization.ensureInitialized();
   await ThemeController.instance.loadTheme();

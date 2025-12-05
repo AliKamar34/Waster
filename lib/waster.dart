@@ -20,7 +20,7 @@ class WasterApp extends StatelessWidget {
           create: (context) => sl<AuthBloc>(),
           child: ScreenUtilInit(
             designSize: const Size(392, 849),
-            child: MaterialApp.router(
+            builder: (context, child) => MaterialApp.router(
               debugShowCheckedModeBanner: false,
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,
