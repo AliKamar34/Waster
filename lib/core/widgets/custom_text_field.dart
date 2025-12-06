@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixIcon,
     this.maxLines,
     this.enabled,
+    this.onChanged,
   });
   final String hint;
   final String? lable;
@@ -25,6 +26,7 @@ class CustomTextField extends StatelessWidget {
   final int? maxLines;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,6 +37,7 @@ class CustomTextField extends StatelessWidget {
             ? const SizedBox()
             : Text(lable!, style: AppTextStyle.styleRegular16(context)),
         TextFormField(
+          onChanged: onChanged,
           enabled: enabled ?? true,
           maxLines: maxLines ?? 1,
           controller: controller,

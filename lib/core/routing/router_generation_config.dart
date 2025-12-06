@@ -5,6 +5,8 @@ import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/utils/service_locator.dart';
 import 'package:waster/features/auth/presentation/views/log_in_view.dart';
 import 'package:waster/features/auth/presentation/views/sign_up_view.dart';
+import 'package:waster/features/browse/presentation/manager/categories_cubit/categories_cubit.dart';
+import 'package:waster/features/browse/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:waster/features/browse/presentation/views/browse_all_view.dart';
 import 'package:waster/features/browse/presentation/views/order_details_view.dart';
 import 'package:waster/features/browse/presentation/views/track_all_view.dart';
@@ -72,7 +74,15 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.browseAllView,
         name: AppRoutes.browseAllView,
-        builder: (context, state) => const BrowseAllView(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => sl<SearchPostsCubit>()),
+            BlocProvider(
+              create: (context) => sl<CategoriesCubit>()..loadCategories(),
+            ),
+          ],
+          child: const BrowseAllView(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.orderDetailsView,
