@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:waster/core/errors/failure.dart';
 import 'package:waster/core/models/paginated_response_model.dart';
 import 'package:waster/core/models/post_model.dart';
-import 'package:waster/features/browse/domain/repo/browse_repo.dart';
+import 'package:waster/features/home/domain/repo/home_repo.dart';
 
 class FeedPostsParams extends Equatable {
   final String category;
@@ -21,14 +21,14 @@ class FeedPostsParams extends Equatable {
 }
 
 class FeedPostsUseCase {
-  final BrowseRepo browseRepo;
+  final HomeRepo homeRepo;
 
-  const FeedPostsUseCase({required this.browseRepo});
+  const FeedPostsUseCase({required this.homeRepo});
 
   Future<Either<Failure, PaginatedResponse<PostModel>>> call(
     FeedPostsParams params,
   ) async {
-    return await browseRepo.getFeedPosts(
+    return await homeRepo.getFeedPosts(
       category: params.category,
       pageNum: params.pageNum,
       pageSize: params.pageSize,
