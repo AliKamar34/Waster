@@ -24,6 +24,7 @@ abstract class  LocaleKeys {
   static const environmental_impact = 'environmental_impact';
   static const eta = 'eta';
   static const expires_in_hours = 'expires_in_hours';
+  static const expires_soon = 'expires_soon';
   static const find_fresh_donations_near_you = 'find_fresh_donations_near_you';
   static const food_donor = 'food_donor';
   static const food_rescued = 'food_rescued';
@@ -255,5 +256,7 @@ abstract class  LocaleKeys {
   static const Edit = 'Edit';
   static const Are_u_Sure_You_Want_To_Delete_Account = 'Are_u_Sure_You_Want_To_Delete_Account';
   static const Account_Deleted_Successfully = 'Account_Deleted_Successfully';
+  static const No_expiring_soon_posts_found = 'No_expiring_soon_posts_found';
+  static const No_Posts_found = 'No_Posts_found';
 
 }

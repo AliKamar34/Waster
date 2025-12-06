@@ -20,6 +20,7 @@
     "environmental_impact": "التأثير البيئي",
     "eta": "الوقت المتوقع:",
     "expires_in_hours": "تنتهي صلاحيته خلال ساعات",
+    "expires_soon": "ينتهي قريباً",
     "find_fresh_donations_near_you": "ابحث عن تبرعات طازجة بالقرب منك",
     "food_donor": "متبرع بالطعام",
     "food_rescued": "الطعام المُنقذ",
@@ -250,5 +251,7 @@
     "Something_went_wrong": "هناك خطأ ما يرجى المحاولة مرة أخرى في وقت لاحق",
     "Edit": "تعديل",
     "Are_u_Sure_You_Want_To_Delete_Account": "هل أنت متأكد أنك تريد حذف الحساب؟",
-    "Account_Deleted_Successfully": "تم حذف الحساب بنجاح"
+    "Account_Deleted_Successfully": "تم حذف الحساب بنجاح",
+    "No_expiring_soon_posts_found": "لم يتم العثور على منشورات تنتهي قريبًا.",
+    "No_Posts_found": "لم يتم العثور على منشورات."
 }

@@ -36,6 +36,7 @@ class CodegenLoader extends AssetLoader{
   "environmental_impact": "التأثير البيئي",
   "eta": "الوقت المتوقع:",
   "expires_in_hours": "تنتهي صلاحيته خلال ساعات",
+  "expires_soon": "ينتهي قريباً",
   "find_fresh_donations_near_you": "ابحث عن تبرعات طازجة بالقرب منك",
   "food_donor": "متبرع بالطعام",
   "food_rescued": "الطعام المُنقذ",
@@ -266,7 +267,9 @@ class CodegenLoader extends AssetLoader{
   "Something_went_wrong": "هناك خطأ ما يرجى المحاولة مرة أخرى في وقت لاحق",
   "Edit": "تعديل",
   "Are_u_Sure_You_Want_To_Delete_Account": "هل أنت متأكد أنك تريد حذف الحساب؟",
-  "Account_Deleted_Successfully": "تم حذف الحساب بنجاح"
+  "Account_Deleted_Successfully": "تم حذف الحساب بنجاح",
+  "No_expiring_soon_posts_found": "لم يتم العثور على منشورات تنتهي قريبًا.",
+  "No_Posts_found": "لم يتم العثور على منشورات."
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -290,6 +293,7 @@ static const Map<String,dynamic> _en = {
   "environmental_impact": "Environmental Impact",
   "eta": "ETA:",
   "expires_in_hours": "Expires in hours",
+  "expires_soon": "Expires soon",
   "find_fresh_donations_near_you": "Find fresh donations near you",
   "food_donor": "Food Donor",
   "food_rescued": "Food Rescued",
@@ -520,7 +524,9 @@ static const Map<String,dynamic> _en = {
   "Something_went_wrong": "Something went wrong please try again later",
   "Edit": "Edit",
   "Are_u_Sure_You_Want_To_Delete_Account": "Are u Sure You Want To Delete Account",
-  "Account_Deleted_Successfully": "Account Deleted Successfully"
+  "Account_Deleted_Successfully": "Account Deleted Successfully",
+  "No_expiring_soon_posts_found": "No expiring soon posts found.",
+  "No_Posts_found": "No Posts found."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
