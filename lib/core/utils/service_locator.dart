@@ -11,6 +11,20 @@ import 'package:waster/features/auth/domain/usecases/refresh_token_use_case.dart
 import 'package:waster/features/auth/domain/usecases/register_use_case.dart';
 import 'package:waster/features/auth/domain/usecases/revoke_token_use_case.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
+import 'package:waster/features/browse/data/datasource/browse_remote_data_source.dart';
+import 'package:waster/features/browse/data/repo/browse_repo_impl.dart';
+import 'package:waster/features/browse/domain/repo/browse_repo.dart';
+import 'package:waster/features/browse/domain/usecase/categories_use_case.dart';
+import 'package:waster/features/browse/domain/usecase/expiring_soon_posts_use_case.dart';
+import 'package:waster/features/home/data/datasource/home_remote_data_source.dart';
+import 'package:waster/features/home/data/repo/home_repo_impl.dart';
+import 'package:waster/features/home/domain/repo/home_repo.dart';
+import 'package:waster/features/home/domain/usecases/feed_posts_use_case.dart';
+import 'package:waster/features/browse/domain/usecase/serach_post_use_case.dart';
+import 'package:waster/features/browse/presentation/manager/categories_cubit/categories_cubit.dart';
+import 'package:waster/features/browse/presentation/manager/expiring_soon_cubit/expiring_soon_cubit.dart';
+import 'package:waster/features/home/presentation/manager/feed_cubit/feed_cubit.dart';
+import 'package:waster/features/browse/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:waster/features/post/data/datasource/post_remote_data_source.dart';
 import 'package:waster/features/post/data/repo/post_repo_impl.dart';
 import 'package:waster/features/post/domain/repo/post_repo.dart';
@@ -154,4 +168,50 @@ void setupServiceLocator() {
     ),
   );
   sl.registerFactory(() => GetAllUserPostsCubit(getAllUsersPostsUseCase: sl()));
+
+  // Feature - Browse
+  // Data source
+  sl.registerLazySingleton<BrowseRemoteDateSource>(
+    () => BrowseRemoteDataSourceImpl(dioHelper: sl()),
+  );
+
+  // Repo
+  sl.registerLazySingleton<BrowseRepo>(
+    () => BrowseRepoImpl(browseRemoteDateSource: sl()),
+  );
+
+  // Use cases
+  sl.registerLazySingleton<CategoriesUseCase>(
+    () => CategoriesUseCase(browseRepo: sl()),
+  );
+  sl.registerLazySingleton<ExpiringSoonPostsUseCase>(
+    () => ExpiringSoonPostsUseCase(browseRepo: sl()),
+  );
+  sl.registerLazySingleton<SerachPostUseCase>(
+    () => SerachPostUseCase(browseRepo: sl()),
+  );
+
+  // Cubit
+  sl.registerFactory(() => ExpiringSoonCubit(expiringSoonPostsUseCase: sl()));
+  sl.registerFactory(() => SearchPostsCubit(searchPostUseCase: sl()));
+  sl.registerFactory(() => CategoriesCubit(categoriesUseCase: sl()));
+
+  // Feature - home
+  // Data source
+  sl.registerLazySingleton<HomeRemoteDataSource>(
+    () => HomeRemoteDataSourceImpl(dioHelper: sl()),
+  );
+
+  // Repo
+  sl.registerLazySingleton<HomeRepo>(
+    () => HomeRepoImpl(homeRemoteDataSource: sl()),
+  );
+
+  //use case
+  sl.registerLazySingleton<FeedPostsUseCase>(
+    () => FeedPostsUseCase(homeRepo: sl()),
+  );
+
+  // Cubit
+  sl.registerFactory(() => FeedPostsCubit(feedPostsUseCase: sl()));
 }
