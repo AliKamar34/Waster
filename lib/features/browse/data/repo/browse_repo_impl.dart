@@ -32,20 +32,6 @@ class BrowseRepoImpl extends BaseRepository implements BrowseRepo {
   }
 
   @override
-  Future<Either<Failure, PaginatedResponse<PostModel>>> getFeedPosts({
-    required String category,
-    required int pageNum,
-    int pageSize = 10,
-  }) async {
-    return execute(
-      () => browseRemoteDateSource.getFeedPosts(
-        category: category,
-        pageNum: pageNum,
-      ),
-    );
-  }
-
-  @override
   Future<Either<Failure, PaginatedResponse<PostModel>>> serachPosts({
     required String query,
     required String category,
