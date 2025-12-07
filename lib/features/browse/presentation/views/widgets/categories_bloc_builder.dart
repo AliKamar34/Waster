@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:waster/features/browse/domain/entity/category_entity.dart';
 import 'package:waster/features/browse/presentation/manager/categories_cubit/categories_cubit.dart';
-import 'package:waster/features/browse/presentation/views/widgets/custom_tab_bar.dart';
+import 'package:waster/features/browse/presentation/views/widgets/search_categories_tab_bar.dart';
 
 class CategoriesBlocBuilder extends StatelessWidget {
   const CategoriesBlocBuilder({super.key});
@@ -13,11 +13,13 @@ class CategoriesBlocBuilder extends StatelessWidget {
     return BlocBuilder<CategoriesCubit, CategoriesState>(
       builder: (context, state) {
         if (state is CategoriesLoaded) {
-          return CustomTabBar(titles: state.categories.categories);
+          return SearchCategoriesTabBar(
+            categories: state.categories.categories,
+          );
         } else if (state is CategoriesLoading) {
           return Skeletonizer(
-            child: CustomTabBar(
-              titles: List.generate(
+            child: SearchCategoriesTabBar(
+              categories: List.generate(
                 3,
                 (index) => const CategoryEntity(category: 'category', count: 2),
               ),

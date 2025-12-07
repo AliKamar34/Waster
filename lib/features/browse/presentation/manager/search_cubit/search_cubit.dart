@@ -13,29 +13,25 @@ class SearchPostsCubit extends Cubit<SearchPostsState> {
 
   String _currentQuery = '';
   String _currentCategory = '';
-  int _pageSize = 10;
-  Future<void> searchPosts({
-    required String query,
-    String category = '',
-    int pageSize = 10,
-  }) async {
-    if (query.trim().isEmpty) {
+  final int _pageSize = 10;
+
+  Future<void> searchPosts({String? query, String? category}) async {
+    if (query != null) _currentQuery = query.trim();
+    if (category != null) _currentCategory = category;
+
+    if (_currentQuery.isEmpty) {
       emit(const SearchPostsInitial());
       return;
     }
-
-    _currentQuery = query;
-    _currentCategory = category;
-    _pageSize = pageSize;
 
     emit(const SearchPostsLoading());
 
     final result = await searchPostUseCase.call(
       SerachPostParams(
-        query: query,
-        category: category,
+        query: _currentQuery,
+        category: _currentCategory,
         pageNum: 1,
-        pageSize: pageSize,
+        pageSize: _pageSize,
       ),
     );
 
@@ -51,7 +47,7 @@ class SearchPostsCubit extends Cubit<SearchPostsState> {
             hasMore: paginatedResponse.hasNext,
             currentPage: paginatedResponse.pageNumber,
             totalPages: paginatedResponse.totalPages,
-            query: query,
+            query: _currentQuery,
           ),
         );
       }
@@ -75,41 +71,29 @@ class SearchPostsCubit extends Cubit<SearchPostsState> {
       ),
     );
 
-    result.fold(
-      (failure) {
-        emit(currentState);
-      },
-      (paginatedResponse) {
-        final updatedPosts = [
-          ...currentState.posts,
-          ...paginatedResponse.items,
-        ];
+    result.fold((failure) => emit(currentState), (paginatedResponse) {
+      final updatedPosts = [...currentState.posts, ...paginatedResponse.items];
 
-        emit(
-          SearchPostsLoaded(
-            posts: updatedPosts,
-            hasMore: paginatedResponse.hasNext,
-            currentPage: paginatedResponse.pageNumber,
-            totalPages: paginatedResponse.totalPages,
-            query: _currentQuery,
-          ),
-        );
-      },
-    );
+      emit(
+        SearchPostsLoaded(
+          posts: updatedPosts,
+          hasMore: paginatedResponse.hasNext,
+          currentPage: paginatedResponse.pageNumber,
+          totalPages: paginatedResponse.totalPages,
+          query: _currentQuery,
+        ),
+      );
+    });
   }
 
   void clearSearch() {
     _currentQuery = '';
+    _currentCategory = '';
     emit(const SearchPostsInitial());
   }
 
   Future<void> changeCategoryInSearch(String category) async {
-    if (_currentQuery.isEmpty) return;
-    await searchPosts(
-      query: _currentQuery,
-      category: category,
-      pageSize: _pageSize,
-    );
+    await searchPosts(category: category);
   }
 
   String get currentQuery => _currentQuery;

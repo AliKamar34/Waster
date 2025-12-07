@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/themes/app_colors.dart';
-import 'package:waster/features/browse/data/models/category_model.dart';
 import 'package:waster/features/browse/domain/entity/category_entity.dart';
+import 'package:waster/features/browse/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:waster/features/browse/presentation/views/widgets/custom_tab_bar_button.dart';
 
-class CustomTabBar extends StatefulWidget {
-  const CustomTabBar({super.key, required this.titles});
-  final List<CategoryEntity> titles;
+class SearchCategoriesTabBar extends StatefulWidget {
+  const SearchCategoriesTabBar({super.key, required this.categories});
+  final List<CategoryEntity> categories;
+
   @override
-  State<CustomTabBar> createState() => _CustomTabBarState();
+  State<SearchCategoriesTabBar> createState() => _SearchCategoriesTabBarState();
 }
 
-class _CustomTabBarState extends State<CustomTabBar> {
+class _SearchCategoriesTabBarState extends State<SearchCategoriesTabBar> {
   int currIndex = 0;
+  late List<String> categoryNames;
 
   @override
   void initState() {
-    int totalCount = widget.titles.fold(0, (sum, item) => sum + item.count);
-    widget.titles.insert(0, CategoryModel(category: 'All', count: totalCount));
     super.initState();
+
+    categoryNames = ['All', ...widget.categories.map((c) => c.category)];
   }
 
   @override
@@ -28,21 +31,26 @@ class _CustomTabBarState extends State<CustomTabBar> {
       height: 50.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: widget.titles.length,
+        itemCount: categoryNames.length,
         itemBuilder: (context, index) {
+          final isSelected = currIndex == index;
+          final categoryName = categoryNames[index];
           return CustomTabBarButton(
-            title:
-                '${widget.titles[index].category} (${widget.titles[index].count})',
-            textColor: currIndex == index
+            title: categoryName,
+            textColor: isSelected
                 ? Theme.of(context).extension<AppColors>()!.whiteColor
                 : Theme.of(context).extension<AppColors>()!.blackTextColor,
-            color: currIndex == index
+            color: isSelected
                 ? Theme.of(context).extension<AppColors>()!.primaryColor
                 : Theme.of(context).extension<AppColors>()!.scaffoldColor,
             onPressed: () {
               setState(() {
                 currIndex = index;
               });
+              final selectedCategory = index == 0 ? '' : categoryName;
+              context.read<SearchPostsCubit>().changeCategoryInSearch(
+                selectedCategory,
+              );
             },
           );
         },

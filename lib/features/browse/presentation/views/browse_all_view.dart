@@ -13,8 +13,21 @@ import 'package:waster/features/browse/presentation/views/widgets/custom_app_bar
 import 'package:waster/features/browse/presentation/views/widgets/custom_oreder_details_container.dart';
 import 'package:waster/features/post/presentation/views/widgets/my_posts_loading_widget.dart';
 
-class BrowseAllView extends StatelessWidget {
+class BrowseAllView extends StatefulWidget {
   const BrowseAllView({super.key});
+
+  @override
+  State<BrowseAllView> createState() => _BrowseAllViewState();
+}
+
+class _BrowseAllViewState extends State<BrowseAllView> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +39,7 @@ class BrowseAllView extends StatelessWidget {
           children: [
             CustomAppBar(title: LocaleKeys.Browse_Available_Orders.tr()),
             CustomTextField(
+              controller: _searchController,
               prefixIcon: SvgPicture.asset(Assets.browse),
               hint: LocaleKeys.Search_by_food_type_or_donor_name.tr(),
               onChanged: (value) {

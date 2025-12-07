@@ -55,7 +55,7 @@ class BrowseRemoteDataSourceImpl implements BrowseRemoteDateSource {
         endPoint: ApiEndPoints.expiringSoon,
         queryParameters: {
           'hours': hours,
-          // 'pageNumber': pageNum,
+          'pageNumber': pageNum,
           'pageSize': pageSize,
         },
       );
@@ -89,7 +89,7 @@ class BrowseRemoteDataSourceImpl implements BrowseRemoteDateSource {
         queryParameters: {
           'query': query,
           'category': category,
-          // 'pageNumber': pageNum,
+          'pageNumber': pageNum,
           'pageSize': pageSize,
         },
       );
