@@ -33,10 +33,20 @@ class CountAndUnitWidget extends StatelessWidget {
             selectedValue: units,
             onChanged: onChanged,
             validator: Validators.normal,
-            items: const [
-              DropdownMenuItem(value: 'Unit 1', child: Text('Unit 1')),
-              DropdownMenuItem(value: 'Unit 2', child: Text('Unit 2')),
-              DropdownMenuItem(value: 'Unit 3', child: Text('Unit 3')),
+            items: [
+              DropdownMenuItem(value: 'Ton', child: Text(LocaleKeys.Ton.tr())),
+              DropdownMenuItem(
+                value: 'Kilogram',
+                child: Text(LocaleKeys.Kilogram.tr()),
+              ),
+              DropdownMenuItem(
+                value: 'Pound',
+                child: Text(LocaleKeys.Pound.tr()),
+              ),
+              DropdownMenuItem(
+                value: 'Pieces',
+                child: Text(LocaleKeys.pieces.tr()),
+              ),
             ],
             lable: LocaleKeys.unit.tr(),
             hint: LocaleKeys.lbs.tr(),

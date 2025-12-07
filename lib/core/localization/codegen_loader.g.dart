@@ -269,7 +269,16 @@ class CodegenLoader extends AssetLoader{
   "Are_u_Sure_You_Want_To_Delete_Account": "هل أنت متأكد أنك تريد حذف الحساب؟",
   "Account_Deleted_Successfully": "تم حذف الحساب بنجاح",
   "No_expiring_soon_posts_found": "لم يتم العثور على منشورات تنتهي قريبًا.",
-  "No_Posts_found": "لم يتم العثور على منشورات."
+  "No_Posts_found": "لم يتم العثور على منشورات.",
+  "Kilogram": "كيلوجرام",
+  "Pound": "رطل",
+  "Pieces": "قطع",
+  "Ton": "طن",
+  "meat_left_overs": "بقايا اللحوم",
+  "vegetables_left_overs": "بقايا الخضروات",
+  "fruits_left_overs": "بقايا الفواكه",
+  "other": "اخرى",
+  "Other": "أخرى"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -526,7 +535,16 @@ static const Map<String,dynamic> _en = {
   "Are_u_Sure_You_Want_To_Delete_Account": "Are u Sure You Want To Delete Account",
   "Account_Deleted_Successfully": "Account Deleted Successfully",
   "No_expiring_soon_posts_found": "No expiring soon posts found.",
-  "No_Posts_found": "No Posts found."
+  "No_Posts_found": "No Posts found.",
+  "Kilogram": "Kilogram",
+  "Pound": "Pound",
+  "Pieces": "Pieces",
+  "Ton": "Ton",
+  "meat_left_overs": "Meat Left Overs",
+  "vegetables_left_overs": "Vegetables Left Overs",
+  "fruits_left_overs": "Fruits Left Overs",
+  "other": "Other",
+  "Other": "Other"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

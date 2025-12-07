@@ -258,5 +258,13 @@ abstract class  LocaleKeys {
   static const Account_Deleted_Successfully = 'Account_Deleted_Successfully';
   static const No_expiring_soon_posts_found = 'No_expiring_soon_posts_found';
   static const No_Posts_found = 'No_Posts_found';
+  static const Kilogram = 'Kilogram';
+  static const Pound = 'Pound';
+  static const Pieces = 'Pieces';
+  static const Ton = 'Ton';
+  static const meat_left_overs = 'meat_left_overs';
+  static const vegetables_left_overs = 'vegetables_left_overs';
+  static const fruits_left_overs = 'fruits_left_overs';
+  static const Other = 'Other';
 
 }

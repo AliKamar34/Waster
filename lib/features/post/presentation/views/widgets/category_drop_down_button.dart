@@ -16,10 +16,20 @@ class CategoryDropDownButton extends StatelessWidget {
       onChanged: onChanged,
       validator: Validators.normal,
       selectedValue: selectedValue,
-      items: const [
-        DropdownMenuItem(value: 'category 1', child: Text('category 1')),
-        DropdownMenuItem(value: 'category 2', child: Text('category 2')),
-        DropdownMenuItem(value: 'category 3', child: Text('category 3')),
+      items: [
+        DropdownMenuItem(
+          value: 'meat_left_overs',
+          child: Text(LocaleKeys.meat_left_overs.tr()),
+        ),
+        DropdownMenuItem(
+          value: 'vegetables_left_overs',
+          child: Text(LocaleKeys.vegetables_left_overs.tr()),
+        ),
+        DropdownMenuItem(
+          value: 'Fruits Left Overs',
+          child: Text(LocaleKeys.fruits_left_overs.tr()),
+        ),
+        DropdownMenuItem(value: 'Other', child: Text(LocaleKeys.Other.tr())),
       ],
     );
   }

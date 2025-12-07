@@ -253,5 +253,13 @@
     "Are_u_Sure_You_Want_To_Delete_Account": "هل أنت متأكد أنك تريد حذف الحساب؟",
     "Account_Deleted_Successfully": "تم حذف الحساب بنجاح",
     "No_expiring_soon_posts_found": "لم يتم العثور على منشورات تنتهي قريبًا.",
-    "No_Posts_found": "لم يتم العثور على منشورات."
+    "No_Posts_found": "لم يتم العثور على منشورات.",
+    "Kilogram": "كيلوجرام",
+    "Pound": "رطل",
+    "Pieces": "قطع",
+    "Ton": "طن",
+    "meat_left_overs": "بقايا اللحوم",
+    "vegetables_left_overs": "بقايا الخضروات",
+    "fruits_left_overs": "بقايا الفواكه",
+    "Other": "أخرى"
 }
