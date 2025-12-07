@@ -9,33 +9,25 @@ import 'package:waster/features/post/presentation/views/widgets/my_post_details_
 import 'package:waster/features/post/presentation/views/widgets/my_posts_loading_widget.dart';
 
 class FeedPostsListView extends StatefulWidget {
-  const FeedPostsListView({super.key});
+  const FeedPostsListView({super.key, required this.scrollController});
+
+  final ScrollController scrollController;
 
   @override
   State<FeedPostsListView> createState() => _FeedPostsListViewState();
 }
 
 class _FeedPostsListViewState extends State<FeedPostsListView> {
-  late ScrollController _scrollController;
-
   @override
   void initState() {
-    _scrollController = ScrollController();
-    context.read<FeedPostsCubit>().loadPosts();
-
-    _scrollController.addListener(_onScroll);
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
+    context.read<FeedPostsCubit>().loadPosts();
+    widget.scrollController.addListener(_onScroll);
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent * 0.9) {
+    if (widget.scrollController.position.pixels >=
+        widget.scrollController.position.maxScrollExtent * 0.9) {
       context.read<FeedPostsCubit>().loadMorePosts();
     }
   }
@@ -51,11 +43,11 @@ class _FeedPostsListViewState extends State<FeedPostsListView> {
 
           final isLoadingMore = state is FeedPostsLoadingMore;
           final hasMore = state is FeedPostsLoaded ? state.hasMore : true;
+
           return RefreshIndicator(
             onRefresh: () => context.read<FeedPostsCubit>().loadPosts(),
-
             child: ListView.builder(
-              controller: _scrollController,
+              controller: widget.scrollController,
               itemCount: posts.length + (isLoadingMore || hasMore ? 1 : 0),
               itemBuilder: (context, index) {
                 if (index == posts.length) {
@@ -71,9 +63,7 @@ class _FeedPostsListViewState extends State<FeedPostsListView> {
         } else if (state is FeedPostsLoading) {
           return const MyPostsLoadingWidget();
         } else if (state is FeedPostsEmpty) {
-          return CustomEmptyWidget(
-            message: LocaleKeys.No_expiring_soon_posts_found.tr(),
-          );
+          return CustomEmptyWidget(message: LocaleKeys.No_Posts_found.tr());
         } else if (state is FeedPostsError) {
           return Center(child: Text(state.message));
         } else {

@@ -12,11 +12,14 @@ class FeedPostsCubit extends Cubit<FeedPostsState> {
     : super(const FeedPostsInitial());
 
   String _currentCategory = '';
-  int _pageSize = 10;
+  final int _pageSize = 10;
 
   Future<void> loadPosts({String category = '', int pageSize = 10}) async {
+    if (state is FeedPostsLoaded && _currentCategory == category) {
+      return;
+    }
+
     _currentCategory = category;
-    _pageSize = pageSize;
 
     emit(const FeedPostsLoading());
 
@@ -27,14 +30,18 @@ class FeedPostsCubit extends Cubit<FeedPostsState> {
     result.fold((failure) => emit(FeedPostsError(failure.message)), (
       paginatedResponse,
     ) {
-      emit(
-        FeedPostsLoaded(
-          posts: paginatedResponse.items,
-          hasMore: paginatedResponse.hasNext,
-          currentPage: paginatedResponse.pageNumber,
-          totalPages: paginatedResponse.totalPages,
-        ),
-      );
+      if (paginatedResponse.items.isEmpty) {
+        emit(const FeedPostsEmpty());
+      } else {
+        emit(
+          FeedPostsLoaded(
+            posts: paginatedResponse.items,
+            hasMore: paginatedResponse.hasNext,
+            currentPage: paginatedResponse.pageNumber,
+            totalPages: paginatedResponse.totalPages,
+          ),
+        );
+      }
     });
   }
 
@@ -54,26 +61,18 @@ class FeedPostsCubit extends Cubit<FeedPostsState> {
       ),
     );
 
-    result.fold(
-      (failure) {
-        emit(currentState);
-      },
-      (paginatedResponse) {
-        final updatedPosts = [
-          ...currentState.posts,
-          ...paginatedResponse.items,
-        ];
+    result.fold((failure) => emit(currentState), (paginatedResponse) {
+      final updatedPosts = [...currentState.posts, ...paginatedResponse.items];
 
-        emit(
-          FeedPostsLoaded(
-            posts: updatedPosts,
-            hasMore: paginatedResponse.hasNext,
-            currentPage: paginatedResponse.pageNumber,
-            totalPages: paginatedResponse.totalPages,
-          ),
-        );
-      },
-    );
+      emit(
+        FeedPostsLoaded(
+          posts: updatedPosts,
+          hasMore: paginatedResponse.hasNext,
+          currentPage: paginatedResponse.pageNumber,
+          totalPages: paginatedResponse.totalPages,
+        ),
+      );
+    });
   }
 
   Future<void> refreshPosts() async {
@@ -81,6 +80,8 @@ class FeedPostsCubit extends Cubit<FeedPostsState> {
   }
 
   Future<void> changeCategoryFilter(String category) async {
+    _currentCategory = category;
+    emit(const FeedPostsLoading());
     await loadPosts(category: category, pageSize: _pageSize);
   }
 

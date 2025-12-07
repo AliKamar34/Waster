@@ -9,7 +9,9 @@ import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/utils/service_locator.dart';
+import 'package:waster/features/browse/presentation/manager/categories_cubit/categories_cubit.dart';
 import 'package:waster/features/browse/presentation/views/browse_view.dart';
+import 'package:waster/features/home/presentation/manager/feed_cubit/feed_cubit.dart';
 import 'package:waster/features/home/presentation/views/home_view.dart';
 import 'package:waster/features/impact/presentation/views/impact_view.dart';
 import 'package:waster/features/post/domain/entity/enums/post_mode_enum.dart';
@@ -27,12 +29,22 @@ class _MainViewState extends State<MainView> {
   int _currIndex = 0;
   late final List<Widget> _pages;
   late final SettingsBloc _settingsBloc;
+  late final CategoriesCubit _categoriesCubit;
+  late final FeedPostsCubit _feedPostsCubit;
 
   @override
   void initState() {
     _settingsBloc = sl<SettingsBloc>()..add(const GetUserDetailsEvent());
+    _categoriesCubit = sl<CategoriesCubit>()..loadCategories();
+    _feedPostsCubit = sl<FeedPostsCubit>();
     _pages = [
-      const HomeView(),
+      MultiBlocProvider(
+        providers: [
+          BlocProvider.value(value: _categoriesCubit),
+          BlocProvider.value(value: _feedPostsCubit),
+        ],
+        child: const HomeView(),
+      ),
       const BrowseView(),
       const SizedBox.shrink(),
       const ImpactView(),

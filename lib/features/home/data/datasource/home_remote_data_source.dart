@@ -27,11 +27,10 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         endPoint: ApiEndPoints.feedPosts,
         queryParameters: {
           'category': category,
-          // 'pageNumber': pageNum,
+          'pageNumber': pageNum,
           'pageSize': pageSize,
         },
       );
-
       if (response.statusCode == 200) {
         return PaginatedResponse<PostModel>.fromJson(
           response.data,
