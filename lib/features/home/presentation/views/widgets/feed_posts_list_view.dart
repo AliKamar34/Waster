@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/widgets/custom_empty_widget.dart';
 import 'package:waster/features/home/presentation/manager/feed_cubit/feed_cubit.dart';
-import 'package:waster/features/post/presentation/views/widgets/my_post_details_container.dart';
+import 'package:waster/features/home/presentation/views/widgets/save_post_action.dart';
+import 'package:waster/features/post/presentation/views/widgets/post_details_container.dart';
 import 'package:waster/features/post/presentation/views/widgets/my_posts_loading_widget.dart';
 
 class FeedPostsListView extends StatefulWidget {
@@ -55,7 +56,12 @@ class _FeedPostsListViewState extends State<FeedPostsListView> {
                 }
                 return Padding(
                   padding: EdgeInsetsDirectional.only(bottom: 16.h),
-                  child: MyPostDetailsContainer(postEntity: posts[index]),
+                  child: PostDetailsContainer(
+                    postEntity: posts[index],
+                    postAction: SavePostAction(
+                      isBookmarked: posts[index].isBookmarked,
+                    ),
+                  ),
                 );
               },
             ),
