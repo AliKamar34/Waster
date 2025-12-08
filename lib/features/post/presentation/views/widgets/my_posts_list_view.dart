@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/features/post/presentation/manager/cubit/get_all_user_posts_cubit.dart';
-import 'package:waster/features/post/presentation/views/widgets/my_post_details_container.dart';
+import 'package:waster/features/post/presentation/views/widgets/my_post_pop_up_menu_button.dart';
+import 'package:waster/features/post/presentation/views/widgets/post_details_container.dart';
 import 'package:waster/features/post/presentation/views/widgets/my_posts_loading_widget.dart';
 
 class MyPostsListView extends StatefulWidget {
@@ -68,7 +69,10 @@ class _MyPostsListViewState extends State<MyPostsListView> {
                 }
                 return Padding(
                   padding: EdgeInsetsDirectional.only(bottom: 16.h),
-                  child: MyPostDetailsContainer(postEntity: posts[index]),
+                  child: PostDetailsContainer(
+                    postEntity: posts[index],
+                    postAction: MyPostPopUpMenuButton(postEntity: posts[index]),
+                  ),
                 );
               },
             ),

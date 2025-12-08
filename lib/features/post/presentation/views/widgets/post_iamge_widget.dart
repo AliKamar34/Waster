@@ -14,7 +14,7 @@ class PostIamgeWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.r),
       child: CachedNetworkImage(
-        height: 200.h,
+        height: 250.h,
         width: double.infinity,
         fit: BoxFit.cover,
         imageUrl: 'http://waster.runasp.net/$imageUrl',
