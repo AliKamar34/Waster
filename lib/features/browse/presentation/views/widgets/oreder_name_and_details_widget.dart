@@ -5,11 +5,11 @@ import 'package:waster/core/themes/app_text_style.dart';
 class OrederNameAndDetailsWidget extends StatelessWidget {
   const OrederNameAndDetailsWidget({
     super.key,
-    this.postAction,
-    this.postEntity,
+    required this.postAction,
+    required this.postEntity,
   });
-  final Widget? postAction;
-  final PostEntity? postEntity;
+  final Widget postAction;
+  final PostEntity postEntity;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,18 +21,17 @@ class OrederNameAndDetailsWidget extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                postEntity?.title ?? 'Fresh Bakery Items',
+                postEntity.title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyle.styleRegular16(context),
               ),
             ),
-            postAction ?? const SizedBox.shrink(),
+            postAction,
           ],
         ),
         Text(
-          postEntity?.description ??
-              'Assorted pastries, bread, and desserts from today\'s production',
+          postEntity.description,
           style: AppTextStyle.styleRegular14(context),
         ),
       ],

@@ -10,7 +10,8 @@ import 'package:waster/core/widgets/custom_text_field.dart';
 import 'package:waster/features/browse/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:waster/features/browse/presentation/views/widgets/categories_bloc_builder.dart';
 import 'package:waster/features/browse/presentation/views/widgets/custom_app_bar.dart';
-import 'package:waster/features/browse/presentation/views/widgets/custom_oreder_details_container.dart';
+import 'package:waster/features/home/presentation/views/widgets/save_post_action.dart';
+import 'package:waster/features/post/presentation/views/widgets/post_details_container.dart';
 import 'package:waster/features/post/presentation/views/widgets/my_posts_loading_widget.dart';
 
 class BrowseAllView extends StatefulWidget {
@@ -56,7 +57,12 @@ class _BrowseAllViewState extends State<BrowseAllView> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: EdgeInsetsDirectional.only(bottom: 16.h),
-                          child: const CustomOrederDetailsContainer(),
+                          child: PostDetailsContainer(
+                            postEntity: state.posts[index],
+                            postAction: SavePostAction(
+                              isBookmarked: state.posts[index].isBookmarked,
+                            ),
+                          ),
                         );
                       },
                     ),

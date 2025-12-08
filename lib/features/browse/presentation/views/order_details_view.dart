@@ -1,17 +1,22 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:waster/core/localization/locale_keys.g.dart';
-import 'package:waster/features/browse/presentation/views/widgets/contact_information_widget.dart';
-import 'package:waster/features/browse/presentation/views/widgets/items_available_section.dart';
+import 'package:waster/core/entity/post_entity.dart';
+import 'package:waster/core/widgets/custom_button.dart';
+import 'package:waster/features/browse/presentation/views/widgets/location_section.dart';
 import 'package:waster/features/browse/presentation/views/widgets/order_details_app_bar.dart';
 import 'package:waster/features/browse/presentation/views/widgets/order_summary_section.dart';
 import 'package:waster/features/browse/presentation/views/widgets/schedule_section.dart';
-import 'package:waster/features/browse/presentation/views/widgets/special_instructions_section.dart';
+import 'package:waster/features/home/presentation/views/widgets/save_post_action.dart';
+import 'package:waster/features/post/presentation/views/widgets/post_iamge_widget.dart';
 
 class OrderDetailsView extends StatelessWidget {
-  const OrderDetailsView({super.key});
-
+  const OrderDetailsView({
+    super.key,
+    required this.postEntity,
+    required this.postAction,
+  });
+  final PostEntity postEntity;
+  final Widget postAction;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,19 +26,18 @@ class OrderDetailsView extends StatelessWidget {
           child: Column(
             spacing: 16,
             children: [
-              const OrderDetailsAppBar(),
-              const OrderSummarySection(),
-              const ItemsAvailableSection(),
-              ContactInformationWidget(
-                title: LocaleKeys.Donor_Information.tr(),
-                location: '123 Main St, Downtown',
+              OrderDetailsAppBar(status: postEntity.status!),
+              PostIamgeWidget(imageUrl: postEntity.imageUrl!),
+              OrderSummarySection(
+                postEntity: postEntity,
+                postAction: postAction,
               ),
-              ContactInformationWidget(
-                title: LocaleKeys.Recipient_Information.tr(),
-                location: '456 Oak Ave, Community Center',
-              ),
-              const ScheduleSection(),
-              const SpecialInstructionsSection(),
+              LocationSection(location: postEntity.pickupLocation),
+              ScheduleSection(postEntity: postEntity),
+              postAction is SavePostAction
+                  ? CustomButton(title: 'Claim Post', onPressed: () {})
+                  : const SizedBox.shrink(),
+
               const SizedBox(),
             ],
           ),

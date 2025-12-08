@@ -7,24 +7,22 @@ import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/utils/date_formatter.dart';
 
 class OrderStatsRow extends StatelessWidget {
-  const OrderStatsRow({super.key, this.postEntity});
-  final PostEntity? postEntity;
+  const OrderStatsRow({super.key, required this.postEntity});
+  final PostEntity postEntity;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         _OrderStatItem(
-          title: postEntity?.unit ?? LocaleKeys.meals.tr(),
-          value: postEntity?.quantity ?? '45',
+          title: postEntity.unit,
+          value: postEntity.quantity,
           color: Theme.of(context).extension<AppColors>()!.primaryColor,
         ),
 
         _OrderStatItem(
           title: LocaleKeys.posted.tr(),
-          value: postEntity?.created != null
-              ? DateFormatter.formatRelative(postEntity!.created, context)
-              : '2 ${LocaleKeys.hours_ago.tr()}',
+          value: DateFormatter.formatRelative(postEntity.created, context),
           color: Theme.of(context).extension<AppColors>()!.orangeColor,
         ),
       ],

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/entity/post_entity.dart';
@@ -87,7 +88,12 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.orderDetailsView,
         name: AppRoutes.orderDetailsView,
-        builder: (context, state) => const OrderDetailsView(),
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          final postAction = data['postAction'] as Widget;
+          final post = data['post'] as PostEntity;
+          return OrderDetailsView(postEntity: post, postAction: postAction);
+        },
       ),
       GoRoute(
         path: AppRoutes.settingsView,

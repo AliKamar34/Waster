@@ -10,8 +10,8 @@ import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 
 class OrderDetailsAppBar extends StatelessWidget {
-  const OrderDetailsAppBar({super.key});
-
+  const OrderDetailsAppBar({super.key, required this.status});
+  final String status;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -40,14 +40,14 @@ class OrderDetailsAppBar extends StatelessWidget {
             spacing: 4,
             children: [
               SvgPicture.asset(
-                Assets.pending,
+                Assets.delivered,
                 colorFilter: ColorFilter.mode(
                   Theme.of(context).extension<AppColors>()!.whiteColor,
                   BlendMode.srcIn,
                 ),
               ),
               Text(
-                LocaleKeys.pending.tr(),
+                status,
                 style: AppTextStyle.styleRegular14(context).copyWith(
                   color: Theme.of(context).extension<AppColors>()!.whiteColor,
                 ),
