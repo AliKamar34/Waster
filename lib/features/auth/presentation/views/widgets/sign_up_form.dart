@@ -148,6 +148,14 @@ class _SignUpFormState extends State<SignUpForm> {
               title: LocaleKeys.Create_Account.tr(),
               onPressed: _handleRegister,
             ),
+            CustomButton(
+              title: 'continue with google',
+              onPressed: () {
+                BlocProvider.of<AuthBloc>(
+                  context,
+                ).add(const GoogleSignInEvent());
+              },
+            ),
           ],
         ),
       ),

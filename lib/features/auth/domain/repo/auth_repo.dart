@@ -18,4 +18,5 @@ abstract class AuthRepo {
   });
   Future<Either<Failure, AuthEntity>> refreshToken();
   Future<Either<Failure, void>> revokeToken();
+  Future<Either<Failure, AuthEntity>> googleSignIn({required String idToken});
 }

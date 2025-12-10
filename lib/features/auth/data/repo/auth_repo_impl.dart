@@ -146,4 +146,27 @@ class AuthRepoImpl extends BaseRepository implements AuthRepo {
       });
     });
   }
+
+  @override
+  Future<Either<Failure, AuthEntity>> googleSignIn({
+    required String idToken,
+  }) async {
+    final result = await execute(
+      () => authRemoteDateSource.googleSignIn(idToken: idToken),
+    );
+
+    return result.fold((failure) => Left(failure), (authEntity) async {
+      final saveResult = await execute(
+        () => authLocalDataSource.saveTokens(
+          token: authEntity.token,
+          refreshToken: authEntity.refreshToken,
+        ),
+      );
+
+      return saveResult.fold(
+        (failure) => Left(failure),
+        (_) => Right(authEntity),
+      );
+    });
+  }
 }

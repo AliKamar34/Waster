@@ -55,3 +55,7 @@ final class RefreshTokenEvent extends AuthEvent {
 final class LogoutEvent extends AuthEvent {
   const LogoutEvent();
 }
+
+final class GoogleSignInEvent extends AuthEvent {
+  const GoogleSignInEvent();
+}
