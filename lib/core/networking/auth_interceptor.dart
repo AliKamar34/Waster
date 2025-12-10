@@ -103,7 +103,12 @@ class AuthInterceptor extends Interceptor {
   }
 
   bool _isAuthEndpoint(String path) {
-    const authEndpoints = ['/Login', '/Register', '/RefreshToken'];
+    const authEndpoints = [
+      '/Login',
+      '/Register',
+      '/RefreshToken',
+      '/google-signin',
+    ];
 
     return authEndpoints.any((endpoint) => path.contains(endpoint));
   }

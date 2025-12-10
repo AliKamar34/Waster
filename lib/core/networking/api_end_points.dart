@@ -5,6 +5,7 @@ class ApiEndPoints {
   static const String register = '$authBasePath/Register';
   static const String refreshToken = '$authBasePath/RefreshToken';
   static const String revokeToken = '$authBasePath/RevokeToken';
+  static const String signInWithGoogle = '/api/GoogleAuth/google-signin';
 
   static const String userBasePath = '/api/Account';
   static const String userDetails = '$userBasePath/me';

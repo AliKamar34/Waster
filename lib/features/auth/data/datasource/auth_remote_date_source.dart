@@ -18,6 +18,7 @@ abstract class AuthRemoteDateSource {
   });
   Future<AuthModel> refreshToken({required String token});
   Future<void> revokeToken({required String token});
+  Future<AuthModel> googleSignIn({required String idToken});
 }
 
 class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
@@ -111,6 +112,24 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
       throw const ServerException(message: 'Failed to revoke token');
     } on ServerException {
       rethrow;
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<AuthModel> googleSignIn({required String idToken}) async {
+    try {
+      final response = await dioHelper.postRequest(
+        endPoint: ApiEndPoints.signInWithGoogle,
+        data: {'idToken': idToken},
+      );
+
+      if (response.statusCode == 200) {
+        return AuthModel.fromJson(response.data);
+      } else {
+        throw const ServerException(message: 'Failed to sign in with Google');
+      }
     } catch (e) {
       throw ServerException(message: e.toString());
     }
