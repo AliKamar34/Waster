@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/utils/show_overlay_toast.dart';
+import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/core/widgets/custom_loading_indicator.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 
@@ -21,6 +22,7 @@ class DeleteAccountBlocConsumer extends StatelessWidget {
         if (state is SettingsDeletingAccuntFailure) {
           showOverlayToast(bottomContext, state.message, isError: true);
         } else if (state is SettingsDeletingAccountSuccess) {
+          showToast(context, 'Account Deleted Successfully');
           context.pushReplacementNamed(AppRoutes.login);
         }
       },

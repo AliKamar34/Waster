@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
 import 'package:waster/core/utils/show_toast.dart';
+import 'package:waster/core/widgets/custom_loading_indicator.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:waster/features/browse/presentation/views/widgets/custom_app_bar.dart';
 import 'package:waster/features/settings/presentation/views/widgets/app_prefrences_section.dart';
@@ -30,16 +31,19 @@ class SettingsView extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            return SingleChildScrollView(
-              child: Column(
-                spacing: 16,
-                children: [
-                  CustomAppBar(title: LocaleKeys.settings.tr()),
-                  const NotificationsSettingsSection(),
-                  const AppPrefrencesSection(),
-                  const CustomLogOutContainer(),
-                  const SizedBox(),
-                ],
+            return CustomLoadinIndicator(
+              isLoading: state is AuthLoading ? true : false,
+              child: SingleChildScrollView(
+                child: Column(
+                  spacing: 16,
+                  children: [
+                    CustomAppBar(title: LocaleKeys.settings.tr()),
+                    const NotificationsSettingsSection(),
+                    const AppPrefrencesSection(),
+                    const CustomLogOutContainer(),
+                    const SizedBox(),
+                  ],
+                ),
               ),
             );
           },

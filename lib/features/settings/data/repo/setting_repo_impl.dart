@@ -1,14 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:waster/core/data/base_repository.dart';
 import 'package:waster/core/errors/failure.dart';
+import 'package:waster/features/auth/data/datasource/auth_local_data_source.dart';
 import 'package:waster/features/settings/data/datasource/settings_remote_data_source.dart';
 import 'package:waster/features/settings/domain/entity/user_entity.dart';
 import 'package:waster/features/settings/domain/repo/settings_repo.dart';
 
 class SettingsRepoImpl extends BaseRepository implements SettingsRepo {
   final SettingsRemoteDataSource settingsRemoteDataSource;
+  final AuthLocalDataSource authLocalDataSource;
 
-  SettingsRepoImpl({required this.settingsRemoteDataSource});
+  SettingsRepoImpl({
+    required this.settingsRemoteDataSource,
+    required this.authLocalDataSource,
+  });
 
   @override
   Future<Either<Failure, UserEntity>> getUserDetails() async {
@@ -83,8 +88,18 @@ class SettingsRepoImpl extends BaseRepository implements SettingsRepo {
   Future<Either<Failure, void>> deleteAccount({
     required String password,
   }) async {
-    return execute(
+    final deleteAccountResult = await execute(
       () => settingsRemoteDataSource.deleteAccount(password: password),
     );
+    return deleteAccountResult.fold((failure) => Left(failure), (_) async {
+      final deleteResult = await execute(
+        () => authLocalDataSource.deleteTokens(),
+      );
+
+      return deleteResult.fold(
+        (failure) => Left(failure),
+        (_) => const Right(null),
+      );
+    });
   }
 }

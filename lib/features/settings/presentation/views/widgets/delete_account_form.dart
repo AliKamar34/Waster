@@ -7,7 +7,6 @@ import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
-import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 import 'package:waster/features/settings/presentation/views/widgets/change_password_text_field.dart';
 
@@ -65,12 +64,12 @@ class _DeleteAccountFormState extends State<DeleteAccountForm> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
+                        // BlocProvider.of<AuthBloc>(
+                        //   context,
+                        // ).add(const LogoutEvent());
                         BlocProvider.of<SettingsBloc>(context).add(
                           DeleteAccountEvent(password: passwordController.text),
                         );
-                        BlocProvider.of<AuthBloc>(
-                          context,
-                        ).add(const RefreshTokenEvent());
                       } else {
                         setState(() {
                           autovalidateMode = AutovalidateMode.always;

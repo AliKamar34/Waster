@@ -10,6 +10,7 @@ import 'package:waster/features/auth/domain/usecases/log_in_use_case.dart';
 import 'package:waster/features/auth/domain/usecases/refresh_token_use_case.dart';
 import 'package:waster/features/auth/domain/usecases/register_use_case.dart';
 import 'package:waster/features/auth/domain/usecases/revoke_token_use_case.dart';
+import 'package:waster/features/auth/domain/usecases/sign_in_with_google.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:waster/features/browse/data/datasource/browse_remote_data_source.dart';
 import 'package:waster/features/browse/data/repo/browse_repo_impl.dart';
@@ -77,6 +78,9 @@ void setupServiceLocator() {
   sl.registerLazySingleton<RevokeTokenUseCase>(
     () => RevokeTokenUseCase(authRepo: sl()),
   );
+  sl.registerLazySingleton<GoogleSignInUseCase>(
+    () => GoogleSignInUseCase(authRepo: sl()),
+  );
 
   // Auth Interceptor
   sl.registerLazySingleton(
@@ -96,6 +100,7 @@ void setupServiceLocator() {
       registerUseCase: sl(),
       refreshTokenUseCase: sl(),
       revokeTokenUseCase: sl(),
+      googleSignInUseCase: sl(),
     ),
   );
 
@@ -106,7 +111,10 @@ void setupServiceLocator() {
   );
   // Repo
   sl.registerLazySingleton<SettingsRepo>(
-    () => SettingsRepoImpl(settingsRemoteDataSource: sl()),
+    () => SettingsRepoImpl(
+      authLocalDataSource: sl(),
+      settingsRemoteDataSource: sl(),
+    ),
   );
   // use cases
   sl.registerLazySingleton<ChangeEmailUseCase>(

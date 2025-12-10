@@ -32,23 +32,29 @@ class CustomLogOutContainer extends StatelessWidget {
     return showDialog(
       context: context,
       builder: (context) {
-        return CustomAlert(
-          content: LocaleKeys.Are_U_Sure_You_Want_To_Sign_Out.tr(),
-          title: LocaleKeys.sign_out.tr(),
-          button1: CustomButton(
-            title: LocaleKeys.cancle.tr(),
-            onPressed: () {
-              context.pop();
-            },
-          ),
-          button2: CustomButton(
-            title: LocaleKeys.sign_out.tr(),
-            backgroundColor: Theme.of(context).extension<AppColors>()!.redColor,
-            onPressed: () {
-              BlocProvider.of<AuthBloc>(context).add(const LogoutEvent());
-              context.pop();
-            },
-          ),
+        return BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            return CustomAlert(
+              content: LocaleKeys.Are_U_Sure_You_Want_To_Sign_Out.tr(),
+              title: LocaleKeys.sign_out.tr(),
+              button1: CustomButton(
+                title: LocaleKeys.cancle.tr(),
+                onPressed: () {
+                  context.pop();
+                },
+              ),
+              button2: CustomButton(
+                title: LocaleKeys.sign_out.tr(),
+                backgroundColor: Theme.of(
+                  context,
+                ).extension<AppColors>()!.redColor,
+                onPressed: () {
+                  BlocProvider.of<AuthBloc>(context).add(const LogoutEvent());
+                  context.pop();
+                },
+              ),
+            );
+          },
         );
       },
     );
