@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 import 'package:waster/features/settings/presentation/views/widgets/contact_info_section.dart';
 import 'package:waster/features/settings/presentation/views/widgets/custom_profile_loading_widget.dart';
@@ -22,7 +24,8 @@ class ProfileViewBodyBlocBuilder extends StatelessWidget {
               const ProfileStatisticsSection(),
               ContactInfoSection(
                 email: state.user.email,
-                phoneNum: state.user.phoneNumber,
+                phoneNum:
+                    state.user.phoneNumber ?? LocaleKeys.phone_number.tr(),
               ),
               const PostsManagmentSection(),
             ],

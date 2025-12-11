@@ -17,8 +17,8 @@ class UserModel extends UserEntity {
       id: json['id'] as String,
       fullName: json['fullName'] as String,
       email: json['email'] as String,
-      address: json['address'] as String,
-      phoneNumber: json['phoneNumber'] as String,
+      address: json['address'],
+      phoneNumber: json['phoneNumber'],
       bio: json['bio'],
     );
   }

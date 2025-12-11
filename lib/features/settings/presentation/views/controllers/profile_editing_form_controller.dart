@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/features/settings/domain/entity/user_entity.dart';
 
 class ProfileEditingFormController {
@@ -22,8 +24,8 @@ class ProfileEditingFormController {
   ProfileEditingFormController(UserEntity user)
     : _originalName = user.fullName,
       _originalEmail = user.email,
-      _originalPhone = user.phoneNumber,
-      _originalLocation = user.address,
+      _originalPhone = user.phoneNumber ?? LocaleKeys.phone_number.tr(),
+      _originalLocation = user.address ?? LocaleKeys.Enter_valid_address.tr(),
       _originalBio = user.bio ?? '' {
     nameController = TextEditingController(text: _originalName);
     emailController = TextEditingController(text: _originalEmail);

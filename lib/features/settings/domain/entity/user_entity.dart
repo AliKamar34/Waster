@@ -1,8 +1,8 @@
 class UserEntity {
   final String fullName;
   final String email;
-  final String address;
-  final String phoneNumber;
+  final String? address;
+  final String? phoneNumber;
   final String? bio;
 
   const UserEntity({
