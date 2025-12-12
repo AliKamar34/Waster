@@ -28,4 +28,7 @@ class ApiEndPoints {
   static const String expiringSoon = '$browseBasePath/expiring-soon';
   static const String categories = '$browseBasePath/categories';
   static const String searchPosts = '$browseBasePath/search';
+
+  static const String bookMarkBasePath = '/api/BookMarks';
+  static const String deleteBookMark = '$bookMarkBasePath/Remove-Bookmark';
 }

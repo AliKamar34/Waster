@@ -16,6 +16,7 @@ import 'package:waster/features/notifications/presentation/views/notifications_v
 import 'package:waster/features/post/domain/entity/enums/post_mode_enum.dart';
 import 'package:waster/features/post/presentation/manager/bloc/post_bloc.dart';
 import 'package:waster/features/post/presentation/manager/cubit/get_all_user_posts_cubit.dart';
+import 'package:waster/features/post/presentation/views/book_mark_view.dart';
 import 'package:waster/features/post/presentation/views/donate_view.dart';
 import 'package:waster/features/post/presentation/views/my_posts_view.dart';
 import 'package:waster/features/settings/domain/entity/user_entity.dart';
@@ -124,6 +125,14 @@ class RouterGenerationConfig {
         builder: (context, state) => BlocProvider(
           create: (context) => sl<GetAllUserPostsCubit>(),
           child: const MyPostsView(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.bookMarks,
+        name: AppRoutes.bookMarks,
+        builder: (context, state) => BlocProvider(
+          create: (context) => sl<GetAllUserPostsCubit>(),
+          child: const BookMarkView(),
         ),
       ),
     ],

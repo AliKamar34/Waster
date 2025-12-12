@@ -12,4 +12,5 @@ class AppRoutes {
   static const String profileEditingView = '/profileEditingView';
   static const String notificationsView = '/notificationsView';
   static const String myPostsView = '/myPostsView';
+  static const String bookMarks = '/bookMarks';
 }
