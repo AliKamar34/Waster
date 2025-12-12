@@ -9,14 +9,13 @@ import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 import 'package:waster/core/widgets/custom_phone_number_feild.dart';
-import 'package:waster/features/auth/data/models/roles_enum.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:waster/features/auth/presentation/views/widgets/confirm_password_text_field.dart';
 import 'package:waster/features/auth/presentation/views/widgets/email_text_field.dart';
+import 'package:waster/features/auth/presentation/views/widgets/google_section.dart';
 import 'package:waster/features/auth/presentation/views/widgets/location_text_field.dart';
 import 'package:waster/features/auth/presentation/views/widgets/name_text_field.dart';
 import 'package:waster/features/auth/presentation/views/widgets/password_text_field.dart';
-import 'package:waster/features/auth/presentation/views/widgets/roles_drop_down_widget.dart';
 import 'package:waster/features/auth/presentation/views/widgets/terms_and_privacy.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -30,7 +29,6 @@ class _SignUpFormState extends State<SignUpForm> {
   bool _isPasswordVisible = true;
   bool _isConfirmPasswordVisible = true;
   bool _isTermsAccepted = false;
-  RolesEnum? _selectedRole;
   final _formKey = GlobalKey<FormState>();
   final _fullNameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -108,14 +106,6 @@ class _SignUpFormState extends State<SignUpForm> {
                 });
               },
             ),
-            RolesDropDownWidget(
-              selectedRole: _selectedRole,
-              onChanged: (value) {
-                setState(() {
-                  _selectedRole = value;
-                });
-              },
-            ),
             LocationTextField(locationController: _locationController),
             PasswordTextField(
               isPassword: _isPasswordVisible,
@@ -148,14 +138,7 @@ class _SignUpFormState extends State<SignUpForm> {
               title: LocaleKeys.Create_Account.tr(),
               onPressed: _handleRegister,
             ),
-            CustomButton(
-              title: 'continue with google',
-              onPressed: () {
-                BlocProvider.of<AuthBloc>(
-                  context,
-                ).add(const GoogleSignInEvent());
-              },
-            ),
+            const GoogleSection(),
           ],
         ),
       ),

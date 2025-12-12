@@ -44,4 +44,5 @@ class Assets {
   static const String settings = '${iconsPath}settings.svg';
   static const String timer = '${iconsPath}timer.svg';
   static const String truck = '${iconsPath}truck.svg';
+  static const String google = '${iconsPath}google.svg';
 }

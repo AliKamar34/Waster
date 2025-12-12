@@ -8,6 +8,7 @@ import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 import 'package:waster/features/auth/presentation/manager/bloc/auth_bloc.dart';
 import 'package:waster/features/auth/presentation/views/widgets/email_text_field.dart';
+import 'package:waster/features/auth/presentation/views/widgets/google_section.dart';
 import 'package:waster/features/auth/presentation/views/widgets/password_text_field.dart';
 
 class LoginForm extends StatefulWidget {
@@ -69,6 +70,7 @@ class _LoginFormState extends State<LoginForm> {
                 }
               },
             ),
+            const GoogleSection(),
           ],
         ),
       ),
