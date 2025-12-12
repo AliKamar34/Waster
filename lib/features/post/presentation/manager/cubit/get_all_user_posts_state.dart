@@ -15,6 +15,10 @@ class GetAllUserPostsListLoading extends GetAllUserPostsState {
   const GetAllUserPostsListLoading();
 }
 
+class GetAllUserPostsListEmpty extends GetAllUserPostsState {
+  const GetAllUserPostsListEmpty();
+}
+
 class GetAllUserPostsListLoadingMore extends GetAllUserPostsState {
   final List<PostModel> currentPosts;
 

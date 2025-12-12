@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:waster/core/localization/locale_keys.g.dart';
+import 'package:waster/core/widgets/custom_empty_widget.dart';
 import 'package:waster/features/post/presentation/manager/cubit/get_all_user_posts_cubit.dart';
 import 'package:waster/features/post/presentation/views/widgets/my_post_pop_up_menu_button.dart';
 import 'package:waster/features/post/presentation/views/widgets/post_details_container.dart';
@@ -79,6 +81,8 @@ class _MyPostsListViewState extends State<MyPostsListView> {
           );
         } else if (state is GetAllUserPostsListLoading) {
           return const MyPostsLoadingWidget();
+        } else if (state is GetAllUserPostsListEmpty) {
+          return const CustomEmptyWidget(message: LocaleKeys.No_Posts_found);
         } else {
           return const Center(child: Text('Something went wrong'));
         }

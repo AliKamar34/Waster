@@ -20,6 +20,10 @@ class GetAllUserPostsCubit extends Cubit<GetAllUserPostsState> {
     result.fold(
       (failure) => emit(GetAllUserPostsListFailure(failure.message)),
       (paginatedResponse) {
+        if (paginatedResponse.items.isEmpty) {
+          emit(const GetAllUserPostsListEmpty());
+          return;
+        }
         emit(
           GetAllUserPostsListLoaded(
             posts: paginatedResponse.items,
