@@ -25,7 +25,7 @@ class PostsManagmentSection extends StatelessWidget {
           PostsManagmentButton(
             title: 'Book Marks',
             onTap: () {
-              context.pushNamed(AppRoutes.myPostsView);
+              context.pushNamed(AppRoutes.bookMarks);
             },
           ),
         ],
