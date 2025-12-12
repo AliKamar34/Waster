@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:waster/core/helpers/shared_prefs_helper.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/core/widgets/custom_loading_indicator.dart';
@@ -60,6 +61,7 @@ class _ProfileEditingViewState extends State<ProfileEditingView> {
       listener: (context, state) {
         if (state is SettingsUpdateSuccess) {
           showToast(context, state.message);
+          SharedPrefsHelper.clearProfileReminderDismissed();
           context.pop();
         } else if (state is SettingsFailure) {
           showToast(context, state.message, isError: true);

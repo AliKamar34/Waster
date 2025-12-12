@@ -261,5 +261,10 @@
     "meat_left_overs": "بقايا اللحوم",
     "vegetables_left_overs": "بقايا الخضروات",
     "fruits_left_overs": "بقايا الفواكه",
-    "Other": "أخرى"
+    "Other": "أخرى",
+    "complete_your_profile": "أكمل ملفك الشخصي",
+    "complete_profile_message": "يرجى إضافة عنوانك ورقم هاتفك لإكمال ملفك الشخصي",
+    "complete_profile_benefits": "هذا يساعدنا على خدمتك بشكل أفضل وتفعيل جميع الميزات",
+    "complete_now": "أكمل الآن",
+    "later": "لاحقاً"
 }

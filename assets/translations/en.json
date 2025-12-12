@@ -261,5 +261,10 @@
   "meat_left_overs": "Meat Left Overs",
   "vegetables_left_overs": "Vegetables Left Overs",
   "fruits_left_overs": "Fruits Left Overs",
-  "Other": "Other"
+  "Other": "Other",
+  "complete_your_profile": "Complete Your Profile",
+  "complete_profile_message": "Please add your address and phone number to complete your profile",
+  "complete_profile_benefits": "This helps us serve you better and enables all features",
+  "complete_now": "Complete Now",
+  "later": "Later"
 }

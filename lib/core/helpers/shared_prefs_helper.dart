@@ -15,6 +15,29 @@ class SharedPrefsHelper {
     return _prefs?.getBool(key);
   }
 
+  static Future<void> setProfileReminderDismissedTime() async {
+    final now = DateTime.now().millisecondsSinceEpoch;
+    await _prefs?.setInt('profile_reminder_dismissed_time', now);
+  }
+
+  static bool shouldShowProfileReminder() {
+    final dismissedTime = _prefs?.getInt('profile_reminder_dismissed_time');
+
+    if (dismissedTime == null) {
+      return true;
+    }
+
+    final lastDismissed = DateTime.fromMillisecondsSinceEpoch(dismissedTime);
+    final now = DateTime.now();
+    final difference = now.difference(lastDismissed);
+
+    return difference.inHours >= 24;
+  }
+
+  static Future<void> clearProfileReminderDismissed() async {
+    await _prefs?.remove('profile_reminder_dismissed_time');
+  }
+
   static Future<void> remove(String key) async {
     await _prefs?.remove(key);
   }

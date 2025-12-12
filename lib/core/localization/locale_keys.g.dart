@@ -266,5 +266,10 @@ abstract class  LocaleKeys {
   static const vegetables_left_overs = 'vegetables_left_overs';
   static const fruits_left_overs = 'fruits_left_overs';
   static const Other = 'Other';
+  static const complete_your_profile = 'complete_your_profile';
+  static const complete_profile_message = 'complete_profile_message';
+  static const complete_profile_benefits = 'complete_profile_benefits';
+  static const complete_now = 'complete_now';
+  static const later = 'later';
 
 }

@@ -277,8 +277,12 @@ class CodegenLoader extends AssetLoader{
   "meat_left_overs": "بقايا اللحوم",
   "vegetables_left_overs": "بقايا الخضروات",
   "fruits_left_overs": "بقايا الفواكه",
-  "other": "اخرى",
-  "Other": "أخرى"
+  "Other": "أخرى",
+  "complete_your_profile": "أكمل ملفك الشخصي",
+  "complete_profile_message": "يرجى إضافة عنوانك ورقم هاتفك لإكمال ملفك الشخصي",
+  "complete_profile_benefits": "هذا يساعدنا على خدمتك بشكل أفضل وتفعيل جميع الميزات",
+  "complete_now": "أكمل الآن",
+  "later": "لاحقاً"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -543,8 +547,12 @@ static const Map<String,dynamic> _en = {
   "meat_left_overs": "Meat Left Overs",
   "vegetables_left_overs": "Vegetables Left Overs",
   "fruits_left_overs": "Fruits Left Overs",
-  "other": "Other",
-  "Other": "Other"
+  "Other": "Other",
+  "complete_your_profile": "Complete Your Profile",
+  "complete_profile_message": "Please add your address and phone number to complete your profile",
+  "complete_profile_benefits": "This helps us serve you better and enables all features",
+  "complete_now": "Complete Now",
+  "later": "Later"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
