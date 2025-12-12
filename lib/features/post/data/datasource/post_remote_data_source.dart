@@ -34,6 +34,12 @@ abstract class PostRemoteDataSource {
     int pageSize = 10,
   });
   Future<void> deletePost({required String id});
+  Future<void> addBookMarkPost({required String id});
+  Future<void> deleteBookMarkPost({required String id});
+  Future<PaginatedResponse<PostModel>> getAllBookMarksPosts({
+    required int pageNum,
+    int pageSize = 10,
+  });
 }
 
 class PostRemoteDataSourceImpl implements PostRemoteDataSource {
@@ -152,6 +158,68 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
         return;
       }
       throw const ServerException(message: 'Failed to Delete post');
+    } on ServerException {
+      rethrow;
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> addBookMarkPost({required String id}) async {
+    try {
+      final response = await dioHelper.postRequest(
+        endPoint: ApiEndPoints.bookMarkBasePath,
+        queryParameters: {'PostId': id},
+      );
+      if (response.statusCode == 201) {
+        return;
+      }
+      throw const ServerException(message: 'Failed to Add Book Mark post');
+    } on ServerException {
+      rethrow;
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> deleteBookMarkPost({required String id}) async {
+    try {
+      final response = await dioHelper.deteleRequest(
+        endPoint: ApiEndPoints.deleteBookMark,
+        queryParameters: {'postId': id},
+      );
+      if (response.statusCode == 200) {
+        return;
+      }
+      throw const ServerException(message: 'Failed to Delete Book Mark post');
+    } on ServerException {
+      rethrow;
+    } catch (e) {
+      throw ServerException(message: e.toString());
+    }
+  }
+
+  @override
+  Future<PaginatedResponse<PostModel>> getAllBookMarksPosts({
+    required int pageNum,
+    int pageSize = 10,
+  }) async {
+    try {
+      final response = await dioHelper.getRequest(
+        endPoint: ApiEndPoints.bookMarkBasePath,
+        queryParameters: {'PageNumber': pageNum, 'PageSize': pageSize},
+      );
+
+      if (response.statusCode == 200) {
+        return PaginatedResponse<PostModel>.fromJson(
+          response.data,
+          PostModel.fromJson,
+        );
+      }
+
+      throw const ServerException(message: 'Failed to fetch Book Marks posts');
     } on ServerException {
       rethrow;
     } catch (e) {
