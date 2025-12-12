@@ -32,4 +32,10 @@ abstract class PostRepo {
     int pageSize = 10,
   });
   Future<Either<Failure, void>> deletePost({required String id});
+  Future<Either<Failure, void>> addBookMarkPost({required String id});
+  Future<Either<Failure, void>> deleteBookMarkPost({required String id});
+  Future<Either<Failure, PaginatedResponse<PostModel>>> getAllBookMarksPosts({
+    required int pageNum,
+    int pageSize = 10,
+  });
 }

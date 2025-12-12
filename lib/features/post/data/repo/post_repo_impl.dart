@@ -83,4 +83,27 @@ class PostRepoImpl extends BaseRepository implements PostRepo {
   Future<Either<Failure, void>> deletePost({required String id}) async {
     return execute(() => postRemoteDataSource.deletePost(id: id));
   }
+
+  @override
+  Future<Either<Failure, void>> addBookMarkPost({required String id}) async {
+    return execute(() => postRemoteDataSource.addBookMarkPost(id: id));
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteBookMarkPost({required String id}) {
+    return execute(() => postRemoteDataSource.deleteBookMarkPost(id: id));
+  }
+
+  @override
+  Future<Either<Failure, PaginatedResponse<PostModel>>> getAllBookMarksPosts({
+    required int pageNum,
+    int pageSize = 10,
+  }) async {
+    return execute(
+      () => postRemoteDataSource.getAllBookMarksPosts(
+        pageNum: pageNum,
+        pageSize: pageSize,
+      ),
+    );
+  }
 }
