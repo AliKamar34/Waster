@@ -59,7 +59,8 @@ class _FeedPostsListViewState extends State<FeedPostsListView> {
                   child: PostDetailsContainer(
                     postEntity: posts[index],
                     postAction: SavePostAction(
-                      isBookmarked: posts[index].isBookmarked,
+                      postId: posts[index].id,
+                      initialIsBookmarked: posts[index].isBookmarked,
                     ),
                   ),
                 );

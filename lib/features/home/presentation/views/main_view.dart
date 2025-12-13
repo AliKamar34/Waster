@@ -15,6 +15,7 @@ import 'package:waster/features/home/presentation/manager/feed_cubit/feed_cubit.
 import 'package:waster/features/home/presentation/views/home_view.dart';
 import 'package:waster/features/impact/presentation/views/impact_view.dart';
 import 'package:waster/features/post/domain/entity/enums/post_mode_enum.dart';
+import 'package:waster/features/post/presentation/manager/book_mark_cubit/book_mark_cubit.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 import 'package:waster/features/settings/presentation/views/profile_view.dart';
 
@@ -31,21 +32,25 @@ class _MainViewState extends State<MainView> {
   late final SettingsBloc _settingsBloc;
   late final CategoriesCubit _categoriesCubit;
   late final FeedPostsCubit _feedPostsCubit;
+  late final BookmarkCubit _bookmarkCubit;
 
   @override
   void initState() {
     _settingsBloc = sl<SettingsBloc>()..add(const GetUserDetailsEvent());
     _categoriesCubit = sl<CategoriesCubit>()..loadCategories();
     _feedPostsCubit = sl<FeedPostsCubit>();
+    _bookmarkCubit = sl<BookmarkCubit>()..loadBookmarks();
+
     _pages = [
       MultiBlocProvider(
         providers: [
           BlocProvider.value(value: _categoriesCubit),
           BlocProvider.value(value: _feedPostsCubit),
+          BlocProvider.value(value: _bookmarkCubit),
         ],
         child: const HomeView(),
       ),
-      const BrowseView(),
+      BlocProvider.value(value: _bookmarkCubit, child: const BrowseView()),
       const SizedBox.shrink(),
       const ImpactView(),
       BlocProvider.value(value: _settingsBloc, child: const ProfileView()),
@@ -56,6 +61,8 @@ class _MainViewState extends State<MainView> {
   @override
   void dispose() {
     _settingsBloc.close();
+    _categoriesCubit.close();
+    _feedPostsCubit.close();
     super.dispose();
   }
 
