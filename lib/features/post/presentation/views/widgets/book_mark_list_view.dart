@@ -3,25 +3,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/widgets/custom_empty_widget.dart';
-import 'package:waster/features/post/presentation/manager/get_all_user_posts_cubit/get_all_user_posts_cubit.dart';
-import 'package:waster/features/post/presentation/views/widgets/my_post_pop_up_menu_button.dart';
+import 'package:waster/features/home/presentation/views/widgets/save_post_action.dart';
+import 'package:waster/features/post/presentation/manager/book_mark_cubit/book_mark_cubit.dart';
 import 'package:waster/features/post/presentation/views/widgets/post_details_container.dart';
 import 'package:waster/features/post/presentation/views/widgets/my_posts_loading_widget.dart';
 
-class MyPostsListView extends StatefulWidget {
-  const MyPostsListView({super.key});
+class BookMarkListView extends StatefulWidget {
+  const BookMarkListView({super.key});
 
   @override
-  State<MyPostsListView> createState() => _MyPostsListViewState();
+  State<BookMarkListView> createState() => _BookMarkListViewState();
 }
 
-class _MyPostsListViewState extends State<MyPostsListView> {
+class _BookMarkListViewState extends State<BookMarkListView> {
   late ScrollController _scrollController;
 
   @override
   void initState() {
     _scrollController = ScrollController();
-    context.read<GetAllUserPostsCubit>().loadPosts();
+    context.read<BookmarkCubit>().refreshBookmarks();
 
     _scrollController.addListener(_onScroll);
     super.initState();
@@ -36,27 +36,28 @@ class _MyPostsListViewState extends State<MyPostsListView> {
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent * 0.9) {
-      context.read<GetAllUserPostsCubit>().loadMorePosts();
+      context.read<BookmarkCubit>().loadMoreBookmarks();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetAllUserPostsCubit, GetAllUserPostsState>(
+    return BlocConsumer<BookmarkCubit, BookmarkState>(
+      listener: (context, state) {
+        if (state is BookmarkToggled && !state.isNowBookmarked) {
+          context.read<BookmarkCubit>().refreshBookmarks();
+        }
+      },
       builder: (context, state) {
-        if (state is GetAllUserPostsListLoaded ||
-            state is GetAllUserPostsListLoadingMore) {
-          final posts = state is GetAllUserPostsListLoaded
+        if (state is BookmarkLoaded || state is BookmarkLoadingMore) {
+          final posts = state is BookmarkLoaded
               ? state.posts
-              : (state as GetAllUserPostsListLoadingMore).currentPosts;
+              : (state as BookmarkLoadingMore).currentPosts;
 
-          final isLoadingMore = state is GetAllUserPostsListLoadingMore;
-          final hasMore = state is GetAllUserPostsListLoaded
-              ? state.hasMore
-              : true;
+          final isLoadingMore = state is BookmarkLoadingMore;
+          final hasMore = state is BookmarkLoaded ? state.hasMore : true;
           return RefreshIndicator(
-            onRefresh: () =>
-                context.read<GetAllUserPostsCubit>().refreshPosts(),
+            onRefresh: () => context.read<BookmarkCubit>().refreshBookmarks(),
 
             child: ListView.builder(
               controller: _scrollController,
@@ -69,18 +70,24 @@ class _MyPostsListViewState extends State<MyPostsListView> {
                   padding: EdgeInsetsDirectional.only(bottom: 16.h),
                   child: PostDetailsContainer(
                     postEntity: posts[index],
-                    postAction: MyPostPopUpMenuButton(postEntity: posts[index]),
+                    postAction: SavePostAction(
+                      postId: posts[index].id,
+                      initialIsBookmarked: true,
+                    ),
                   ),
                 );
               },
             ),
           );
-        } else if (state is GetAllUserPostsListLoading) {
+        } else if (state is BookmarkLoading) {
           return const MyPostsLoadingWidget();
-        } else if (state is GetAllUserPostsListEmpty) {
+        } else if (state is BookmarkEmpty) {
           return const CustomEmptyWidget(message: LocaleKeys.No_Posts_found);
-        } else {
+        } else if (state is BookmarkError) {
           return const Center(child: Text('Something went wrong'));
+        } else {
+          BlocProvider.of<BookmarkCubit>(context).loadBookmarks();
+          return const MyPostsLoadingWidget();
         }
       },
     );

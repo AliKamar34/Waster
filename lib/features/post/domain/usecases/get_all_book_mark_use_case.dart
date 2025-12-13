@@ -23,7 +23,7 @@ class GetAllBookMarkUseCase {
   Future<Either<Failure, PaginatedResponse<PostModel>>> call(
     GetAllBookMarkParams params,
   ) {
-    return postRepo.getAllUsersPosts(
+    return postRepo.getAllBookMarksPosts(
       pageNum: params.pageNum,
       pageSize: params.pageSize,
     );

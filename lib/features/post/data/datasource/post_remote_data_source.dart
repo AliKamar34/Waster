@@ -169,7 +169,7 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   Future<void> addBookMarkPost({required String id}) async {
     try {
       final response = await dioHelper.postRequest(
-        endPoint: ApiEndPoints.bookMarkBasePath,
+        endPoint: '${ApiEndPoints.bookMarkBasePath}/$id',
         queryParameters: {'PostId': id},
       );
       if (response.statusCode == 201) {

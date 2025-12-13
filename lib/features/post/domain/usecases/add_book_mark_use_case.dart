@@ -18,6 +18,6 @@ class AddBookMarkUseCase {
   const AddBookMarkUseCase({required this.postRepo});
 
   Future<Either<Failure, void>> call(AddBookMarkParams params) {
-    return postRepo.deleteBookMarkPost(id: params.id);
+    return postRepo.addBookMarkPost(id: params.id);
   }
 }
