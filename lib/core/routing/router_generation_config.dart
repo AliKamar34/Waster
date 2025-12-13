@@ -15,7 +15,8 @@ import 'package:waster/features/home/presentation/views/main_view.dart';
 import 'package:waster/features/notifications/presentation/views/notifications_view.dart';
 import 'package:waster/features/post/domain/entity/enums/post_mode_enum.dart';
 import 'package:waster/features/post/presentation/manager/bloc/post_bloc.dart';
-import 'package:waster/features/post/presentation/manager/cubit/get_all_user_posts_cubit.dart';
+import 'package:waster/features/post/presentation/manager/book_mark_cubit/book_mark_cubit.dart';
+import 'package:waster/features/post/presentation/manager/get_all_user_posts_cubit/get_all_user_posts_cubit.dart';
 import 'package:waster/features/post/presentation/views/book_mark_view.dart';
 import 'package:waster/features/post/presentation/views/donate_view.dart';
 import 'package:waster/features/post/presentation/views/my_posts_view.dart';
@@ -82,6 +83,7 @@ class RouterGenerationConfig {
             BlocProvider(
               create: (context) => sl<CategoriesCubit>()..loadCategories(),
             ),
+            BlocProvider.value(value: sl<BookmarkCubit>()),
           ],
           child: const BrowseAllView(),
         ),
@@ -93,7 +95,10 @@ class RouterGenerationConfig {
           final data = state.extra as Map<String, dynamic>;
           final postAction = data['postAction'] as Widget;
           final post = data['post'] as PostEntity;
-          return OrderDetailsView(postEntity: post, postAction: postAction);
+          return BlocProvider.value(
+            value: sl<BookmarkCubit>(),
+            child: OrderDetailsView(postEntity: post, postAction: postAction),
+          );
         },
       ),
       GoRoute(
@@ -130,8 +135,8 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.bookMarks,
         name: AppRoutes.bookMarks,
-        builder: (context, state) => BlocProvider(
-          create: (context) => sl<GetAllUserPostsCubit>(),
+        builder: (context, state) => BlocProvider.value(
+          value: sl<BookmarkCubit>(),
           child: const BookMarkView(),
         ),
       ),

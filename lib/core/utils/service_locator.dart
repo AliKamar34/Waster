@@ -29,13 +29,17 @@ import 'package:waster/features/browse/presentation/manager/search_cubit/search_
 import 'package:waster/features/post/data/datasource/post_remote_data_source.dart';
 import 'package:waster/features/post/data/repo/post_repo_impl.dart';
 import 'package:waster/features/post/domain/repo/post_repo.dart';
+import 'package:waster/features/post/domain/usecases/add_book_mark_use_case.dart';
 import 'package:waster/features/post/domain/usecases/add_donation_post_usecase.dart';
+import 'package:waster/features/post/domain/usecases/delete_book_mark_use_case.dart';
 import 'package:waster/features/post/domain/usecases/delete_post_usecase.dart';
 import 'package:waster/features/post/domain/usecases/edit_donation_post_usecase.dart';
+import 'package:waster/features/post/domain/usecases/get_all_book_mark_use_case.dart';
 import 'package:waster/features/post/domain/usecases/get_all_user_posts_usecase.dart';
 import 'package:waster/features/post/domain/usecases/process_image_usecase.dart';
 import 'package:waster/features/post/presentation/manager/bloc/post_bloc.dart';
-import 'package:waster/features/post/presentation/manager/cubit/get_all_user_posts_cubit.dart';
+import 'package:waster/features/post/presentation/manager/book_mark_cubit/book_mark_cubit.dart';
+import 'package:waster/features/post/presentation/manager/get_all_user_posts_cubit/get_all_user_posts_cubit.dart';
 import 'package:waster/features/settings/data/datasource/settings_remote_data_source.dart';
 import 'package:waster/features/settings/data/repo/setting_repo_impl.dart';
 import 'package:waster/features/settings/domain/repo/settings_repo.dart';
@@ -166,6 +170,17 @@ void setupServiceLocator() {
   sl.registerLazySingleton<DeletePostUsecase>(
     () => DeletePostUsecase(postRepo: sl()),
   );
+  sl.registerLazySingleton<AddBookMarkUseCase>(
+    () => AddBookMarkUseCase(postRepo: sl()),
+  );
+
+  sl.registerLazySingleton<DeleteBookMarkUseCase>(
+    () => DeleteBookMarkUseCase(postRepo: sl()),
+  );
+
+  sl.registerLazySingleton<GetAllBookMarkUseCase>(
+    () => GetAllBookMarkUseCase(postRepo: sl()),
+  );
 
   // bloc
   sl.registerFactory(
@@ -176,6 +191,13 @@ void setupServiceLocator() {
     ),
   );
   sl.registerFactory(() => GetAllUserPostsCubit(getAllUsersPostsUseCase: sl()));
+  sl.registerLazySingleton<BookmarkCubit>(
+    () => BookmarkCubit(
+      addBookMarkUseCase: sl(),
+      deleteBookMarkUseCase: sl(),
+      getAllBookMarkUseCase: sl(),
+    ),
+  );
 
   // Feature - Browse
   // Data source
@@ -200,8 +222,13 @@ void setupServiceLocator() {
   );
 
   // Cubit
-  sl.registerFactory(() => ExpiringSoonCubit(expiringSoonPostsUseCase: sl()));
-  sl.registerFactory(() => SearchPostsCubit(searchPostUseCase: sl()));
+  sl.registerFactory(
+    () =>
+        ExpiringSoonCubit(bookmarkCubit: sl(), expiringSoonPostsUseCase: sl()),
+  );
+  sl.registerFactory(
+    () => SearchPostsCubit(bookmarkCubit: sl(), searchPostUseCase: sl()),
+  );
   sl.registerFactory(() => CategoriesCubit(categoriesUseCase: sl()));
 
   // Feature - home
@@ -221,5 +248,7 @@ void setupServiceLocator() {
   );
 
   // Cubit
-  sl.registerFactory(() => FeedPostsCubit(feedPostsUseCase: sl()));
+  sl.registerFactory(
+    () => FeedPostsCubit(bookmarkCubit: sl(), feedPostsUseCase: sl()),
+  );
 }

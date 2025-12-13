@@ -1,19 +1,77 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waster/core/models/post_model.dart';
 import 'package:waster/features/browse/domain/usecase/serach_post_use_case.dart';
+import 'package:waster/features/post/presentation/manager/book_mark_cubit/book_mark_cubit.dart';
 
 part 'search_state.dart';
 
 class SearchPostsCubit extends Cubit<SearchPostsState> {
   final SerachPostUseCase searchPostUseCase;
+  final BookmarkCubit bookmarkCubit;
 
-  SearchPostsCubit({required this.searchPostUseCase})
-    : super(const SearchPostsInitial());
+  StreamSubscription<BookmarkChangeEvent>? _bookmarkSubscription;
+
+  SearchPostsCubit({
+    required this.searchPostUseCase,
+    required this.bookmarkCubit,
+  }) : super(const SearchPostsInitial()) {
+    _listenToBookmarkChanges();
+  }
 
   String _currentQuery = '';
   String _currentCategory = '';
   final int _pageSize = 10;
+
+  void _listenToBookmarkChanges() {
+    _bookmarkSubscription = bookmarkCubit.bookmarkChanges.listen((event) {
+      final currentState = state;
+
+      if (currentState is SearchPostsLoaded) {
+        final updatedPosts = currentState.posts.map((post) {
+          if (post.id == event.postId) {
+            return PostModel(
+              id: post.id,
+              title: post.title,
+              description: post.description,
+              quantity: post.quantity,
+              unit: post.unit,
+              type: post.type,
+              category: post.category,
+              pickupLocation: post.pickupLocation,
+              expiresOn: post.expiresOn,
+              created: post.created,
+              imageUrl: post.imageUrl,
+              hasImage: post.hasImage,
+              isBookmarked: event.isBookmarked,
+              hoursUntilExpiry: post.hoursUntilExpiry,
+              owner: post.owner,
+              status: post.status,
+            );
+          }
+          return post;
+        }).toList();
+
+        emit(
+          SearchPostsLoaded(
+            posts: updatedPosts,
+            hasMore: currentState.hasMore,
+            currentPage: currentState.currentPage,
+            totalPages: currentState.totalPages,
+            query: _currentQuery,
+          ),
+        );
+      }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _bookmarkSubscription?.cancel();
+    return super.close();
+  }
 
   Future<void> searchPosts({String? query, String? category}) async {
     if (query != null) _currentQuery = query.trim();

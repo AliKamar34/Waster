@@ -60,7 +60,9 @@ class _BrowseAllViewState extends State<BrowseAllView> {
                           child: PostDetailsContainer(
                             postEntity: state.posts[index],
                             postAction: SavePostAction(
-                              isBookmarked: state.posts[index].isBookmarked,
+                              postId: state.posts[index].id,
+                              initialIsBookmarked:
+                                  state.posts[index].isBookmarked,
                             ),
                           ),
                         );
