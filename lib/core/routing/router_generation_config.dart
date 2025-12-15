@@ -11,6 +11,7 @@ import 'package:waster/features/browse/presentation/manager/search_cubit/search_
 import 'package:waster/features/browse/presentation/views/browse_all_view.dart';
 import 'package:waster/features/browse/presentation/views/order_details_view.dart';
 import 'package:waster/features/browse/presentation/views/track_all_view.dart';
+import 'package:waster/features/claim/presentation/views/claim_view.dart';
 import 'package:waster/features/home/presentation/views/main_view.dart';
 import 'package:waster/features/notifications/presentation/views/notifications_view.dart';
 import 'package:waster/features/post/domain/entity/enums/post_mode_enum.dart';
@@ -135,9 +136,14 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.bookMarks,
         name: AppRoutes.bookMarks,
+        builder: (context, state) => const BookMarkView(),
+      ),
+      GoRoute(
+        path: AppRoutes.claimView,
+        name: AppRoutes.claimView,
         builder: (context, state) => BlocProvider.value(
           value: sl<BookmarkCubit>(),
-          child: const BookMarkView(),
+          child: const ClaimView(),
         ),
       ),
     ],

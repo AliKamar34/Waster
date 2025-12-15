@@ -28,6 +28,12 @@ class PostsManagmentSection extends StatelessWidget {
               context.pushNamed(AppRoutes.bookMarks);
             },
           ),
+          PostsManagmentButton(
+            title: 'Claimed Posts',
+            onTap: () {
+              context.pushNamed(AppRoutes.claimView);
+            },
+          ),
         ],
       ),
     );

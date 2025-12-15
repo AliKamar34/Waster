@@ -13,4 +13,5 @@ class AppRoutes {
   static const String notificationsView = '/notificationsView';
   static const String myPostsView = '/myPostsView';
   static const String bookMarks = '/bookMarks';
+  static const String claimView = '/claimView';
 }
