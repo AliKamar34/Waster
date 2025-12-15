@@ -31,4 +31,12 @@ class ApiEndPoints {
 
   static const String bookMarkBasePath = '/api/BookMarks';
   static const String deleteBookMark = '$bookMarkBasePath/Remove-Bookmark';
+
+  static const String claimPostBasePath = '/api/Claim';
+  static const String claimPost = claimPostBasePath;
+  static const String myClaims = '$claimPostBasePath/my-claims';
+  static const String getPostClaims = '$claimPostBasePath/Get-Post-claims';
+  static const String aproveClaim = '$claimPostBasePath/approve';
+  static const String rejectClaim = '$claimPostBasePath/reject';
+  static const String cancel = '$claimPostBasePath/cancel';
 }

@@ -79,6 +79,11 @@ class _MyPostsListViewState extends State<MyPostsListView> {
           return const MyPostsLoadingWidget();
         } else if (state is GetAllUserPostsListEmpty) {
           return const CustomEmptyWidget(message: LocaleKeys.No_Posts_found);
+        } else if (state is GetAllUserPostsListFailure) {
+          if (state.errMessage == 'No posts found for the specified user.') {
+            return const CustomEmptyWidget(message: LocaleKeys.No_Posts_found);
+          }
+          return const Center(child: Text('Something went wrong'));
         } else {
           return const Center(child: Text('Something went wrong'));
         }
