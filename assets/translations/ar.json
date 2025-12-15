@@ -266,5 +266,8 @@
     "complete_profile_message": "يرجى إضافة عنوانك ورقم هاتفك لإكمال ملفك الشخصي",
     "complete_profile_benefits": "هذا يساعدنا على خدمتك بشكل أفضل وتفعيل جميع الميزات",
     "complete_now": "أكمل الآن",
-    "later": "لاحقاً"
+    "later": "لاحقاً",
+    "claimedPosts": "المنشورات المطالب بها",
+    "claimedAt": "تم المطالبة في:",
+    "ownerInfo": "معلومات المالك"
 }

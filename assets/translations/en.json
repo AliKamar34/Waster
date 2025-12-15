@@ -266,5 +266,8 @@
   "complete_profile_message": "Please add your address and phone number to complete your profile",
   "complete_profile_benefits": "This helps us serve you better and enables all features",
   "complete_now": "Complete Now",
-  "later": "Later"
+  "later": "Later",
+  "claimedPosts": "Claimed Posts",
+  "claimedAt": "Claimed at:",
+  "ownerInfo": "Owner Info"
 }

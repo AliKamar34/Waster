@@ -282,7 +282,10 @@ class CodegenLoader extends AssetLoader{
   "complete_profile_message": "يرجى إضافة عنوانك ورقم هاتفك لإكمال ملفك الشخصي",
   "complete_profile_benefits": "هذا يساعدنا على خدمتك بشكل أفضل وتفعيل جميع الميزات",
   "complete_now": "أكمل الآن",
-  "later": "لاحقاً"
+  "later": "لاحقاً",
+  "claimedPosts": "المنشورات المطالب بها",
+  "claimedAt": "تم المطالبة في:",
+  "ownerInfo": "معلومات المالك"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -552,7 +555,10 @@ static const Map<String,dynamic> _en = {
   "complete_profile_message": "Please add your address and phone number to complete your profile",
   "complete_profile_benefits": "This helps us serve you better and enables all features",
   "complete_now": "Complete Now",
-  "later": "Later"
+  "later": "Later",
+  "claimedPosts": "Claimed Posts",
+  "claimedAt": "Claimed at:",
+  "ownerInfo": "Owner Info"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

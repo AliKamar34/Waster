@@ -271,5 +271,8 @@ abstract class  LocaleKeys {
   static const complete_profile_benefits = 'complete_profile_benefits';
   static const complete_now = 'complete_now';
   static const later = 'later';
+  static const claimedPosts = 'claimedPosts';
+  static const claimedAt = 'claimedAt';
+  static const ownerInfo = 'ownerInfo';
 
 }
