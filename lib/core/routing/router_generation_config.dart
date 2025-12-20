@@ -136,15 +136,15 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.bookMarks,
         name: AppRoutes.bookMarks,
-        builder: (context, state) => const BookMarkView(),
+        builder: (context, state) => BlocProvider.value(
+          value: sl<BookmarkCubit>(),
+          child: const BookMarkView(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.claimView,
         name: AppRoutes.claimView,
-        builder: (context, state) => BlocProvider.value(
-          value: sl<BookmarkCubit>(),
-          child: const ClaimView(),
-        ),
+        builder: (context, state) => const ClaimView(),
       ),
     ],
   );
