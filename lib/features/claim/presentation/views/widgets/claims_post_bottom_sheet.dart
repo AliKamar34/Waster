@@ -122,7 +122,7 @@ class ClaimedPostActions extends StatelessWidget {
             backgroundColor: Theme.of(
               context,
             ).extension<AppColors>()!.primaryColor,
-            title: 'Aprove',
+            title: 'Approve',
             onPressed: () {},
           ),
         ),

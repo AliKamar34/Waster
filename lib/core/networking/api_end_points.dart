@@ -36,7 +36,7 @@ class ApiEndPoints {
   static const String claimPost = claimPostBasePath;
   static const String myClaims = '$claimPostBasePath/my-claims';
   static const String getPostClaims = '$claimPostBasePath/Get-Post-claims';
-  static const String aproveClaim = '$claimPostBasePath/approve';
+  static const String approveClaim = '$claimPostBasePath/approve';
   static const String rejectClaim = '$claimPostBasePath/reject';
   static const String cancelClaim = '$claimPostBasePath/cancel';
 }

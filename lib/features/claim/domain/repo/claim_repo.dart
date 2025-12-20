@@ -11,7 +11,7 @@ abstract class ClaimRepo {
   Future<Either<Failure, List<ClaimEntity>>> getPostClaims({
     required String postId,
   });
-  Future<Either<Failure, void>> aproveClaim({required String claimId});
+  Future<Either<Failure, void>> approveClaim({required String claimId});
   Future<Either<Failure, void>> rejectClaim({required String claimId});
   Future<Either<Failure, void>> cancelClaim({required String claimId});
 }

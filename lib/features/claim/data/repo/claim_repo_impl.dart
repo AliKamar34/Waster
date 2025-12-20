@@ -24,8 +24,8 @@ class ClaimRepoImpl extends BaseRepository implements ClaimRepo {
   }
 
   @override
-  Future<Either<Failure, void>> aproveClaim({required String claimId}) {
-    return execute(() => claimRemoteDataSource.aproveClaim(claimId: claimId));
+  Future<Either<Failure, void>> approveClaim({required String claimId}) {
+    return execute(() => claimRemoteDataSource.approveClaim(claimId: claimId));
   }
 
   @override

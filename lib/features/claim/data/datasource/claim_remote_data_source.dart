@@ -8,7 +8,7 @@ abstract class ClaimRemoteDataSource {
   Future<List<ClaimModel>> getUserClaims(String status);
   Future<ClaimResponseModel> claimPost({required String postId});
   Future<List<ClaimModel>> getPostClaims({required String postId});
-  Future<void> aproveClaim({required String claimId});
+  Future<void> approveClaim({required String claimId});
   Future<void> rejectClaim({required String claimId});
   Future<void> cancelClaim({required String claimId});
 }
@@ -81,16 +81,16 @@ class ClaimRemoteDataSourceImpl implements ClaimRemoteDataSource {
   }
 
   @override
-  Future<void> aproveClaim({required String claimId}) async {
+  Future<void> approveClaim({required String claimId}) async {
     try {
       final response = await dioHelper.postRequest(
-        endPoint: ApiEndPoints.aproveClaim,
+        endPoint: ApiEndPoints.approveClaim,
         queryParameters: {'claimId': claimId},
       );
       if (response.statusCode == 200) {
         return response.data['message'];
       }
-      throw const ServerException(message: 'Failed to aprove post');
+      throw const ServerException(message: 'Failed to approve post');
     } on ServerException {
       rethrow;
     } catch (e) {
