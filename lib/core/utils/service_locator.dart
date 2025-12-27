@@ -17,6 +17,16 @@ import 'package:waster/features/browse/data/repo/browse_repo_impl.dart';
 import 'package:waster/features/browse/domain/repo/browse_repo.dart';
 import 'package:waster/features/browse/domain/usecase/categories_use_case.dart';
 import 'package:waster/features/browse/domain/usecase/expiring_soon_posts_use_case.dart';
+import 'package:waster/features/claim/data/datasource/claim_remote_data_source.dart';
+import 'package:waster/features/claim/data/repo/claim_repo_impl.dart';
+import 'package:waster/features/claim/domain/repo/claim_repo.dart';
+import 'package:waster/features/claim/domain/usecase/aprove_claim_use_case.dart';
+import 'package:waster/features/claim/domain/usecase/cancle_claim_use_case.dart';
+import 'package:waster/features/claim/domain/usecase/claim_post_use_case.dart';
+import 'package:waster/features/claim/domain/usecase/get_post_claims_use_case.dart';
+import 'package:waster/features/claim/domain/usecase/get_user_claims_use_case.dart';
+import 'package:waster/features/claim/domain/usecase/reject_claim_use_case.dart';
+import 'package:waster/features/claim/presentation/manager/cubit/claim_cubit.dart';
 import 'package:waster/features/home/data/datasource/home_remote_data_source.dart';
 import 'package:waster/features/home/data/repo/home_repo_impl.dart';
 import 'package:waster/features/home/domain/repo/home_repo.dart';
@@ -250,5 +260,48 @@ void setupServiceLocator() {
   // Cubit
   sl.registerFactory(
     () => FeedPostsCubit(bookmarkCubit: sl(), feedPostsUseCase: sl()),
+  );
+
+  // Feature - Claim
+  // Data source
+  sl.registerLazySingleton<ClaimRemoteDataSource>(
+    () => ClaimRemoteDataSourceImpl(dioHelper: sl()),
+  );
+
+  // Repo
+  sl.registerLazySingleton<ClaimRepo>(
+    () => ClaimRepoImpl(claimRemoteDataSource: sl()),
+  );
+
+  //use case
+  sl.registerLazySingleton<ApproveClaimUseCase>(
+    () => ApproveClaimUseCase(claimRepo: sl()),
+  );
+  sl.registerLazySingleton<CancelClaimUseCase>(
+    () => CancelClaimUseCase(claimRepo: sl()),
+  );
+  sl.registerLazySingleton<RejectClaimUseCase>(
+    () => RejectClaimUseCase(claimRepo: sl()),
+  );
+  sl.registerLazySingleton<ClaimPostUseCase>(
+    () => ClaimPostUseCase(claimRepo: sl()),
+  );
+  sl.registerLazySingleton<GetPostClaimsUseCase>(
+    () => GetPostClaimsUseCase(claimRepo: sl()),
+  );
+  sl.registerLazySingleton<GetUserClaimsUseCase>(
+    () => GetUserClaimsUseCase(claimRepo: sl()),
+  );
+
+  // Cubit
+  sl.registerFactory(
+    () => ClaimCubit(
+      claimPostUseCase: sl(),
+      getPostClaimsUseCase: sl(),
+      getUserClaimsUseCase: sl(),
+      approveClaimUseCase: sl(),
+      rejectClaimUseCase: sl(),
+      cancelClaimUseCase: sl(),
+    ),
   );
 }
