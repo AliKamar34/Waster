@@ -41,15 +41,22 @@ class ClaimCubit extends Cubit<ClaimState> {
     final result = await getPostClaimsUseCase.call(
       GetPostClaimsParams(postId: postId),
     );
-    result.fold((failure) => emit(ClaimFailure(failure.message)), (
-      postClaimsList,
-    ) {
-      if (postClaimsList.isEmpty) {
-        emit(const PostClaimsEmpty());
-        return;
-      }
-      emit(GetPostClaimsSuccess(postClaimsList));
-    });
+    result.fold(
+      (failure) {
+        if (failure.message == 'this post has no claims') {
+          emit(const PostClaimsEmpty());
+          return;
+        }
+        emit(ClaimFailure(failure.message));
+      },
+      (postClaimsList) {
+        if (postClaimsList.isEmpty) {
+          emit(const PostClaimsEmpty());
+          return;
+        }
+        emit(GetPostClaimsSuccess(postClaimsList));
+      },
+    );
   }
 
   Future<void> getUserClaims(String status) async {
@@ -57,18 +64,24 @@ class ClaimCubit extends Cubit<ClaimState> {
     final result = await getUserClaimsUseCase.call(
       GetUserClaimsParams(status: status),
     );
-    result.fold((failure) => emit(ClaimFailure(failure.message)), (
-      userClaimsList,
-    ) {
-      if (userClaimsList.isEmpty) {
-        emit(const UserClaimsEmpty());
-        return;
-      }
-      emit(GetUserClaimsSuccess(userClaimsList));
-    });
+    result.fold(
+      (failure) {
+        if (failure.message == 'this User has no claims') {
+          emit(const UserClaimsEmpty());
+        }
+        emit(ClaimFailure(failure.message));
+      },
+      (userClaimsList) {
+        if (userClaimsList.isEmpty) {
+          emit(const UserClaimsEmpty());
+          return;
+        }
+        emit(GetUserClaimsSuccess(userClaimsList));
+      },
+    );
   }
 
-  Future<void> aproveClaim(String claimId) async {
+  Future<void> approveClaim(String claimId) async {
     emit(ClaimActionLoading(claimId));
     final result = await approveClaimUseCase.call(
       ApproveClaimParams(claimId: claimId),
