@@ -1,13 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:waster/core/constants/assets.dart';
-import 'package:waster/core/localization/locale_keys.g.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
-import 'package:waster/core/widgets/custom_button.dart';
-import 'package:waster/core/widgets/custom_container.dart';
+import 'package:waster/core/widgets/custom_empty_widget.dart';
+import 'package:waster/features/claim/presentation/manager/cubit/claim_cubit.dart';
+import 'package:waster/features/claim/presentation/views/widgets/custom_claims_post_widget.dart';
+import 'package:waster/features/claim/presentation/views/widgets/custom_post_claims_loading_widget.dart';
 
 class ClaimsPostBottomSheet extends StatelessWidget {
   const ClaimsPostBottomSheet({super.key});
@@ -31,110 +29,58 @@ class ClaimsPostBottomSheet extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              controller: scroll,
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.only(bottom: 16),
-                  child: CustomContainer(
-                    child: Column(
-                      children: [
-                        DonorIformationListTile(),
-                        ClaimedPostActions(),
-                      ],
+          BlocBuilder<ClaimCubit, ClaimState>(
+            builder: (context, state) {
+              if (state is GetPostClaimsSuccess) {
+                return Expanded(
+                  child: ListView.builder(
+                    controller: scroll,
+                    itemCount: state.claims.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: CustomClaimsPostWidget(
+                          claimEntity: state.claims[index],
+                        ),
+                      );
+                    },
+                  ),
+                );
+              } else if (state is GetPostClaimsLoading) {
+                return const CustomPostClaimsLoadingWidget();
+              } else if (state is ClaimFailure) {
+                return Expanded(
+                  child: Center(
+                    child: Text(
+                      state.message,
+                      style: AppTextStyle.styleRegular16(context).copyWith(
+                        color: Theme.of(
+                          context,
+                        ).extension<AppColors>()!.redColor,
+                      ),
                     ),
                   ),
                 );
-              },
-            ),
+              } else if (state is PostClaimsEmpty) {
+                return const CustomEmptyWidget(message: 'no Claims');
+              } else {
+                return Expanded(
+                  child: Center(
+                    child: Text(
+                      'No Claims Found',
+                      style: AppTextStyle.styleRegular16(context).copyWith(
+                        color: Theme.of(
+                          context,
+                        ).extension<AppColors>()!.blackTextColor,
+                      ),
+                    ),
+                  ),
+                );
+              }
+            },
           ),
         ],
       ),
-    );
-  }
-}
-
-class DonorIformationListTile extends StatelessWidget {
-  const DonorIformationListTile({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      leading: CircleAvatar(
-        radius: 22.r,
-        backgroundColor: Theme.of(context).extension<AppColors>()!.primaryColor,
-        child: const Text('SB'),
-      ),
-      title: Row(
-        children: [
-          Text(
-            'Sunshine Bakery',
-            style: AppTextStyle.styleRegular14(context).copyWith(
-              color: Theme.of(context).extension<AppColors>()!.blackTextColor,
-            ),
-          ),
-          CustomContainer(
-            padding: 2.w,
-            borderRadius: 6.r,
-            backgroundColor: Theme.of(
-              context,
-            ).extension<AppColors>()!.orangeColor,
-            child: Text(
-              LocaleKeys.verified.tr(),
-              style: AppTextStyle.styleRegular14(context).copyWith(
-                color: Theme.of(context).extension<AppColors>()!.whiteColor,
-              ),
-            ),
-          ),
-        ],
-      ),
-      subtitle: Row(
-        children: [
-          Icon(Icons.star, color: Colors.amber, size: 18.sp),
-          Text('4.9', style: AppTextStyle.styleRegular14(context)),
-        ],
-      ),
-      trailing: InkWell(
-        onTap: () {},
-        child: CustomContainer(
-          padding: 8.w,
-          child: SvgPicture.asset(Assets.phone),
-        ),
-      ),
-    );
-  }
-}
-
-class ClaimedPostActions extends StatelessWidget {
-  const ClaimedPostActions({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      spacing: 10,
-      children: [
-        Expanded(
-          flex: 11,
-          child: CustomButton(
-            backgroundColor: Theme.of(
-              context,
-            ).extension<AppColors>()!.primaryColor,
-            title: 'Approve',
-            onPressed: () {},
-          ),
-        ),
-        Expanded(
-          flex: 10,
-          child: CustomButton(
-            backgroundColor: Theme.of(context).extension<AppColors>()!.redColor,
-            title: 'Reject',
-            onPressed: () {},
-          ),
-        ),
-      ],
     );
   }
 }

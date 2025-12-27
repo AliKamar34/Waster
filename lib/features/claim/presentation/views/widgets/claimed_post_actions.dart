@@ -5,8 +5,9 @@ import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 
 class ClaimedPostActions extends StatelessWidget {
-  const ClaimedPostActions({super.key});
-
+  const ClaimedPostActions({super.key, this.showOwnerInfo, this.onCancle});
+  final void Function()? showOwnerInfo;
+  final void Function()? onCancle;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,7 +20,7 @@ class ClaimedPostActions extends StatelessWidget {
               context,
             ).extension<AppColors>()!.blueColor,
             title: LocaleKeys.ownerInfo.tr(),
-            onPressed: () {},
+            onPressed: showOwnerInfo,
           ),
         ),
         Expanded(
@@ -27,7 +28,7 @@ class ClaimedPostActions extends StatelessWidget {
           child: CustomButton(
             backgroundColor: Theme.of(context).extension<AppColors>()!.redColor,
             title: LocaleKeys.cancle.tr(),
-            onPressed: () {},
+            onPressed: onCancle,
           ),
         ),
       ],
