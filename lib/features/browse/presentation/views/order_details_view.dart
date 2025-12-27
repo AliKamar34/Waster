@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/entity/post_entity.dart';
+import 'package:waster/core/utils/service_locator.dart';
 import 'package:waster/core/utils/show_blur_bottom_sheet.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/features/browse/presentation/views/widgets/location_section.dart';
 import 'package:waster/features/browse/presentation/views/widgets/order_details_app_bar.dart';
 import 'package:waster/features/browse/presentation/views/widgets/order_summary_section.dart';
 import 'package:waster/features/browse/presentation/views/widgets/schedule_section.dart';
+import 'package:waster/features/claim/presentation/manager/cubit/claim_cubit.dart';
 import 'package:waster/features/claim/presentation/views/widgets/claims_post_bottom_sheet.dart';
 import 'package:waster/features/home/presentation/views/widgets/save_post_action.dart';
 import 'package:waster/features/post/presentation/views/widgets/post_iamge_widget.dart';
@@ -36,17 +39,45 @@ class OrderDetailsView extends StatelessWidget {
               ),
               LocationSection(location: postEntity.pickupLocation),
               ScheduleSection(postEntity: postEntity),
-              postAction is SavePostAction
-                  ? CustomButton(title: 'Claim Post', onPressed: () {})
-                  : CustomButton(
-                      title: 'Show Claims',
-                      onPressed: () {
-                        showBlurBottomSheet(
-                          context,
-                          (bottomContext) => const ClaimsPostBottomSheet(),
-                        );
-                      },
-                    ),
+              BlocProvider(
+                create: (_) => sl<ClaimCubit>(),
+                child: BlocBuilder<ClaimCubit, ClaimState>(
+                  builder: (context, state) {
+                    return postAction is SavePostAction
+                        ? CustomButton(
+                            title: (state is ClaimPostLoading)
+                                ? 'Loading...'
+                                : 'Claim Post',
+                            onPressed: (state is ClaimPostLoading)
+                                ? null
+                                : () {
+                                    context.read<ClaimCubit>().claimPost(
+                                      postEntity.id,
+                                    );
+                                  },
+                          )
+                        : CustomButton(
+                            title: (state is GetPostClaimsLoading)
+                                ? 'Loading...'
+                                : 'Show Claims',
+                            onPressed: (state is GetPostClaimsLoading)
+                                ? null
+                                : () {
+                                    context.read<ClaimCubit>().getPostClaims(
+                                      postEntity.id,
+                                    );
+                                    showBlurBottomSheet(
+                                      context,
+                                      (bottomContext) => BlocProvider.value(
+                                        value: context.read<ClaimCubit>(),
+                                        child: const ClaimsPostBottomSheet(),
+                                      ),
+                                    );
+                                  },
+                          );
+                  },
+                ),
+              ),
 
               const SizedBox(),
             ],
