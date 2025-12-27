@@ -39,7 +39,7 @@ class ClaimRemoteDataSourceImpl implements ClaimRemoteDataSource {
   @override
   Future<List<ClaimModel>> getUserClaims(String status) async {
     try {
-      final response = await dioHelper.postRequest(
+      final response = await dioHelper.getRequest(
         endPoint: ApiEndPoints.myClaims,
         queryParameters: {'status': status},
       );
@@ -61,7 +61,7 @@ class ClaimRemoteDataSourceImpl implements ClaimRemoteDataSource {
   @override
   Future<List<ClaimModel>> getPostClaims({required String postId}) async {
     try {
-      final response = await dioHelper.postRequest(
+      final response = await dioHelper.getRequest(
         endPoint: ApiEndPoints.getPostClaims,
         queryParameters: {'postId': postId},
       );
@@ -83,7 +83,7 @@ class ClaimRemoteDataSourceImpl implements ClaimRemoteDataSource {
   @override
   Future<void> approveClaim({required String claimId}) async {
     try {
-      final response = await dioHelper.postRequest(
+      final response = await dioHelper.putRequest(
         endPoint: ApiEndPoints.approveClaim,
         queryParameters: {'claimId': claimId},
       );
@@ -101,7 +101,7 @@ class ClaimRemoteDataSourceImpl implements ClaimRemoteDataSource {
   @override
   Future<void> cancelClaim({required String claimId}) async {
     try {
-      final response = await dioHelper.postRequest(
+      final response = await dioHelper.deteleRequest(
         endPoint: ApiEndPoints.cancelClaim,
         queryParameters: {'claimId': claimId},
       );
@@ -119,7 +119,7 @@ class ClaimRemoteDataSourceImpl implements ClaimRemoteDataSource {
   @override
   Future<void> rejectClaim({required String claimId}) async {
     try {
-      final response = await dioHelper.postRequest(
+      final response = await dioHelper.putRequest(
         endPoint: ApiEndPoints.rejectClaim,
         queryParameters: {'claimId': claimId},
       );

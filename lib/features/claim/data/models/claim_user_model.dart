@@ -1,14 +1,17 @@
 import 'package:waster/features/claim/domain/entity/claim_user_entity.dart';
 
 class ClaimUserModel extends ClaimUserEntity {
+  final String id;
+  final String userName;
+  final String? city;
   ClaimUserModel({
-    required super.id,
-    required super.userName,
+    required this.id,
+    required this.userName,
     required super.fullName,
     required super.email,
     required super.phoneNumber,
     required super.address,
-    super.city,
+    this.city,
     super.profilePicture,
   });
 
