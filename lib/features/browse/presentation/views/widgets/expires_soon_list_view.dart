@@ -62,6 +62,7 @@ class _ExpiresSoonListViewState extends State<ExpiresSoonListView> {
                 context.read<ExpiringSoonCubit>().loadExpiringSoonPosts(),
 
             child: ListView.builder(
+              padding: const EdgeInsets.only(bottom: 70),
               controller: _scrollController,
               itemCount: posts.length + (isLoadingMore || hasMore ? 1 : 0),
               itemBuilder: (context, index) {

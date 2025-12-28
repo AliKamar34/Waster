@@ -34,6 +34,7 @@ class _ProfileViewState extends State<ProfileView> {
             children: [
               CustomProfileAppBar(),
               ProfileViewBodyBlocBuilder(),
+              SizedBox(height: 50),
               SizedBox(),
             ],
           ),

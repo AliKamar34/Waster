@@ -48,6 +48,7 @@ class _FeedPostsListViewState extends State<FeedPostsListView> {
           return RefreshIndicator(
             onRefresh: () => context.read<FeedPostsCubit>().loadPosts(),
             child: ListView.builder(
+              padding: const EdgeInsets.only(bottom: 70),
               controller: widget.scrollController,
               itemCount: posts.length + (isLoadingMore || hasMore ? 1 : 0),
               itemBuilder: (context, index) {

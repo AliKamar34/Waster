@@ -26,6 +26,7 @@ class ImpactView extends StatelessWidget {
               MonthlyGoalsSection(),
               EnvironmentalImpactSection(),
               CommunityLeaderboardSection(),
+              SizedBox(height: 70),
             ],
           ),
         ),

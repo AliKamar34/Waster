@@ -18,6 +18,7 @@ import 'package:waster/features/post/domain/entity/enums/post_mode_enum.dart';
 import 'package:waster/features/post/presentation/manager/book_mark_cubit/book_mark_cubit.dart';
 import 'package:waster/features/settings/presentation/manager/bloc/settings_bloc.dart';
 import 'package:waster/features/settings/presentation/views/profile_view.dart';
+import 'dart:ui';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -82,77 +83,206 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: _currIndex, children: _pages),
-      bottomNavigationBar: _bottomNavBar(context),
+      body: Stack(
+        children: [
+          IndexedStack(index: _currIndex, children: _pages),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: _bottomNavBar(context),
+          ),
+        ],
+      ),
     );
   }
 
-  BottomNavigationBar _bottomNavBar(BuildContext context) {
-    return BottomNavigationBar(
-      elevation: 0,
-      backgroundColor: Theme.of(context).extension<AppColors>()!.whiteColor,
-      currentIndex: _currIndex,
-      selectedItemColor: Theme.of(context).extension<AppColors>()!.primaryColor,
-      type: BottomNavigationBarType.fixed,
-      selectedLabelStyle: AppTextStyle.styleMeduim14(context),
-      onTap: _onItemTapped,
-      items: [
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            Assets.home,
-            colorFilter: ColorFilter.mode(
-              _currIndex == 0
-                  ? Theme.of(context).extension<AppColors>()!.primaryColor
-                  : Theme.of(context).extension<AppColors>()!.blackTextColor,
-              BlendMode.srcIn,
+  Widget _bottomNavBar(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(25),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(
+                context,
+              ).extension<AppColors>()!.blackTextColor.withAlpha(50),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const SizedBox(width: 2),
+                _navItem(
+                  index: 0,
+                  icon: Assets.home,
+                  label: LocaleKeys.home.tr(),
+                ),
+                _navItem(
+                  index: 1,
+                  icon: Assets.browse,
+                  label: LocaleKeys.browse.tr(),
+                ),
+                _addButton(),
+                _navItem(
+                  index: 3,
+                  icon: Assets.impact,
+                  label: LocaleKeys.impact.tr(),
+                ),
+                _navItem(
+                  index: 4,
+                  icon: Assets.profile,
+                  label: LocaleKeys.profile.tr(),
+                ),
+                const SizedBox(width: 2),
+              ],
             ),
           ),
-          label: LocaleKeys.home.tr(),
         ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            Assets.browse,
-            colorFilter: ColorFilter.mode(
-              _currIndex == 1
-                  ? Theme.of(context).extension<AppColors>()!.primaryColor
-                  : Theme.of(context).extension<AppColors>()!.blackTextColor,
-              BlendMode.srcIn,
+      ),
+    );
+  }
+
+  Widget _navItem({
+    required int index,
+    required String icon,
+    required String label,
+  }) {
+    final colors = Theme.of(context).extension<AppColors>()!;
+    final isSelected = _currIndex == index;
+
+    return GestureDetector(
+      onTap: () => _onItemTapped(index),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4.0),
+        child: AnimatedContainer(
+          curve: Curves.easeOutCubic,
+          duration: const Duration(milliseconds: 180),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          decoration: BoxDecoration(
+            color: isSelected
+                ? colors.primaryColor.withAlpha(40)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SvgPicture.asset(
+                icon,
+                colorFilter: ColorFilter.mode(
+                  isSelected ? colors.primaryColor : colors.blackTextColor,
+                  BlendMode.srcIn,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                label,
+                style: AppTextStyle.styleMeduim14(context).copyWith(
+                  color: isSelected
+                      ? colors.primaryColor
+                      : colors.blackTextColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _addButton() {
+    final colors = Theme.of(context).extension<AppColors>()!;
+
+    return GestureDetector(
+      onTap: () => _onItemTapped(2),
+      child: Container(
+        height: 48,
+        width: 48,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: colors.primaryColor.withAlpha(229),
+          boxShadow: [
+            BoxShadow(
+              color: colors.primaryColor.withAlpha(102),
+              blurRadius: 12,
+              offset: const Offset(0, 6),
             ),
-          ),
-          label: LocaleKeys.browse.tr(),
+          ],
         ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.add,
-            color: Theme.of(context).extension<AppColors>()!.blackTextColor,
-          ),
-          label: LocaleKeys.donate.tr(),
-        ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            Assets.impact,
-            colorFilter: ColorFilter.mode(
-              _currIndex == 3
-                  ? Theme.of(context).extension<AppColors>()!.primaryColor
-                  : Theme.of(context).extension<AppColors>()!.blackTextColor,
-              BlendMode.srcIn,
-            ),
-          ),
-          label: LocaleKeys.impact.tr(),
-        ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            Assets.profile,
-            colorFilter: ColorFilter.mode(
-              _currIndex == 4
-                  ? Theme.of(context).extension<AppColors>()!.primaryColor
-                  : Theme.of(context).extension<AppColors>()!.blackTextColor,
-              BlendMode.srcIn,
-            ),
-          ),
-          label: LocaleKeys.profile.tr(),
-        ),
-      ],
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
     );
   }
 }
+
+//   BottomNavigationBar _bottomNavBar(BuildContext context) {
+//     return BottomNavigationBar(
+//       elevation: 0,
+//       backgroundColor: Theme.of(context).extension<AppColors>()!.whiteColor,
+//       currentIndex: _currIndex,
+//       selectedItemColor: Theme.of(context).extension<AppColors>()!.primaryColor,
+//       type: BottomNavigationBarType.fixed,
+//       selectedLabelStyle: AppTextStyle.styleMeduim14(context),
+//       onTap: _onItemTapped,
+//       items: [
+//         BottomNavigationBarItem(
+//           icon: SvgPicture.asset(
+//             Assets.home,
+//             colorFilter: ColorFilter.mode(
+//               _currIndex == 0
+//                   ? Theme.of(context).extension<AppColors>()!.primaryColor
+//                   : Theme.of(context).extension<AppColors>()!.blackTextColor,
+//               BlendMode.srcIn,
+//             ),
+//           ),
+//           label: LocaleKeys.home.tr(),
+//         ),
+//         BottomNavigationBarItem(
+//           icon: SvgPicture.asset(
+//             Assets.browse,
+//             colorFilter: ColorFilter.mode(
+//               _currIndex == 1
+//                   ? Theme.of(context).extension<AppColors>()!.primaryColor
+//                   : Theme.of(context).extension<AppColors>()!.blackTextColor,
+//               BlendMode.srcIn,
+//             ),
+//           ),
+//           label: LocaleKeys.browse.tr(),
+//         ),
+//         BottomNavigationBarItem(
+//           icon: Icon(
+//             Icons.add,
+//             color: Theme.of(context).extension<AppColors>()!.blackTextColor,
+//           ),
+//           label: LocaleKeys.donate.tr(),
+//         ),
+//         BottomNavigationBarItem(
+//           icon: SvgPicture.asset(
+//             Assets.impact,
+//             colorFilter: ColorFilter.mode(
+//               _currIndex == 3
+//                   ? Theme.of(context).extension<AppColors>()!.primaryColor
+//                   : Theme.of(context).extension<AppColors>()!.blackTextColor,
+//               BlendMode.srcIn,
+//             ),
+//           ),
+//           label: LocaleKeys.impact.tr(),
+//         ),
+//         BottomNavigationBarItem(
+//           icon: SvgPicture.asset(
+//             Assets.profile,
+//             colorFilter: ColorFilter.mode(
+//               _currIndex == 4
+//                   ? Theme.of(context).extension<AppColors>()!.primaryColor
+//                   : Theme.of(context).extension<AppColors>()!.blackTextColor,
+//               BlendMode.srcIn,
+//             ),
+//           ),
+//           label: LocaleKeys.profile.tr(),
+//         ),
+//       ],
+//     );
+//   }
+// }
