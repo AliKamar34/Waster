@@ -269,5 +269,11 @@
   "later": "Later",
   "claimedPosts": "Claimed Posts",
   "claimedAt": "Claimed at:",
-  "ownerInfo": "Owner Info"
+  "ownerInfo": "Owner Info",
+  "time_in_minute": "in a minute",
+  "time_in_minutes": "in {count} minutes",
+  "time_in_hour": "in an hour",
+  "time_in_two_hours": "in two hours",
+  "time_in_hours": "in {count} hours",
+  "time_tomorrow": "tomorrow"
 }

@@ -274,5 +274,11 @@ abstract class  LocaleKeys {
   static const claimedPosts = 'claimedPosts';
   static const claimedAt = 'claimedAt';
   static const ownerInfo = 'ownerInfo';
+  static const time_in_minute = 'time_in_minute';
+  static const time_in_minutes = 'time_in_minutes';
+  static const time_in_hour = 'time_in_hour';
+  static const time_in_two_hours = 'time_in_two_hours';
+  static const time_in_hours = 'time_in_hours';
+  static const time_tomorrow = 'time_tomorrow';
 
 }

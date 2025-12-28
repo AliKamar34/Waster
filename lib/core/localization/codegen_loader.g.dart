@@ -285,7 +285,13 @@ class CodegenLoader extends AssetLoader{
   "later": "لاحقاً",
   "claimedPosts": "المنشورات المطالب بها",
   "claimedAt": "تم المطالبة في:",
-  "ownerInfo": "معلومات المالك"
+  "ownerInfo": "معلومات المالك",
+  "time_in_minute": "بعد دقيقة",
+  "time_in_minutes": "بعد {count} دقائق",
+  "time_in_hour": "بعد ساعة",
+  "time_in_two_hours": "بعد ساعتين",
+  "time_in_hours": "بعد {count} ساعات",
+  "time_tomorrow": "غدًا"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -558,7 +564,13 @@ static const Map<String,dynamic> _en = {
   "later": "Later",
   "claimedPosts": "Claimed Posts",
   "claimedAt": "Claimed at:",
-  "ownerInfo": "Owner Info"
+  "ownerInfo": "Owner Info",
+  "time_in_minute": "in a minute",
+  "time_in_minutes": "in {count} minutes",
+  "time_in_hour": "in an hour",
+  "time_in_two_hours": "in two hours",
+  "time_in_hours": "in {count} hours",
+  "time_tomorrow": "tomorrow"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
