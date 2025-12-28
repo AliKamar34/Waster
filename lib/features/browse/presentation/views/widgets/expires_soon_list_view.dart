@@ -60,7 +60,6 @@ class _ExpiresSoonListViewState extends State<ExpiresSoonListView> {
           return RefreshIndicator(
             onRefresh: () =>
                 context.read<ExpiringSoonCubit>().loadExpiringSoonPosts(),
-
             child: ListView.builder(
               padding: const EdgeInsets.only(bottom: 70),
               controller: _scrollController,
