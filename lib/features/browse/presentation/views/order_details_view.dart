@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waster/core/entity/post_entity.dart';
 import 'package:waster/core/utils/service_locator.dart';
 import 'package:waster/core/utils/show_blur_bottom_sheet.dart';
+import 'package:waster/core/utils/show_toast.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/features/browse/presentation/views/widgets/location_section.dart';
 import 'package:waster/features/browse/presentation/views/widgets/order_details_app_bar.dart';
@@ -41,7 +42,14 @@ class OrderDetailsView extends StatelessWidget {
               ScheduleSection(postEntity: postEntity),
               BlocProvider(
                 create: (_) => sl<ClaimCubit>(),
-                child: BlocBuilder<ClaimCubit, ClaimState>(
+                child: BlocConsumer<ClaimCubit, ClaimState>(
+                  listener: (context, state) {
+                    if (state is ClaimPostSuccess) {
+                      showToast(context, 'Post claimed successfully');
+                    } else if (state is ClaimFailure) {
+                      showToast(context, state.message, isError: true);
+                    }
+                  },
                   builder: (context, state) {
                     return postAction is SavePostAction
                         ? CustomButton(
