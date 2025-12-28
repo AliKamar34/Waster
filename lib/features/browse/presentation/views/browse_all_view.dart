@@ -72,8 +72,13 @@ class _BrowseAllViewState extends State<BrowseAllView> {
                 } else if (state is SearchPostsLoading) {
                   return const Expanded(child: MyPostsLoadingWidget());
                 } else if (state is SearchPostsEmpty) {
-                  return CustomEmptyWidget(
-                    message: LocaleKeys.No_Posts_found.tr(),
+                  return Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: CustomEmptyWidget(
+                        message: LocaleKeys.No_Posts_found.tr(),
+                      ),
+                    ),
                   );
                 } else if (state is SearchPostsError) {
                   return Center(child: Text(state.message));
