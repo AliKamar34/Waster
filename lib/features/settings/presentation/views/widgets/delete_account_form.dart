@@ -64,9 +64,6 @@ class _DeleteAccountFormState extends State<DeleteAccountForm> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
-                        // BlocProvider.of<AuthBloc>(
-                        //   context,
-                        // ).add(const LogoutEvent());
                         BlocProvider.of<SettingsBloc>(context).add(
                           DeleteAccountEvent(password: passwordController.text),
                         );

@@ -66,18 +66,6 @@ class ProfileHeaderCard extends StatelessWidget {
                     ),
                   ],
                 ),
-
-                // Row(
-                //   spacing: 6,
-                //   children: [
-                //     const Icon(Icons.star, color: Colors.amber),
-                //     Text('4.5', style: AppTextStyle.styleRegular14(context)),
-                //     Text(
-                //       '(127 ${LocaleKeys.orders.tr()})',
-                //       style: AppTextStyle.styleRegular14(context),
-                //     ),
-                //   ],
-                // ),
                 Text(
                   user.bio ?? '',
                   maxLines: 2,

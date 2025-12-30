@@ -9,9 +9,6 @@ Future<File> pickUpImage(bool fromCamera) async {
   );
   if (pickedFile != null) {
     return File(pickedFile.path);
-    // setState(() {
-    //   _image =
-    // });
   } else {
     throw Exception('No Image Selected');
   }

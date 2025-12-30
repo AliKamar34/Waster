@@ -21,7 +21,7 @@ class CustomAlert extends StatelessWidget {
     return AlertDialog(
       insetPadding: EdgeInsets.symmetric(horizontal: 16.w),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).extension<AppColors>()!.scaffoldColor,
       icon: CircleAvatar(
         radius: 40,
         backgroundColor: Theme.of(context).extension<AppColors>()!.redColor,

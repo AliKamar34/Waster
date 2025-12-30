@@ -53,7 +53,6 @@ class AuthInterceptor extends Interceptor {
       handler.reject(
         DioException(
           requestOptions: options,
-          // type: DioExceptionType.unknown,
           error: e,
           response: Response(
             requestOptions: options,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -78,10 +79,10 @@ class _MyPostsListViewState extends State<MyPostsListView> {
         } else if (state is GetAllUserPostsListLoading) {
           return const MyPostsLoadingWidget();
         } else if (state is GetAllUserPostsListEmpty) {
-          return const CustomEmptyWidget(message: LocaleKeys.No_Posts_found);
+          return CustomEmptyWidget(message: LocaleKeys.No_Posts_found.tr());
         } else if (state is GetAllUserPostsListFailure) {
           if (state.errMessage == 'No posts found for the specified user.') {
-            return const CustomEmptyWidget(message: LocaleKeys.No_Posts_found);
+            return CustomEmptyWidget(message: LocaleKeys.No_Posts_found.tr());
           }
           return const Center(child: Text('Something went wrong'));
         } else {
