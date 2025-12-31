@@ -8,7 +8,7 @@ class ClaimEntity {
   final DateTime claimedAt;
   final ClaimPostEntity post;
   final ClaimUserEntity? recipient;
-  final ClaimUserEntity postOwner;
+  final ClaimUserEntity? postOwner;
 
   ClaimEntity({
     required this.id,
@@ -17,6 +17,6 @@ class ClaimEntity {
     required this.claimedAt,
     required this.post,
     this.recipient,
-    required this.postOwner,
+    this.postOwner,
   });
 }

@@ -10,7 +10,7 @@ class ClaimModel extends ClaimEntity {
     required super.claimedAt,
     required super.post,
     super.recipient,
-    required super.postOwner,
+    super.postOwner,
   });
 
   factory ClaimModel.fromJson(Map<String, dynamic> json) {
@@ -23,7 +23,9 @@ class ClaimModel extends ClaimEntity {
       recipient: json['recipient'] != null
           ? ClaimUserModel.fromJson(json['recipient'])
           : null,
-      postOwner: ClaimUserModel.fromJson(json['postOwner']),
+      postOwner: json['postOwner'] != null
+          ? ClaimUserModel.fromJson(json['postOwner'])
+          : null,
     );
   }
 }

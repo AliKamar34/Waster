@@ -51,7 +51,7 @@ class ClaimedPostContainer extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) {
-                  return CustomOwnerDialog(owner: claimEntity.postOwner);
+                  return CustomOwnerDialog(owner: claimEntity.postOwner!);
                 },
               );
             },

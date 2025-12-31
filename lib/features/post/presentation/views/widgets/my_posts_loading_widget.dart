@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:waster/core/entity/post_entity.dart';
 import 'package:waster/features/post/presentation/views/widgets/my_post_pop_up_menu_button.dart';
@@ -31,9 +32,12 @@ class MyPostsLoadingWidget extends StatelessWidget {
       child: ListView(
         children: List.generate(
           3,
-          (index) => PostDetailsContainer(
-            postAction: MyPostPopUpMenuButton(postEntity: fakePostEntity),
-            postEntity: fakePostEntity,
+          (index) => Padding(
+            padding: EdgeInsetsDirectional.only(bottom: 16.h),
+            child: PostDetailsContainer(
+              postAction: MyPostPopUpMenuButton(postEntity: fakePostEntity),
+              postEntity: fakePostEntity,
+            ),
           ),
         ),
       ),
