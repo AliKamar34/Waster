@@ -5,11 +5,22 @@ import 'package:waster/core/localization/locale_keys.g.dart';
 class DateFormatter {
   static String formatRelative(DateTime dateTime, BuildContext context) {
     final now = DateTime.now();
-    late Duration diff;
-    final isFuture = dateTime.isAfter(now);
 
-    diff = isFuture ? dateTime.difference(now) : now.difference(dateTime);
+    final fixedDate = DateTime.utc(
+      dateTime.year,
+      dateTime.month,
+      dateTime.day,
+      dateTime.hour,
+      dateTime.minute,
+      dateTime.second,
+      dateTime.millisecond,
+      dateTime.microsecond,
+    ).toLocal();
 
+    final isFuture = fixedDate.isAfter(now);
+    final diff = isFuture
+        ? fixedDate.difference(now)
+        : now.difference(fixedDate);
     if (diff.inSeconds < 60) {
       return LocaleKeys.time_just_now.tr();
     }
