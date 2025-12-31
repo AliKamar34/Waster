@@ -152,40 +152,43 @@ class _MainViewState extends State<MainView> {
     final colors = Theme.of(context).extension<AppColors>()!;
     final isSelected = _currIndex == index;
 
-    return GestureDetector(
-      onTap: () => _onItemTapped(index),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4.0),
-        child: AnimatedContainer(
-          curve: Curves.easeOutCubic,
-          duration: const Duration(milliseconds: 180),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: isSelected
-                ? colors.primaryColor.withAlpha(40)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(25),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SvgPicture.asset(
-                icon,
-                colorFilter: ColorFilter.mode(
-                  isSelected ? colors.primaryColor : colors.blackTextColor,
-                  BlendMode.srcIn,
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => _onItemTapped(index),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          child: AnimatedContainer(
+            curve: Curves.easeOutCubic,
+            duration: const Duration(milliseconds: 180),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            decoration: BoxDecoration(
+              color: isSelected
+                  ? colors.primaryColor.withAlpha(40)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SvgPicture.asset(
+                  icon,
+                  colorFilter: ColorFilter.mode(
+                    isSelected ? colors.primaryColor : colors.blackTextColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                label,
-                style: AppTextStyle.styleMeduim14(context).copyWith(
-                  color: isSelected
-                      ? colors.primaryColor
-                      : colors.blackTextColor,
+                const SizedBox(height: 2),
+                Text(
+                  label,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyle.styleMeduim14(context).copyWith(
+                    color: isSelected
+                        ? colors.primaryColor
+                        : colors.blackTextColor,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

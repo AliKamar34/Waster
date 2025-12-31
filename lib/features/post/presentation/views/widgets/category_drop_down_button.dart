@@ -18,11 +18,11 @@ class CategoryDropDownButton extends StatelessWidget {
       selectedValue: selectedValue,
       items: [
         DropdownMenuItem(
-          value: 'meat_left_overs',
+          value: 'Meat Left Overs',
           child: Text(LocaleKeys.meat_left_overs.tr()),
         ),
         DropdownMenuItem(
-          value: 'vegetables_left_overs',
+          value: 'Vegetables Left Overs',
           child: Text(LocaleKeys.vegetables_left_overs.tr()),
         ),
         DropdownMenuItem(
