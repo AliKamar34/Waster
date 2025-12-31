@@ -275,5 +275,8 @@
     "time_in_hour": "بعد ساعة",
     "time_in_two_hours": "بعد ساعتين",
     "time_in_hours": "بعد {count} ساعات",
-    "time_tomorrow": "غدًا"
+    "time_tomorrow": "غدًا",
+    "cancel_claim_title": "إلغاء الطلب",
+    "cancel_claim_content": "هل أنت متأكد أنك تريد إلغاء هذا الطلب؟",
+    "claim_cancelled_successfully": "تم إلغاء الطلب بنجاح"
 }

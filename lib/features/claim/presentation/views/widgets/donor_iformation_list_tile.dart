@@ -28,10 +28,12 @@ class DonorIformationListTile extends StatelessWidget {
       ),
       subtitle: Column(
         spacing: 6,
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             claimUserEntity.email,
+            overflow: TextOverflow.ellipsis,
             style: AppTextStyle.styleRegular14(context).copyWith(
               color: Theme.of(context).extension<AppColors>()!.blackTextColor,
             ),

@@ -18,7 +18,13 @@ class ClaimedPostTitleAndStatusSection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(claimPostEntity.title, style: AppTextStyle.styleBold20(context)),
+        Expanded(
+          child: Text(
+            claimPostEntity.title,
+            overflow: TextOverflow.ellipsis,
+            style: AppTextStyle.styleBold20(context),
+          ),
+        ),
         CustomContainer(
           padding: 2.w,
           borderRadius: 8.r,

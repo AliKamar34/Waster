@@ -275,5 +275,8 @@
   "time_in_hour": "in an hour",
   "time_in_two_hours": "in two hours",
   "time_in_hours": "in {count} hours",
-  "time_tomorrow": "tomorrow"
+  "time_tomorrow": "tomorrow",
+  "cancel_claim_title": "Cancel Claim",
+  "cancel_claim_content": "Are you sure you want to cancel this claim?",
+  "claim_cancelled_successfully": "Claim cancelled successfully"
 }

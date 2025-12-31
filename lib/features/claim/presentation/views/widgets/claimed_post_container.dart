@@ -10,6 +10,8 @@ import 'package:waster/features/claim/presentation/manager/cubit/claim_cubit.dar
 import 'package:waster/features/claim/presentation/views/widgets/claimed_post_actions.dart';
 import 'package:waster/features/claim/presentation/views/widgets/claimed_post_text_info.dart';
 import 'package:waster/features/claim/presentation/views/widgets/claimed_post_title_and_status_section.dart';
+import 'package:waster/features/claim/presentation/views/widgets/show_delete_dialog.dart';
+import 'package:waster/features/claim/presentation/views/widgets/show_owner_info_dialog.dart';
 
 class ClaimedPostContainer extends StatelessWidget {
   const ClaimedPostContainer({super.key, required this.claimEntity});
@@ -45,9 +47,21 @@ class ClaimedPostContainer extends StatelessWidget {
             ),
           ),
           ClaimedPostActions(
-            showOwnerInfo: () {},
-            onCancle: () =>
-                context.read<ClaimCubit>().cancleClaim(claimEntity.id),
+            showOwnerInfo: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return CustomOwnerDialog(owner: claimEntity.postOwner);
+                },
+              );
+            },
+            onCancle: () {
+              showDeleteDialog(
+                context,
+                claimEntity.id,
+                context.read<ClaimCubit>(),
+              );
+            },
           ),
         ],
       ),

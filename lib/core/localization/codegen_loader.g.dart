@@ -291,7 +291,10 @@ class CodegenLoader extends AssetLoader{
   "time_in_hour": "بعد ساعة",
   "time_in_two_hours": "بعد ساعتين",
   "time_in_hours": "بعد {count} ساعات",
-  "time_tomorrow": "غدًا"
+  "time_tomorrow": "غدًا",
+  "cancel_claim_title": "إلغاء الطلب",
+  "cancel_claim_content": "هل أنت متأكد أنك تريد إلغاء هذا الطلب؟",
+  "claim_cancelled_successfully": "تم إلغاء الطلب بنجاح"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -570,7 +573,10 @@ static const Map<String,dynamic> _en = {
   "time_in_hour": "in an hour",
   "time_in_two_hours": "in two hours",
   "time_in_hours": "in {count} hours",
-  "time_tomorrow": "tomorrow"
+  "time_tomorrow": "tomorrow",
+  "cancel_claim_title": "Cancel Claim",
+  "cancel_claim_content": "Are you sure you want to cancel this claim?",
+  "claim_cancelled_successfully": "Claim cancelled successfully"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
