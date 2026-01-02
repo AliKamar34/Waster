@@ -33,7 +33,10 @@ class OrderDetailsView extends StatelessWidget {
             spacing: 16,
             children: [
               OrderDetailsAppBar(status: postEntity.status!),
-              PostIamgeWidget(imageUrl: postEntity.imageUrl!),
+              Hero(
+                tag: 'post-image-${postEntity.id}',
+                child: PostIamgeWidget(imageUrl: postEntity.imageUrl!),
+              ),
               OrderSummarySection(
                 postEntity: postEntity,
                 postAction: postAction,

@@ -28,7 +28,10 @@ class PostDetailsContainer extends StatelessWidget {
           spacing: 24,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PostIamgeWidget(imageUrl: postEntity.imageUrl!),
+            Hero(
+              tag: 'post-image-${postEntity.id}',
+              child: PostIamgeWidget(imageUrl: postEntity.imageUrl!),
+            ),
             OrederNameAndDetailsWidget(
               postEntity: postEntity,
               postAction: postAction,
