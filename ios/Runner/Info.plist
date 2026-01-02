@@ -51,5 +51,10 @@
 		<string>We need camera access to take photos</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>We need photo library access to pick images</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>whatsapp</string>
+			<string>tel</string>
+		</array>
 	</dict>
 </plist>

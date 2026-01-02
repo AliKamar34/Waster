@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
+import 'package:waster/core/utils/show_overlay_toast.dart';
 import 'package:waster/core/widgets/custom_button.dart';
 import 'package:waster/features/claim/presentation/views/widgets/donor_iformation_list_tile.dart';
 import 'package:waster/features/claim/domain/entity/claim_user_entity.dart';
@@ -39,7 +40,18 @@ class CustomOwnerDialog extends StatelessWidget {
 
       actionsPadding: EdgeInsets.all(20.w),
       actions: [
-        CustomButton(title: 'whatsapp', onPressed: _openWhatsApp),
+        CustomButton(
+          title: 'whatsapp',
+          onPressed: () async {
+            try {
+              await _openWhatsApp();
+            } catch (e) {
+              if (context.mounted) {
+                showOverlayToast(context, e.toString(), isError: true);
+              }
+            }
+          },
+        ),
         CustomButton(
           backgroundColor: colors.blueColor,
           title: LocaleKeys.cancle.tr(),
@@ -56,12 +68,27 @@ class CustomOwnerDialog extends StatelessWidget {
     final text = Uri.encodeComponent(
       'Hello ${owner.fullName}, I am contacting you regarding the claimed post.',
     );
-    final Uri whatsappUrl = Uri.parse('https://wa.me/$phone?text=$text');
 
-    if (await canLaunchUrl(whatsappUrl)) {
-      await launchUrl(whatsappUrl, mode: LaunchMode.externalApplication);
-    } else {
-      throw 'Cannot open WhatsApp';
+    // Native WhatsApp
+    final Uri whatsappRegular = Uri.parse(
+      'whatsapp://send?phone=$phone&text=$text',
+    );
+
+    // WhatsApp Business
+    final Uri whatsappBusiness = Uri.parse(
+      'whatsapp-business://send?phone=$phone&text=$text',
+    );
+
+    if (await canLaunchUrl(whatsappRegular)) {
+      await launchUrl(whatsappRegular, mode: LaunchMode.externalApplication);
+      return;
     }
+
+    if (await canLaunchUrl(whatsappBusiness)) {
+      await launchUrl(whatsappBusiness, mode: LaunchMode.externalApplication);
+      return;
+    }
+
+    throw 'Could not launch WhatsApp';
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
+import 'package:waster/core/utils/show_overlay_toast.dart';
 import 'package:waster/core/widgets/custom_empty_widget.dart';
 import 'package:waster/features/claim/presentation/manager/cubit/claim_cubit.dart';
 import 'package:waster/features/claim/presentation/views/widgets/custom_claims_post_widget.dart';
@@ -24,12 +25,21 @@ class ClaimsPostBottomSheet extends StatelessWidget {
               height: 5,
               margin: const EdgeInsets.only(top: 16, bottom: 20),
               decoration: BoxDecoration(
-                color: Theme.of(context).extension<AppColors>()!.whiteColor,
+                color: Theme.of(context).extension<AppColors>()!.blackTextColor,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
           ),
-          BlocBuilder<ClaimCubit, ClaimState>(
+          BlocConsumer<ClaimCubit, ClaimState>(
+            listener: (context, state) {
+              if (state is ClaimActionSuccess) {
+                showOverlayToast(context, state.message);
+                context.read<ClaimCubit>().getPostClaims(state.claimId);
+              } else if (state is ClaimActionFailure) {
+                showOverlayToast(context, state.message, isError: true);
+                context.read<ClaimCubit>().getPostClaims(state.claimId);
+              }
+            },
             builder: (context, state) {
               if (state is GetPostClaimsSuccess) {
                 return Expanded(
