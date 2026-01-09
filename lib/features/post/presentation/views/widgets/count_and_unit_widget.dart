@@ -8,11 +8,11 @@ import 'package:waster/core/widgets/custom_text_field.dart';
 class CountAndUnitWidget extends StatelessWidget {
   const CountAndUnitWidget({
     super.key,
-    this.onChanged,
+    this.onSelected,
     required this.quantityController,
     this.units,
   });
-  final void Function(String?)? onChanged;
+  final void Function(String?)? onSelected;
   final TextEditingController quantityController;
   final String? units;
   @override
@@ -29,26 +29,20 @@ class CountAndUnitWidget extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: CustomDropDownButton(
+          child: CustomDropDownMenu<String>(
             selectedValue: units,
-            onChanged: onChanged,
+            onSelected: onSelected,
             validator: Validators.normal,
             items: [
-              DropdownMenuItem(value: 'Ton', child: Text(LocaleKeys.Ton.tr())),
-              DropdownMenuItem(
+              DropdownMenuEntry(value: 'Ton', label: LocaleKeys.Ton.tr()),
+              DropdownMenuEntry(
                 value: 'Kilogram',
-                child: Text(LocaleKeys.Kilogram.tr()),
+                label: LocaleKeys.Kilogram.tr(),
               ),
-              DropdownMenuItem(
-                value: 'Pound',
-                child: Text(LocaleKeys.Pound.tr()),
-              ),
-              DropdownMenuItem(
-                value: 'Pieces',
-                child: Text(LocaleKeys.pieces.tr()),
-              ),
+              DropdownMenuEntry(value: 'Pound', label: LocaleKeys.Pound.tr()),
+              DropdownMenuEntry(value: 'Pieces', label: LocaleKeys.pieces.tr()),
             ],
-            lable: LocaleKeys.unit.tr(),
+            label: LocaleKeys.unit.tr(),
             hint: LocaleKeys.lbs.tr(),
           ),
         ),

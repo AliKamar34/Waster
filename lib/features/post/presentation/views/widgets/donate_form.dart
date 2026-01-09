@@ -123,13 +123,14 @@ class _DonateFormState extends State<DonateForm> {
           ),
           CategoryDropDownButton(
             selectedValue: _controller.category,
-            onChanged: (value) =>
+            onSelected: (value) =>
                 setState(() => _controller.updateCategory(value)),
           ),
           CountAndUnitWidget(
             units: _controller.unit,
             quantityController: _controller.quantityController,
-            onChanged: (value) => setState(() => _controller.updateUnit(value)),
+            onSelected: (value) =>
+                setState(() => _controller.updateUnit(value)),
           ),
           CustomTextField(
             maxLines: 3,

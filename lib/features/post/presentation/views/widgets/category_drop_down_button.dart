@@ -5,31 +5,35 @@ import 'package:waster/core/utils/validators.dart';
 import 'package:waster/core/widgets/custom_drop_down_button.dart';
 
 class CategoryDropDownButton extends StatelessWidget {
-  const CategoryDropDownButton({super.key, this.onChanged, this.selectedValue});
-  final void Function(String?)? onChanged;
+  const CategoryDropDownButton({
+    super.key,
+    this.onSelected,
+    this.selectedValue,
+  });
+  final void Function(String?)? onSelected;
   final String? selectedValue;
   @override
   Widget build(BuildContext context) {
-    return CustomDropDownButton(
-      lable: LocaleKeys.category.tr(),
+    return CustomDropDownMenu<String>(
+      label: LocaleKeys.category.tr(),
       hint: LocaleKeys.Select_food_category.tr(),
-      onChanged: onChanged,
+      onSelected: onSelected,
       validator: Validators.normal,
       selectedValue: selectedValue,
       items: [
-        DropdownMenuItem(
+        DropdownMenuEntry(
           value: 'Meat Left Overs',
-          child: Text(LocaleKeys.meat_left_overs.tr()),
+          label: LocaleKeys.meat_left_overs.tr(),
         ),
-        DropdownMenuItem(
+        DropdownMenuEntry(
           value: 'Vegetables Left Overs',
-          child: Text(LocaleKeys.vegetables_left_overs.tr()),
+          label: LocaleKeys.vegetables_left_overs.tr(),
         ),
-        DropdownMenuItem(
+        DropdownMenuEntry(
           value: 'Fruits Left Overs',
-          child: Text(LocaleKeys.fruits_left_overs.tr()),
+          label: LocaleKeys.fruits_left_overs.tr(),
         ),
-        DropdownMenuItem(value: 'Other', child: Text(LocaleKeys.Other.tr())),
+        DropdownMenuEntry(value: 'Other', label: LocaleKeys.Other.tr()),
       ],
     );
   }
