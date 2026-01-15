@@ -121,7 +121,7 @@ class AuthRemoteDateSourceImpl implements AuthRemoteDateSource {
   Future<AuthModel> googleSignIn({required String idToken}) async {
     try {
       final response = await dioHelper.postRequest(
-        endPoint: ApiEndPoints.signInWithGoogle,
+        endPoint: ApiEndPoints.googleSignIn,
         data: {'idToken': idToken},
       );
 

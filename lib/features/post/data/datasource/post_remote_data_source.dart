@@ -97,7 +97,7 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   }) async {
     try {
       final response = await dioHelper.putRequest(
-        endPoint: ApiEndPoints.editPost,
+        endPoint: ApiEndPoints.updatePost,
         queryParameters: {'id': id},
         data: CreatePostModel(
           title: title,
@@ -127,7 +127,7 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   }) async {
     try {
       final response = await dioHelper.getRequest(
-        endPoint: ApiEndPoints.getAllUsersPosts,
+        endPoint: ApiEndPoints.myPosts,
         queryParameters: {'PageNumber': pageNum, 'PageSize': pageSize},
       );
 
@@ -169,7 +169,7 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   Future<void> addBookMarkPost({required String id}) async {
     try {
       final response = await dioHelper.postRequest(
-        endPoint: '${ApiEndPoints.bookMarkBasePath}/$id',
+        endPoint: '${ApiEndPoints.addBookmark}/$id',
         queryParameters: {'PostId': id},
       );
       if (response.statusCode == 201) {
@@ -187,7 +187,7 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   Future<void> deleteBookMarkPost({required String id}) async {
     try {
       final response = await dioHelper.deteleRequest(
-        endPoint: ApiEndPoints.deleteBookMark,
+        endPoint: ApiEndPoints.removeBookmark,
         queryParameters: {'postId': id},
       );
       if (response.statusCode == 200) {
@@ -208,7 +208,7 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   }) async {
     try {
       final response = await dioHelper.getRequest(
-        endPoint: ApiEndPoints.bookMarkBasePath,
+        endPoint: ApiEndPoints.getBookmarks,
         queryParameters: {'PageNumber': pageNum, 'PageSize': pageSize},
       );
 

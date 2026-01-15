@@ -51,7 +51,7 @@ class SettingsRemoteDataSourceImpl implements SettingsRemoteDataSource {
   Future<UserModel> getUserDetails() async {
     try {
       final response = await dioHelper.getRequest(
-        endPoint: ApiEndPoints.userDetails,
+        endPoint: ApiEndPoints.profile,
       );
 
       if (response.statusCode == 200) {

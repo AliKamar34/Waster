@@ -7,7 +7,6 @@ import 'package:waster/features/settings/presentation/views/widgets/contact_info
 import 'package:waster/features/settings/presentation/views/widgets/custom_profile_loading_widget.dart';
 import 'package:waster/features/settings/presentation/views/widgets/posts_managment_section.dart';
 import 'package:waster/features/settings/presentation/views/widgets/profile_header_card.dart';
-import 'package:waster/features/settings/presentation/views/widgets/profile_statistics_section.dart';
 
 class ProfileViewBodyBlocBuilder extends StatelessWidget {
   const ProfileViewBodyBlocBuilder({super.key});
@@ -21,7 +20,6 @@ class ProfileViewBodyBlocBuilder extends StatelessWidget {
             spacing: 24,
             children: [
               ProfileHeaderCard(user: state.user),
-              const ProfileStatisticsSection(),
               ContactInfoSection(
                 email: state.user.email,
                 phoneNum:
