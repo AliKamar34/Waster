@@ -1,4 +1,4 @@
-package com.example.waster
+package com.luk.waster
 
 import io.flutter.embedding.android.FlutterActivity
 
