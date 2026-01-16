@@ -16,51 +16,57 @@ class MainImpactGridView extends StatelessWidget {
         'count': '23',
         'color': Theme.of(context).extension<AppColors>()!.primaryColor,
         'title': LocaleKeys.total_donations.tr(),
-        'unit': LocaleKeys.items.tr(),
+        'hint': LocaleKeys.food_items_donated.tr(),
       },
       {
         'count': '156',
         'color': Theme.of(context).extension<AppColors>()!.orangeColor,
         'title': LocaleKeys.Meals_Served.tr(),
-        'unit': LocaleKeys.meals.tr(),
+        'hint': LocaleKeys.since_joining.tr(),
       },
       {
         'count': '342',
         'color': Theme.of(context).extension<AppColors>()!.blueColor,
-        'title': LocaleKeys.food_rescued.tr(),
-        'unit': LocaleKeys.lbs.tr(),
+        'title': LocaleKeys.available_posts.tr(),
+        'hint': LocaleKeys.active_iistings.tr(),
       },
       {
         'count': '89',
-        'color': Theme.of(context).extension<AppColors>()!.primaryColor,
-        'title': LocaleKeys.co_saved.tr(),
-        'unit': LocaleKeys.kg.tr(),
+        'color': Theme.of(context).extension<AppColors>()!.redColor,
+        'title': LocaleKeys.total_claims.tr(),
+        'hint': LocaleKeys.completed_pickups.tr(),
+      },
+      {
+        'count': '89',
+        'color': Theme.of(context).extension<AppColors>()!.blackTextColor,
+        'title': LocaleKeys.pending_claims.tr(),
+        'hint': LocaleKeys.awaiting_confirmation.tr(),
       },
     ];
     return CustomImpactGridView(
       itemCount: items.length,
       itemBuilder: (context, index) {
         return CustomContainer(
+          padding: 8,
+          backgroundColor: items[index]['color'].withAlpha(80),
           child: Column(
-            spacing: 24,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                items[index]['count'],
-                style: AppTextStyle.styleBold24(
-                  context,
-                ).copyWith(color: items[index]['color']),
-              ),
-              Expanded(
-                child: Text(
-                  items[index]['title'],
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyle.styleRegular14(context),
-                ),
+                items[index]['title'],
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyle.styleBold16(context),
               ),
               Text(
-                items[index]['unit'],
-                style: AppTextStyle.styleRegular14(context),
+                items[index]['count'],
+                style: AppTextStyle.styleBold16(context),
+              ),
+              Text(
+                items[index]['hint'],
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyle.styleMeduim14(context),
               ),
             ],
           ),
