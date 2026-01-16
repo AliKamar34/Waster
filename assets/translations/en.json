@@ -278,5 +278,13 @@
   "time_tomorrow": "tomorrow",
   "cancel_claim_title": "Cancel Claim",
   "cancel_claim_content": "Are you sure you want to cancel this claim?",
-  "claim_cancelled_successfully": "Claim cancelled successfully"
+  "claim_cancelled_successfully": "Claim cancelled successfully",
+  "available_posts": "Available posts",
+  "total_claims": "Total Claims",
+  "pending_claims": "Pending Claims",
+  "food_items_donated": "Food Items Donated",
+  "since_joining": "Since Joining",
+  "active_iistings": "Active Listings",
+  "completed_pickups": "Completed Pickups",
+  "awaiting_confirmation": "Awaiting Confirmation"
 }

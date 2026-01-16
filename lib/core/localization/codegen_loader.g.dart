@@ -294,7 +294,15 @@ class CodegenLoader extends AssetLoader{
   "time_tomorrow": "غدًا",
   "cancel_claim_title": "إلغاء الطلب",
   "cancel_claim_content": "هل أنت متأكد أنك تريد إلغاء هذا الطلب؟",
-  "claim_cancelled_successfully": "تم إلغاء الطلب بنجاح"
+  "claim_cancelled_successfully": "تم إلغاء الطلب بنجاح",
+  "available_posts": "المنشورات المتاحة",
+  "total_claims": "إجمالي الطلبات",
+  "pending_claims": "طلبات قيد الانتظار",
+  "food_items_donated": "عناصر الطعام المتبرع بها",
+  "since_joining": "منذ الانضمام",
+  "active_iistings": "القوائم النشطة",
+  "completed_pickups": "عمليات الاستلام المكتملة",
+  "awaiting_confirmation": "في انتظار التأكيد"
 };
 static const Map<String,dynamic> _en = {
   "achievement_badges": "Achievement Badges",
@@ -576,7 +584,15 @@ static const Map<String,dynamic> _en = {
   "time_tomorrow": "tomorrow",
   "cancel_claim_title": "Cancel Claim",
   "cancel_claim_content": "Are you sure you want to cancel this claim?",
-  "claim_cancelled_successfully": "Claim cancelled successfully"
+  "claim_cancelled_successfully": "Claim cancelled successfully",
+  "available_posts": "Available posts",
+  "total_claims": "Total Claims",
+  "pending_claims": "Pending Claims",
+  "food_items_donated": "Food Items Donated",
+  "since_joining": "Since Joining",
+  "active_iistings": "Active Listings",
+  "completed_pickups": "Completed Pickups",
+  "awaiting_confirmation": "Awaiting Confirmation"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

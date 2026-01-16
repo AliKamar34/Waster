@@ -278,5 +278,13 @@
     "time_tomorrow": "غدًا",
     "cancel_claim_title": "إلغاء الطلب",
     "cancel_claim_content": "هل أنت متأكد أنك تريد إلغاء هذا الطلب؟",
-    "claim_cancelled_successfully": "تم إلغاء الطلب بنجاح"
+    "claim_cancelled_successfully": "تم إلغاء الطلب بنجاح",
+    "available_posts": "المنشورات المتاحة",
+    "total_claims": "إجمالي الطلبات",
+    "pending_claims": "طلبات قيد الانتظار",
+    "food_items_donated": "عناصر الطعام المتبرع بها",
+    "since_joining": "منذ الانضمام",
+    "active_iistings": "القوائم النشطة",
+    "completed_pickups": "عمليات الاستلام المكتملة",
+    "awaiting_confirmation": "في انتظار التأكيد"
 }

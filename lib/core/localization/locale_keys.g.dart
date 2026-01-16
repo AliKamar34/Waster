@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const achievement_badges = 'achievement_badges';
   static const add_food_photo = 'add_food_photo';
   static const artisan_bread = 'artisan_bread';
@@ -78,30 +78,22 @@ abstract class LocaleKeys {
   static const your_impact_this_month = 'your_impact_this_month';
   static const Get_Started = 'Get_Started';
   static const Reduce_Food_Waste = 'Reduce_Food_Waste';
-  static const Turn_surplus_food_into_community_meals =
-      'Turn_surplus_food_into_community_meals';
+  static const Turn_surplus_food_into_community_meals = 'Turn_surplus_food_into_community_meals';
   static const Feed_Communities = 'Feed_Communities';
-  static const Connect_donors_with_those_in_need =
-      'Connect_donors_with_those_in_need';
+  static const Connect_donors_with_those_in_need = 'Connect_donors_with_those_in_need';
   static const Volunteer_Network = 'Volunteer_Network';
-  static const Join_drivers_making_a_difference =
-      'Join_drivers_making_a_difference';
+  static const Join_drivers_making_a_difference = 'Join_drivers_making_a_difference';
   static const This_field_is_required = 'This_field_is_required';
   static const Email_is_required = 'Email_is_required';
   static const Invalid_email_format = 'Invalid_email_format';
   static const Password_is_required = 'Password_is_required';
-  static const Password_must_be_at_least_8_characters_long =
-      'Password_must_be_at_least_8_characters_long';
-  static const Password_must_contain_at_least_one_uppercase_letter =
-      'Password_must_contain_at_least_one_uppercase_letter';
-  static const Password_must_contain_at_least_one_number =
-      'Password_must_contain_at_least_one_number';
-  static const Password_must_contain_at_least_one_special_character =
-      'Password_must_contain_at_least_one_special_character';
+  static const Password_must_be_at_least_8_characters_long = 'Password_must_be_at_least_8_characters_long';
+  static const Password_must_contain_at_least_one_uppercase_letter = 'Password_must_contain_at_least_one_uppercase_letter';
+  static const Password_must_contain_at_least_one_number = 'Password_must_contain_at_least_one_number';
+  static const Password_must_contain_at_least_one_special_character = 'Password_must_contain_at_least_one_special_character';
   static const Confirm_Password_is_required = 'Confirm_Password_is_required';
   static const Passwords_do_not_match = 'Passwords_do_not_match';
-  static const Password_must_contain_at_least_one_lowercase_letter =
-      'Password_must_contain_at_least_one_lowercase_letter';
+  static const Password_must_contain_at_least_one_lowercase_letter = 'Password_must_contain_at_least_one_lowercase_letter';
   static const sign_up = 'sign_up';
   static const Dont_have_an_account = 'Dont_have_an_account';
   static const Already_have_an_account = 'Already_have_an_account';
@@ -130,8 +122,7 @@ abstract class LocaleKeys {
   static const and = 'and';
   static const Privacy_Policy = 'Privacy_Policy';
   static const Browse_Available_Orders = 'Browse_Available_Orders';
-  static const Search_by_food_type_or_donor_name =
-      'Search_by_food_type_or_donor_name';
+  static const Search_by_food_type_or_donor_name = 'Search_by_food_type_or_donor_name';
   static const All_Orders = 'All_Orders';
   static const Urgent = 'Urgent';
   static const Nearby = 'Nearby';
@@ -159,8 +150,7 @@ abstract class LocaleKeys {
   static const hours_ago = 'hours_ago';
   static const delivery_window = 'delivery_window';
   static const to_day = 'to_day';
-  static const Please_bring_insulated_bags_Items_need_to_be_refr =
-      'Please_bring_insulated_bags_Items_need_to_be_refr';
+  static const Please_bring_insulated_bags_Items_need_to_be_refr = 'Please_bring_insulated_bags_Items_need_to_be_refr';
   static const home = 'home';
   static const browse = 'browse';
   static const donate = 'donate';
@@ -170,11 +160,9 @@ abstract class LocaleKeys {
   static const unit = 'unit';
   static const change = 'change';
   static const item_name = 'item_name';
-  static const eg_Fresh_Vegetables_Baked_Goods =
-      'eg_Fresh_Vegetables_Baked_Goods';
+  static const eg_Fresh_Vegetables_Baked_Goods = 'eg_Fresh_Vegetables_Baked_Goods';
   static const Description = 'Description';
-  static const Additional_details_about_the_food =
-      'Additional_details_about_the_food';
+  static const Additional_details_about_the_food = 'Additional_details_about_the_food';
   static const Available_for_Pickup = 'Available_for_Pickup';
   static const Must_be_Picked_Up_By = 'Must_be_Picked_Up_By';
   static const Pickup_Location = 'Pickup_Location';
@@ -202,23 +190,20 @@ abstract class LocaleKeys {
   static const mar = 'mar';
   static const apr = 'apr';
   static const un_read = 'un_read';
-  static const Your_donation_of_fresh_vegetables_has_been_accepted =
-      'Your_donation_of_fresh_vegetables_has_been_accepted';
+  static const Your_donation_of_fresh_vegetables_has_been_accepted = 'Your_donation_of_fresh_vegetables_has_been_accepted';
   static const order_accepted = 'order_accepted';
   static const important = 'important';
   static const profile_editing = 'profile_editing';
   static const settings = 'settings';
   static const about_us = 'about_us';
-  static const Tell_the_community_about_your_organization =
-      'Tell_the_community_about_your_organization';
+  static const Tell_the_community_about_your_organization = 'Tell_the_community_about_your_organization';
   static const Bio = 'Bio';
   static const account_settings = 'account_settings';
   static const save = 'save';
   static const change_password = 'change_password';
   static const Email_Preferences = 'Email_Preferences';
   static const Delete_Account = 'Delete_Account';
-  static const Update_your_personal_information =
-      'Update_your_personal_information';
+  static const Update_your_personal_information = 'Update_your_personal_information';
   static const account = 'account';
   static const Language = 'Language';
   static const App_Preferences = 'App_Preferences';
@@ -241,14 +226,11 @@ abstract class LocaleKeys {
   static const pounds_saved = 'pounds_saved';
   static const Meals_Donated = 'Meals_Donated';
   static const Organizations_Helped = 'Organizations_Helped';
-  static const Enter_full_address_including_city_and_state =
-      'Enter_full_address_including_city_and_state';
+  static const Enter_full_address_including_city_and_state = 'Enter_full_address_including_city_and_state';
   static const Enter_valid_address = 'Enter_valid_address';
   static const cancle = 'cancle';
-  static const Are_U_Sure_You_Want_To_Sign_Out =
-      'Are_U_Sure_You_Want_To_Sign_Out';
-  static const please_enter_your_phone_number =
-      'please_enter_your_phone_number';
+  static const Are_U_Sure_You_Want_To_Sign_Out = 'Are_U_Sure_You_Want_To_Sign_Out';
+  static const please_enter_your_phone_number = 'please_enter_your_phone_number';
   static const Current_Password = 'Current_Password';
   static const New_Password = 'New_Password';
   static const Confirm_New_Password = 'Confirm_New_Password';
@@ -267,14 +249,12 @@ abstract class LocaleKeys {
   static const time_hours_ago = 'time_hours_ago';
   static const time_yesterday = 'time_yesterday';
   static const Post_Deleted_Successfully = 'Post_Deleted_Successfully';
-  static const Are_u_Sure_You_Want_To_Delete_this_post =
-      'Are_u_Sure_You_Want_To_Delete_this_post';
+  static const Are_u_Sure_You_Want_To_Delete_this_post = 'Are_u_Sure_You_Want_To_Delete_this_post';
   static const Delete_Post = 'Delete_Post';
   static const Delete = 'Delete';
   static const Something_went_wrong = 'Something_went_wrong';
   static const Edit = 'Edit';
-  static const Are_u_Sure_You_Want_To_Delete_Account =
-      'Are_u_Sure_You_Want_To_Delete_Account';
+  static const Are_u_Sure_You_Want_To_Delete_Account = 'Are_u_Sure_You_Want_To_Delete_Account';
   static const Account_Deleted_Successfully = 'Account_Deleted_Successfully';
   static const No_expiring_soon_posts_found = 'No_expiring_soon_posts_found';
   static const No_Posts_found = 'No_Posts_found';
@@ -303,4 +283,13 @@ abstract class LocaleKeys {
   static const cancel_claim_title = 'cancel_claim_title';
   static const cancel_claim_content = 'cancel_claim_content';
   static const claim_cancelled_successfully = 'claim_cancelled_successfully';
+  static const available_posts = 'available_posts';
+  static const total_claims = 'total_claims';
+  static const pending_claims = 'pending_claims';
+  static const food_items_donated = 'food_items_donated';
+  static const since_joining = 'since_joining';
+  static const active_iistings = 'active_iistings';
+  static const completed_pickups = 'completed_pickups';
+  static const awaiting_confirmation = 'awaiting_confirmation';
+
 }
