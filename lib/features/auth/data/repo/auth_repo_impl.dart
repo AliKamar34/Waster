@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:waster/core/data/base_repository.dart';
 import 'package:waster/core/errors/failure.dart';
+import 'package:waster/core/networking/network_info.dart';
 import 'package:waster/features/auth/data/datasource/auth_local_data_source.dart';
 import 'package:waster/features/auth/data/datasource/auth_remote_date_source.dart';
 import 'package:waster/features/auth/domain/entity/auth_entity.dart';
@@ -9,10 +10,11 @@ import 'package:waster/features/auth/domain/repo/auth_repo.dart';
 class AuthRepoImpl extends BaseRepository implements AuthRepo {
   final AuthLocalDataSource authLocalDataSource;
   final AuthRemoteDateSource authRemoteDateSource;
-
+  final NetworkInfo networkInfo;
   AuthRepoImpl({
     required this.authLocalDataSource,
     required this.authRemoteDateSource,
+    required this.networkInfo,
   });
 
   @override
@@ -20,6 +22,13 @@ class AuthRepoImpl extends BaseRepository implements AuthRepo {
     required String email,
     required String password,
   }) async {
+    // 0. Check internet connection
+    if (!await networkInfo.isConnected) {
+      return left(
+        Failure('No internet connection. Please check your network.'),
+      );
+    }
+
     // 1. Execute login request
     final result = await execute(
       () => authRemoteDateSource.login(email: email, password: password),
@@ -51,6 +60,12 @@ class AuthRepoImpl extends BaseRepository implements AuthRepo {
     required String phoneNumber,
     required String address,
   }) async {
+    // 0. Check internet connection
+    if (!await networkInfo.isConnected) {
+      return left(
+        Failure('No internet connection. Please check your network.'),
+      );
+    }
     // 1. Execute register request
     final result = await execute(
       () => authRemoteDateSource.register(

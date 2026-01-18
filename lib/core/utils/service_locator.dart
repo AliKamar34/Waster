@@ -1,6 +1,8 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:waster/core/networking/auth_interceptor.dart';
 import 'package:waster/core/networking/dio_helper.dart';
+import 'package:waster/core/networking/network_info.dart';
 import 'package:waster/core/secrets/secrets.dart';
 import 'package:waster/core/services/google_auth_service.dart';
 import 'package:waster/core/utils/secure_storage_helper.dart';
@@ -68,6 +70,10 @@ void setupServiceLocator() {
   // External
   sl.registerLazySingleton<SecureStorageHelper>(() => SecureStorageHelper());
   sl.registerLazySingleton<DioHelper>(() => DioHelper());
+  sl.registerLazySingleton<Connectivity>(() => Connectivity());
+  sl.registerLazySingleton<NetworkInfo>(
+    () => NetworkInfoImpl(sl<Connectivity>()),
+  );
 
   // Google Auth Service
   sl.registerLazySingleton<GoogleAuthService>(
@@ -85,7 +91,11 @@ void setupServiceLocator() {
 
   // Repositories
   sl.registerLazySingleton<AuthRepo>(
-    () => AuthRepoImpl(authLocalDataSource: sl(), authRemoteDateSource: sl()),
+    () => AuthRepoImpl(
+      authLocalDataSource: sl(),
+      authRemoteDateSource: sl(),
+      networkInfo: sl(),
+    ),
   );
 
   // Use cases
