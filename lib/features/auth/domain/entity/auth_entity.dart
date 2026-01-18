@@ -1,4 +1,6 @@
-class AuthEntity {
+import 'package:equatable/equatable.dart';
+
+class AuthEntity extends Equatable {
   final String token;
   final String refreshToken;
   final String email;
@@ -15,4 +17,18 @@ class AuthEntity {
     required this.expiresOn,
     this.message,
   });
+
+  @override
+  List<Object?> get props => [
+    token,
+    refreshToken,
+    email,
+    userName,
+    roles,
+    expiresOn,
+    message,
+  ];
+
+  @override
+  bool get stringify => true;
 }

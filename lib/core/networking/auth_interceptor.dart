@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:waster/core/errors/cache_exception.dart';
 import 'package:waster/features/auth/data/datasource/auth_local_data_source.dart';
 import 'package:waster/features/auth/data/datasource/auth_remote_date_source.dart';
 
@@ -19,33 +20,48 @@ class AuthInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    try {
-      if (_isAuthEndpoint(options.path)) {
-        return handler.next(options);
-      }
+    if (_isAuthEndpoint(options.path)) {
+      return handler.next(options);
+    }
 
+    try {
       final token = await localDataSource.getToken();
 
       if (token == null || token.isEmpty) {
         return handler.reject(
           DioException(
             requestOptions: options,
-            type: DioExceptionType.cancel,
-            error: 'Authentication token not found',
+            type: DioExceptionType.badResponse,
+            error: 'No authentication token found',
             response: Response(
               requestOptions: options,
               statusCode: 401,
-              statusMessage: 'Unauthenticated',
+              statusMessage: 'Unauthorized - Missing token',
             ),
           ),
         );
       }
-      options.headers['Authorization'] = 'Bearer $token';
 
+      options.headers['Authorization'] = 'Bearer $token';
       handler.next(options);
+    } on CacheException catch (e) {
+      log('Failed to retrieve auth token from cache: $e');
+
+      handler.reject(
+        DioException(
+          requestOptions: options,
+          type: DioExceptionType.badResponse,
+          error: 'Failed to retrieve authentication token',
+          response: Response(
+            requestOptions: options,
+            statusCode: 401,
+            statusMessage: 'Unauthorized - Token retrieval failed',
+          ),
+        ),
+      );
     } catch (e, stackTrace) {
       log(
-        'AuthInterceptor onRequest error: $e',
+        'Unexpected error in AuthInterceptor.onRequest: $e',
         error: e,
         stackTrace: stackTrace,
       );
@@ -53,11 +69,11 @@ class AuthInterceptor extends Interceptor {
       handler.reject(
         DioException(
           requestOptions: options,
-          error: e,
+          error: 'Unexpected authentication error: $e',
           response: Response(
             requestOptions: options,
             statusCode: 500,
-            statusMessage: 'Internal error while adding authentication',
+            statusMessage: 'Internal Server Error',
           ),
         ),
       );
