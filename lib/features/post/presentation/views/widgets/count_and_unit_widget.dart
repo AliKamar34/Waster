@@ -22,6 +22,7 @@ class CountAndUnitWidget extends StatelessWidget {
       children: [
         Expanded(
           child: CustomTextField(
+            keyboardType: TextInputType.number,
             lable: '${LocaleKeys.quantity.tr()} *',
             hint: '25',
             controller: quantityController,

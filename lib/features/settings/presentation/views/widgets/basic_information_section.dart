@@ -29,6 +29,7 @@ class BasicInformationSection extends StatelessWidget {
       title: LocaleKeys.Basic_Information.tr(),
       children: [
         CustomTextField(
+          keyboardType: TextInputType.name,
           hint: 'Enter Name',
           controller: nameController,
           validator: Validators.normal,
@@ -36,6 +37,7 @@ class BasicInformationSection extends StatelessWidget {
           prefixIcon: SvgPicture.asset(Assets.email),
         ),
         CustomTextField(
+          keyboardType: TextInputType.emailAddress,
           hint: 'Enter Email',
           enabled: false,
           validator: Validators.email,
@@ -48,6 +50,7 @@ class BasicInformationSection extends StatelessWidget {
           onChanged: onPhoneChanged,
         ),
         CustomTextField(
+          keyboardType: TextInputType.text,
           hint: 'Enter Location',
           controller: locationController,
           validator: Validators.normal,

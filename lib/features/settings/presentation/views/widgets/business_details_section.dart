@@ -15,11 +15,13 @@ class BusinessDetailsSection extends StatelessWidget {
       title: LocaleKeys.Business_Details.tr(),
       children: [
         CustomTextField(
+          keyboardType: TextInputType.text,
           hint: 'www.example.com',
           lable: LocaleKeys.Website.tr(),
           prefixIcon: SvgPicture.asset(Assets.language),
         ),
         CustomTextField(
+          keyboardType: TextInputType.text,
           hint: 'Mon-Fri: 8AM-8PM, Sat-Sun: 9AM-6PM',
           lable: LocaleKeys.Business_Hours.tr(),
           prefixIcon: SvgPicture.asset(Assets.timer),

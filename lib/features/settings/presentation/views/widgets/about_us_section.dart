@@ -14,6 +14,7 @@ class AboutUsSection extends StatelessWidget {
       title: LocaleKeys.about_us.tr(),
       children: [
         CustomTextField(
+          keyboardType: TextInputType.text,
           controller: bioController,
           validator: Validators.normal,
           hint: LocaleKeys.Tell_the_community_about_your_organization.tr(),

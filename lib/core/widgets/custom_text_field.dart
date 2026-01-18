@@ -16,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     this.maxLines,
     this.enabled,
     this.onChanged,
+    this.keyboardType,
   });
   final String hint;
   final String? lable;
@@ -24,6 +25,7 @@ class CustomTextField extends StatelessWidget {
   final bool? isPassword;
   final bool? enabled;
   final int? maxLines;
+  final TextInputType? keyboardType;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
@@ -37,6 +39,7 @@ class CustomTextField extends StatelessWidget {
             ? const SizedBox()
             : Text(lable!, style: AppTextStyle.styleRegular16(context)),
         TextFormField(
+          keyboardType: keyboardType,
           onChanged: onChanged,
           enabled: enabled ?? true,
           maxLines: maxLines ?? 1,

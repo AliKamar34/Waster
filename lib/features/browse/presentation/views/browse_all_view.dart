@@ -40,6 +40,7 @@ class _BrowseAllViewState extends State<BrowseAllView> {
           children: [
             CustomAppBar(title: LocaleKeys.Browse_Available_Orders.tr()),
             CustomTextField(
+              keyboardType: TextInputType.text,
               controller: _searchController,
               prefixIcon: SvgPicture.asset(Assets.browse),
               hint: LocaleKeys.Search_by_food_type_or_donor_name.tr(),

@@ -116,6 +116,7 @@ class _DonateFormState extends State<DonateForm> {
             removeImage: () => setState(() => _controller.updateImage(null)),
           ),
           CustomTextField(
+            keyboardType: TextInputType.text,
             lable: '${LocaleKeys.item_name.tr()} *',
             hint: LocaleKeys.eg_Fresh_Vegetables_Baked_Goods.tr(),
             controller: _controller.titleController,
@@ -134,6 +135,7 @@ class _DonateFormState extends State<DonateForm> {
           ),
           CustomTextField(
             maxLines: 3,
+            keyboardType: TextInputType.text,
             lable: LocaleKeys.Description.tr(),
             hint: LocaleKeys.Additional_details_about_the_food.tr(),
             controller: _controller.descriptionController,
