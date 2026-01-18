@@ -18,6 +18,7 @@ class EmailTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      keyboardType: TextInputType.emailAddress,
       lable: LocaleKeys.Email.tr(),
       hint: LocaleKeys.Enter_your_email.tr(),
       controller: _emailController,

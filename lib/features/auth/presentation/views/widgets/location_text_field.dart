@@ -18,6 +18,7 @@ class LocationTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      keyboardType: TextInputType.text,
       lable: LocaleKeys.Location.tr(),
       hint: LocaleKeys.City_State.tr(),
       controller: _locationController,

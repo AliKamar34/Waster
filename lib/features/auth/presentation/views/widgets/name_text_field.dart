@@ -19,6 +19,7 @@ class NameTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      keyboardType: TextInputType.name,
       lable: LocaleKeys.full_Name.tr(),
       hint: LocaleKeys.enter_your_full_name.tr(),
       controller: _fullNameController,

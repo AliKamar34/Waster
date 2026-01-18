@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:waster/core/usecases/use_cases.dart';
 import 'package:waster/features/auth/domain/entity/auth_entity.dart';
 import 'package:waster/features/auth/domain/usecases/log_in_use_case.dart';
@@ -102,41 +100,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(const AuthLoading());
-    final GoogleSignIn googleSignIn = GoogleSignIn.instance;
-    bool googleInitialized = false;
+    final result = await googleSignInUseCase.call(const GoogleSignInParams());
 
-    Future<void> initializeGoogle() async {
-      if (!googleInitialized) {
-        await googleSignIn.initialize(
-          serverClientId:
-              '334524896186-bgv4l5sbdn4kqu6hlci4pkm7vljrilr4.apps.googleusercontent.com',
-        );
-        googleInitialized = true;
-      }
-    }
-
-    await initializeGoogle();
-    try {
-      final GoogleSignInAccount googleUser = await googleSignIn.authenticate(
-        scopeHint: ['email', 'profile', 'openid'],
-      );
-      final String? idToken = googleUser.authentication.idToken;
-      if (idToken == null) {
-        emit(const AuthFailure('Failed to get Google ID token'));
-        return;
-      }
-      final result = await googleSignInUseCase.call(
-        GoogleSignInParams(idToken: idToken),
-      );
-      result.fold(
-        (failure) => emit(AuthFailure(failure.message)),
-        (authEntity) => emit(AuthSuccess(authEntity)),
-      );
-    } catch (e) {
-      log(
-        'Google sign in failed: ${e.toString()} ${e.hashCode} ${e.runtimeType} }',
-      );
-      emit(const AuthFailure('Google sign in failed'));
-    }
+    result.fold(
+      (failure) => emit(AuthFailure(failure.message)),
+      (authEntity) => emit(AuthSuccess(authEntity)),
+    );
   }
 }

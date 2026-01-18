@@ -26,6 +26,7 @@ class ConfirmPasswordTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      keyboardType: TextInputType.visiblePassword,
       lable: LocaleKeys.Confirm_Password.tr(),
       hint: LocaleKeys.Confirm_your_password.tr(),
       isPassword: isConfirmPassword,

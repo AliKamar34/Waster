@@ -23,6 +23,7 @@ class PasswordTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      keyboardType: TextInputType.visiblePassword,
       lable: LocaleKeys.Password.tr(),
       hint: LocaleKeys.Enter_your_password.tr(),
       controller: _passwordController,

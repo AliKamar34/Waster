@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:waster/core/networking/auth_interceptor.dart';
 import 'package:waster/core/networking/dio_helper.dart';
+import 'package:waster/core/secrets/secrets.dart';
+import 'package:waster/core/services/google_auth_service.dart';
 import 'package:waster/core/utils/secure_storage_helper.dart';
 import 'package:waster/features/auth/data/datasource/auth_local_data_source.dart';
 import 'package:waster/features/auth/data/datasource/auth_remote_date_source.dart';
@@ -67,6 +69,11 @@ void setupServiceLocator() {
   sl.registerLazySingleton<SecureStorageHelper>(() => SecureStorageHelper());
   sl.registerLazySingleton<DioHelper>(() => DioHelper());
 
+  // Google Auth Service
+  sl.registerLazySingleton<GoogleAuthService>(
+    () => GoogleAuthServiceImpl(serverClientId: Secrets.googleServerClientId),
+  );
+
   // Features - Auth
   // Data sources
   sl.registerLazySingleton<AuthRemoteDateSource>(
@@ -93,7 +100,7 @@ void setupServiceLocator() {
     () => RevokeTokenUseCase(authRepo: sl()),
   );
   sl.registerLazySingleton<GoogleSignInUseCase>(
-    () => GoogleSignInUseCase(authRepo: sl()),
+    () => GoogleSignInUseCase(authRepo: sl(), googleAuthService: sl()),
   );
 
   // Auth Interceptor
