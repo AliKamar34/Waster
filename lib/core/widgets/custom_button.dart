@@ -38,12 +38,17 @@ class CustomButton extends StatelessWidget {
         children: [
           icon == null ? const SizedBox.shrink() : icon!,
           icon == null ? const SizedBox.shrink() : const SizedBox(width: 6),
-          Text(
-            title,
-            style: AppTextStyle.styleBold20(context).copyWith(
-              color:
-                  borderColor ??
-                  Theme.of(context).extension<AppColors>()!.whiteColor,
+          Expanded(
+            child: Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: AppTextStyle.styleBold20(context).copyWith(
+                color:
+                    borderColor ??
+                    Theme.of(context).extension<AppColors>()!.whiteColor,
+              ),
             ),
           ),
         ],

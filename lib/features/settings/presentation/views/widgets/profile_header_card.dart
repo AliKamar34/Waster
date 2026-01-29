@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:waster/core/constants/assets.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
 import 'package:waster/core/routing/app_routes.dart';
-import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
 import 'package:waster/features/settings/domain/entity/user_entity.dart';
@@ -25,11 +24,7 @@ class ProfileHeaderCard extends StatelessWidget {
         spacing: 6,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 75,
-            width: 75,
-            color: Theme.of(context).extension<AppColors>()!.primaryColor,
-          ),
+          SvgPicture.asset(Assets.noProfileImage, width: 100.w),
           Expanded(
             child: Column(
               spacing: 4,

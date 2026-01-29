@@ -1,7 +1,7 @@
 import 'package:waster/features/auth/domain/entity/auth_entity.dart';
 
 class AuthModel extends AuthEntity {
-  AuthModel({
+  const AuthModel({
     required super.token,
     required super.refreshToken,
     required super.email,

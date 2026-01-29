@@ -15,11 +15,8 @@ class DonorIformationListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: CircleAvatar(
-        radius: 22.r,
-        backgroundColor: Theme.of(context).extension<AppColors>()!.primaryColor,
-        child: const Text('SB'),
-      ),
+      leading: SvgPicture.asset(Assets.noProfileImage, width: 24.w),
+
       title: Text(
         claimUserEntity.fullName,
         style: AppTextStyle.styleRegular14(context).copyWith(
