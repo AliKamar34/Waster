@@ -8,6 +8,10 @@ class Assets {
   static const String warningAvatar = '${imagesPath}warningAvatar.svg';
   static const String noImage = '${imagesPath}no_image.png';
   static const String noResultImage = '${imagesPath}no_result_image.svg';
+  static const String food = '${imagesPath}food.png';
+  static const String pendingClaims = '${imagesPath}pendingClaims.png';
+  static const String availablePosts = '${imagesPath}availablePosts.png';
+  static const String noProfileImage = '${imagesPath}no_profile_pic.svg';
 
   static const String iconsPath = 'assets/icons/';
   static const String achievement = '${iconsPath}achievement.svg';
