@@ -1,51 +1,45 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:waster/core/localization/locale_keys.g.dart';
+import 'package:waster/core/themes/app_colors.dart';
 import 'package:waster/core/themes/app_text_style.dart';
 import 'package:waster/core/widgets/custom_container.dart';
+import 'package:waster/core/widgets/custom_light_color_container.dart';
 import 'package:waster/features/impact/presentation/views/widgets/month_donation_info_widget.dart';
 
 class MonthlyGoalsSection extends StatelessWidget {
-  const MonthlyGoalsSection({super.key});
-
+  const MonthlyGoalsSection({super.key, required this.current});
+  final int current;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 16,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          LocaleKeys.monthly_goals.tr(),
-          style: AppTextStyle.styleRegular18(context),
-        ),
-        CustomContainer(
-          child: Column(
-            spacing: 16,
+    return CustomContainer(
+      child: Column(
+        spacing: 16,
+        children: [
+          Row(
+            spacing: 8,
             children: [
-              MonthDonationInfoWidget(
-                month: LocaleKeys.jan.tr(),
-                current: 8,
-                goal: 10,
+              CustomLightColorContainer(
+                padding: 8,
+                color: Theme.of(context).extension<AppColors>()!.primaryColor,
+                child: Icon(
+                  Icons.ads_click,
+                  color: Theme.of(context).extension<AppColors>()!.primaryColor,
+                ),
               ),
-              MonthDonationInfoWidget(
-                month: LocaleKeys.feb.tr(),
-                current: 12,
-                goal: 10,
-              ),
-              MonthDonationInfoWidget(
-                month: LocaleKeys.mar.tr(),
-                current: 5,
-                goal: 10,
-              ),
-              MonthDonationInfoWidget(
-                month: LocaleKeys.apr.tr(),
-                current: 3,
-                goal: 10,
+              Text(
+                LocaleKeys.monthly_goals.tr(),
+                style: AppTextStyle.styleRegular18(context),
               ),
             ],
           ),
-        ),
-      ],
+          MonthDonationInfoWidget(
+            month: 'Community Impact',
+            current: current,
+            goal: 10,
+          ),
+        ],
+      ),
     );
   }
 }

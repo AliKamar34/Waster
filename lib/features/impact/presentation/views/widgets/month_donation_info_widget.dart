@@ -17,6 +17,7 @@ class MonthDonationInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 8,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,6 +35,10 @@ class MonthDonationInfoWidget extends StatelessWidget {
           ],
         ),
         DonationProgressBar(current: current, goal: goal),
+        Text(
+          'You\'re only ${goal - current} donations away from your monthly goal!',
+          style: AppTextStyle.styleRegular14(context),
+        ),
       ],
     );
   }
