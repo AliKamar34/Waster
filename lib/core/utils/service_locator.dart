@@ -40,6 +40,11 @@ import 'package:waster/features/browse/presentation/manager/categories_cubit/cat
 import 'package:waster/features/browse/presentation/manager/expiring_soon_cubit/expiring_soon_cubit.dart';
 import 'package:waster/features/home/presentation/manager/feed_cubit/feed_cubit.dart';
 import 'package:waster/features/browse/presentation/manager/search_cubit/search_cubit.dart';
+import 'package:waster/features/impact/data/datasource/impact_remote_data_source.dart';
+import 'package:waster/features/impact/data/repo/impact_repo_impl.dart';
+import 'package:waster/features/impact/domain/repo/impact_repo.dart';
+import 'package:waster/features/impact/domain/usecase/get_impact_use_case.dart';
+import 'package:waster/features/impact/presentation/manager/cubit/impact_cubit.dart';
 import 'package:waster/features/post/data/datasource/post_remote_data_source.dart';
 import 'package:waster/features/post/data/repo/post_repo_impl.dart';
 import 'package:waster/features/post/domain/repo/post_repo.dart';
@@ -321,4 +326,21 @@ void setupServiceLocator() {
       cancelClaimUseCase: sl(),
     ),
   );
+
+  // Feature -- impact
+  // Data source
+  sl.registerLazySingleton<ImpactRemoteDataSource>(
+    () => ImpactRemoteDataSourceImpl(dioHelper: sl()),
+  );
+
+  // Repo
+  sl.registerLazySingleton<ImpactRepo>(
+    () => ImpactRepoImpl(impactRemoteDataSource: sl()),
+  );
+  //use case
+  sl.registerLazySingleton<GetImpactUseCase>(
+    () => GetImpactUseCase(impactRepo: sl()),
+  );
+  // Cubit
+  sl.registerFactory(() => ImpactCubit(getImpactUseCase: sl()));
 }
