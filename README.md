@@ -20,6 +20,7 @@
   - [Offline Capabilities](#-offline-capabilities)
   - [Integrations](#-integrations)
   - [Analytics Ready](#-analytics-ready)
+- [Screenshots](#-screenshots)   
 - [Tech Stack & Key Libraries](#️-tech-stack--key-libraries)
   - [Framework](#framework)
   - [State Management](#state-management)
@@ -196,6 +197,31 @@
 - **Performance Monitoring** - Track app performance metrics
 
 ---
+## 📱 Screenshots
+<table>
+  <tr>
+    <td><img src="assets/screenshots/splash.jpeg" height="400"></td>
+    <td><img src="assets/screenshots/auth.jpeg" height="400"></td>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshots/feed.jpeg" height="400"></td>
+    <td><img src="assets/screenshots/add_post.jpeg" height="400"></td>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshots/post_details.jpeg" height="400"></td>
+    <td><img src="assets/screenshots/claim.jpeg" height="400"></td>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshots/profile.jpeg" height="400"></td>
+    <td><img src="assets/screenshots/posts_managment.jpeg" height="400"></td>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshots/security.jpeg" height="400"></td>
+    <td><img src="assets/screenshots/settings.jpeg" height="400"></td>
+  </tr>
+</table>
+
+---
 ## 🛠️ Tech Stack & Key Libraries
 
 ### Framework
@@ -275,7 +301,7 @@ dart --version
 
 #### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/waster-app.git
+git clone https://github.com/AliKamar34/waster-app.git
 cd waster-app
 ```
 
